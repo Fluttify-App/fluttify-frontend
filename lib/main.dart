@@ -5,7 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'package:provider/provider.dart';
 
 Future main() async {
-  await DotEnv.load();
+  await DotEnv.load(fileName: "assets/.env");
   runApp(Fluttify());
 }
 

@@ -91,7 +91,7 @@ class _SignInPageState extends State<SignInPage> {
             Column(
               children: <Widget>[
                 Image.asset(
-                  'images/text_logo.png',
+                  'assets/images/text_logo.png',
                   width: 280.0,
                 )
               ],
