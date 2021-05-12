@@ -4,6 +4,8 @@ import 'package:lipsum/lipsum.dart' as lipsum;
 
 class MockDataPlaylistService {
 
+  List<String> genres = <String>["Rap", "Rock", "Pop", "Hardstyle"];
+
   List<Playlist> getPlaylists() {
     List<Playlist> playlists = <Playlist>[];
     for (int i = 0; i < 20; i++) {
@@ -19,6 +21,7 @@ class MockDataPlaylistService {
     playlist.description = lipsum.createParagraph();
     playlist.genres = List<String>.filled(5, "Rock");
     playlist.image = 'assets/images/spotify.jpg';
+    playlist.genre = genres;
     return playlist;
   }
 }

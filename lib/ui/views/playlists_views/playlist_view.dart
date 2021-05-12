@@ -13,6 +13,7 @@ class PlaylistView extends StatelessWidget {
         appBar: AppBar(
           title: Text("Playlists"),
           backgroundColor: Color.fromARGB(255, 20, 20, 20),
+          //backgroundColor: Color.fromARGB(255, 94, 8, 28),
           centerTitle: true,
         ),
         body: Center(
@@ -71,7 +72,7 @@ class PlaylistView extends StatelessWidget {
                                                     25, 0, 0, 20),
                                                 child: Text(
                                                   "100 Songs",
-                                                        style: DefaultTextStyle.of(
+                                                  style: DefaultTextStyle.of(
                                                           context)
                                                       .style
                                                       .apply(
@@ -143,13 +144,70 @@ class _PlaylistCardView extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: Card(
-          child: Container(
-            alignment: Alignment.centerRight,
-            decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage(playlist.image)),
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Beschreibung",
+                style: DefaultTextStyle.of(context)
+                    .style
+                    .apply(fontSizeFactor: 1.3),
+              ),
             ),
-          ),
+            FractionallySizedBox(
+              widthFactor: 0.95,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: Container(
+                  padding: EdgeInsets.all(13),
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    playlist.description,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Genres",
+                style: DefaultTextStyle.of(context)
+                    .style
+                    .apply(fontSizeFactor: 1.3),
+              ),
+            ),
+            FractionallySizedBox(
+              widthFactor: 0.95,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: Row(
+                  children: [
+                    for (String genre in playlist.genre)
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.fromLTRB(5, 13, 0, 13),
+                        child: Card(
+                          color: Color.fromARGB(255, 94, 8, 28),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(12, 5, 12, 5),
+                            child: Text(
+                              genre,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
