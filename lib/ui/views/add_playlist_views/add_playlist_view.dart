@@ -9,6 +9,11 @@ class AddPlaylistView extends StatelessWidget {
     return ViewModelBuilder<AddPlaylistViewModel>.reactive(
       builder: (BuildContext context, AddPlaylistViewModel model, Widget child) =>
           Scaffold(
+            appBar: AppBar(
+              title: Text("Add Playlist"),
+               backgroundColor: Color.fromARGB(255, 20, 20, 20),
+              centerTitle: true,
+            ),
             body: Center(
               child: Text('Add Playlist')
             )

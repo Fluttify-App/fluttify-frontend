@@ -29,7 +29,13 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Fluttify',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
+        primaryColor: Colors.black,
+        brightness: Brightness.dark,
+        backgroundColor: const Color.fromARGB(255, 89, 89, 89),
+        accentColor: Colors.white,
+        accentIconTheme: IconThemeData(color: Colors.black),
+        dividerColor: Colors.black12,
       ),
       navigatorKey: locator<NavigationService>().navigatorKey,
       onGenerateRoute: FluttifyRouter(),

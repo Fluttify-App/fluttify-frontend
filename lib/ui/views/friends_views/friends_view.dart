@@ -9,6 +9,11 @@ class FriendsView extends StatelessWidget {
     return ViewModelBuilder<FriendsViewModel>.reactive(
       builder: (BuildContext context, FriendsViewModel model, Widget child) =>
           Scaffold(
+            appBar: AppBar(
+              title: Text("Friends"),
+               backgroundColor: Color.fromARGB(255, 20, 20, 20),
+              centerTitle: true,
+            ),
             body: Center(
               child: Text('Friends')
             )

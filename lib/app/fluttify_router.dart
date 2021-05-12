@@ -6,13 +6,17 @@ import 'package:fluttify/ui/views/home_view.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view.dart';
 import 'package:fluttify/ui/views/sign_in_views/sign_in_view.dart';
 
+// gr Datei wird automatisch neu gebuilded, falls nicht
+// 'flutter packages pub run build_runner build' ausführen
+// Fehler treten in der gr Datei bei den homeviewroutes auf, kein Plan wieso,
+// einfach bei dem string nach dem '/' was hinschreiben (anscheinend egal was)
 @MaterialAutoRouter(
   routes: <AutoRoute<dynamic>>[
     MaterialRoute(page: SignInView, initial: true),
     MaterialRoute(page: HomeView, children: [
       MaterialRoute(page: PlaylistView, initial: true),
-      MaterialRoute(page: AddPlaylistView, initial: true),
-      MaterialRoute(page: FriendsView, initial: true)
+      MaterialRoute(page: AddPlaylistView),
+      MaterialRoute(page: FriendsView)
     ])
   ]
 )

@@ -17,23 +17,24 @@ class HomeView extends StatelessWidget {
         bottomNavigationBar: Theme(
           data: ThemeData(primaryColor: Colors.black),
           child: BottomNavigationBar(
-            backgroundColor: Color.fromARGB(255, 30, 215, 96),
+            backgroundColor: Color.fromARGB(255, 20, 20, 20),
             type: BottomNavigationBarType.fixed,
             iconSize: 30,
             currentIndex: model.currentIndex,
             onTap: model.setIndex,
+            fixedColor: Colors.white,
             items: [
               BottomNavigationBarItem(
                 label: 'Playlists',
-                icon: Icon(Icons.home, color: Colors.black),
+                icon: Icon(Icons.home),
               ),
               BottomNavigationBarItem(
                 label: 'Add Playlist',
-                icon: Icon(Icons.add, color: Colors.black),
+                icon: Icon(Icons.add),
               ),
               BottomNavigationBarItem(
                   label: 'Friends',
-                  icon: Icon(Icons.favorite, color: Colors.black)
+                  icon: Icon(Icons.favorite)
               ),
             ],
           ),
