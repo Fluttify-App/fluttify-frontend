@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/models/playlist.dart';
+import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
@@ -12,9 +13,17 @@ class PlaylistView extends StatelessWidget {
           Scaffold(
         appBar: AppBar(
           title: Text("Playlists"),
-          backgroundColor: Color.fromARGB(255, 20, 20, 20),
-          //backgroundColor: Color.fromARGB(255, 94, 8, 28),
+          backgroundColor: appBar_red,
           centerTitle: true,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[gradientColor_1, gradientColor_2],
+              ),
+            ),
+          ),
         ),
         body: Center(
           child: Container(
@@ -104,7 +113,6 @@ class PlaylistView extends StatelessWidget {
                                 width: 100,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      scale: 0.5,
                                       image: AssetImage(playlist.image),
                                       fit: BoxFit.contain),
                                 ),
@@ -139,10 +147,19 @@ class _PlaylistCardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(playlist.name),
-        backgroundColor: Color.fromARGB(255, 60, 60, 60),
-        centerTitle: true,
-      ),
+          title: Text(playlist.name),
+          backgroundColor: appBar_red,
+          centerTitle: true,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[gradientColor_1, gradientColor_2],
+              ),
+            ),
+          ),
+        ),
       body: Center(
         child: Column(
           children: [
@@ -163,7 +180,7 @@ class _PlaylistCardView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0)),
                 child: Container(
                   padding: EdgeInsets.all(13),
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.centerLeft,
                   child: Text(
                     playlist.description,
                   ),
@@ -185,12 +202,13 @@ class _PlaylistCardView extends StatelessWidget {
               child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
-                child: Row(
+                child: Wrap(
+                  alignment: WrapAlignment.start,
+                  direction: Axis.horizontal,
                   children: [
-                    for (String genre in playlist.genre)
+                    for (String genre in playlist.genres)
                       Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.fromLTRB(5, 13, 0, 13),
+                        padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
                         child: Card(
                           color: Color.fromARGB(255, 94, 8, 28),
                           shape: RoundedRectangleBorder(
@@ -199,6 +217,44 @@ class _PlaylistCardView extends StatelessWidget {
                             padding: EdgeInsets.fromLTRB(12, 5, 12, 5),
                             child: Text(
                               genre,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+             Container(
+              padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Collaborators",
+                style: DefaultTextStyle.of(context)
+                    .style
+                    .apply(fontSizeFactor: 1.3),
+              ),
+            ),
+            FractionallySizedBox(
+              widthFactor: 0.95,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: Wrap(
+                  alignment: WrapAlignment.start,
+                  direction: Axis.horizontal,
+                  children: [
+                    for (String collaborator in playlist.collaborators)
+                      Container(
+                        padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
+                        child: Card(
+                          color: Color.fromARGB(255, 94, 8, 28),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(12, 5, 12, 5),
+                            child: Text(
+                              collaborator,
                             ),
                           ),
                         ),

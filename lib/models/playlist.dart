@@ -4,7 +4,7 @@ class Playlist {
   String description;
   List<String> genres;
   String image;
-  List<String> genre;
+  List<String> collaborators; 
 
   Playlist({
       this.id,
@@ -12,6 +12,6 @@ class Playlist {
       this.description,
       this.genres,
       this.image,
-      this.genre
+      this.collaborators
   });
 }

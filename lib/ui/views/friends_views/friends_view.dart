@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/friends_views/friends_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
@@ -11,7 +12,7 @@ class FriendsView extends StatelessWidget {
           Scaffold(
             appBar: AppBar(
               title: Text("Friends"),
-               backgroundColor: Color.fromARGB(255, 20, 20, 20),
+               backgroundColor: appBar_red,
               centerTitle: true,
             ),
             body: Center(
