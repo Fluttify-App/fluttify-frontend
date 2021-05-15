@@ -10,7 +10,7 @@ import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 class ApiService extends ChangeNotifier {
   Preference<String> token;
-  String baseUrl = "https://fluttifly-backend.com";
+  String baseUrl = "fluttify.herokuapp.com";
   Map<String, String> headers = {};
   bool _loggedIn = false;
 
