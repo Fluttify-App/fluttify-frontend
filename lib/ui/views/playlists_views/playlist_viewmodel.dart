@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/mock_data_playlist.dart';
@@ -12,6 +13,6 @@ class PlaylistViewModel extends BaseViewModel {
 
   PlaylistViewModel() {
     playlists = mockdata.getPlaylists();
-  }
+  }  
   
 }

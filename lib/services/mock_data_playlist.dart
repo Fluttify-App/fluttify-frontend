@@ -23,6 +23,7 @@ class MockDataPlaylistService {
     playlist.genres = genres;
     playlist.image = 'assets/images/spotify.jpg';
     playlist.collaborators = collaborators;
+    playlist.numberOfSongs = 100;
     return playlist;
   }
 }

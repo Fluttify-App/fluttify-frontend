@@ -2,9 +2,11 @@ class Playlist {
   int id;
   String name;
   String description;
-  List<String> genres;
+  List<dynamic> genres;
   String image;
   List<String> collaborators; 
+  int numberOfSongs;
+  bool canEdit = false;
 
   Playlist({
       this.id,
@@ -12,6 +14,7 @@ class Playlist {
       this.description,
       this.genres,
       this.image,
-      this.collaborators
+      this.collaborators,
+      this.canEdit = false
   });
 }

@@ -37,6 +37,7 @@ dependencies:
   auto_route: ^0.6.9
   global_configuration: ^2.0.0-nullsafety.1
   lipsum: ^1.0.1
+  multi_select_flutter: ^4.0.0
 
 dev_dependencies:
   build_runner: ^1.10.6
