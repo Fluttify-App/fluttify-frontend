@@ -8,18 +8,17 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
+import 'package:fluttify/ui/views/spotify_sign_in/spotify_sign_in_view.dart';
 import '../ui/views/add_playlist_views/add_playlist_view.dart';
 import '../ui/views/friends_views/friends_view.dart';
 import '../ui/views/home_view.dart';
 import '../ui/views/playlists_views/playlist_view.dart';
-import '../ui/views/sign_in_views/sign_in_view.dart';
 
 class Routes {
-  static const String signInView = '/';
+  static const String spotifySignInView = '/';
   static const String homeView = '/home-view';
   static const all = <String>{
-    signInView,
+    spotifySignInView,
     homeView,
   };
 }
@@ -28,7 +27,7 @@ class FluttifyRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
-    RouteDef(Routes.signInView, page: SignInView),
+    RouteDef(Routes.spotifySignInView, page: SpotifySignInView),
     RouteDef(
       Routes.homeView,
       page: HomeView,
@@ -38,9 +37,9 @@ class FluttifyRouter extends RouterBase {
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, AutoRouteFactory>{
-    SignInView: (data) {
+    SpotifySignInView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => SignInView(),
+        builder: (context) => SpotifySignInView(),
         settings: data,
       );
     },

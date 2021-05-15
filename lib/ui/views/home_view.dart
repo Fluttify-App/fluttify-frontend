@@ -10,7 +10,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (BuildContext context, HomeViewModel model, Widget child) =>
-      Scaffold(
+          Scaffold(
         body: router.ExtendedNavigator<HomeViewRouter>(
             router: HomeViewRouter(),
             navigatorKey: StackedService.nestedNavigationKey(1)),
@@ -33,8 +33,7 @@ class HomeView extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                   label: 'Friends',
-                  icon: Icon(Icons.favorite, color: Colors.black)
-              ),
+                  icon: Icon(Icons.favorite, color: Colors.black)),
             ],
           ),
         ),
