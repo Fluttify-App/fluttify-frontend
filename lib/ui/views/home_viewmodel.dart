@@ -28,13 +28,13 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
     switch (currentIndex) {
       case 0:
-        _navigationService.navigateTo(HomeViewRoutes.playlistView, id: 1);
+        _navigationService.pushNamedAndRemoveUntil(HomeViewRoutes.playlistView, id: 1);
         break;
       case 1:
-        _navigationService.navigateTo(HomeViewRoutes.addPlaylistView, id: 1);
+        _navigationService.pushNamedAndRemoveUntil(HomeViewRoutes.addPlaylistView, id: 1);
         break;
       case 2:
-        _navigationService.navigateTo(HomeViewRoutes.friendsView, id: 1);
+        _navigationService.pushNamedAndRemoveUntil(HomeViewRoutes.friendsView, id: 1);
         break;
       default:
         break;
