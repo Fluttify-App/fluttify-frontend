@@ -15,8 +15,13 @@ class FluttifyPlaylistService {
   Future<List<Playlist>> getFluttifyPlaylists() async {
     final response = await http.get(Uri.https(baseUrl, 'fluttify/myplaylists'),
         headers: _apiService.headers);
-    return (json.decode(response.body)['created'] as List)
-        .map((data) => Playlist.fromJson(data))
-        .toList();
+    if (response.statusCode == 200) {
+      return (json.decode(response.body)['created'] as List)
+          .map((data) => Playlist.fromJson(data))
+          .toList();
+    } else {
+      print("Not Authorized");
+      return [];
+    }
   }
 }

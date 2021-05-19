@@ -222,7 +222,7 @@ class EditPlaylistView extends StatelessWidget {
                                     padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
                                     alignment: Alignment.topLeft,
                                     child: DefaultTextStyle(
-                                      child: Text("Collaborators"),
+                                      child: Text("Contributers"),
                                       style: TextStyle(fontSize: 20),
                                     ),
                                   ),
@@ -244,7 +244,7 @@ class EditPlaylistView extends StatelessWidget {
                                 padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
                                 alignment: Alignment.topLeft,
                                 child: DefaultTextStyle(
-                                  child: Text("Collaborators"),
+                                  child: Text("Contributers"),
                                   style: TextStyle(fontSize: 20),
                                 ),
                               ),
@@ -257,8 +257,8 @@ class EditPlaylistView extends StatelessWidget {
                               alignment: WrapAlignment.start,
                               direction: Axis.horizontal,
                               children: [
-                                for (String collaborator
-                                    in playlist.collaborators)
+                                for (String contributers
+                                    in playlist.contributers)
                                   Container(
                                     padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
                                     child: Card(
@@ -270,7 +270,7 @@ class EditPlaylistView extends StatelessWidget {
                                         padding:
                                             EdgeInsets.fromLTRB(12, 5, 12, 5),
                                         child: Text(
-                                          collaborator,
+                                          contributers,
                                         ),
                                       ),
                                     ),
@@ -325,8 +325,7 @@ class EditPlaylistView extends StatelessWidget {
                                                 style: TextStyle(
                                                     fontSize: 20,
                                                     color: Colors.white)),
-                                            onPressed: () =>
-                                                model.save()),
+                                            onPressed: () => model.save()),
                                       ),
                                     ),
                                   ),

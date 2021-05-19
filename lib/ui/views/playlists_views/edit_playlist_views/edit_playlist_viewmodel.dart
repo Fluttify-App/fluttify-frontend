@@ -38,7 +38,8 @@ class EditPlaylistViewModel extends BaseViewModel {
     playlist.description = descriptionController.text;
     playlist.name = nameController.text;
     playlist.genres = selectedGenres;
-    playlistService.playlists[playlist.id] = playlist;
+    // TODO: send save to backend
+    //playlistService.playlists[playlist.id] = playlist;
     canEdit();
   }
 
