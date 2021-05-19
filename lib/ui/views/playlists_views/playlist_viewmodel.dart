@@ -1,18 +1,27 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
+import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/mock_data_playlist.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view.dart';
 import 'package:stacked/stacked.dart';
 
 class PlaylistViewModel extends BaseViewModel {
+  final FluttifyPlaylistService playlistService =
+      locator<FluttifyPlaylistService>();
 
-  final MockDataPlaylistService mockdata = locator<MockDataPlaylistService>();
+  bool isLoading = true;
 
-  List<Playlist> playlists = <Playlist>[];
+  List<Playlist> playlists = <Playlist>[Playlist()];
 
   PlaylistViewModel() {
-    playlists = mockdata.getPlaylists();
-  }  
-  
+    playlistService.getFluttifyPlaylists().then((playlistsResponse) {
+      playlists = playlistsResponse;
+      isLoading = false;
+      print(playlists);
+      notifyListeners();
+    });
+  }
 }

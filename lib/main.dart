@@ -23,9 +23,18 @@ class Fluttify extends StatelessWidget {
 }
 
 class App extends StatelessWidget {
+  final NavigationService _navigationService = locator<NavigationService>();
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<ApiService>(context, listen: false);
+    auth.addListener(() {
+      if (auth.loggedIn) {
+        //   _navigationService.clearStackAndShow(Routes.homeView);
+      }
+    });
+
     return MaterialApp(
       title: 'Fluttify',
       theme: ThemeData(

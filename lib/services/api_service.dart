@@ -10,24 +10,25 @@ import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 class ApiService extends ChangeNotifier {
   Preference<String> token;
-  String baseUrl = "fluttify.herokuapp.com";
+  final String baseUrl = "fluttify.herokuapp.com";
   Map<String, String> headers = {};
-  bool _loggedIn = false;
+  bool loggedIn = false;
 
   final NavigationService _navigationService = locator<NavigationService>();
 
-  bool get loggedIn => _loggedIn;
+  List<Object> get props => [loggedIn, headers];
 
   ApiService() {
     StreamingSharedPreferences.instance.then((preferences) {
       token = preferences.getString("token", defaultValue: 'initial');
       token.listen((value) async {
+        print(value);
         headers = {'Authorization': 'Bearer $value'};
-        final response = await http.get(Uri.https(baseUrl, 'spotifly/user'),
+        final response = await http.get(Uri.https(baseUrl, 'fluttify/user'),
             headers: headers);
         if (response.statusCode == 200) {
           print("Logged In");
-          _loggedIn = true;
+          loggedIn = true;
           notifyListeners();
         }
       });
@@ -36,7 +37,7 @@ class ApiService extends ChangeNotifier {
 
   void logoutBackend() async {
     token.setValue("initial");
-    _loggedIn = false;
+    loggedIn = false;
     _navigationService.clearStackAndShow(Routes.spotifySignInView);
   }
 
@@ -52,7 +53,7 @@ class ApiService extends ChangeNotifier {
 
   Future<void> getUser() async {
     final response =
-        await http.get(Uri.https(baseUrl, 'spotifly/user'), headers: headers);
+        await http.get(Uri.https(baseUrl, 'fluttify/user'), headers: headers);
     print(response.statusCode);
     print(response.body);
   }

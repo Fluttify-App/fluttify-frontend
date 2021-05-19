@@ -1,11 +1,15 @@
-
 import 'package:fluttify/models/playlist.dart';
 import 'package:lipsum/lipsum.dart' as lipsum;
 
 class MockDataPlaylistService {
-
   List<String> genres = <String>["Rap", "Rock", "Pop", "Hardstyle", "Hardcore"];
-  List<String> collaborators = <String>["Sascha", "Tom", "Phillip", "Florian", "Patrick"];
+  List<String> collaborators = <String>[
+    "Sascha",
+    "Tom",
+    "Phillip",
+    "Florian",
+    "Patrick"
+  ];
 
   List<Playlist> getPlaylists() {
     List<Playlist> playlists = <Playlist>[];
@@ -14,10 +18,10 @@ class MockDataPlaylistService {
     }
     return playlists;
   }
-      
+
   Playlist createPlaylistMockup(int i) {
     Playlist playlist = Playlist();
-    playlist.id = i;
+    playlist.id = "i" + i.toString();
     playlist.name = 'Beispiel $i';
     playlist.description = lipsum.createParagraph();
     playlist.genres = genres;

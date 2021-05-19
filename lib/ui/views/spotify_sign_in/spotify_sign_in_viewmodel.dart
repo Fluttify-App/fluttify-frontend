@@ -17,8 +17,4 @@ class SpotifySignInViewModel extends BaseViewModel {
       isLoading = false;
     }
   }
-
-  void navigateToHomeView() {
-    _navigationService.clearStackAndShow(Routes.homeView);
-  }
 }

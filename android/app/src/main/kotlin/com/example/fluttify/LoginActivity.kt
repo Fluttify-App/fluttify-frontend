@@ -15,6 +15,8 @@ class LoginActivity : FlutterActivity() {
         val sharedPreferences = getSharedPreferences("FlutterSharedPreferences", Context.MODE_PRIVATE);
         val editor = sharedPreferences.edit();
         editor.putString("flutter.token", token);
+        Log.e("token", token);
         editor.commit();
+
     }
 }
