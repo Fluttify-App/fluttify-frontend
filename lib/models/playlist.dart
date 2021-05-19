@@ -8,7 +8,6 @@ class Playlist {
   bool allgenres;
   List<dynamic> genres;
   String image;
-  List<dynamic> collaborators;
   int numberOfSongs;
   bool canEdit = false;
 
