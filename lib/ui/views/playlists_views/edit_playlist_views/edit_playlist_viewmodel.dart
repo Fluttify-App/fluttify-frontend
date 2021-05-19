@@ -1,28 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
-import 'package:fluttify/services/mock_data_playlist.dart';
+import 'package:fluttify/services/navigation_service.dart';
+import 'package:fluttify/services/playlist_service.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 class EditPlaylistViewModel extends BaseViewModel {
-
   TextEditingController descriptionController = TextEditingController();
   TextEditingController nameController = TextEditingController();
 
+  final PlaylistNavigationService _navigationService =
+      locator<PlaylistNavigationService>();
+  final PlaylistService playlistService = locator<PlaylistService>();
+
   List<dynamic> selectedGenres = [];
 
-  Playlist playlist;
-
-  MockDataPlaylistService mockdata = locator<MockDataPlaylistService>();
-
   List<MultiSelectItem<dynamic>> playlistGenre;
+
+  Playlist playlist;
 
   EditPlaylistViewModel(Playlist pl) {
     playlist = pl;
     descriptionController.text = pl.description;
     nameController.text = pl.name;
-    playlistGenre = mockdata.genres.map((genre) => MultiSelectItem<dynamic>(genre, genre)).toList();
+    playlistGenre = playlistService.genres
+        .map((genre) => MultiSelectItem<dynamic>(genre, genre))
+        .toList();
   }
 
   void canEdit() {
@@ -34,8 +38,8 @@ class EditPlaylistViewModel extends BaseViewModel {
     playlist.description = descriptionController.text;
     playlist.name = nameController.text;
     playlist.genres = selectedGenres;
+    playlistService.playlists[playlist.id] = playlist;
     canEdit();
-    notifyListeners();
   }
 
   void addGenre(List<dynamic> value) {

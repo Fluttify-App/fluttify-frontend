@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/ui/styles/colors.dart';
-import 'package:fluttify/ui/views/edit_playlist_views/edit_playlist_viewmodel.dart';
-import 'package:fluttify/ui/views/playlists_views/playlist_viewmodel.dart';
-import 'package:fluttify/ui/views/edit_playlist_views/edit_playlist_view.dart';
+import 'package:fluttify/ui/views/add_playlist_views/add_playlist_view.dart';
+import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class PlaylistView extends StatelessWidget {
@@ -35,16 +34,10 @@ class PlaylistView extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    for (Playlist playlist in model.playlists)
+                    for (Playlist playlist in model.mockdata.playlists)
                       GestureDetector(
                         onTap: () => {
-                          Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) {
-                                return EditPlaylistView(playlist: playlist);
-                              },
-                            ),
-                          ),
+                          model.navigateToEditPage(playlist)
                         },
                         child: Card(
                           shape: RoundedRectangleBorder(
@@ -64,13 +57,14 @@ class PlaylistView extends StatelessWidget {
                                           Container(
                                             padding: EdgeInsets.fromLTRB(
                                                 25, 20, 0, 10),
+                                            // TODO: refresh page to see changes instant
                                             child: Text(
                                               playlist.name,
                                               style:
                                                   DefaultTextStyle.of(context)
                                                       .style
                                                       .apply(
-                                                          fontSizeFactor: 2.0),
+                                                          fontSizeFactor: 1.8),
                                             ),
                                           ),
                                           Row(
@@ -99,25 +93,33 @@ class PlaylistView extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Container(
-                                alignment: Alignment.centerRight,
-                                child: IconButton(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(60, 0, 0, 0),
-                                  icon: Icon(
-                                    Icons.share,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-                              Container(
-                                height: 100,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(playlist.image),
-                                      fit: BoxFit.contain),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      child: IconButton(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 0, 5, 0),
+                                        icon: Icon(
+                                          Icons.share,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () {},
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 100,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(playlist.image),
+                                            fit: BoxFit.contain),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
@@ -129,6 +131,14 @@ class PlaylistView extends StatelessWidget {
               ),
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: gradientColor_1,
+          foregroundColor: Colors.white,
+          onPressed: () {
+            model.navigateToAddPlaylist();
+          },
+          child: Icon(Icons.add),
         ),
       ),
       viewModelBuilder: () => PlaylistViewModel(),

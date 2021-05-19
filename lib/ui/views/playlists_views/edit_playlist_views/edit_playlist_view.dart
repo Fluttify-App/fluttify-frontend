@@ -1,9 +1,10 @@
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/ui/styles/colors.dart';
-import 'package:fluttify/ui/views/edit_playlist_views/edit_playlist_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_viewmodel.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:stacked/stacked.dart';
+import 'package:flutter/services.dart';
 
 class EditPlaylistView extends StatelessWidget {
   const EditPlaylistView({this.playlist});
@@ -26,15 +27,14 @@ class EditPlaylistView extends StatelessWidget {
                     ),
                   ),
                 ],
-                // TODO: Title wird nicht in der playlist view aktualisiert
                 title: playlist.canEdit
                     ? TextField(
+                        inputFormatters: [
+                            LengthLimitingTextInputFormatter(13),
+                          ],
                         controller: model.nameController,
                         textAlign: TextAlign.center,
-                        style: DefaultTextStyle.of(context)
-                            .style
-                            .apply(fontSizeFactor: 1.5),
-                      )
+                        style: TextStyle(fontSize: 20))
                     : Text(playlist.name),
                 backgroundColor: appBar_red,
                 centerTitle: true,
@@ -57,11 +57,9 @@ class EditPlaylistView extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.fromLTRB(25, 0, 0, 15),
                           alignment: Alignment.topLeft,
-                          child: Text(
-                            "Beschreibung",
-                            style: DefaultTextStyle.of(context)
-                                .style
-                                .apply(fontSizeFactor: 1.3),
+                          child: DefaultTextStyle(
+                            child: Text("Beschreibung"),
+                            style: TextStyle(fontSize: 20),
                           ),
                         ),
                         FractionallySizedBox(
@@ -83,11 +81,9 @@ class EditPlaylistView extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Genres",
-                            style: DefaultTextStyle.of(context)
-                                .style
-                                .apply(fontSizeFactor: 1.3),
+                          child: DefaultTextStyle(
+                            child: Text("Genres"),
+                            style: TextStyle(fontSize: 20),
                           ),
                         ),
                         FractionallySizedBox(
@@ -109,7 +105,7 @@ class EditPlaylistView extends StatelessWidget {
                                         BorderRadius.all(Radius.circular(10))),
                                 child: Column(
                                   children: <Widget>[
-                                    // TODO: make readonly feld if possible
+                                    // TODO: download files and edit, first null safety for project
                                     MultiSelectBottomSheetField(
                                       decoration: BoxDecoration(),
                                       initialValue: playlist.genres,
@@ -225,11 +221,9 @@ class EditPlaylistView extends StatelessWidget {
                                   Container(
                                     padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
                                     alignment: Alignment.topLeft,
-                                    child: Text(
-                                      "Collaborators",
-                                      style: DefaultTextStyle.of(context)
-                                          .style
-                                          .apply(fontSizeFactor: 1.3),
+                                    child: DefaultTextStyle(
+                                      child: Text("Collaborators"),
+                                      style: TextStyle(fontSize: 20),
                                     ),
                                   ),
                                   Container(
@@ -249,11 +243,9 @@ class EditPlaylistView extends StatelessWidget {
                             : Container(
                                 padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
                                 alignment: Alignment.topLeft,
-                                child: Text(
-                                  "Collaborators",
-                                  style: DefaultTextStyle.of(context)
-                                      .style
-                                      .apply(fontSizeFactor: 1.3),
+                                child: DefaultTextStyle(
+                                  child: Text("Collaborators"),
+                                  style: TextStyle(fontSize: 20),
                                 ),
                               ),
                         FractionallySizedBox(
@@ -306,15 +298,10 @@ class EditPlaylistView extends StatelessWidget {
                                                     side: BorderSide(
                                                         color: Colors
                                                             .transparent))),
-                                            child: Text(
-                                              'Cancel',
-                                              style:
-                                                  DefaultTextStyle.of(context)
-                                                      .style
-                                                      .apply(
-                                                          fontSizeFactor: 1.3,
-                                                          color: Colors.white),
-                                            ),
+                                            child: Text('Cancel',
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white)),
                                             onPressed: () => model.canEdit()),
                                       ),
                                     ),
@@ -334,16 +321,12 @@ class EditPlaylistView extends StatelessWidget {
                                                     side: BorderSide(
                                                         color: Colors
                                                             .transparent))),
-                                            child: Text(
-                                              'Save',
-                                              style:
-                                                  DefaultTextStyle.of(context)
-                                                      .style
-                                                      .apply(
-                                                          fontSizeFactor: 1.3,
-                                                          color: Colors.white),
-                                            ),
-                                            onPressed: () => model.save()),
+                                            child: Text('Save',
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white)),
+                                            onPressed: () =>
+                                                model.save()),
                                       ),
                                     ),
                                   ),

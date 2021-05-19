@@ -12,6 +12,7 @@ class Playlist {
       this.id,
       this.name,
       this.description,
+      this.numberOfSongs,
       this.genres,
       this.image,
       this.collaborators,

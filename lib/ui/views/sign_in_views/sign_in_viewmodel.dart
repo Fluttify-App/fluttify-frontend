@@ -1,6 +1,6 @@
 
 
-import 'package:fluttify/app/fluttify_router.gr.dart';
+import 'package:fluttify/app/fluttify_router.router.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/spotify_auth.dart';
 import 'package:stacked/stacked.dart';

@@ -1,45 +1,44 @@
-import 'package:fluttify/app/fluttify_router.gr.dart';
+
 import 'package:fluttify/app/locator.dart';
+import 'package:fluttify/services/navigation_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
   
-  final NavigationService _navigationService = locator<NavigationService>();
+  final PlaylistNavigationService _playlistNavigation = locator<PlaylistNavigationService>();
+  final AddPlaylistNavigationService _addPlaylistNavigation = locator<AddPlaylistNavigationService>();
+  final FriendsNavigatorService _friendsNavigation = locator<FriendsNavigatorService>();
 
-  int _currentIndex = 0;
-  @override
-  int get currentIndex => _currentIndex;
-
-  bool _reverse = false;
-
-  /// Indicates whether we're going forward or backward in terms of the index we're changing.
-  /// This is very helpful for the page transition directions.
-  @override
-  bool get reverse => _reverse;
-
-  @override
-  void setIndex(int value) {
-    if (value < _currentIndex) {
-      _reverse = true;
-    } else {
-      _reverse = false;
-    }
-    _currentIndex = value;
-    notifyListeners();
-    switch (currentIndex) {
+  /// Define the navigators you want to get popped to initial when you switch to another tab
+  void resetOnItemchange(int index) {
+    switch (index) {
       case 0:
-        _navigationService.pushNamedAndRemoveUntil(HomeViewRoutes.playlistView, id: 1);
+        popAllNavigators();
         break;
       case 1:
-        _navigationService.pushNamedAndRemoveUntil(HomeViewRoutes.addPlaylistView, id: 1);
+        popAllNavigators();
         break;
       case 2:
-        _navigationService.pushNamedAndRemoveUntil(HomeViewRoutes.friendsView, id: 1);
+        popAllNavigators();
+        break;
+      case 3:
+        popAllNavigators();
+        break;
+      case 4:
+        popAllNavigators();
         break;
       default:
+        popAllNavigators();
         break;
     }
+  }
+
+  /// Pops all 5 Navigators to the initial route
+  void popAllNavigators() {
+    _playlistNavigation.popAll();
+    _addPlaylistNavigation.popAll();
+    _friendsNavigation.popAll();
   }
 
 }
