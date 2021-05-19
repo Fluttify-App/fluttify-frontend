@@ -1,4 +1,4 @@
-package com.example.fluttify
+package de.htwg.fluttify
 
 import io.flutter.embedding.android.FlutterActivity
 
