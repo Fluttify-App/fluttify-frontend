@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttify/app/fluttify_router.gr.dart';
+import 'package:fluttify/app/fluttify_router.router.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,6 +19,7 @@ class ApiService extends ChangeNotifier {
   List<Object> get props => [loggedIn, headers];
 
   ApiService() {
+    // Subscribe to shared preference changes
     StreamingSharedPreferences.instance.then((preferences) {
       token = preferences.getString("token", defaultValue: 'initial');
       token.listen((value) async {
@@ -33,6 +34,14 @@ class ApiService extends ChangeNotifier {
         }
       });
     });
+  }
+
+  Future<bool> initializeAuthentication() async {
+    // initialize the authorization header
+    var sharedPrefs = await SharedPreferences.getInstance();
+    var token = sharedPrefs.getString("token");
+    headers = {'Authorization': 'Bearer $token'};
+    return true;
   }
 
   void logoutBackend() async {

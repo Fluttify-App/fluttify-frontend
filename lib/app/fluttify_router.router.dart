@@ -13,10 +13,10 @@ import 'package:stacked/stacked.dart';
 import '../ui/views/home_view.dart';
 
 class Routes {
-  static const String signInView = '/';
+  static const String spotifySignInView = '/';
   static const String homeView = '/home-view';
   static const all = <String>{
-    signInView,
+    spotifySignInView,
     homeView,
   };
 }
@@ -25,7 +25,7 @@ class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
-    RouteDef(Routes.signInView, page: SpotifySignInView),
+    RouteDef(Routes.spotifySignInView, page: SpotifySignInView),
     RouteDef(Routes.homeView, page: HomeView),
   ];
   @override

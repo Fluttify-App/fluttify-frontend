@@ -136,7 +136,9 @@ class PlaylistView extends StatelessWidget {
                       ),
                     ),
                   )
-                : Container(),
+                : CircularProgressIndicator(
+                    valueColor: new AlwaysStoppedAnimation<Color>(Colors.red),
+                  ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
