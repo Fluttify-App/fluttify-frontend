@@ -34,11 +34,9 @@ class PlaylistView extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    for (Playlist playlist in model.mockdata.playlists)
+                    for (Playlist playlist in model.playlistService.playlists)
                       GestureDetector(
-                        onTap: () => {
-                          model.navigateToEditPage(playlist)
-                        },
+                        onTap: () => {model.navigateToEditPage(playlist)},
                         child: Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
@@ -110,15 +108,18 @@ class PlaylistView extends StatelessWidget {
                                         onPressed: () {},
                                       ),
                                     ),
-                                    Container(
-                                      height: 100,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: AssetImage(playlist.image),
-                                            fit: BoxFit.contain),
-                                      ),
-                                    ),
+                                    playlist.image == null
+                                        ? Container(height: 100, width: 100)
+                                        : Container(
+                                            height: 100,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      playlist.image),
+                                                  fit: BoxFit.contain),
+                                            ),
+                                          ),
                                   ],
                                 ),
                               ),

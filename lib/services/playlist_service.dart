@@ -18,6 +18,7 @@ class PlaylistService {
     playlists = getPlaylists();
   }
 
+
   List<Playlist> getPlaylists() {
     List<Playlist> playlists = <Playlist>[];
     for (int i = 0; i < 20; i++) {

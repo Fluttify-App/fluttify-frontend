@@ -9,7 +9,7 @@ import 'package:stacked/stacked.dart';
 
 class PlaylistViewModel extends BaseViewModel {
 
-  final PlaylistService mockdata = locator<PlaylistService>();
+  final PlaylistService playlistService = locator<PlaylistService>();
 
   final PlaylistNavigationService _navigationService = locator<PlaylistNavigationService>();
 
@@ -18,7 +18,7 @@ class PlaylistViewModel extends BaseViewModel {
   }
 
   void navigateToAddPlaylist() {
-    _navigationService.navigateTo('/edit-playlist', AddPlaylistView(), withNavBar: false);
+    _navigationService.navigateTo('/add-playlist', AddPlaylistView(), withNavBar: false);
   }
   
 }

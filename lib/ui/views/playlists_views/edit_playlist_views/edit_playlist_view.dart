@@ -326,7 +326,7 @@ class EditPlaylistView extends StatelessWidget {
                                                     fontSize: 20,
                                                     color: Colors.white)),
                                             onPressed: () =>
-                                                model.save()),
+                                                model.save(context)),
                                       ),
                                     ),
                                   ),
