@@ -36,14 +36,14 @@ class EditPlaylistView extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 20))
                     : Text(playlist.name!),
-                backgroundColor: appBar_red,
+                backgroundColor: fluttify_Red,
                 centerTitle: true,
                 flexibleSpace: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: <Color>[gradientColor_1, gradientColor_2],
+                      colors: <Color>[fluttify_gradient_1, fluttify_gradient_2],
                     ),
                   ),
                 ),
@@ -113,7 +113,7 @@ class EditPlaylistView extends StatelessWidget {
                                       listType: MultiSelectListType.CHIP,
                                       selectedItemsTextStyle:
                                           TextStyle(color: Colors.white),
-                                      selectedColor: appBar_red,
+                                      selectedColor: fluttify_Red,
                                       itemsTextStyle:
                                           TextStyle(color: Colors.white),
                                       searchable: true,
@@ -129,7 +129,7 @@ class EditPlaylistView extends StatelessWidget {
                                               .primaryColor
                                               .withOpacity(.4),
                                         ),
-                                        chipColor: appBar_red,
+                                        chipColor: fluttify_Red,
                                         textStyle:
                                             TextStyle(color: Colors.white),
                                         onTap: (String value) {
@@ -293,7 +293,7 @@ class EditPlaylistView extends StatelessWidget {
                                         width: 100,
                                         child: TextButton(
                                             style: TextButton.styleFrom(
-                                                backgroundColor: appBar_red,
+                                                backgroundColor: fluttify_Red,
                                                 shape: StadiumBorder(
                                                     side: BorderSide(
                                                         color: Colors
@@ -316,7 +316,7 @@ class EditPlaylistView extends StatelessWidget {
                                         width: 100,
                                         child: TextButton(
                                             style: TextButton.styleFrom(
-                                                backgroundColor: appBar_red,
+                                                backgroundColor: fluttify_Red,
                                                 shape: StadiumBorder(
                                                     side: BorderSide(
                                                         color: Colors

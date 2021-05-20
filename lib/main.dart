@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/fluttify_router.router.dart';
-
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/api_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;

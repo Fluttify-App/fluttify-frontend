@@ -3,7 +3,7 @@ import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
-import 'package:fluttify/ui/views/add_playlist_views/add_playlist_view.dart';
+import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
 
 import 'package:stacked/stacked.dart';

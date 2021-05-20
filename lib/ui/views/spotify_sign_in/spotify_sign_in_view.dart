@@ -17,7 +17,7 @@ class SpotifySignInView extends StatelessWidget {
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: <Color>[gradientColor_1, gradientColor_2])),
+                      colors: <Color>[fluttify_gradient_1, fluttify_gradient_2])),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 extendBodyBehindAppBar: true,

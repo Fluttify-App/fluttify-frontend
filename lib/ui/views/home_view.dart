@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/styles/colors.dart';
-import 'package:fluttify/ui/views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/friends_views/friends_view.dart';
 import 'package:fluttify/ui/views/home_viewmodel.dart';
+import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -23,7 +23,7 @@ class HomeView extends StatelessWidget {
         items: _buildNavBarItems(),
         decoration: NavBarDecoration(
           gradient: LinearGradient(
-              colors: <Color>[gradientColor_1, gradientColor_2],
+              colors: <Color>[fluttify_gradient_1, fluttify_gradient_1],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight),
         ),
