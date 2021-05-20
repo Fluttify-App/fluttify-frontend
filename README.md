@@ -4,7 +4,8 @@
   <img width=250 src="https://gitlab.in.htwg-konstanz.de/lehre/rschimka/mobile/g-mobile-sose21/09-mobile-sose21/-/wikis/uploads/1d4622cd7502c3895337fd00d340ccf4/Fluttify.png">
 </p>
 
-A Flutter Project built for the Lecture "Mobile Anwendungen SoSe 2021" at HTWG Konstanz.
+A Flutter Project built for the Lecture "Mobile Anwendungen SoSe 2021" held by Prof. Dr.
+Ralf Schimkat at HTWG Konstanz.
 
 ## Feature Overview
 Fluttify offers the opportunity to create auto-refreshing Spotify Playlists with friends. 
@@ -13,7 +14,7 @@ Fluttify offers the opportunity to create auto-refreshing Spotify Playlists with
 - The application automatically adds the current favorite songs of each contributer to the spotify playlist. The job is running several times a day and ensures that the playlist is up-to-date at all times.
 
 ## Technology
-- Flutter-Frontend (this repository)
+- Flutter-Frontend
 - [NodeJS-Backend](https://gitlab.in.htwg-konstanz.de/sa981vil1/fluttify-backend)
 - [Spotify API](https://developer.spotify.com/)
 
