@@ -1,6 +1,6 @@
 # Fluttify
 <p align="center">
-  <img width=100 src="https://gitlab.in.htwg-konstanz.de/lehre/rschimka/mobile/g-mobile-sose21/09-mobile-sose21/-/wikis/uploads/1d4622cd7502c3895337fd00d340ccf4/Fluttify.png">
+  <img width=200 src="https://gitlab.in.htwg-konstanz.de/lehre/rschimka/mobile/g-mobile-sose21/09-mobile-sose21/-/wikis/uploads/1d4622cd7502c3895337fd00d340ccf4/Fluttify.png">
 </p>
 
 A Flutter Project built for Lecture "Mobile Anwendungen SoSe 2021" at HTWG Konstanz.
