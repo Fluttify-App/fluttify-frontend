@@ -1,8 +1,7 @@
-import 'package:flutter/animation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
+import 'package:fluttify/services/playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
@@ -15,6 +14,7 @@ class PlaylistViewModel extends BaseViewModel {
 
   final PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
+  final PlaylistService mockplaylistService = locator<PlaylistService>();
 
   bool isLoading = true;
 
@@ -36,7 +36,6 @@ class PlaylistViewModel extends BaseViewModel {
   }
 
   void navigateToAddPlaylist() {
-    _navigationService.navigateTo('/edit-playlist', AddPlaylistView(),
-        withNavBar: false);
+    _navigationService.navigateTo('/add-playlist', AddPlaylistView(), withNavBar: false);
   }
 }

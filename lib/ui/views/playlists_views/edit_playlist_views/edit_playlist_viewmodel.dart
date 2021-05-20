@@ -34,13 +34,14 @@ class EditPlaylistViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void save() {
+  void save(BuildContext context) {
     playlist.description = descriptionController.text;
     playlist.name = nameController.text;
     playlist.genres = selectedGenres;
     // TODO: send save to backend
     //playlistService.playlists[playlist.id] = playlist;
     canEdit();
+    Navigator.of(context).pop();
   }
 
   void addGenre(List<dynamic> value) {

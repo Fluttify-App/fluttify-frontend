@@ -115,16 +115,19 @@ class PlaylistView extends StatelessWidget {
                                               onPressed: () {},
                                             ),
                                           ),
-                                          Container(
-                                            height: 100,
-                                            width: 100,
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      playlist.image),
-                                                  fit: BoxFit.contain),
-                                            ),
-                                          ),
+                                          playlist.image == null
+                                              ? Container(
+                                                  height: 100, width: 100)
+                                              : Container(
+                                                  height: 100,
+                                                  width: 100,
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                            playlist.image),
+                                                        fit: BoxFit.contain),
+                                                  ),
+                                                ),
                                         ],
                                       ),
                                     ),
