@@ -10,7 +10,7 @@ class AddPlaylistView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<AddPlaylistViewModel>.reactive(
       builder:
-          (BuildContext context, AddPlaylistViewModel model, Widget child) =>
+          (BuildContext context, AddPlaylistViewModel model, Widget? child) =>
               Scaffold(
         appBar: AppBar(
           title: Text("Add Playlist"),

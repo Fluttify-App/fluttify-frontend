@@ -1,15 +1,15 @@
 class Playlist {
-  String dbID;
-  String id;
-  String name;
-  String creator;
-  String description;
-  List<dynamic> contributers;
+  String? dbID;
+  String? id;
+  String? name;
+  String? creator;
+  String? description;
+  List<dynamic>? contributers;
   bool allgenres;
-  List<dynamic> genres;
-  String image;
-  int numberOfSongs;
-  bool canEdit = false;
+  List<dynamic>? genres;
+  String? image;
+  int? numberOfSongs;
+  bool canEdit;
 
   Playlist(
       {this.dbID, //Database ID
@@ -18,24 +18,24 @@ class Playlist {
       this.creator,
       this.description,
       this.contributers,
-      this.allgenres,
+      this.allgenres = false,
       this.genres,
       this.image,
       this.canEdit = false,
       this.numberOfSongs});
 
   List<Object> get props => [
-        dbID,
-        id,
-        name,
-        creator,
-        description,
-        contributers,
+        dbID!,
+        id!,
+        name!,
+        creator!,
+        description!,
+        contributers!,
         allgenres,
-        genres,
-        image,
+        genres!,
+        image!,
         canEdit,
-        numberOfSongs
+        numberOfSongs!
       ];
 
   factory Playlist.fromJson(Map<String, dynamic> parsedJson) {

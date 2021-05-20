@@ -7,13 +7,13 @@ import 'package:stacked/stacked.dart';
 import 'package:flutter/services.dart';
 
 class EditPlaylistView extends StatelessWidget {
-  const EditPlaylistView({this.playlist});
+  const EditPlaylistView({required this.playlist});
   final Playlist playlist;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
         builder: (BuildContext context, EditPlaylistViewModel model,
-                Widget child) =>
+                Widget? child) =>
             Scaffold(
               appBar: AppBar(
                 actions: [
@@ -35,7 +35,7 @@ class EditPlaylistView extends StatelessWidget {
                         controller: model.nameController,
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 20))
-                    : Text(playlist.name),
+                    : Text(playlist.name!),
                 backgroundColor: appBar_red,
                 centerTitle: true,
                 flexibleSpace: Container(
@@ -74,7 +74,7 @@ class EditPlaylistView extends StatelessWidget {
                                   ? TextField(
                                       controller: model.descriptionController,
                                       maxLines: null)
-                                  : Text(playlist.description),
+                                  : Text(playlist.description!),
                             ),
                           ),
                         ),
@@ -119,7 +119,7 @@ class EditPlaylistView extends StatelessWidget {
                                       searchable: true,
                                       buttonText: Text("Genres"),
                                       title: Text("Genres"),
-                                      items: model.playlistGenre,
+                                      items: model.playlistGenre!,
                                       onConfirm: (values) {
                                         model.addGenre(values);
                                       },
@@ -132,7 +132,7 @@ class EditPlaylistView extends StatelessWidget {
                                         chipColor: appBar_red,
                                         textStyle:
                                             TextStyle(color: Colors.white),
-                                        onTap: (value) {
+                                        onTap: (String value) {
                                           model.removeGenre(value);
                                         },
                                       ),
@@ -258,7 +258,7 @@ class EditPlaylistView extends StatelessWidget {
                               direction: Axis.horizontal,
                               children: [
                                 for (String contributers
-                                    in playlist.contributers)
+                                    in playlist.contributers!)
                                   Container(
                                     padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
                                     child: Card(

@@ -16,28 +16,28 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   List<dynamic> selectedGenres = [];
 
-  List<MultiSelectItem<dynamic>> playlistGenre;
+  List<MultiSelectItem<dynamic>>? playlistGenre;
 
-  Playlist playlist;
+  Playlist? playlist;
 
   EditPlaylistViewModel(Playlist pl) {
     playlist = pl;
-    descriptionController.text = pl.description;
-    nameController.text = pl.name;
-    playlistGenre = playlistService.genres
+    descriptionController.text = pl.description!;
+    nameController.text = pl.name!;
+    playlistGenre = playlistService.genres!
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
   }
 
   void canEdit() {
-    playlist.canEdit = !playlist.canEdit;
+    playlist!.canEdit = !playlist!.canEdit;
     notifyListeners();
   }
 
   void save(BuildContext context) {
-    playlist.description = descriptionController.text;
-    playlist.name = nameController.text;
-    playlist.genres = selectedGenres;
+    playlist!.description = descriptionController.text;
+    playlist!.name = nameController.text;
+    playlist!.genres = selectedGenres;
     // TODO: send save to backend
     //playlistService.playlists[playlist.id] = playlist;
     canEdit();

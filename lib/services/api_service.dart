@@ -9,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 class ApiService extends ChangeNotifier {
-  Preference<String> token;
+  Preference<String>? token;
   final String baseUrl = "fluttify.herokuapp.com";
   Map<String, String> headers = {};
   bool loggedIn = false;
@@ -22,7 +22,7 @@ class ApiService extends ChangeNotifier {
     // Subscribe to shared preference changes
     StreamingSharedPreferences.instance.then((preferences) {
       token = preferences.getString("token", defaultValue: 'initial');
-      token.listen((value) async {
+      token!.listen((value) async {
         print(value);
         headers = {'Authorization': 'Bearer $value'};
         final response = await http.get(Uri.https(baseUrl, 'fluttify/user'),
@@ -45,7 +45,7 @@ class ApiService extends ChangeNotifier {
   }
 
   void logoutBackend() async {
-    token.setValue("initial");
+    token!.setValue("initial");
     loggedIn = false;
     _navigationService.clearStackAndShow(Routes.spotifySignInView);
   }

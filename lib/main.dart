@@ -41,8 +41,6 @@ class App extends StatelessWidget {
         future: _api.initializeAuthentication(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return CircularProgressIndicator();
             case ConnectionState.done:
               return MaterialApp(
                 title: 'Fluttify',
@@ -58,6 +56,8 @@ class App extends StatelessWidget {
                 navigatorKey: StackedService.navigatorKey,
                 onGenerateRoute: StackedRouter().onGenerateRoute,
               );
+            default:
+              return CircularProgressIndicator();
           }
         });
   }

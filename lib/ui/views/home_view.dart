@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
-      builder: (BuildContext context, HomeViewModel model, Widget child) =>
+      builder: (BuildContext context, HomeViewModel model, Widget? child) =>
           PersistentTabView(
         context,
         onItemSelected: model.resetOnItemchange,

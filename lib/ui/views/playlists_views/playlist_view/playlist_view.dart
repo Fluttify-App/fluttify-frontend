@@ -10,7 +10,7 @@ class PlaylistView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PlaylistViewModel>.reactive(
-      builder: (BuildContext context, PlaylistViewModel model, Widget child) =>
+      builder: (BuildContext context, PlaylistViewModel model, Widget? child) =>
           Scaffold(
         appBar: AppBar(
           title: Text("Playlists"),
@@ -59,7 +59,7 @@ class PlaylistView extends StatelessWidget {
                                                       25, 20, 0, 10),
                                                   // TODO: refresh page to see changes instant
                                                   child: Text(
-                                                    playlist.name,
+                                                    playlist.name!,
                                                     style: DefaultTextStyle.of(
                                                             context)
                                                         .style
@@ -124,7 +124,7 @@ class PlaylistView extends StatelessWidget {
                                                   decoration: BoxDecoration(
                                                     image: DecorationImage(
                                                         image: AssetImage(
-                                                            playlist.image),
+                                                            playlist.image!),
                                                         fit: BoxFit.contain),
                                                   ),
                                                 ),

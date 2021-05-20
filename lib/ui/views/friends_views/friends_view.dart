@@ -8,7 +8,7 @@ class FriendsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<FriendsViewModel>.reactive(
-      builder: (BuildContext context, FriendsViewModel model, Widget child) =>
+      builder: (BuildContext context, FriendsViewModel model, Widget? child) =>
           Scaffold(
             appBar: AppBar(
               title: Text("Friends"),

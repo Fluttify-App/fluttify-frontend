@@ -1,7 +1,7 @@
 import 'package:fluttify/models/playlist.dart';
 
 class PlaylistService {
-  List<String> genres = <String>["Rap", "Rock", "Pop", "Hardstyle", "Hardcore"];
+  List<String>? genres = <String>["Rap", "Rock", "Pop", "Hardstyle", "Hardcore"];
 
   List<String> contributers = <String>[
     "Sascha",
@@ -11,7 +11,7 @@ class PlaylistService {
     "Patrick"
   ];
 
-  List<Playlist> playlists;
+  List<Playlist>? playlists;
 
   PlaylistService() {
     playlists = getPlaylists();

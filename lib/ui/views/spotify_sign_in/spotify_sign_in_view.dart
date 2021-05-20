@@ -11,7 +11,7 @@ class SpotifySignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SpotifySignInViewModel>.reactive(
         builder: (BuildContext context, SpotifySignInViewModel model,
-                Widget child) =>
+                Widget? child) =>
             Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(

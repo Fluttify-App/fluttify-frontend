@@ -17,7 +17,7 @@ class AddPlaylistViewModel extends BaseViewModel {
   Playlist playlist = Playlist();
 
   void navigateBack() {
-    _navigationService.popCurrent();
+    _navigationService.popCurrent(withNavBar: false);
     notifyListeners();
   }
 
@@ -25,7 +25,7 @@ class AddPlaylistViewModel extends BaseViewModel {
     playlist.name = nameController.text;
     playlist.description = descriptionController.text;
     playlist.genres = [genreController.text];
-    playlistService.playlists.add(playlist);
+    playlistService.playlists!.add(playlist);
     navigateBack();
     //Navigator.of(context).pop();
   }
