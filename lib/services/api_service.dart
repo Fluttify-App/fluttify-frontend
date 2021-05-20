@@ -11,7 +11,7 @@ import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 class ApiService extends ChangeNotifier {
   Preference<String>? token;
   final String baseUrl = "fluttify.herokuapp.com";
-  Map<String, String> headers = {};
+  Map<String, String> headers = {"Content-Type": "application/json"};
   bool loggedIn = false;
 
   final NavigationService _navigationService = locator<NavigationService>();
@@ -24,7 +24,7 @@ class ApiService extends ChangeNotifier {
       token = preferences.getString("token", defaultValue: 'initial');
       token!.listen((value) async {
         print(value);
-        headers = {'Authorization': 'Bearer $value'};
+        headers.putIfAbsent('Authorization', () => 'Bearer $value');
         final response = await http.get(Uri.https(baseUrl, 'fluttify/user'),
             headers: headers);
         if (response.statusCode == 200) {
@@ -40,7 +40,7 @@ class ApiService extends ChangeNotifier {
     // initialize the authorization header
     var sharedPrefs = await SharedPreferences.getInstance();
     var token = sharedPrefs.getString("token");
-    headers = {'Authorization': 'Bearer $token'};
+    headers.putIfAbsent('Authorization', () => 'Bearer $token');
     return true;
   }
 
