@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
+import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/services/playlist_service.dart';
 import 'package:stacked/stacked.dart';
@@ -9,6 +10,9 @@ class AddPlaylistViewModel extends BaseViewModel {
   PlaylistService playlistService = locator<PlaylistService>();
   AddPlaylistNavigationService _navigationService =
       locator<AddPlaylistNavigationService>();
+
+  final FluttifyPlaylistService fluttifyPlaylistService =
+      locator<FluttifyPlaylistService>();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -25,8 +29,12 @@ class AddPlaylistViewModel extends BaseViewModel {
     playlist.name = nameController.text;
     playlist.description = descriptionController.text;
     playlist.genres = [genreController.text];
+    fluttifyPlaylistService.saveFluttifyPlaylist(playlist).then((success) {
+      if (success) {
+        navigateBack();
+      }
+    });
     playlistService.playlists!.add(playlist);
-    navigateBack();
     //Navigator.of(context).pop();
   }
 

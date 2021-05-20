@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Playlist {
   String? dbID;
   String? id;
@@ -5,7 +7,7 @@ class Playlist {
   String? creator;
   String? description;
   List<dynamic>? contributers;
-  bool allgenres;
+  dynamic allgenres;
   List<dynamic>? genres;
   String? image;
   int? numberOfSongs;
@@ -51,5 +53,14 @@ class Playlist {
         canEdit: true,
         numberOfSongs: parsedJson['trackURIs'].length,
         image: "assets/images/spotify.jpg");
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "name": this.name,
+      "description": this.description,
+      "genres": this.genres,
+      "allgenres": this.allgenres
+    };
   }
 }
