@@ -1,16 +1,20 @@
-# fluttify
+# Fluttify
+<p align="center">
+  <img src="https://gitlab.in.htwg-konstanz.de/lehre/rschimka/mobile/g-mobile-sose21/09-mobile-sose21/-/wikis/uploads/1d4622cd7502c3895337fd00d340ccf4/Fluttify.png">
+</p>
+A Flutter Project built for Lecture "Mobile Anwendungen SoSe 2021" at HTWG Konstanz.
 
-A new Flutter project.
+## Feature Overview
+Fluttify offers the opportunity to create auto-refreshing Spotify Playlists with friends. 
+- Create a playlists and specify your desired music genres.
+- Share your playlist with friends and let them join as contributers.
+- The application automatically adds the current favorite songs of every contributers to the spotify playlist. The job is running several times a day and ensures that the playlist is up-to-date att all times.
 
-## Getting Started
+## Technology
+- Flutter-Frontend (this repository)
+- [NodeJS-Backend](https://gitlab.in.htwg-konstanz.de/sa981vil1/fluttify-backend)
+- [Spotify API](https://developer.spotify.com/)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Development Team
+- [Sascha Villing](https://gitlab.in.htwg-konstanz.de/sa981vil)
+- [Sascha Ivan](https://gitlab.in.htwg-konstanz.de/sa391iva)
