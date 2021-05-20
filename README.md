@@ -4,7 +4,7 @@
   <img width=250 src="https://gitlab.in.htwg-konstanz.de/lehre/rschimka/mobile/g-mobile-sose21/09-mobile-sose21/-/wikis/uploads/1d4622cd7502c3895337fd00d340ccf4/Fluttify.png">
 </p>
 
-A Flutter Project built for the Lecture "Mobile Anwendungen SoSe 2021" held by Prof. Dr.
+A Flutter project built for the lecture "Mobile Anwendungen SoSe 2021" held by Prof. Dr.
 Ralf Schimkat at HTWG Konstanz.
 
 ## Feature Overview
