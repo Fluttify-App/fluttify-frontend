@@ -42,12 +42,12 @@ class PlaylistNavigationService extends FluttifyNavigationService {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }
 
-class AddPlaylistNavigationService extends FluttifyNavigationService {
+class CommunityNavigationService extends FluttifyNavigationService {
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }
 
-class FriendsNavigatorService extends FluttifyNavigationService {
+class SettingsNavigationService extends FluttifyNavigationService {
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }

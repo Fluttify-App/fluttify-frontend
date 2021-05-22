@@ -6,10 +6,10 @@ import 'package:stacked_services/stacked_services.dart';
 class HomeViewModel extends BaseViewModel {
   final PlaylistNavigationService _playlistNavigation =
       locator<PlaylistNavigationService>();
-  final AddPlaylistNavigationService _addPlaylistNavigation =
-      locator<AddPlaylistNavigationService>();
-  final FriendsNavigatorService _friendsNavigation =
-      locator<FriendsNavigatorService>();
+  final CommunityNavigationService _addPlaylistNavigation =
+      locator<CommunityNavigationService>();
+  final SettingsNavigationService _friendsNavigation =
+      locator<SettingsNavigationService>();
 
   /// Define the navigators you want to get popped to initial when you switch to another tab
   void resetOnItemchange(int index) {

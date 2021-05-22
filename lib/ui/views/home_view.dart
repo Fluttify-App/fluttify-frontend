@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/styles/colors.dart';
-import 'package:fluttify/ui/views/friends_views/friends_view.dart';
+import 'package:fluttify/ui/views/community_views/community_view.dart';
 import 'package:fluttify/ui/views/home_viewmodel.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
+import 'package:fluttify/ui/views/settings_views/settings_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -57,41 +58,38 @@ class HomeView extends StatelessWidget {
   List<Widget> _buildScreens() {
     return <Widget>[
       PlaylistView(),
-      AddPlaylistView(),
-      FriendsView(),
+      CommunityView(),
+      SettingsView(),
     ];
   }
 
+  // TODO: Icons anpassen
   List<PersistentBottomNavBarItem> _buildNavBarItems() {
     return <PersistentBottomNavBarItem>[
       PersistentBottomNavBarItem(
         title: 'Playlists',
-        icon: Icon(Icons.home),
+        icon: Icon(Icons.playlist_add),
         activeColorPrimary: Colors.white,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<PlaylistNavigationService>().navigatorKey,
           initialRoute: '/',
-          /*
-          routes: <String, Widget Function(BuildContext)>{
-            "/edit-playlist": (BuildContext context) => EditPlaylistView()
-          }*/
         ),
       ),
       PersistentBottomNavBarItem(
-        title: 'Add Playlist',
-        icon: Icon(Icons.add),
+        title: 'Community',
+        icon: Icon(Icons.people),
         activeColorPrimary: Colors.white,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
-          navigatorKey: locator<AddPlaylistNavigationService>().navigatorKey,
+          navigatorKey: locator<CommunityNavigationService>().navigatorKey,
           initialRoute: '/',
         ),
       ),
       PersistentBottomNavBarItem(
-        title: 'Friends',
-        icon: Icon(Icons.favorite),
+        title: 'Settings',
+        icon: Icon(Icons.settings),
         activeColorPrimary: Colors.white,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
-          navigatorKey: locator<FriendsNavigatorService>().navigatorKey,
+          navigatorKey: locator<SettingsNavigationService>().navigatorKey,
           initialRoute: '/',
         ),
       ),

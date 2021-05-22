@@ -14,6 +14,6 @@ void setupLocator() {
   // NavigationServices
   locator.registerLazySingleton(() => FluttifyPlaylistService());
   locator.registerLazySingleton(() => PlaylistNavigationService());
-  locator.registerLazySingleton(() => AddPlaylistNavigationService());
-  locator.registerLazySingleton(() => FriendsNavigatorService());
+  locator.registerLazySingleton(() => CommunityNavigationService());
+  locator.registerLazySingleton(() => SettingsNavigationService());
 }
