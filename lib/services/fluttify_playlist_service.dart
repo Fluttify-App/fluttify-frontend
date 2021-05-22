@@ -10,18 +10,21 @@ class FluttifyPlaylistService {
   final ApiService _apiService = locator<ApiService>();
   final String baseUrl = "fluttify.herokuapp.com";
 
-  Future<List<Playlist>> getFluttifyPlaylists() async {
+  List<Playlist> myplaylists = [];
+
+  Future<void> refreshFluttifyPlaylists() async {
     final response = await http.get(Uri.https(baseUrl, 'fluttify/myplaylists'),
         headers: _apiService.headers);
 
     if (response.statusCode == 200) {
-      return (json.decode(response.body)['created'] as List)
+      myplaylists = (json.decode(response.body)['created'] as List)
           .map((data) => Playlist.fromJson(data))
           .toList();
     } else {
       print("Not Authorized");
-      return [];
+      myplaylists = [];
     }
+    print(myplaylists);
   }
 
   Future<bool> saveFluttifyPlaylist(Playlist playlist) async {

@@ -40,14 +40,11 @@ class AddPlaylistViewModel extends BaseViewModel {
     playlist.genres = selectedGenres;
     fluttifyPlaylistService.saveFluttifyPlaylist(playlist).then((success) {
       if (success) {
-        //navigateBack();
-        Navigator.of(context).pop();
+        Navigator.of(context).pop(true);
       }
     });
     playlistService.playlists!.add(playlist);
-    
   }
-
 
   void addGenre(List<dynamic> value) {
     selectedGenres = value;

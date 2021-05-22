@@ -9,6 +9,7 @@ class PlaylistView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PlaylistViewModel>.reactive(
+      onModelReady: (viewModel) => viewModel.refreshPlaylists(),
       builder: (BuildContext context, PlaylistViewModel model, Widget? child) =>
           Scaffold(
         appBar: AppBar(
@@ -34,7 +35,8 @@ class PlaylistView extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       child: Column(
                         children: [
-                          for (Playlist playlist in model.playlists)
+                          for (Playlist playlist
+                              in model.playlistService.myplaylists)
                             GestureDetector(
                               onTap: () => {model.navigateToEditPage(playlist)},
                               child: Card(

@@ -2,17 +2,22 @@ import 'package:flutter/widgets.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 abstract class FluttifyNavigationService {
-  
   late GlobalKey<NavigatorState> navigatorKey;
+  static void _myDefaultFunc(value) {}
 
   /// Navigate to the provided Route with routename
-  void navigateTo(String routeName, Widget view, {bool withNavBar = true}) {
+  void navigateTo(
+    String routeName,
+    Widget view, {
+    bool withNavBar = true,
+    Function callback = _myDefaultFunc,
+  }) {
     pushNewScreen(
       navigatorKey.currentContext!,
       screen: view,
       withNavBar: withNavBar, // OPTIONAL VALUE. True by default.
       pageTransitionAnimation: PageTransitionAnimation.slideUp,
-    );
+    ).then((value) => {callback(value)});
   }
 
   /// Pop to the initial route of the Navigator
