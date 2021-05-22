@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
+import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/services/playlist_service.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
@@ -11,9 +12,11 @@ class AddPlaylistViewModel extends BaseViewModel {
   PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
 
+  final FluttifyPlaylistService fluttifyPlaylistService =
+      locator<FluttifyPlaylistService>();
+
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  TextEditingController genreController = TextEditingController();
 
   Playlist playlist = Playlist();
 
@@ -35,10 +38,16 @@ class AddPlaylistViewModel extends BaseViewModel {
     playlist.name = nameController.text;
     playlist.description = descriptionController.text;
     playlist.genres = selectedGenres;
+    fluttifyPlaylistService.saveFluttifyPlaylist(playlist).then((success) {
+      if (success) {
+        //navigateBack();
+        Navigator.of(context).pop();
+      }
+    });
     playlistService.playlists!.add(playlist);
-    //navigateBack();
-    Navigator.of(context).pop();
+    
   }
+
 
   void addGenre(List<dynamic> value) {
     selectedGenres = value;
