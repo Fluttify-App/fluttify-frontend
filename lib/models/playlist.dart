@@ -57,6 +57,8 @@ class Playlist {
 
   Map<String, dynamic> toJson() {
     return {
+      "_id": this.dbID,
+      "creator": this.creator,
       "name": this.name,
       "description": this.description,
       "genres": this.genres,
