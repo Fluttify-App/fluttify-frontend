@@ -15,8 +15,6 @@ class SpotifySignInViewModel extends BaseViewModel {
     try {
       isLoading = true;
       await _apiService.authenticateBackend();
-      print("Logged in");
-      //Navigator.popAndPushNamed(context, HomePage.routeName);
     } catch (e) {
       print(e);
     } finally {

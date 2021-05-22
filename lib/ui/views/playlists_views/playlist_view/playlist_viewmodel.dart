@@ -18,13 +18,11 @@ class PlaylistViewModel extends BaseViewModel {
 
   bool isLoading = true;
 
-  List<Playlist> playlists = <Playlist>[Playlist()];
-
-  PlaylistViewModel() {
-    playlistService.getFluttifyPlaylists().then((playlistsResponse) {
-      playlists = playlistsResponse;
+  void refreshPlaylists() {
+    isLoading = true;
+    notifyListeners();
+    playlistService.refreshFluttifyPlaylists().then((playlistsResponse) {
       isLoading = false;
-      print(playlists);
       notifyListeners();
     });
   }
@@ -32,10 +30,19 @@ class PlaylistViewModel extends BaseViewModel {
   void navigateToEditPage(Playlist playlist) {
     _navigationService.navigateTo(
         '/edit-playlist', EditPlaylistView(playlist: playlist),
-        withNavBar: false);
+        withNavBar: false, callback: (value) {
+      if (value != null) {
+        refreshPlaylists();
+      }
+    });
   }
 
   void navigateToAddPlaylist() {
-    _navigationService.navigateTo('/add-playlist', AddPlaylistView(), withNavBar: false);
+    _navigationService.navigateTo('/add-playlist', AddPlaylistView(),
+        withNavBar: false, callback: (value) {
+      if (value != null) {
+        refreshPlaylists();
+      }
+    });
   }
 }

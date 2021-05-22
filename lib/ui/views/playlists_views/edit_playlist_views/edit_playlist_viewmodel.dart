@@ -46,7 +46,7 @@ class EditPlaylistViewModel extends BaseViewModel {
     fluttifyPlaylistService.saveFluttifyPlaylist(playlist!).then((success) {
       if (success) {
         canEdit();
-        Navigator.of(context).pop();
+        Navigator.of(context).pop(true);
       }
     });
   }
