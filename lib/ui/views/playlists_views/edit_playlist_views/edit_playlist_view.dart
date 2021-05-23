@@ -78,17 +78,14 @@ class EditPlaylistView extends StatelessWidget {
                                 )
                               : Container(
                                   padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
-                                  height: 150,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(15),
-                                    ),
-                                    image: DecorationImage(
-                                        image: AssetImage(playlist.image!),
-                                        fit: BoxFit.contain),
-                                  ),
-                                ),
+                                  height: 250,
+                                  width: 250,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
+                                    child: Image.network(playlist.image!),
+                                  )),
                           Container(
                             padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
                             alignment: Alignment.topLeft,

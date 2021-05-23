@@ -23,6 +23,7 @@ class FluttifyPlaylistService {
     } else {
       myplaylists = [];
     }
+    print(myplaylists[0]);
   }
 
   Future<bool> saveFluttifyPlaylist(Playlist playlist) async {
