@@ -22,12 +22,16 @@ class HomeView extends StatelessWidget {
         onItemSelected: model.resetOnItemchange,
         screens: _buildScreens(),
         items: _buildNavBarItems(),
+        backgroundColor:
+            Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
         decoration: NavBarDecoration(
+            /*
           gradient: LinearGradient(
               colors: <Color>[fluttify_gradient_1, fluttify_gradient_1],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight),
-        ),
+              */
+            ),
         confineInSafeArea: true,
         handleAndroidBackButtonPress: true, // Default is true.
         resizeToAvoidBottomInset:

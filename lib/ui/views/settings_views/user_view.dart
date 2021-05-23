@@ -14,8 +14,9 @@ class UserView extends StatelessWidget {
           Scaffold(
               appBar: AppBar(
                 title: Text("User"),
-                backgroundColor: fluttify_Red,
+                backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
                 centerTitle: true,
+                /*
                 flexibleSpace: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -25,6 +26,7 @@ class UserView extends StatelessWidget {
                     ),
                   ),
                 ),
+                */
               ),
               body: Center(
                 child: Padding(
@@ -55,7 +57,9 @@ class UserView extends StatelessWidget {
                                       ))),
                             ],
                           ),
-                          Divider(color: Colors.white, height: 10),
+                          Divider(
+                              color: Theme.of(context).dividerColor,
+                              height: 10),
                           Container(
                             height: 50,
                             child: Row(
@@ -72,7 +76,9 @@ class UserView extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Divider(color: Colors.white, height: 10),
+                          Divider(
+                              color: Theme.of(context).dividerColor,
+                              height: 10),
                           Container(
                             height: 50,
                             child: Row(
@@ -90,7 +96,9 @@ class UserView extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Divider(color: Colors.white, height: 10),
+                          Divider(
+                              color: Theme.of(context).dividerColor,
+                              height: 10),
                           Container(
                             height: 50,
                             child: Row(
@@ -114,7 +122,9 @@ class UserView extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Divider(color: Colors.white, height: 10),
+                          Divider(
+                              color: Theme.of(context).dividerColor,
+                              height: 10),
                           Expanded(
                             child: Align(
                               alignment: Alignment.bottomCenter,

@@ -44,11 +44,11 @@ class SpotifySignInView extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16)),
                                   padding: EdgeInsets.all(16),
-                                  primary: Colors.green),
+                                  primary: Colors.black),
                               onPressed: () => model.handleSignIn(),
                               child: Text("Sign In with Spotify",
                                   style: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.green,
                                       fontSize: 25,
                                       fontWeight: FontWeight.w600)),
                             ),

@@ -17,8 +17,9 @@ class AddPlaylistView extends StatelessWidget {
               Scaffold(
         appBar: AppBar(
           title: Text("Add Playlist"),
-          backgroundColor: fluttify_Red,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           centerTitle: true,
+          /*
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -28,6 +29,7 @@ class AddPlaylistView extends StatelessWidget {
               ),
             ),
           ),
+          */
         ),
         body: Center(
           child: FractionallySizedBox(
@@ -118,7 +120,7 @@ class AddPlaylistView extends StatelessWidget {
                               listType: MultiSelectListType.CHIP,
                               selectedItemsTextStyle:
                                   TextStyle(color: Colors.white),
-                              selectedColor: fluttify_Red,
+                              selectedColor: Theme.of(context).primaryColor,
                               itemsTextStyle: TextStyle(color: Colors.white),
                               searchable: true,
                               buttonText: Text("Genres"),
@@ -133,7 +135,7 @@ class AddPlaylistView extends StatelessWidget {
                                       .primaryColor
                                       .withOpacity(.4),
                                 ),
-                                chipColor: fluttify_Red,
+                                chipColor: Theme.of(context).primaryColor,
                                 textStyle: TextStyle(color: Colors.white),
                                 onTap: (String value) {
                                   model.removeGenre(value);
@@ -155,7 +157,8 @@ class AddPlaylistView extends StatelessWidget {
                                 width: 100,
                                 child: TextButton(
                                     style: TextButton.styleFrom(
-                                        backgroundColor: fluttify_Red,
+                                        backgroundColor:
+                                            Theme.of(context).primaryColor,
                                         shape: StadiumBorder(
                                             side: BorderSide(
                                                 color: Colors.transparent))),
@@ -175,7 +178,8 @@ class AddPlaylistView extends StatelessWidget {
                                 width: 100,
                                 child: TextButton(
                                     style: TextButton.styleFrom(
-                                        backgroundColor: fluttify_Red,
+                                        backgroundColor:
+                                            Theme.of(context).primaryColor,
                                         shape: StadiumBorder(
                                             side: BorderSide(
                                                 color: Colors.transparent))),
