@@ -82,17 +82,14 @@ class EditPlaylistView extends StatelessWidget {
                                 )
                               : Container(
                                   padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
-                                  height: 150,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(15),
-                                    ),
-                                    image: DecorationImage(
-                                        image: AssetImage(playlist.image!),
-                                        fit: BoxFit.contain),
-                                  ),
-                                ),
+                                  height: 250,
+                                  width: 250,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
+                                    child: Image.network(playlist.image!),
+                                  )),
                           Container(
                             padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
                             alignment: Alignment.topLeft,
@@ -132,16 +129,6 @@ class EditPlaylistView extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10.0)),
                               child: FractionallySizedBox(
                                 child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context)
-                                          .primaryColor
-                                          .withOpacity(.4),
-                                      border: Border.all(
-                                        color: Theme.of(context).primaryColor,
-                                        width: 2,
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
                                   child: Column(
                                     children: <Widget>[
                                       MultiSelectBottomSheetField(
@@ -166,11 +153,6 @@ class EditPlaylistView extends StatelessWidget {
                                           model.addGenre(values);
                                         },
                                         chipDisplay: MultiSelectChipDisplay(
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context)
-                                                .primaryColor
-                                                .withOpacity(.4),
-                                          ),
                                           chipColor:
                                               Theme.of(context).primaryColor,
                                           textStyle:

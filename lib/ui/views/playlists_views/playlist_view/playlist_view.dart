@@ -30,6 +30,7 @@ class PlaylistView extends StatelessWidget {
         ),
         body: Center(
           child: Container(
+            alignment: Alignment.topCenter,
             padding: EdgeInsets.symmetric(vertical: 10),
             child: !model.isLoading
                 ? FractionallySizedBox(
@@ -134,22 +135,18 @@ class PlaylistView extends StatelessWidget {
                                                 : Container(
                                                     height: 100,
                                                     width: 100,
-                                                    decoration: BoxDecoration(
+                                                    child: ClipRRect(
                                                       borderRadius:
                                                           BorderRadius.only(
-                                                        topRight:
-                                                            Radius.circular(
-                                                                10.0),
-                                                        bottomRight:
-                                                            Radius.circular(
-                                                                10.0),
-                                                      ),
-                                                      image: DecorationImage(
-                                                          image: AssetImage(
-                                                              playlist.image!),
-                                                          fit: BoxFit.contain),
-                                                    ),
-                                                  ),
+                                                              topRight: Radius
+                                                                  .circular(10),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          10)),
+                                                      child: Image.network(
+                                                          playlist.image!),
+                                                    )),
                                           ],
                                         ),
                                       ),

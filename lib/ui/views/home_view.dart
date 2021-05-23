@@ -72,7 +72,7 @@ class HomeView extends StatelessWidget {
     return <PersistentBottomNavBarItem>[
       PersistentBottomNavBarItem(
         title: 'Playlists',
-        icon: Icon(Icons.playlist_add),
+        icon: Icon(Icons.queue_music),
         activeColorPrimary: Colors.white,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<PlaylistNavigationService>().navigatorKey,

@@ -41,6 +41,7 @@ class Playlist {
       ];
 
   factory Playlist.fromJson(Map<String, dynamic> parsedJson) {
+    print(parsedJson);
     return Playlist(
         dbID: parsedJson['_id'],
         id: parsedJson['id'],
@@ -51,8 +52,10 @@ class Playlist {
         allgenres: parsedJson['allgenres'],
         genres: parsedJson['genres'],
         canEdit: false,
-        numberOfSongs: parsedJson['trackURIs'].length);
-        //image: "assets/images/spotify.jpg");
+        numberOfSongs: parsedJson['trackURIs'].length,
+        image: parsedJson['images'].length != 0
+            ? parsedJson['images'][0]['url']
+            : null);
   }
 
   Map<String, dynamic> toJson() {
