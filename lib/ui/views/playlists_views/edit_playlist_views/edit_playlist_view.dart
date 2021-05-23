@@ -157,6 +157,8 @@ class EditPlaylistView extends StatelessWidget {
                                               Theme.of(context).primaryColor,
                                           textStyle:
                                               TextStyle(color: Colors.white),
+                                          onTap: (String value) =>
+                                              model.removeGenre(value),
                                         ),
                                       ),
                                     ],
