@@ -2,9 +2,9 @@ import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_viewmodel.dart';
-import 'package:multi_select_flutter/bottom_sheet/multi_select_bottom_sheet_field.dart';
-import 'package:multi_select_flutter/chip_display/multi_select_chip_display.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_chip_display.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/services.dart';
 import 'dart:io';
@@ -19,16 +19,20 @@ class EditPlaylistView extends StatelessWidget {
                 Widget? child) =>
             Scaffold(
               appBar: AppBar(
+                // back button is only visible when you're not editing the playlist
+                automaticallyImplyLeading: !playlist.canEdit,
                 actions: [
-                  Padding(
-                    padding: EdgeInsets.only(right: 20.0),
-                    child: GestureDetector(
-                      child: Icon(Icons.edit),
-                      onTap: () => {
-                        model.canEdit(),
-                      },
-                    ),
-                  ),
+                  !playlist.canEdit
+                      ? Padding(
+                          padding: EdgeInsets.only(right: 20.0),
+                          child: GestureDetector(
+                            child: Icon(Icons.edit),
+                            onTap: () => {
+                              model.canEdit(),
+                            },
+                          ),
+                        )
+                      : Container()
                 ],
                 title: playlist.canEdit
                     ? TextField(
@@ -140,8 +144,8 @@ class EditPlaylistView extends StatelessWidget {
                                           Radius.circular(10))),
                                   child: Column(
                                     children: <Widget>[
-                                      // TODO: download files and edit, first null safety for project
                                       MultiSelectBottomSheetField(
+                                        canEdit: playlist.canEdit,
                                         decoration: BoxDecoration(),
                                         initialValue: playlist.genres,
                                         initialChildSize: 0.4,
@@ -250,25 +254,33 @@ class EditPlaylistView extends StatelessWidget {
                               ? Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(
-                                      height: 45,
-                                      width: 100,
-                                      child: TextButton(
-                                          style: TextButton.styleFrom(
-                                              backgroundColor: Theme.of(context)
-                                                  .primaryColor,
-                                              shape: StadiumBorder(
-                                                  side: BorderSide(
-                                                      color:
-                                                          Colors.transparent))),
-                                          child: Text('Cancel',
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.white)),
-                                          onPressed: () => model.canEdit()),
+                                    Padding(
+                                      padding: EdgeInsets.all(10),
+                                      child: Container(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 10),
+                                        child: SizedBox(
+                                          height: 45,
+                                          width: 100,
+                                          child: TextButton(
+                                              style: TextButton.styleFrom(
+                                                  backgroundColor:
+                                                      Theme.of(context)
+                                                          .primaryColor,
+                                                  shape: StadiumBorder(
+                                                      side: BorderSide(
+                                                          color: Colors
+                                                              .transparent))),
+                                              child: Text('Cancel',
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.white)),
+                                              onPressed: () => model.canEdit()),
+                                        ),
+                                      ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                      padding: EdgeInsets.all(10),
                                       child: Container(
                                         padding:
                                             EdgeInsets.symmetric(vertical: 10),

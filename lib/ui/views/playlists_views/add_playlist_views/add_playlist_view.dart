@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_viewmodel.dart';
-import 'package:multi_select_flutter/bottom_sheet/multi_select_bottom_sheet_field.dart';
-import 'package:multi_select_flutter/chip_display/multi_select_chip_display.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_chip_display.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
 import 'package:stacked/stacked.dart';
 
 class AddPlaylistView extends StatelessWidget {
@@ -16,6 +16,7 @@ class AddPlaylistView extends StatelessWidget {
           (BuildContext context, AddPlaylistViewModel model, Widget? child) =>
               Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text("Add Playlist"),
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           centerTitle: true,
@@ -109,11 +110,12 @@ class AddPlaylistView extends StatelessWidget {
                         FractionallySizedBox(
                           widthFactor: 0.95,
                           child: Container(
-                            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                            padding: EdgeInsets.symmetric(vertical: 10),
                             child: Card(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0)),
                               child: MultiSelectBottomSheetField(
+                                canEdit: true,
                                 decoration: BoxDecoration(),
                                 initialChildSize: 0.4,
                                 listType: MultiSelectListType.CHIP,
@@ -165,7 +167,7 @@ class AddPlaylistView extends StatelessWidget {
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.white)),
-                                      onPressed: () {}),
+                                      onPressed: () => model.navigateBack(context)),
                                 ),
                               ),
                             ),

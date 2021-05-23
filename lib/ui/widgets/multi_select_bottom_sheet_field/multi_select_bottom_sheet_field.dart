@@ -1,9 +1,9 @@
-/*import 'package:collection/collection.dart' show IterableExtension;
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
-import '../util/multi_select_list_type.dart';
-import '../chip_display/multi_select_chip_display.dart';
-import '../util/multi_select_item.dart';
-import 'multi_select_bottom_sheet.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_chip_display.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
 
 /// A customizable InkWell widget that opens the MultiSelectBottomSheet
 // ignore: must_be_immutable
@@ -100,6 +100,8 @@ class MultiSelectBottomSheetField<V> extends FormField<List<V>> {
   /// Set the color of the check in the checkbox
   final Color? checkColor;
 
+  final bool canEdit;
+
   final AutovalidateMode autovalidateMode;
   final FormFieldValidator<List<V>>? validator;
   final FormFieldSetter<List<V>>? onSaved;
@@ -140,6 +142,7 @@ class MultiSelectBottomSheetField<V> extends FormField<List<V>> {
     this.key,
     this.onSaved,
     this.validator,
+    this.canEdit = false,
     this.autovalidateMode = AutovalidateMode.disabled,
   }) : super(
             key: key,
@@ -182,7 +185,7 @@ class MultiSelectBottomSheetField<V> extends FormField<List<V>> {
                 checkColor: checkColor,
               );
               return _MultiSelectBottomSheetFieldView<V?>._withState(
-                  view as _MultiSelectBottomSheetFieldView<V?>, state);
+                  view as _MultiSelectBottomSheetFieldView<V?>, state, canEdit);
             });
 }
 
@@ -219,43 +222,46 @@ class _MultiSelectBottomSheetFieldView<V> extends StatefulWidget {
   final TextStyle? searchHintStyle;
   final Color? checkColor;
   FormFieldState<List<V>>? state;
+  final bool canEdit;
 
-  _MultiSelectBottomSheetFieldView({
-    required this.items,
-    this.title,
-    this.buttonText,
-    this.buttonIcon,
-    this.listType,
-    this.decoration,
-    this.onSelectionChanged,
-    this.onConfirm,
-    this.chipDisplay,
-    this.initialValue,
-    this.searchable,
-    this.confirmText,
-    this.cancelText,
-    this.selectedColor,
-    this.initialChildSize,
-    this.minChildSize,
-    this.maxChildSize,
-    this.shape,
-    this.barrierColor,
-    this.searchHint,
-    this.colorator,
-    this.backgroundColor,
-    this.unselectedColor,
-    this.searchIcon,
-    this.closeSearchIcon,
-    this.itemsTextStyle,
-    this.searchTextStyle,
-    this.searchHintStyle,
-    this.selectedItemsTextStyle,
-    this.checkColor,
-  });
+  _MultiSelectBottomSheetFieldView(
+      {required this.items,
+      this.title,
+      this.buttonText,
+      this.buttonIcon,
+      this.listType,
+      this.decoration,
+      this.onSelectionChanged,
+      this.onConfirm,
+      this.chipDisplay,
+      this.initialValue,
+      this.searchable,
+      this.confirmText,
+      this.cancelText,
+      this.selectedColor,
+      this.initialChildSize,
+      this.minChildSize,
+      this.maxChildSize,
+      this.shape,
+      this.barrierColor,
+      this.searchHint,
+      this.colorator,
+      this.backgroundColor,
+      this.unselectedColor,
+      this.searchIcon,
+      this.closeSearchIcon,
+      this.itemsTextStyle,
+      this.searchTextStyle,
+      this.searchHintStyle,
+      this.selectedItemsTextStyle,
+      this.checkColor,
+      this.canEdit = false});
 
   /// This constructor allows a FormFieldState to be passed in. Called by MultiSelectBottomSheetField.
   _MultiSelectBottomSheetFieldView._withState(
-      _MultiSelectBottomSheetFieldView<V> field, FormFieldState<List<V>> state)
+      _MultiSelectBottomSheetFieldView<V> field,
+      FormFieldState<List<V>> state,
+      this.canEdit)
       : items = field.items,
         title = field.title,
         buttonText = field.buttonText,
@@ -307,8 +313,8 @@ class __MultiSelectBottomSheetFieldViewState<V>
   Widget _buildInheritedChipDisplay() {
     List<MultiSelectItem<V>?> chipDisplayItems = [];
     chipDisplayItems = _selectedItems
-        .map((e) => widget.items
-            .firstWhereOrNull((element) => e == element.value))
+        .map((e) =>
+            widget.items.firstWhereOrNull((element) => e == element.value))
         .toList();
     chipDisplayItems.removeWhere((element) => element == null);
     if (widget.chipDisplay != null) {
@@ -413,7 +419,7 @@ class __MultiSelectBottomSheetFieldViewState<V>
       children: <Widget>[
         InkWell(
           onTap: () {
-            _showBottomSheet(context);
+            widget.canEdit ? _showBottomSheet(context) : Container();
           },
           child: Container(
             decoration: widget.state != null
@@ -473,4 +479,3 @@ class __MultiSelectBottomSheetFieldViewState<V>
     );
   }
 }
-*/

@@ -40,7 +40,7 @@ dependencies:
   shared_preferences: ^2.0.5
   streaming_shared_preferences: ^2.0.0
   lipsum: ^1.0.1
-  multi_select_flutter: ^4.0.0
+  #multi_select_flutter: ^4.0.0
   animations: ^2.0.0
   persistent_bottom_nav_bar: ^4.0.2
 

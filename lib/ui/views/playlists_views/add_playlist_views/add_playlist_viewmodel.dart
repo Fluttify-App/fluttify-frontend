@@ -4,7 +4,7 @@ import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/services/playlist_service.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:stacked/stacked.dart';
 
 class AddPlaylistViewModel extends BaseViewModel {
@@ -30,8 +30,8 @@ class AddPlaylistViewModel extends BaseViewModel {
         .toList();
   }
 
-  void navigateBack() {
-    _navigationService.popCurrent(withNavBar: false);
+  void navigateBack(BuildContext context) {
+    Navigator.of(context).pop();
   }
 
   void save(BuildContext context) {
