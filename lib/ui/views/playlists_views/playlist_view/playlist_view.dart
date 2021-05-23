@@ -14,8 +14,9 @@ class PlaylistView extends StatelessWidget {
           Scaffold(
         appBar: AppBar(
           title: Text("Playlists"),
-          backgroundColor: fluttify_Red,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           centerTitle: true,
+          /*
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -25,6 +26,7 @@ class PlaylistView extends StatelessWidget {
               ),
             ),
           ),
+          */
         ),
         body: Center(
           child: Container(
@@ -146,7 +148,7 @@ class PlaylistView extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: fluttify_gradient_1,
+          backgroundColor: Theme.of(context).accentColor,
           foregroundColor: Colors.white,
           onPressed: () {
             model.navigateToAddPlaylist();
