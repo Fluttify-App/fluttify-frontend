@@ -6,7 +6,7 @@ import 'package:fluttify/ui/views/community_views/community_view.dart';
 import 'package:fluttify/ui/views/home_viewmodel.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
-import 'package:fluttify/ui/views/settings_views/settings_view.dart';
+import 'package:fluttify/ui/views/settings_views/user_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -59,7 +59,7 @@ class HomeView extends StatelessWidget {
     return <Widget>[
       PlaylistView(),
       CommunityView(),
-      SettingsView(),
+      UserView(),
     ];
   }
 
@@ -85,8 +85,8 @@ class HomeView extends StatelessWidget {
         ),
       ),
       PersistentBottomNavBarItem(
-        title: 'Settings',
-        icon: Icon(Icons.settings),
+        title: 'User',
+        icon: Icon(Icons.account_circle),
         activeColorPrimary: Colors.white,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<SettingsNavigationService>().navigatorKey,

@@ -1,24 +1,28 @@
+import 'dart:convert';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/fluttify_router.router.dart';
 import 'package:fluttify/app/locator.dart';
+import 'package:fluttify/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
-class ApiService extends ChangeNotifier {
+class AuthService extends ChangeNotifier {
   Preference<String>? token;
   final String baseUrl = "fluttify.herokuapp.com";
   Map<String, String> headers = {"Content-Type": "application/json"};
   bool loggedIn = false;
+  late User currentUser = User.empty();
 
   final NavigationService _navigationService = locator<NavigationService>();
 
   List<Object> get props => [loggedIn, headers];
 
-  ApiService() {
+  AuthService() {
     // Subscribe to shared preference changes
     StreamingSharedPreferences.instance.then((preferences) {
       token = preferences.getString("token", defaultValue: 'initial');
@@ -28,8 +32,14 @@ class ApiService extends ChangeNotifier {
         final response = await http.get(Uri.https(baseUrl, 'fluttify/user'),
             headers: headers);
         if (response.statusCode == 200) {
+          print(response.body);
+          currentUser = new User.fromJson(json.decode(response.body));
           print("Logged In");
           loggedIn = true;
+          notifyListeners();
+        } else {
+          print("Logged In Failed");
+          loggedIn = false;
           notifyListeners();
         }
       });

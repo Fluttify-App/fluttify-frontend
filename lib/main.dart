@@ -1,63 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/fluttify_router.router.dart';
 import 'package:fluttify/app/locator.dart';
-import 'package:fluttify/services/api_service.dart';
+import 'package:fluttify/services/auth_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
+import 'package:fluttify/services/theme_service.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 Future main() async {
   await DotEnv.load(fileName: "assets/.env");
   setupLocator();
-  runApp(Fluttify());
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool? darkMode = prefs.getBool('darkMode') ?? false;
+  print("opening app with darkmode:" + darkMode.toString());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => ThemeService(darkMode),
+    )
+  ], child: Fluttify()));
 }
 
 class Fluttify extends StatelessWidget {
+  final AuthService _auth = locator<AuthService>();
+
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ApiService>(
-      create: (_) => ApiService(),
-      child: App(),
-    );
+    return FutureBuilder<bool>(
+        future: _auth.initializeAuthentication(),
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.done:
+              return App();
+            default:
+              return CircularProgressIndicator();
+          }
+        });
   }
 }
 
 class App extends StatelessWidget {
   final NavigationService _navigationService = locator<NavigationService>();
-  final ApiService _api = locator<ApiService>();
+  final AuthService _auth = locator<AuthService>();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<ApiService>(context, listen: false);
-    auth.addListener(() {
-      if (auth.loggedIn) {
-        //   _navigationService.clearStackAndShow(Routes.homeView);
+    _auth.addListener(() {
+      if (_auth.loggedIn) {
+        //_navigationService.clearStackAndShow(Routes.homeView);
+      } else {
+        //_navigationService.navigateTo(Routes.spotifySignInView);
       }
     });
 
-    return FutureBuilder<bool>(
-        future: _api.initializeAuthentication(),
-        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.done:
-              return MaterialApp(
-                title: 'Fluttify',
-                theme: ThemeData(
-                  //primarySwatch: Colors.grey,
-                  //primaryColor: Colors.black,
-                  brightness: Brightness.dark,
-                  //backgroundColor: const Color.fromARGB(255, 89, 89, 89),
-                  //accentColor: Colors.white,
-                  //accentIconTheme: IconThemeData(color: Colors.black),
-                  //dividerColor: Colors.black12,
-                ),
-                navigatorKey: StackedService.navigatorKey,
-                onGenerateRoute: StackedRouter().onGenerateRoute,
-              );
-            default:
-              return CircularProgressIndicator();
-          }
-        });
+    return Consumer<ThemeService>(
+      builder: (context, notifire, child) {
+        return MaterialApp(
+          title: 'Fluttify',
+          theme: notifire.getTheme(),
+          navigatorKey: StackedService.navigatorKey,
+          onGenerateRoute: StackedRouter().onGenerateRoute,
+        );
+      },
+    );
   }
 }

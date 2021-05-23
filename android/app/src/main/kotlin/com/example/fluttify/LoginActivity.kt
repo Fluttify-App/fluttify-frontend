@@ -17,6 +17,5 @@ class LoginActivity : FlutterActivity() {
         editor.putString("flutter.token", token);
         Log.e("token", token);
         editor.commit();
-
     }
 }
