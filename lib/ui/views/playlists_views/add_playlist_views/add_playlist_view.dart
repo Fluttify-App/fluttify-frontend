@@ -30,165 +30,176 @@ class AddPlaylistView extends StatelessWidget {
           ),
         ),
         body: Center(
-          child: FractionallySizedBox(
-            child: SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: FractionallySizedBox(
-                  widthFactor: 0.95,
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                        child: FractionallySizedBox(
+          child: Container(
+            alignment: Alignment.topCenter,
+            child: FractionallySizedBox(
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: FractionallySizedBox(
+                    widthFactor: 0.95,
+                    child: Column(
+                      children: [
+                        Container(
+                          //padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          child: FractionallySizedBox(
+                            widthFactor: 0.95,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                alignment: Alignment.centerLeft,
+                                child: TextField(
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(13),
+                                  ],
+                                  controller: model.nameController,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(fontSize: 20),
+                                  decoration: InputDecoration(
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
+                                    hintText: 'Name',
+                                    border: InputBorder.none,
+                                  ),
+                                  onSubmitted: (String value) {
+                                    model.saveName(value);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: FractionallySizedBox(
+                            widthFactor: 0.95,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                alignment: Alignment.centerLeft,
+                                child: TextField(
+                                  maxLines: null,
+                                  controller: model.descriptionController,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(fontSize: 20),
+                                  decoration: InputDecoration(
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
+                                    hintText: 'Beschreibung',
+                                    border: InputBorder.none,
+                                  ),
+                                  onSubmitted: (String value) {
+                                    model.saveDescription(value);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        FractionallySizedBox(
                           widthFactor: 0.95,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            child: Container(
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              child: MultiSelectBottomSheetField(
+                                decoration: BoxDecoration(),
+                                initialChildSize: 0.5,
+                                listType: MultiSelectListType.CHIP,
+                                selectedItemsTextStyle:
+                                    TextStyle(color: Colors.white),
+                                selectedColor: fluttify_Red,
+                                itemsTextStyle: TextStyle(color: Colors.white),
+                                searchable: true,
+                                buttonText: Text(
+                                  "Genres",
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                title: Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                    "Genres",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ),
+                                items: model.playlistGenre!,
+                                onConfirm: (List<dynamic> values) {
+                                  model.addGenre(values);
+                                },
+                                chipDisplay: MultiSelectChipDisplay(
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(.4),
+                                  ),
+                                  chipColor: fluttify_Red,
+                                  textStyle: TextStyle(color: Colors.white),
+                                  onTap: (String value) {
+                                    model.removeGenre(value);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
                               padding: EdgeInsets.all(10),
-                              alignment: Alignment.centerLeft,
-                              child: TextField(
-                                inputFormatters: [
-                                  LengthLimitingTextInputFormatter(13),
-                                ],
-                                controller: model.nameController,
-                                textAlign: TextAlign.left,
-                                style: TextStyle(fontSize: 20),
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.symmetric(horizontal: 15),
-                                  floatingLabelBehavior:
-                                      FloatingLabelBehavior.never,
-                                  hintText: 'Name',
-                                  border: InputBorder.none,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: SizedBox(
+                                  height: 45,
+                                  width: 100,
+                                  child: TextButton(
+                                      style: TextButton.styleFrom(
+                                          backgroundColor: fluttify_Red,
+                                          shape: StadiumBorder(
+                                              side: BorderSide(
+                                                  color: Colors.transparent))),
+                                      child: Text('Cancel',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white)),
+                                      onPressed: () {}),
                                 ),
-                                onSubmitted: (String value) {
-                                  model.saveName(value);
-                                },
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: FractionallySizedBox(
-                          widthFactor: 0.95,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            child: Container(
+                            Padding(
                               padding: EdgeInsets.all(10),
-                              alignment: Alignment.centerLeft,
-                              child: TextField(
-                                inputFormatters: [
-                                  LengthLimitingTextInputFormatter(13),
-                                ],
-                                maxLines: null,
-                                controller: model.descriptionController,
-                                textAlign: TextAlign.left,
-                                style: TextStyle(fontSize: 20),
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.symmetric(horizontal: 15),
-                                  floatingLabelBehavior:
-                                      FloatingLabelBehavior.never,
-                                  hintText: 'Beschreibung',
-                                  border: InputBorder.none,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: SizedBox(
+                                  height: 45,
+                                  width: 100,
+                                  child: TextButton(
+                                      style: TextButton.styleFrom(
+                                          backgroundColor: fluttify_Red,
+                                          shape: StadiumBorder(
+                                              side: BorderSide(
+                                                  color: Colors.transparent))),
+                                      child: Text('Save',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white)),
+                                      onPressed: () => model.save(context)),
                                 ),
-                                onSubmitted: (String value) {
-                                  model.saveDescription(value);
-                                },
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: 0.95,
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            child: MultiSelectBottomSheetField(
-                              decoration: BoxDecoration(),
-                              initialChildSize: 0.4,
-                              listType: MultiSelectListType.CHIP,
-                              selectedItemsTextStyle:
-                                  TextStyle(color: Colors.white),
-                              selectedColor: fluttify_Red,
-                              itemsTextStyle: TextStyle(color: Colors.white),
-                              searchable: true,
-                              buttonText: Text("Genres"),
-                              title: Text("Genres"),
-                              items: model.playlistGenre!,
-                              onConfirm: (List<dynamic> values) {
-                                model.addGenre(values);
-                              },
-                              chipDisplay: MultiSelectChipDisplay(
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .primaryColor
-                                      .withOpacity(.4),
-                                ),
-                                chipColor: fluttify_Red,
-                                textStyle: TextStyle(color: Colors.white),
-                                onTap: (String value) {
-                                  model.removeGenre(value);
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              child: SizedBox(
-                                height: 45,
-                                width: 100,
-                                child: TextButton(
-                                    style: TextButton.styleFrom(
-                                        backgroundColor: fluttify_Red,
-                                        shape: StadiumBorder(
-                                            side: BorderSide(
-                                                color: Colors.transparent))),
-                                    child: Text('Cancel',
-                                        style: TextStyle(
-                                            fontSize: 20, color: Colors.white)),
-                                    onPressed: () {}),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              child: SizedBox(
-                                height: 45,
-                                width: 100,
-                                child: TextButton(
-                                    style: TextButton.styleFrom(
-                                        backgroundColor: fluttify_Red,
-                                        shape: StadiumBorder(
-                                            side: BorderSide(
-                                                color: Colors.transparent))),
-                                    child: Text('Save',
-                                        style: TextStyle(
-                                            fontSize: 20, color: Colors.white)),
-                                    onPressed: () => model.save(context)),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

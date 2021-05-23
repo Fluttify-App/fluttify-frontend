@@ -50,9 +50,9 @@ class Playlist {
         contributers: parsedJson['contributers'],
         allgenres: parsedJson['allgenres'],
         genres: parsedJson['genres'],
-        canEdit: true,
-        numberOfSongs: parsedJson['trackURIs'].length,
-        image: "assets/images/spotify.jpg");
+        canEdit: false,
+        numberOfSongs: parsedJson['trackURIs'].length);
+        //image: "assets/images/spotify.jpg");
   }
 
   Map<String, dynamic> toJson() {
