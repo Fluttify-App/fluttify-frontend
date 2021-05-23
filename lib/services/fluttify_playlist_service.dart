@@ -4,10 +4,10 @@ import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:http/http.dart' as http;
 
-import 'api_service.dart';
+import 'auth_service.dart';
 
 class FluttifyPlaylistService {
-  final ApiService _apiService = locator<ApiService>();
+  final AuthService _apiService = locator<AuthService>();
   final String baseUrl = "fluttify.herokuapp.com";
 
   List<Playlist> myplaylists = [];
@@ -21,10 +21,8 @@ class FluttifyPlaylistService {
           .map((data) => Playlist.fromJson(data))
           .toList();
     } else {
-      print("Not Authorized");
       myplaylists = [];
     }
-    print(myplaylists);
   }
 
   Future<bool> saveFluttifyPlaylist(Playlist playlist) async {
@@ -32,12 +30,10 @@ class FluttifyPlaylistService {
     payload['mix'] = playlist;
     final response = await http.post(Uri.https(baseUrl, 'fluttify/playlist'),
         headers: _apiService.headers, body: jsonEncode(payload));
-    print(payload);
     if (response.statusCode == 200) {
       return true;
     } else {
       print("Something went wrong");
-      print(response.body);
       return false;
     }
   }

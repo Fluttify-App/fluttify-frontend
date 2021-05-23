@@ -39,8 +39,9 @@ class EditPlaylistView extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 20))
                     : Text(playlist.name!),
-                backgroundColor: fluttify_Red,
+                backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
                 centerTitle: true,
+                /*
                 flexibleSpace: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -50,6 +51,7 @@ class EditPlaylistView extends StatelessWidget {
                     ),
                   ),
                 ),
+                */
               ),
               body: Center(
                 child: Container(
@@ -146,12 +148,15 @@ class EditPlaylistView extends StatelessWidget {
                                         listType: MultiSelectListType.CHIP,
                                         selectedItemsTextStyle:
                                             TextStyle(color: Colors.white),
-                                        selectedColor: fluttify_Red,
+                                        selectedColor:
+                                            Theme.of(context).primaryColor,
                                         itemsTextStyle:
                                             TextStyle(color: Colors.white),
                                         searchable: true,
-                                        buttonText: Text("Genres"),
-                                        title: Text("Genres"),
+                                        buttonText: Text("Genres",
+                                            style: TextStyle(fontSize: 20)),
+                                        title: Text("Genres",
+                                            style: TextStyle(fontSize: 20)),
                                         items: model.playlistGenre!,
                                         onConfirm: (values) {
                                           model.addGenre(values);
@@ -162,12 +167,10 @@ class EditPlaylistView extends StatelessWidget {
                                                 .primaryColor
                                                 .withOpacity(.4),
                                           ),
-                                          chipColor: fluttify_Red,
+                                          chipColor:
+                                              Theme.of(context).primaryColor,
                                           textStyle:
                                               TextStyle(color: Colors.white),
-                                          onTap: (String value) {
-                                            model.removeGenre(value);
-                                          },
                                         ),
                                       ),
                                     ],
@@ -247,32 +250,25 @@ class EditPlaylistView extends StatelessWidget {
                               ? Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(0, 30, 20, 0),
-                                      child: Container(
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 10),
-                                        child: SizedBox(
-                                          height: 45,
-                                          width: 100,
-                                          child: TextButton(
-                                              style: TextButton.styleFrom(
-                                                  backgroundColor: fluttify_Red,
-                                                  shape: StadiumBorder(
-                                                      side: BorderSide(
-                                                          color: Colors
-                                                              .transparent))),
-                                              child: Text('Cancel',
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      color: Colors.white)),
-                                              onPressed: () => model.canEdit()),
-                                        ),
-                                      ),
+                                    SizedBox(
+                                      height: 45,
+                                      width: 100,
+                                      child: TextButton(
+                                          style: TextButton.styleFrom(
+                                              backgroundColor: Theme.of(context)
+                                                  .primaryColor,
+                                              shape: StadiumBorder(
+                                                  side: BorderSide(
+                                                      color:
+                                                          Colors.transparent))),
+                                          child: Text('Cancel',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.white)),
+                                          onPressed: () => model.canEdit()),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                       child: Container(
                                         padding:
                                             EdgeInsets.symmetric(vertical: 10),
@@ -281,7 +277,9 @@ class EditPlaylistView extends StatelessWidget {
                                           width: 100,
                                           child: TextButton(
                                               style: TextButton.styleFrom(
-                                                  backgroundColor: fluttify_Red,
+                                                  backgroundColor:
+                                                      Theme.of(context)
+                                                          .primaryColor,
                                                   shape: StadiumBorder(
                                                       side: BorderSide(
                                                           color: Colors

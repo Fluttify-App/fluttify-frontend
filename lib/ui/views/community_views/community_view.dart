@@ -8,12 +8,14 @@ class CommunityView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CommunityViewModel>.reactive(
-      builder: (BuildContext context, CommunityViewModel model, Widget? child) =>
+      builder: (BuildContext context, CommunityViewModel model,
+              Widget? child) =>
           Scaffold(
               appBar: AppBar(
                 title: Text("Community"),
-                backgroundColor: fluttify_Red,
+                backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
                 centerTitle: true,
+                /*
                 flexibleSpace: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -23,6 +25,7 @@ class CommunityView extends StatelessWidget {
                     ),
                   ),
                 ),
+                */
               ),
               body: Center(child: Text('Community'))),
       viewModelBuilder: () => CommunityViewModel(),
