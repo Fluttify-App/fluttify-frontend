@@ -6,7 +6,7 @@ import 'package:fluttify/ui/views/community_views/community_view.dart';
 import 'package:fluttify/ui/views/home_viewmodel.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
-import 'package:fluttify/ui/views/settings_views/user_view.dart';
+import 'package:fluttify/ui/views/user_views/user_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
