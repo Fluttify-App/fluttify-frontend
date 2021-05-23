@@ -30,8 +30,7 @@ class UserView extends StatelessWidget {
         ),
         body: Center(
           child: Padding(
-            padding:
-                const EdgeInsets.only(left: 8, right: 8, bottom: 16, top: 16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
