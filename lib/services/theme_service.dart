@@ -31,7 +31,7 @@ class ThemeService extends ChangeNotifier {
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
     primaryColor: Color.fromARGB(255, 94, 8, 28), //Fluttify Red
-    accentColor: Colors.teal,
+    accentColor: Color(0xffbcc2a36),
     appBarTheme: AppBarTheme(backgroundColor: Color(0xffb424242)),
     bottomNavigationBarTheme:
         BottomNavigationBarThemeData(backgroundColor: Color(0xffb424242)),
@@ -58,7 +58,7 @@ class ThemeService extends ChangeNotifier {
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: Color.fromARGB(255, 94, 8, 28), //Fluttify Red
-    accentColor: Colors.teal,
+    accentColor: Color.fromARGB(255, 94, 8, 28),
     appBarTheme: AppBarTheme(backgroundColor: Colors.teal),
     bottomNavigationBarTheme:
         BottomNavigationBarThemeData(backgroundColor: Color(0xffb424242)),
