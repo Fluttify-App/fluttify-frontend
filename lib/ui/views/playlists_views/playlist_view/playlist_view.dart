@@ -39,7 +39,7 @@ class PlaylistView extends StatelessWidget {
                       child: Column(
                         children: [
                           for (Playlist playlist
-                              in model.playlistService.myplaylists)
+                              in model.playlistService.myplaylists.reversed)
                             Container(
                               padding: EdgeInsets.symmetric(vertical: 5),
                               child: GestureDetector(
