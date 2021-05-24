@@ -40,117 +40,136 @@ class PlaylistView extends StatelessWidget {
                         children: [
                           for (Playlist playlist
                               in model.playlistService.myplaylists)
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 5),
-                              child: GestureDetector(
-                                onTap: () =>
-                                    {model.navigateToEditPage(playlist)},
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10.0)),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              alignment: Alignment.centerLeft,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  Container(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            25, 20, 0, 10),
-                                                    child: Text(
-                                                      playlist.name!,
-                                                      style: DefaultTextStyle
-                                                              .of(context)
-                                                          .style
-                                                          .apply(
-                                                              fontSizeFactor:
-                                                                  1.8),
-                                                    ),
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: <Widget>[
-                                                      Container(
-                                                        padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                25, 0, 0, 20),
-                                                        child: Text(
-                                                          playlist.numberOfSongs
-                                                                  .toString() +
-                                                              ' Songs',
-                                                          style: DefaultTextStyle
-                                                                  .of(context)
-                                                              .style
-                                                              .apply(
-                                                                  fontSizeFactor:
-                                                                      1.3),
-                                                        ),
+                            Dismissible(
+                              key: Key(playlist.dbID!),
+                              onDismissed: (direction) =>
+                                  {model.dismissPlaylist(playlist, context)},
+                              background: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.redAccent,
+                                ),
+                                alignment: Alignment.centerRight,
+                                margin: EdgeInsets.all(16.0),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 22.0),
+                                  child:
+                                      Icon(Icons.delete, color: Colors.white),
+                                ),
+                              ),
+                              direction: DismissDirection.endToStart,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 5),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      {model.navigateToEditPage(playlist)},
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                alignment: Alignment.centerLeft,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                    Container(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              25, 20, 0, 10),
+                                                      child: Text(
+                                                        playlist.name!,
+                                                        style: DefaultTextStyle
+                                                                .of(context)
+                                                            .style
+                                                            .apply(
+                                                                fontSizeFactor:
+                                                                    1.8),
                                                       ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Container(
-                                              child: IconButton(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        0, 0, 5, 0),
-                                                icon: Icon(
-                                                  Icons.share,
-                                                  color: Colors.white,
-                                                ),
-                                                onPressed: () {},
-                                              ),
-                                            ),
-                                            playlist.image == null
-                                                ? Container(
-                                                    height: 100,
-                                                    width: 100,
-                                                    child: Icon(
-                                                      Icons.music_note,
-                                                      size: 30,
                                                     ),
-                                                  )
-                                                : Container(
-                                                    height: 100,
-                                                    width: 100,
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                              topRight: Radius
-                                                                  .circular(10),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          10)),
-                                                      child: Image.network(
-                                                          playlist.image!),
-                                                    )),
-                                          ],
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: <Widget>[
+                                                        Container(
+                                                          padding: EdgeInsets
+                                                              .fromLTRB(
+                                                                  25, 0, 0, 20),
+                                                          child: Text(
+                                                            playlist.numberOfSongs
+                                                                    .toString() +
+                                                                ' Songs',
+                                                            style: DefaultTextStyle
+                                                                    .of(context)
+                                                                .style
+                                                                .apply(
+                                                                    fontSizeFactor:
+                                                                        1.3),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                child: IconButton(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          0, 0, 5, 0),
+                                                  icon: Icon(
+                                                    Icons.share,
+                                                    color: Colors.white,
+                                                  ),
+                                                  onPressed: () {},
+                                                ),
+                                              ),
+                                              playlist.image == null
+                                                  ? Container(
+                                                      height: 100,
+                                                      width: 100,
+                                                      child: Icon(
+                                                        Icons.music_note,
+                                                        size: 30,
+                                                      ),
+                                                    )
+                                                  : Container(
+                                                      height: 100,
+                                                      width: 100,
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        10),
+                                                                bottomRight: Radius
+                                                                    .circular(
+                                                                        10)),
+                                                        child: Image.network(
+                                                            playlist.image!),
+                                                      )),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

@@ -23,13 +23,25 @@ class FluttifyPlaylistService {
     } else {
       myplaylists = [];
     }
-    print(myplaylists[0]);
   }
 
   Future<bool> saveFluttifyPlaylist(Playlist playlist) async {
     var payload = {};
     payload['mix'] = playlist;
     final response = await http.post(Uri.https(baseUrl, 'fluttify/playlist'),
+        headers: _apiService.headers, body: jsonEncode(payload));
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      print("Something went wrong");
+      return false;
+    }
+  }
+
+  Future<bool> removeFluttifyPlaylist(Playlist playlist) async {
+    var payload = {};
+    payload['id'] = playlist.dbID;
+    final response = await http.delete(Uri.https(baseUrl, 'fluttify/playlist'),
         headers: _apiService.headers, body: jsonEncode(payload));
     if (response.statusCode == 200) {
       return true;

@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
@@ -43,6 +45,26 @@ class PlaylistViewModel extends BaseViewModel {
       if (value != null) {
         refreshPlaylists();
       }
+    });
+  }
+
+  void dismissPlaylist(Playlist playlist, context) {
+    playlistService.removeFluttifyPlaylist(playlist).then((value) {
+      var snackbarText;
+      if (value) {
+        snackbarText = Text("Plalyist removed from library");
+      } else {
+        snackbarText = Text("Could not remove playlist");
+      }
+      refreshPlaylists();
+      final snackBar = SnackBar(
+        content: snackbarText,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
   }
 }
