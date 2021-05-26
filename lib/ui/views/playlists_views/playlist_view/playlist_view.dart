@@ -173,7 +173,13 @@ class PlaylistView extends StatelessWidget {
                                                           Icons.share,
                                                           color: Colors.white,
                                                         ),
-                                                        onPressed: () {},
+                                                        onPressed: () {
+                                                          model.pressShare(model
+                                                              .playlistService
+                                                              .myplaylists[
+                                                                  index]
+                                                              .dbID!);
+                                                        },
                                                       ),
                                                     ),
                                                     model

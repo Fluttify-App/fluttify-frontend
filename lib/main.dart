@@ -1,9 +1,15 @@
+import 'dart:async';
+
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/fluttify_router.router.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
+import 'package:fluttify/services/dynamic_link_service.dart';
+import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/services/theme_service.dart';
+import 'package:fluttify/ui/views/user_views/sign_in_view/sign_in_view.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -23,18 +29,23 @@ Future main() async {
 
 class Fluttify extends StatelessWidget {
   final AuthService _auth = locator<AuthService>();
+  final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<bool>(
-        future: _auth.initializeAuthentication(),
-        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.done:
-              return App();
-            default:
-              return CircularProgressIndicator();
-          }
+    return FutureBuilder(
+        future: _dynamicLinkService.handleDynamicLinks(),
+        builder: (context, snapshot) {
+          return FutureBuilder<bool>(
+              future: _auth.initializeAuthentication(),
+              builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.done:
+                    return App();
+                  default:
+                    return CircularProgressIndicator();
+                }
+              });
         });
   }
 }
@@ -48,7 +59,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     _auth.addListener(() {
       if (_auth.loggedIn) {
-        //_navigationService.clearStackAndShow(Routes.homeView);
+        _navigationService.clearStackAndShow(Routes.homeView);
       } else {
         //_navigationService.navigateTo(Routes.spotifySignInView);
       }

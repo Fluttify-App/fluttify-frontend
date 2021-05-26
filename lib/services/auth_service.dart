@@ -27,12 +27,10 @@ class AuthService extends ChangeNotifier {
     StreamingSharedPreferences.instance.then((preferences) {
       token = preferences.getString("token", defaultValue: 'initial');
       token!.listen((value) async {
-        print(value);
         headers.putIfAbsent('Authorization', () => 'Bearer $value');
         final response = await http.get(Uri.https(baseUrl, 'fluttify/user'),
             headers: headers);
         if (response.statusCode == 200) {
-          print(response.body);
           currentUser = new User.fromJson(json.decode(response.body));
           print("Logged In");
           loggedIn = true;
@@ -73,7 +71,5 @@ class AuthService extends ChangeNotifier {
   Future<void> getUser() async {
     final response =
         await http.get(Uri.https(baseUrl, 'fluttify/user'), headers: headers);
-    print(response.statusCode);
-    print(response.body);
   }
 }

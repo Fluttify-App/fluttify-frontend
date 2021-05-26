@@ -53,7 +53,7 @@ class HomeView extends StatelessWidget {
           duration: Duration(milliseconds: 200),
         ),
         navBarStyle:
-            NavBarStyle.style6, // Choose the nav bar style with this property.
+            NavBarStyle.style9, // Choose the nav bar style with this property.
       ),
       viewModelBuilder: () => HomeViewModel(),
     );
