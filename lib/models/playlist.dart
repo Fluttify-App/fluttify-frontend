@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:fluttify/models/song.dart';
+
 class Playlist {
   String? dbID;
   String? id;
@@ -12,6 +14,7 @@ class Playlist {
   String? image;
   int? numberOfSongs;
   bool canEdit;
+  List<Song>? songs;
 
   Playlist(
       {this.dbID, //Database ID
@@ -24,7 +27,8 @@ class Playlist {
       this.genres,
       this.image,
       this.canEdit = false,
-      this.numberOfSongs});
+      this.numberOfSongs, 
+      this.songs});
 
   List<Object> get props => [
         dbID!,

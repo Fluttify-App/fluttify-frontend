@@ -39,133 +39,118 @@ class PlaylistView extends StatelessWidget {
                       onRefresh: () async {
                         model.refreshPlaylists();
                       },
-                      child: SingleChildScrollView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        child: Column(
-                          children: [
-                            for (Playlist playlist
-                                in model.playlistService.myplaylists.reversed)
-                              Dismissible(
-                                key: Key(playlist.dbID!),
-                                confirmDismiss: (direction) async {
-                                  showDialog(
-                                    context: context,
-                                    builder: (_) {
-                                      return AlertDialog(
-                                        title: Text('Delete Playlist'),
-                                        content: SingleChildScrollView(
-                                          child: ListBody(
-                                            children: <Widget>[
-                                              Text(
-                                                  'Would you like to delete playlist: ${playlist.name}'),
-                                            ],
-                                          ),
-                                        ),
-                                        actions: <Widget>[
-                                          TextButton(
-                                            child: const Text('No'),
-                                            onPressed: () {
-                                              model.navigateBack(context);
-                                            },
-                                          ),
-                                          TextButton(
-                                            child: const Text('Yes'),
-                                            onPressed: () {
-                                              model.dismissPlaylist(
-                                                  playlist, context);
-                                              model.navigateBack(context);
-                                            },
-                                          )
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                background: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.redAccent,
-                                  ),
-                                  alignment: Alignment.centerRight,
-                                  margin: EdgeInsets.all(16.0),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 22.0),
-                                    child:
-                                        Icon(Icons.delete, color: Colors.white),
-                                  ),
-                                ),
-                                direction: DismissDirection.endToStart,
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 5),
-                                  child: GestureDetector(
-                                    onTap: () =>
-                                        {model.navigateToEditPage(playlist)},
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0)),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: <Widget>[
-                                                      Container(
-                                                        padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                25, 20, 0, 10),
-                                                        child: Text(
-                                                          playlist.name!,
-                                                          style: DefaultTextStyle
-                                                                  .of(context)
-                                                              .style
-                                                              .apply(
-                                                                  fontSizeFactor:
-                                                                      1.8),
-                                                        ),
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: <Widget>[
-                                                          Container(
-                                                            padding: EdgeInsets
-                                                                .fromLTRB(25, 0,
-                                                                    0, 20),
-                                                            child: Text(
-                                                              playlist.numberOfSongs
-                                                                      .toString() +
-                                                                  ' Songs',
-                                                              style: DefaultTextStyle
-                                                                      .of(
-                                                                          context)
-                                                                  .style
-                                                                  .apply(
-                                                                      fontSizeFactor:
-                                                                          1.3),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height,
+                        child: SingleChildScrollView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          child: Column(
+                            children: [
+                              for (Playlist playlist
+                                  in model.playlistService.myplaylists.reversed)
+                                Dismissible(
+                                  key: Key(playlist.dbID!),
+                                  confirmDismiss: (direction) async {
+                                    showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return AlertDialog(
+                                          title: Text('Delete Playlist'),
+                                          content: SingleChildScrollView(
+                                            child: ListBody(
+                                              children: <Widget>[
+                                                Text(
+                                                    'Would you like to delete playlist: ${playlist.name}'),
                                               ],
                                             ),
                                           ),
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Row(
+                                          actions: <Widget>[
+                                            TextButton(
+                                              child: const Text('No'),
+                                              onPressed: () {
+                                                model.navigateBack(context);
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: const Text('Yes'),
+                                              onPressed: () {
+                                                model.dismissPlaylist(
+                                                    playlist, context);
+                                                model.navigateBack(context);
+                                              },
+                                            )
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                  background: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.redAccent,
+                                    ),
+                                    alignment: Alignment.centerRight,
+                                    margin: EdgeInsets.all(16.0),
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 22.0),
+                                      child: Icon(Icons.delete,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                  direction: DismissDirection.endToStart,
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 5),
+                                    child: GestureDetector(
+                                      onTap: () =>
+                                          {model.navigateToEditPage(playlist)},
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              alignment: Alignment.centerLeft,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            25, 20, 0, 10),
+                                                    child: Text(
+                                                      playlist.name!,
+                                                      style: DefaultTextStyle
+                                                              .of(context)
+                                                          .style
+                                                          .apply(
+                                                              fontSizeFactor:
+                                                                  1.8),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            25, 0, 0, 20),
+                                                    child: Text(
+                                                      playlist.numberOfSongs
+                                                              .toString() +
+                                                          ' Songs',
+                                                      style: DefaultTextStyle
+                                                              .of(context)
+                                                          .style
+                                                          .apply(
+                                                              fontSizeFactor:
+                                                                  1.3),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
@@ -208,14 +193,14 @@ class PlaylistView extends StatelessWidget {
                                                       ),
                                               ],
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

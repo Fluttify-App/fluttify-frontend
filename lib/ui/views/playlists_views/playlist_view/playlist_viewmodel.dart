@@ -32,7 +32,6 @@ class PlaylistViewModel extends BaseViewModel {
 
   void navigateBack(BuildContext context) {
     Navigator.of(context, rootNavigator: true).pop();
-    //refreshPlaylists();
   }
 
   void navigateToEditPage(Playlist playlist) {
@@ -66,6 +65,7 @@ class PlaylistViewModel extends BaseViewModel {
       final snackBar = SnackBar(
         content: snackbarText,
         behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 1500),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
         ),

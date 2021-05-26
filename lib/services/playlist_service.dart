@@ -1,4 +1,5 @@
 import 'package:fluttify/models/playlist.dart';
+import 'package:fluttify/models/song.dart';
 
 class PlaylistService {
   List<String>? genres = <String>[
@@ -15,6 +16,18 @@ class PlaylistService {
     "Phillip",
     "Florian",
     "Patrick"
+  ];
+
+  
+
+  List<Song> songs = <Song>[
+    Song(name: "Tone Deaf", artist: "Eminem", image: 'assets/images/spotify.jpg'),
+    Song(name: "Tone Deaf", artist: "Eminem", image: 'assets/images/spotify.jpg'),
+    Song(name: "Tone Deaf", artist: "Eminem", image: 'assets/images/spotify.jpg'),
+    Song(name: "Tone Deaf", artist: "Eminem", image: 'assets/images/spotify.jpg'),
+    Song(name: "Tone Deaf", artist: "Eminem", image: 'assets/images/spotify.jpg'),
+    Song(name: "Tone Deaf", artist: "Eminem", image: 'assets/images/spotify.jpg'),
+    Song(name: "Tone Deaf", artist: "Eminem", image: 'assets/images/spotify.jpg'),
   ];
 
   List<Playlist>? playlists;

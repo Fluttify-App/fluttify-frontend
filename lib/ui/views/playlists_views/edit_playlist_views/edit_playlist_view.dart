@@ -1,4 +1,5 @@
 import 'package:fluttify/models/playlist.dart';
+import 'package:fluttify/models/song.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_viewmodel.dart';
@@ -299,6 +300,97 @@ class EditPlaylistView extends StatelessWidget {
                                                     color: Colors.white)),
                                             onPressed: () =>
                                                 model.save(context)),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Container(),
+                        !playlist.canEdit
+                            ? Column(
+                                children: [
+                                  Divider(
+                                      color: Theme.of(context).dividerColor,
+                                      height: 50),
+                                  Container(
+                                    child: FractionallySizedBox(
+                                      widthFactor: 0.95,
+                                      child: Column(
+                                        children: [
+                                          for (Song song in model.songs!)
+                                            Card(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0)),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: <Widget>[
+                                                        Container(
+                                                          padding: EdgeInsets
+                                                              .fromLTRB(25, 10,
+                                                                  0, 10),
+                                                          child: Text(
+                                                            song.name!,
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          padding: EdgeInsets
+                                                              .fromLTRB(
+                                                                  25, 0, 0, 10),
+                                                          child: Text(
+                                                            song.artist!,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  song.image == null
+                                                      ? Container(
+                                                          height: 50,
+                                                          width: 50,
+                                                          child: Icon(
+                                                            Icons.music_note,
+                                                            size: 30,
+                                                          ),
+                                                        )
+                                                      : Container(
+                                                          height: 75,
+                                                          width: 75,
+                                                          child: ClipRRect(
+                                                            borderRadius: BorderRadius.only(
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        10),
+                                                                bottomRight: Radius
+                                                                    .circular(
+                                                                        10)),
+                                                            child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                image: DecorationImage(
+                                                                    image: AssetImage(song
+                                                                        .image!),
+                                                                    fit: BoxFit
+                                                                        .contain),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                ],
+                                              ),
+                                            ),
+                                        ],
                                       ),
                                     ),
                                   ),
