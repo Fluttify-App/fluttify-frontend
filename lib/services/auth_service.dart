@@ -42,7 +42,7 @@ class AuthService extends ChangeNotifier {
 
   void logoutBackend() async {
     var sharedPrefs = await SharedPreferences.getInstance();
-    sharedPrefs.setString("token", "");
+    await sharedPrefs.setString("token", "initial");
     _navigationService.clearStackAndShow(Routes.spotifySignInView);
   }
 
