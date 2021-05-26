@@ -50,13 +50,9 @@ class DynamicLinkService {
 
         if (playlist != null) {
           print("Playlist: $playlist");
-          // if we have a post navigate to the CreatePostViewRoute and pass in the title as the arguments.
-          //_navigationService.navigateTo(CreatePostViewRoute, arguments: title);
 
           _navigationService.navigateTo(
               '/edit-playlist', EditPlaylistView(playlistId: playlist));
-
-          //_navigationService.clearStackAndShow(Routes.homeView);
         }
       }
     }

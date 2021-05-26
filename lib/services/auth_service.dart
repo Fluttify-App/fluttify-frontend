@@ -15,46 +15,34 @@ class AuthService extends ChangeNotifier {
   Preference<String>? token;
   final String baseUrl = "fluttify.herokuapp.com";
   Map<String, String> headers = {"Content-Type": "application/json"};
-  bool loggedIn = false;
   late User currentUser = User.empty();
 
   final NavigationService _navigationService = locator<NavigationService>();
 
-  List<Object> get props => [loggedIn, headers];
+  List<Object> get props => [headers];
 
-  AuthService() {
-    // Subscribe to shared preference changes
-    StreamingSharedPreferences.instance.then((preferences) {
-      token = preferences.getString("token", defaultValue: 'initial');
-      token!.listen((value) async {
-        headers.putIfAbsent('Authorization', () => 'Bearer $value');
-        final response = await http.get(Uri.https(baseUrl, 'fluttify/user'),
-            headers: headers);
-        if (response.statusCode == 200) {
-          currentUser = new User.fromJson(json.decode(response.body));
-          print("Logged In");
-          loggedIn = true;
-          notifyListeners();
-        } else {
-          print("Logged In Failed");
-          loggedIn = false;
-          notifyListeners();
-        }
-      });
-    });
-  }
+  AuthService() {}
 
   Future<bool> initializeAuthentication() async {
     // initialize the authorization header
     var sharedPrefs = await SharedPreferences.getInstance();
     var token = sharedPrefs.getString("token");
-    headers.putIfAbsent('Authorization', () => 'Bearer $token');
-    return true;
+    print(token);
+    if (token == null || token != "initial") {
+      headers.putIfAbsent('Authorization', () => 'Bearer $token');
+      var loggedIn = await _getUser();
+      if (loggedIn) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
   }
 
   void logoutBackend() async {
-    token!.setValue("initial");
-    loggedIn = false;
+    var sharedPrefs = await SharedPreferences.getInstance();
+    sharedPrefs.setString("token", "");
     _navigationService.clearStackAndShow(Routes.spotifySignInView);
   }
 
@@ -68,8 +56,16 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  Future<void> getUser() async {
+  Future<bool> _getUser() async {
     final response =
         await http.get(Uri.https(baseUrl, 'fluttify/user'), headers: headers);
+    if (response.statusCode == 200) {
+      currentUser = new User.fromJson(json.decode(response.body));
+      print("Logged In");
+      return true;
+    } else {
+      print("Logged In Failed");
+      return false;
+    }
   }
 }
