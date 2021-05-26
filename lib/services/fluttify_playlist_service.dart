@@ -38,6 +38,25 @@ class FluttifyPlaylistService {
     }
   }
 
+  Future<Playlist> getFluttifyPlaylist(String playlistId) async {
+    var query = {"id": playlistId};
+    final response = await http.get(
+        Uri.https(baseUrl, 'fluttify/playlist', query),
+        headers: _apiService.headers);
+    if (response.statusCode == 200) {
+      try {
+        var playlist = Playlist.fromJson(json.decode(response.body));
+        return playlist;
+      } on Exception catch (e) {
+        print(e);
+        return Playlist();
+      }
+    } else {
+      print("Something went wrong");
+      return Playlist();
+    }
+  }
+
   Future<bool> removeFluttifyPlaylist(Playlist playlist) async {
     var payload = {};
     payload['id'] = playlist.dbID;

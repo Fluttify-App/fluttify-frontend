@@ -9,8 +9,8 @@ import 'package:stacked/stacked_annotations.dart';
 
 @StackedApp(
   routes: <StackedRoute<dynamic>>[
-    MaterialRoute<dynamic>(page: SpotifySignInView, initial: true),
-    MaterialRoute<dynamic>(page: HomeView)
+    MaterialRoute<dynamic>(page: SpotifySignInView, initial: false),
+    MaterialRoute<dynamic>(page: HomeView, initial: true)
   ],
 )
 class $FluttifyRouter {}

@@ -27,10 +27,13 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   List<Song>? songs;
 
-  EditPlaylistViewModel(Playlist pl) {
-    playlist = pl;
-    descriptionController.text = pl.description!;
-    nameController.text = pl.name!;
+  EditPlaylistViewModel() {
+    /*
+    futurePlaylist = getPlaylist(id);
+    futurePlaylist!.then((Playlist value) => setPlaylist(value));
+    descriptionController.text = playlist!.description!;
+    nameController.text = playlist!.name!;
+*/
     playlistGenre = playlistService.genres!
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
@@ -63,5 +66,11 @@ class EditPlaylistViewModel extends BaseViewModel {
   void removeGenre(String value) {
     selectedGenres.remove(value);
     notifyListeners();
+  }
+
+  Future<Playlist> getPlaylist(String playlistId) async {
+    Playlist playlist =
+        await fluttifyPlaylistService.getFluttifyPlaylist(playlistId);
+    return playlist;
   }
 }
