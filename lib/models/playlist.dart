@@ -47,7 +47,7 @@ class Playlist {
         id: parsedJson['id'],
         name: parsedJson['name'],
         creator: parsedJson['creator'],
-        description: "bla",
+        description: parsedJson['description'],
         contributers: parsedJson['contributers'],
         allgenres: parsedJson['allgenres'],
         genres: parsedJson['genres'],

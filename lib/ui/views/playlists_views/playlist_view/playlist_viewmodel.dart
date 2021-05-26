@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
@@ -5,6 +7,7 @@ import 'package:fluttify/services/playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
+import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -27,6 +30,11 @@ class PlaylistViewModel extends BaseViewModel {
     });
   }
 
+  void navigateBack(BuildContext context) {
+    Navigator.of(context, rootNavigator: true).pop();
+    //refreshPlaylists();
+  }
+
   void navigateToEditPage(Playlist playlist) {
     _navigationService.navigateTo(
         '/edit-playlist', EditPlaylistView(playlist: playlist),
@@ -43,6 +51,26 @@ class PlaylistViewModel extends BaseViewModel {
       if (value != null) {
         refreshPlaylists();
       }
+    });
+  }
+
+  void dismissPlaylist(Playlist playlist, context) {
+    playlistService.removeFluttifyPlaylist(playlist).then((value) {
+      var snackbarText;
+      if (value) {
+        snackbarText = Text("Plalyist removed from library");
+      } else {
+        snackbarText = Text("Could not remove playlist");
+      }
+      refreshPlaylists();
+      final snackBar = SnackBar(
+        content: snackbarText,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
   }
 }
