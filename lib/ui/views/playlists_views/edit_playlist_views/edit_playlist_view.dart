@@ -11,30 +11,38 @@ import 'package:flutter/services.dart';
 import 'dart:io';
 
 class EditPlaylistView extends StatelessWidget {
-  const EditPlaylistView({required this.playlistId});
-  final String playlistId;
+  /*
+  const EditPlaylistView({
+    this.playlistId = "",
+     playlist
+  )} : playlist = playlist ?? Playlist();
+*/
+  String playlistId = "";
+  Playlist playlist = Playlist();
+  EditPlaylistView(String playlistId, Playlist playlist) {
+    this.playlistId = playlistId;
+    this.playlist = playlist;
+  }
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
+        onModelReady: (EditPlaylistViewModel model) {
+          if (this.playlist.id != null) {
+            model.setPlaylist(playlist);
+          } else {
+            model.getPlaylist(playlistId);
+          }
+        },
         builder: (BuildContext context, EditPlaylistViewModel model,
                 Widget? child) =>
-            FutureBuilder<Playlist>(
-              future: model.getPlaylist(playlistId),
-              builder: (context, AsyncSnapshot<Playlist> playlistSnapshot) {
-                if (playlistSnapshot.connectionState != ConnectionState.done ||
-                    !playlistSnapshot.hasData) {
-                  return Scaffold(
-                      appBar: AppBar(),
-                      body: Center(child: CircularProgressIndicator()));
-                } else {
-                  return Scaffold(
+            model.playlist != null
+                ? Scaffold(
                     appBar: AppBar(
                       // back button is only visible when you're not editing the playlist
-                      automaticallyImplyLeading:
-                          !playlistSnapshot.data!.canEdit,
+                      automaticallyImplyLeading: !model.playlist!.canEdit,
                       actions: [
-                        !playlistSnapshot.data!.canEdit
+                        !model.playlist!.canEdit
                             ? Padding(
                                 padding: EdgeInsets.only(right: 20.0),
                                 child: GestureDetector(
@@ -46,7 +54,7 @@ class EditPlaylistView extends StatelessWidget {
                               )
                             : Container()
                       ],
-                      title: playlistSnapshot.data!.canEdit
+                      title: model.playlist!.canEdit
                           ? TextField(
                               inputFormatters: [
                                   LengthLimitingTextInputFormatter(13),
@@ -54,7 +62,7 @@ class EditPlaylistView extends StatelessWidget {
                               controller: model.nameController,
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 20))
-                          : Text(playlistSnapshot.data!.name!),
+                          : Text(model.playlist!.name!),
                       backgroundColor:
                           Theme.of(context).appBarTheme.backgroundColor,
                       centerTitle: true,
@@ -77,7 +85,7 @@ class EditPlaylistView extends StatelessWidget {
                           alignment: Alignment.topCenter,
                           child: Column(
                             children: [
-                              playlistSnapshot.data!.image == null
+                              model.playlist!.image == null
                                   ? Container(
                                       height: 150,
                                       width: 250,
@@ -117,7 +125,7 @@ class EditPlaylistView extends StatelessWidget {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10)),
                                         child: Image.network(
-                                            playlistSnapshot.data!.image!),
+                                            model.playlist!.image!),
                                       )),
                               Container(
                                 padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
@@ -136,13 +144,12 @@ class EditPlaylistView extends StatelessWidget {
                                   child: Container(
                                     padding: EdgeInsets.all(13),
                                     alignment: Alignment.centerLeft,
-                                    child: playlistSnapshot.data!.canEdit
+                                    child: model.playlist!.canEdit
                                         ? TextField(
                                             controller:
                                                 model.descriptionController,
                                             maxLines: null)
-                                        : Text(playlistSnapshot
-                                            .data!.description!),
+                                        : Text(model.playlist!.description!),
                                   ),
                                 ),
                               ),
@@ -165,11 +172,10 @@ class EditPlaylistView extends StatelessWidget {
                                       child: Column(
                                         children: <Widget>[
                                           MultiSelectBottomSheetField(
-                                            canEdit:
-                                                playlistSnapshot.data!.canEdit,
+                                            canEdit: model.playlist!.canEdit,
                                             decoration: BoxDecoration(),
                                             initialValue:
-                                                playlistSnapshot.data!.genres,
+                                                model.playlist!.genres,
                                             initialChildSize: 0.4,
                                             listType: MultiSelectListType.CHIP,
                                             selectedItemsTextStyle:
@@ -202,7 +208,7 @@ class EditPlaylistView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              playlistSnapshot.data!.canEdit
+                              model.playlist!.canEdit
                                   ? Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -250,8 +256,7 @@ class EditPlaylistView extends StatelessWidget {
                                     direction: Axis.horizontal,
                                     children: [
                                       for (String contributers
-                                          in playlistSnapshot
-                                              .data!.contributers!)
+                                          in model.playlist!.contributers!)
                                         Container(
                                           padding:
                                               EdgeInsets.fromLTRB(15, 5, 0, 5),
@@ -275,7 +280,7 @@ class EditPlaylistView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              playlistSnapshot.data!.canEdit
+                              model.playlist!.canEdit
                                   ? Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -335,120 +340,15 @@ class EditPlaylistView extends StatelessWidget {
                                       ],
                                     )
                                   : Container(),
-                              !playlistSnapshot.data!.canEdit
-                                  ? Column(
-                                      children: [
-                                        Divider(
-                                            color:
-                                                Theme.of(context).dividerColor,
-                                            height: 50),
-                                        Container(
-                                          child: FractionallySizedBox(
-                                            widthFactor: 0.95,
-                                            child: Column(
-                                              children: [
-                                                for (Song song in model.songs!)
-                                                  Card(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0)),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Container(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: <Widget>[
-                                                              Container(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .fromLTRB(
-                                                                            25,
-                                                                            10,
-                                                                            0,
-                                                                            10),
-                                                                child: Text(
-                                                                  song.name!,
-                                                                ),
-                                                              ),
-                                                              Container(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .fromLTRB(
-                                                                            25,
-                                                                            0,
-                                                                            0,
-                                                                            10),
-                                                                child: Text(
-                                                                  song.artist!,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        song.image == null
-                                                            ? Container(
-                                                                height: 50,
-                                                                width: 50,
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .music_note,
-                                                                  size: 30,
-                                                                ),
-                                                              )
-                                                            : Container(
-                                                                height: 75,
-                                                                width: 75,
-                                                                child:
-                                                                    ClipRRect(
-                                                                  borderRadius: BorderRadius.only(
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              10),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              10)),
-                                                                  child:
-                                                                      Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      image: DecorationImage(
-                                                                          image: AssetImage(song
-                                                                              .image!),
-                                                                          fit: BoxFit
-                                                                              .contain),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : Container(),
                             ],
                           ),
                         ),
                       ),
                     ),
-                  );
-                }
-              },
-            ),
+                  )
+                : Scaffold(
+                    appBar: AppBar(),
+                    body: Center(child: CircularProgressIndicator())),
         viewModelBuilder: () => EditPlaylistViewModel());
   }
 }
