@@ -31,7 +31,7 @@ class ThemeService extends ChangeNotifier {
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
     primaryColor: Colors.white,
-    accentColor: Color(0xffef473a),
+    accentColor: Color.fromARGB(255, 203, 45, 62),
     scaffoldBackgroundColor: Color(0xff1c1c1c),
     cardColor: Color(0xff424242),
     hintColor: Color(0xffbdb9ba),
@@ -65,7 +65,7 @@ class ThemeService extends ChangeNotifier {
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         //  side: BorderSide(color: Colors.white, width: 2),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Color(0xffef473a),
+        backgroundColor: Color.fromARGB(255, 203, 45, 62),
         primary: Colors.white,
       ),
     ),
@@ -73,15 +73,15 @@ class ThemeService extends ChangeNotifier {
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: Colors.black,
-    accentColor: Colors.teal,
+    accentColor: Color.fromARGB(255, 203, 45, 62),
     scaffoldBackgroundColor: Colors.white,
     cardColor: Color(0xffcfcfcf),
     hintColor: Color(0xff3b3b3b),
     appBarTheme: AppBarTheme(
-        backgroundColor: Colors.teal,
+        backgroundColor: Color.fromARGB(255, 203, 45, 62),
         titleTextStyle: TextStyle(color: Colors.black)),
     bottomNavigationBarTheme:
-        BottomNavigationBarThemeData(backgroundColor: Colors.teal),
+        BottomNavigationBarThemeData(backgroundColor: Color.fromARGB(255, 203, 45, 62)),
     textTheme: TextTheme(
       button: const TextStyle(
           fontSize: 14, fontFamily: 'Montserrat', color: Colors.black),
@@ -112,7 +112,7 @@ class ThemeService extends ChangeNotifier {
       style: TextButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Colors.teal,
+        backgroundColor: Color.fromARGB(255, 203, 45, 62),
         primary: Colors.black,
       ),
     ),
