@@ -27,7 +27,7 @@ class UserView extends StatelessWidget {
                     Expanded(
                       flex: 3,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(10.0),
                         child: Image.network(
                             model.authService.currentUser.avatarImageUrl ??
                                 "https://img.icons8.com/color/452/avatar.png"),
@@ -95,8 +95,9 @@ class UserView extends StatelessWidget {
                           Provider.of<ThemeService>(context, listen: false)
                               .setDarkMode(value);
                         },
-                        activeTrackColor: Colors.yellow,
-                        activeColor: Colors.orangeAccent,
+                        activeTrackColor: Color(0xffef473a),
+                        activeColor: Color.fromARGB(255, 203, 45, 62),
+                        inactiveThumbColor: Color.fromARGB(255, 203, 45, 62),
                       ),
                     ],
                   ),
