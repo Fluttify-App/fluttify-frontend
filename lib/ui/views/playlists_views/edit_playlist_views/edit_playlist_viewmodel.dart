@@ -31,6 +31,7 @@ class EditPlaylistViewModel extends BaseViewModel {
     playlistGenre = playlistService.genres!
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
+    // TODO: get Songs from backend
     songs = playlistService.songs;
   }
 
