@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
-import 'package:fluttify/models/song.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/services/playlist_service.dart';
@@ -25,14 +24,10 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   Playlist? playlist;
 
-  List<Song>? songs;
-
   EditPlaylistViewModel() {
     playlistGenre = playlistService.genres!
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
-    // TODO: get Songs from backend
-    songs = playlistService.songs;
   }
 
   void setPlaylist(Playlist playlist) {

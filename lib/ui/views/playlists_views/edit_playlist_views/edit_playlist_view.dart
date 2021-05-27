@@ -1,6 +1,4 @@
-import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/models/song.dart';
-import 'package:fluttify/ui/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_viewmodel.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
@@ -8,7 +6,7 @@ import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/services.dart';
-import 'dart:io';
+import 'package:url_launcher/url_launcher.dart';
 
 class EditPlaylistView extends StatelessWidget {
   const EditPlaylistView({required this.playlistId});
@@ -326,81 +324,83 @@ class EditPlaylistView extends StatelessWidget {
                                       ],
                                     )
                                   : Container(),
-                              !model.playlist!.canEdit
-                                  ? Column(
-                                      children: [
-                                        Divider(
-                                          color: Theme.of(context).dividerColor,
-                                          height: 50,
-                                        ),
-                                        Container(
-                                          child: FractionallySizedBox(
-                                            widthFactor: 0.95,
-                                            child: Column(
-                                              children: [
-                                                for (Song song in model.songs!)
-                                                  Card(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0)),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Container(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: <Widget>[
-                                                              Container(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .fromLTRB(
-                                                                            25,
-                                                                            10,
-                                                                            0,
-                                                                            10),
-                                                                child: Text(
-                                                                  song.name!,
-                                                                ),
+                              if (!model.playlist!.canEdit)
+                                Column(
+                                  children: [
+                                    Divider(
+                                      color: Theme.of(context).dividerColor,
+                                      height: 50,
+                                    ),
+                                    Container(
+                                      child: FractionallySizedBox(
+                                        widthFactor: 0.95,
+                                        child: Column(
+                                          children: [
+                                            for (Song song
+                                                in model.playlist!.songs!)
+                                              GestureDetector(
+                                                onTap: () {
+                                                  launch(song.link!);
+                                                },
+                                                child: Card(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0)),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Container(
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: <Widget>[
+                                                            Container(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .fromLTRB(
+                                                                          25,
+                                                                          10,
+                                                                          0,
+                                                                          10),
+                                                              child: Text(
+                                                                song.name!,
                                                               ),
-                                                              Container(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .fromLTRB(
-                                                                            25,
-                                                                            0,
-                                                                            0,
-                                                                            10),
-                                                                child: Text(
-                                                                  song.artist!,
-                                                                ),
+                                                            ),
+                                                            Container(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .fromLTRB(
+                                                                          25,
+                                                                          0,
+                                                                          0,
+                                                                          10),
+                                                              child: Text(
+                                                                song.artist!,
                                                               ),
-                                                            ],
-                                                          ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                        song.image == null
-                                                            ? Container(
-                                                                height: 50,
-                                                                width: 50,
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .music_note,
-                                                                  size: 30,
-                                                                ),
-                                                              )
-                                                            : Container(
-                                                                height: 75,
-                                                                width: 75,
-                                                                child:
-                                                                    ClipRRect(
+                                                      ),
+                                                      song.image == null
+                                                          ? Container(
+                                                              height: 50,
+                                                              width: 50,
+                                                              child: Icon(
+                                                                Icons
+                                                                    .music_note,
+                                                                size: 30,
+                                                              ),
+                                                            )
+                                                          : Container(
+                                                              height: 75,
+                                                              width: 75,
+                                                              child: ClipRRect(
                                                                   borderRadius: BorderRadius.only(
                                                                       topRight:
                                                                           Radius.circular(
@@ -408,29 +408,23 @@ class EditPlaylistView extends StatelessWidget {
                                                                       bottomRight:
                                                                           Radius.circular(
                                                                               10)),
-                                                                  child:
-                                                                      Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      image: DecorationImage(
-                                                                          image: AssetImage(song
-                                                                              .image!),
-                                                                          fit: BoxFit
-                                                                              .contain),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                      ],
-                                                    ),
+                                                                  child: ClipRRect(
+                                                                      child: Image
+                                                                          .network(
+                                                                              song.image!))),
+                                                            ),
+                                                    ],
                                                   ),
-                                              ],
-                                            ),
-                                          ),
+                                                ),
+                                              ),
+                                          ],
                                         ),
-                                      ],
-                                    )
-                                  : Container(),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              else
+                                Container(),
                             ],
                           ),
                         ),

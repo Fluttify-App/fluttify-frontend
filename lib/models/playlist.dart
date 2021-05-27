@@ -48,6 +48,12 @@ class Playlist {
       ];
 
   factory Playlist.fromJson(Map<String, dynamic> parsedJson) {
+    List<Song> playlistSongs = [];
+    if (parsedJson['playlistTracks'] != null) {
+      playlistSongs = (parsedJson['playlistTracks'] as List)
+          .map((song) => Song.fromJson(song))
+          .toList();
+    }
     return Playlist(
         dbID: parsedJson['_id'],
         id: parsedJson['id'],
@@ -59,7 +65,8 @@ class Playlist {
         allgenres: parsedJson['allgenres'],
         genres: parsedJson['genres'],
         canEdit: false,
-        numberOfSongs: parsedJson['trackURIs'].length,
+        numberOfSongs: parsedJson['totalTracks'],
+        songs: playlistSongs,
         image: parsedJson['images'].length != 0
             ? parsedJson['images'][0]['url']
             : null);
