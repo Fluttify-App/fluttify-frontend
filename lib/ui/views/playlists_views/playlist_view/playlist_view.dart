@@ -208,8 +208,8 @@ class PlaylistView extends StatelessWidget {
                       ),
                     ),
                   )
-                : CircularProgressIndicator(
-                    valueColor: new AlwaysStoppedAnimation<Color>(Colors.red),
+                : Center(
+                    child: CircularProgressIndicator(),
                   ),
           ),
         ),
