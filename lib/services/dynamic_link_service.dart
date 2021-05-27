@@ -53,7 +53,7 @@ class DynamicLinkService {
           print("Playlist: $playlist");
 
           _navigationService.navigateTo(
-              '/edit-playlist', EditPlaylistView(playlist, Playlist()));
+              '/edit-playlist', EditPlaylistView(playlistId: playlist));
         }
       }
     }

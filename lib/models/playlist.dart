@@ -9,6 +9,7 @@ class Playlist {
   String? creator;
   String? description;
   List<dynamic>? contributers;
+  List<dynamic>? displayContributers;
   dynamic allgenres;
   List<dynamic>? genres;
   String? image;
@@ -23,11 +24,12 @@ class Playlist {
       this.creator,
       this.description,
       this.contributers,
+      this.displayContributers,
       this.allgenres = false,
       this.genres,
       this.image,
       this.canEdit = false,
-      this.numberOfSongs, 
+      this.numberOfSongs,
       this.songs});
 
   List<Object> get props => [
@@ -37,6 +39,7 @@ class Playlist {
         creator!,
         description!,
         contributers!,
+        displayContributers!,
         allgenres,
         genres!,
         image!,
@@ -52,6 +55,7 @@ class Playlist {
         creator: parsedJson['creator'],
         description: parsedJson['description'],
         contributers: parsedJson['contributers'],
+        displayContributers: parsedJson['display_contributers'],
         allgenres: parsedJson['allgenres'],
         genres: parsedJson['genres'],
         canEdit: false,
