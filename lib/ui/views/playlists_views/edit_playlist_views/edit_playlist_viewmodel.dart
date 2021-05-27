@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/models/song.dart';
+import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/services/playlist_service.dart';
@@ -15,6 +16,7 @@ class EditPlaylistViewModel extends BaseViewModel {
   final PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
   final PlaylistService playlistService = locator<PlaylistService>();
+  final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
 
   final FluttifyPlaylistService fluttifyPlaylistService =
       locator<FluttifyPlaylistService>();
@@ -74,5 +76,9 @@ class EditPlaylistViewModel extends BaseViewModel {
     Playlist playlist =
         await fluttifyPlaylistService.getFluttifyPlaylist(playlistId);
     setPlaylist(playlist);
+  }
+
+  Future<void> pressShare(String playlistId) async {
+    _dynamicLinkService.createFirstPostLink(playlistId);
   }
 }

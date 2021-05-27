@@ -121,23 +121,23 @@ class AddPlaylistView extends StatelessWidget {
                                 listType: MultiSelectListType.CHIP,
                                 selectedItemsTextStyle:
                                     TextStyle(color: Colors.white),
-                                selectedColor: Theme.of(context).primaryColor,
-                                itemsTextStyle: TextStyle(color: Colors.white),
+                                selectedColor: Theme.of(context).accentColor,
+                                itemsTextStyle:
+                                    Theme.of(context).textTheme.button,
                                 searchable: true,
-                                buttonText: Text("Genres"),
-                                title: Text("Genres"),
+                                buttonText: Text("Genres",
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1),
+                                title: Text("Genres",
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1),
                                 items: model.playlistGenre!,
                                 onConfirm: (List<dynamic> values) {
                                   model.addGenre(values);
                                 },
                                 chipDisplay: MultiSelectChipDisplay(
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context)
-                                        .primaryColor
-                                        .withOpacity(.4),
-                                  ),
-                                  chipColor: Theme.of(context).primaryColor,
-                                  textStyle: TextStyle(color: Colors.white),
+                                  chipColor: Theme.of(context).accentColor,
+                                  textStyle: Theme.of(context).textTheme.button,
                                   onTap: (String value) {
                                     model.removeGenre(value);
                                   },
@@ -159,15 +159,16 @@ class AddPlaylistView extends StatelessWidget {
                                   child: TextButton(
                                       style: TextButton.styleFrom(
                                           backgroundColor:
-                                              Theme.of(context).primaryColor,
+                                              Theme.of(context).accentColor,
                                           shape: StadiumBorder(
                                               side: BorderSide(
                                                   color: Colors.transparent))),
                                       child: Text('Cancel',
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white)),
-                                      onPressed: () => model.navigateBack(context)),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      onPressed: () =>
+                                          model.navigateBack(context)),
                                 ),
                               ),
                             ),
@@ -181,14 +182,14 @@ class AddPlaylistView extends StatelessWidget {
                                   child: TextButton(
                                       style: TextButton.styleFrom(
                                           backgroundColor:
-                                              Theme.of(context).primaryColor,
+                                              Theme.of(context).accentColor,
                                           shape: StadiumBorder(
                                               side: BorderSide(
                                                   color: Colors.transparent))),
                                       child: Text('Save',
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white)),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
                                       onPressed: () => model.save(context)),
                                 ),
                               ),

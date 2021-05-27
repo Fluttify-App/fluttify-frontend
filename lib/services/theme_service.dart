@@ -30,20 +30,36 @@ class ThemeService extends ChangeNotifier {
   }
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
-    primaryColor: Color.fromARGB(255, 94, 8, 28), //Fluttify Red
-    accentColor: Color(0xffbcc2a36),
-    appBarTheme: AppBarTheme(backgroundColor: Color(0xffb424242)),
+    primaryColor: Colors.white,
+    //accentColor: Color(0xffcb2d3e),
+    accentColor: Color(0xffef473a),
+    scaffoldBackgroundColor: Color(0xff1c1c1c),
+    cardColor: Color(0xff424242),
+    hintColor: Color(0xffbdb9ba),
+    appBarTheme: AppBarTheme(backgroundColor: Color(0xff424242)),
     bottomNavigationBarTheme:
-        BottomNavigationBarThemeData(backgroundColor: Color(0xffb424242)),
+        BottomNavigationBarThemeData(backgroundColor: Color(0xff424242)),
     textTheme: TextTheme(
       button: const TextStyle(
-          fontSize: 18, fontFamily: 'Montserrat', color: Colors.white),
-      bodyText1: const TextStyle(fontSize: 18.0, fontFamily: 'Montserrat'),
+          fontSize: 14, fontFamily: 'Montserrat', color: Colors.white),
+      bodyText1: const TextStyle(
+          fontSize: 20.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.normal),
+      bodyText2: const TextStyle(
+          fontSize: 18.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.normal),
       headline1: const TextStyle(
           fontSize: 25.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
+      subtitle1: const TextStyle(
+          fontSize: 14.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.normal),
     ),
+    backgroundColor: Color(0xff1c1c1c),
     dividerColor: Colors.white,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(

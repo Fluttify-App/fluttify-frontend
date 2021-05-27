@@ -14,6 +14,7 @@ class PlaylistView extends StatelessWidget {
           Scaffold(
         appBar: AppBar(
           title: Text("Playlists"),
+          titleTextStyle: Theme.of(context).textTheme.headline1,
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           centerTitle: true,
           /*
@@ -123,12 +124,7 @@ class PlaylistView extends StatelessWidget {
                                                             25, 20, 0, 10),
                                                     child: Text(
                                                       playlist.name!,
-                                                      style: DefaultTextStyle
-                                                              .of(context)
-                                                          .style
-                                                          .apply(
-                                                              fontSizeFactor:
-                                                                  1.8),
+                                                      style: Theme.of(context).textTheme.headline1,
                                                     ),
                                                   ),
                                                   Container(
@@ -139,12 +135,7 @@ class PlaylistView extends StatelessWidget {
                                                       playlist.numberOfSongs
                                                               .toString() +
                                                           ' Songs',
-                                                      style: DefaultTextStyle
-                                                              .of(context)
-                                                          .style
-                                                          .apply(
-                                                              fontSizeFactor:
-                                                                  1.3),
+                                                      style: Theme.of(context).textTheme.bodyText2,
                                                     ),
                                                   ),
                                                 ],

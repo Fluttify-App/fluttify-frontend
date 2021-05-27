@@ -47,7 +47,7 @@ class EditPlaylistView extends StatelessWidget {
                                 ],
                               controller: model.nameController,
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 20))
+                              style: Theme.of(context).textTheme.bodyText1!)
                           : Text(model.playlist!.name!),
                       backgroundColor:
                           Theme.of(context).appBarTheme.backgroundColor,
@@ -76,7 +76,7 @@ class EditPlaylistView extends StatelessWidget {
                                       height: 150,
                                       width: 250,
                                       decoration: BoxDecoration(
-                                        color: Color.fromRGBO(0, 0, 0, 0.2),
+                                        color: Theme.of(context).hintColor,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(15),
                                         ),
@@ -87,7 +87,6 @@ class EditPlaylistView extends StatelessWidget {
                                       ),
                                     )
                                   : Container(
-                                      // padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
                                       height: 250,
                                       width: 250,
                                       decoration: BoxDecoration(
@@ -118,7 +117,7 @@ class EditPlaylistView extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 child: DefaultTextStyle(
                                   child: Text("Beschreibung"),
-                                  style: TextStyle(fontSize: 20),
+                                  style: Theme.of(context).textTheme.bodyText1!,
                                 ),
                               ),
                               FractionallySizedBox(
@@ -144,7 +143,7 @@ class EditPlaylistView extends StatelessWidget {
                                 alignment: Alignment.centerLeft,
                                 child: DefaultTextStyle(
                                   child: Text("Genres"),
-                                  style: TextStyle(fontSize: 20),
+                                  style: Theme.of(context).textTheme.bodyText1!,
                                 ),
                               ),
                               FractionallySizedBox(
@@ -165,25 +164,31 @@ class EditPlaylistView extends StatelessWidget {
                                             initialChildSize: 0.4,
                                             listType: MultiSelectListType.CHIP,
                                             selectedItemsTextStyle:
-                                                TextStyle(color: Colors.white),
+                                                Theme.of(context)
+                                                    .textTheme
+                                                    .button,
                                             selectedColor:
-                                                Theme.of(context).primaryColor,
-                                            itemsTextStyle:
-                                                TextStyle(color: Colors.white),
+                                                Theme.of(context).accentColor,
+                                            itemsTextStyle: Theme.of(context)
+                                                .textTheme
+                                                .button,
                                             searchable: true,
                                             buttonText: Text("Genres",
-                                                style: TextStyle(fontSize: 20)),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1),
                                             title: Text("Genres",
-                                                style: TextStyle(fontSize: 20)),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1),
                                             items: model.playlistGenre!,
                                             onConfirm: (values) {
                                               model.addGenre(values);
                                             },
                                             chipDisplay: MultiSelectChipDisplay(
                                               chipColor: Theme.of(context)
-                                                  .primaryColor,
-                                              textStyle: TextStyle(
-                                                  color: Colors.white),
+                                                  .accentColor,
+                                              textStyle: Theme.of(context).textTheme.button,
                                               onTap: (String value) =>
                                                   model.removeGenre(value),
                                             ),
@@ -217,7 +222,10 @@ class EditPlaylistView extends StatelessWidget {
                                               Icons.share,
                                               color: Colors.white,
                                             ),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              model.pressShare(
+                                                  model.playlist!.dbID!);
+                                            },
                                           ),
                                         ),
                                       ],
@@ -248,7 +256,7 @@ class EditPlaylistView extends StatelessWidget {
                                               EdgeInsets.fromLTRB(15, 5, 0, 5),
                                           child: Card(
                                             color:
-                                                Color.fromARGB(255, 94, 8, 28),
+                                                Theme.of(context).accentColor,
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(
@@ -283,15 +291,13 @@ class EditPlaylistView extends StatelessWidget {
                                                   style: TextButton.styleFrom(
                                                       backgroundColor:
                                                           Theme.of(context)
-                                                              .primaryColor,
+                                                              .accentColor,
                                                       shape: StadiumBorder(
                                                           side: BorderSide(
                                                               color: Colors
                                                                   .transparent))),
                                                   child: Text('Cancel',
-                                                      style: TextStyle(
-                                                          fontSize: 20,
-                                                          color: Colors.white)),
+                                                      style: Theme.of(context).textTheme.bodyText1),
                                                   onPressed: () =>
                                                       model.canEdit()),
                                             ),
@@ -309,15 +315,13 @@ class EditPlaylistView extends StatelessWidget {
                                                   style: TextButton.styleFrom(
                                                       backgroundColor:
                                                           Theme.of(context)
-                                                              .primaryColor,
+                                                              .accentColor,
                                                       shape: StadiumBorder(
                                                           side: BorderSide(
                                                               color: Colors
                                                                   .transparent))),
                                                   child: Text('Save',
-                                                      style: TextStyle(
-                                                          fontSize: 20,
-                                                          color: Colors.white)),
+                                                      style: Theme.of(context).textTheme.bodyText1),
                                                   onPressed: () =>
                                                       model.save(context)),
                                             ),
@@ -369,6 +373,7 @@ class EditPlaylistView extends StatelessWidget {
                                                                             10),
                                                                 child: Text(
                                                                   song.name!,
+                                                                  style: Theme.of(context).textTheme.bodyText2,
                                                                 ),
                                                               ),
                                                               Container(
@@ -381,6 +386,7 @@ class EditPlaylistView extends StatelessWidget {
                                                                             10),
                                                                 child: Text(
                                                                   song.artist!,
+                                                                  style: Theme.of(context).textTheme.subtitle1,
                                                                 ),
                                                               ),
                                                             ],

@@ -12,21 +12,21 @@ class UserView extends StatelessWidget {
     return ViewModelBuilder<UserViewModel>.reactive(
       builder: (BuildContext context, UserViewModel model, Widget? child) =>
           Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
           title: Text("User"),
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           centerTitle: true,
-          /*
+          
                 flexibleSpace: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: <Color>[fluttify_gradient_1, fluttify_gradient_2],
+                      colors: <Color>[Theme.of(context).accentColor, fluttify_gradient_2],
                     ),
                   ),
                 ),
-                */
+                
         ),
         body: Center(
           child: Padding(
