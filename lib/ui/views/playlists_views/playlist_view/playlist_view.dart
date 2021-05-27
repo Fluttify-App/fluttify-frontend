@@ -163,7 +163,10 @@ class PlaylistView extends StatelessWidget {
                                                       Icons.share,
                                                       color: Colors.white,
                                                     ),
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                      model.pressShare(
+                                                          playlist.dbID!);
+                                                    },
                                                   ),
                                                 ),
                                                 playlist.image == null
