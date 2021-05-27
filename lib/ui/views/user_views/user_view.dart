@@ -12,21 +12,9 @@ class UserView extends StatelessWidget {
     return ViewModelBuilder<UserViewModel>.reactive(
       builder: (BuildContext context, UserViewModel model, Widget? child) =>
           Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          title: Text("User"),
+          title: Text("User", style: Theme.of(context).textTheme.headline1),
           centerTitle: true,
-          
-                flexibleSpace: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: <Color>[Theme.of(context).accentColor, fluttify_gradient_2],
-                    ),
-                  ),
-                ),
-                
         ),
         body: Center(
           child: Padding(
@@ -121,7 +109,10 @@ class UserView extends StatelessWidget {
                       widthFactor: 0.7,
                       child: TextButton(
                         onPressed: model.authService.logoutBackend,
-                        child: Text("Logout", style: Theme.of(context).textTheme.bodyText2,),
+                        child: Text(
+                          "Logout",
+                          style: Theme.of(context).textTheme.bodyText2,
+                        ),
                       ),
                     ),
                   ),

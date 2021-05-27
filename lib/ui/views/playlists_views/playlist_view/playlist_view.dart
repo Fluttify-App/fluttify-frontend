@@ -13,9 +13,8 @@ class PlaylistView extends StatelessWidget {
       builder: (BuildContext context, PlaylistViewModel model, Widget? child) =>
           Scaffold(
         appBar: AppBar(
-          title: Text("Playlists"),
-          titleTextStyle: Theme.of(context).textTheme.headline1,
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          title:
+              Text("Playlists", style: Theme.of(context).textTheme.headline1),
           centerTitle: true,
           /*
           flexibleSpace: Container(
@@ -124,7 +123,9 @@ class PlaylistView extends StatelessWidget {
                                                             25, 20, 0, 10),
                                                     child: Text(
                                                       playlist.name!,
-                                                      style: Theme.of(context).textTheme.headline1,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline1,
                                                     ),
                                                   ),
                                                   Container(
@@ -135,7 +136,9 @@ class PlaylistView extends StatelessWidget {
                                                       playlist.numberOfSongs
                                                               .toString() +
                                                           ' Songs',
-                                                      style: Theme.of(context).textTheme.bodyText2,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText2,
                                                     ),
                                                   ),
                                                 ],
@@ -152,7 +155,6 @@ class PlaylistView extends StatelessWidget {
                                                         .fromLTRB(0, 0, 5, 0),
                                                     icon: Icon(
                                                       Icons.share,
-                                                      color: Colors.white,
                                                     ),
                                                     onPressed: () {
                                                       model.pressShare(

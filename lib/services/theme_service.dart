@@ -31,7 +31,6 @@ class ThemeService extends ChangeNotifier {
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
     primaryColor: Colors.white,
-    //accentColor: Color(0xffcb2d3e),
     accentColor: Color(0xffef473a),
     scaffoldBackgroundColor: Color(0xff1c1c1c),
     cardColor: Color(0xff424242),
@@ -66,36 +65,54 @@ class ThemeService extends ChangeNotifier {
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         //  side: BorderSide(color: Colors.white, width: 2),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Colors.red,
+        backgroundColor: Color(0xffef473a),
         primary: Colors.white,
       ),
     ),
   );
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
-    primaryColor: Color.fromARGB(255, 94, 8, 28), //Fluttify Red
-    accentColor: Color.fromARGB(255, 94, 8, 28),
-    appBarTheme: AppBarTheme(backgroundColor: Colors.teal),
+    primaryColor: Colors.black,
+    accentColor: Colors.teal,
+    scaffoldBackgroundColor: Colors.white,
+    cardColor: Color(0xffcfcfcf),
+    hintColor: Color(0xff3b3b3b),
+    appBarTheme: AppBarTheme(
+        backgroundColor: Colors.teal,
+        titleTextStyle: TextStyle(color: Colors.black)),
     bottomNavigationBarTheme:
-        BottomNavigationBarThemeData(backgroundColor: Color(0xffb424242)),
+        BottomNavigationBarThemeData(backgroundColor: Colors.teal),
     textTheme: TextTheme(
       button: const TextStyle(
-          fontSize: 18, fontFamily: 'Montserrat', color: Colors.black),
+          fontSize: 14, fontFamily: 'Montserrat', color: Colors.black),
       bodyText1: const TextStyle(
-          fontSize: 18.0, fontFamily: 'Montserrat', color: Colors.black),
+          color: Colors.black,
+          fontSize: 20.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.normal),
+      bodyText2: const TextStyle(
+          color: Colors.black,
+          fontSize: 18.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.normal),
       headline1: const TextStyle(
           color: Colors.black,
           fontSize: 25.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
+      subtitle1: const TextStyle(
+          color: Colors.black,
+          fontSize: 14.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.normal),
     ),
+    backgroundColor: Colors.black,
     dividerColor: Colors.black,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        //  side: BorderSide(color: Colors.white, width: 2),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.teal,
         primary: Colors.black,
       ),
     ),

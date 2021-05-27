@@ -21,17 +21,9 @@ class HomeView extends StatelessWidget {
         context,
         onItemSelected: model.resetOnItemchange,
         screens: _buildScreens(),
-        items: _buildNavBarItems(),
+        items: _buildNavBarItems(context),
         backgroundColor:
             Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
-        decoration: NavBarDecoration(
-            /*
-          gradient: LinearGradient(
-              colors: <Color>[fluttify_gradient_1, fluttify_gradient_1],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight),
-              */
-            ),
         confineInSafeArea: true,
         handleAndroidBackButtonPress: true, // Default is true.
         resizeToAvoidBottomInset:
@@ -53,7 +45,7 @@ class HomeView extends StatelessWidget {
           duration: Duration(milliseconds: 200),
         ),
         navBarStyle:
-            NavBarStyle.style9, // Choose the nav bar style with this property.
+            NavBarStyle.style1, // Choose the nav bar style with this property.
       ),
       viewModelBuilder: () => HomeViewModel(),
     );
@@ -68,12 +60,12 @@ class HomeView extends StatelessWidget {
   }
 
   // TODO: Icons anpassen
-  List<PersistentBottomNavBarItem> _buildNavBarItems() {
+  List<PersistentBottomNavBarItem> _buildNavBarItems(BuildContext context) {
     return <PersistentBottomNavBarItem>[
       PersistentBottomNavBarItem(
         title: 'Playlists',
         icon: Icon(Icons.queue_music),
-        activeColorPrimary: Colors.white,
+        activeColorPrimary: Theme.of(context).primaryColor,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<PlaylistNavigationService>().navigatorKey,
           initialRoute: '/',
@@ -82,7 +74,7 @@ class HomeView extends StatelessWidget {
       PersistentBottomNavBarItem(
         title: 'Community',
         icon: Icon(Icons.people),
-        activeColorPrimary: Colors.white,
+        activeColorPrimary: Theme.of(context).primaryColor,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<CommunityNavigationService>().navigatorKey,
           initialRoute: '/',
@@ -91,7 +83,7 @@ class HomeView extends StatelessWidget {
       PersistentBottomNavBarItem(
         title: 'User',
         icon: Icon(Icons.account_circle),
-        activeColorPrimary: Colors.white,
+        activeColorPrimary: Theme.of(context).primaryColor,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<SettingsNavigationService>().navigatorKey,
           initialRoute: '/',

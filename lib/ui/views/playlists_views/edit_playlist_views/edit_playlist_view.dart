@@ -45,22 +45,11 @@ class EditPlaylistView extends StatelessWidget {
                                 ],
                               controller: model.nameController,
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.bodyText1!)
-                          : Text(model.playlist!.name!),
-                      backgroundColor:
-                          Theme.of(context).appBarTheme.backgroundColor,
+                              style: Theme.of(context).textTheme.headline1)
+                          : Text(model.playlist!.name!,
+                              style: Theme.of(context).textTheme.bodyText1),
                       centerTitle: true,
-                      /*
-                  flexibleSpace: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: <Color>[fluttify_gradient_1, fluttify_gradient_2],
-                      ),
-                    ),
-                  ),
-                  */
+                      titleTextStyle: Theme.of(context).textTheme.headline1,
                     ),
                     body: Center(
                       child: SingleChildScrollView(
@@ -210,7 +199,9 @@ class EditPlaylistView extends StatelessWidget {
                                           alignment: Alignment.topLeft,
                                           child: DefaultTextStyle(
                                             child: Text("Contributors"),
-                                            style:  Theme.of(context).textTheme.bodyText1!,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!,
                                           ),
                                         ),
                                         Container(
@@ -236,7 +227,9 @@ class EditPlaylistView extends StatelessWidget {
                                       alignment: Alignment.topLeft,
                                       child: DefaultTextStyle(
                                         child: Text("Contributors"),
-                                        style: Theme.of(context).textTheme.bodyText1!,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!,
                                       ),
                                     ),
                               FractionallySizedBox(
@@ -264,10 +257,10 @@ class EditPlaylistView extends StatelessWidget {
                                             child: Container(
                                               padding: EdgeInsets.fromLTRB(
                                                   12, 5, 12, 5),
-                                              child: Text(
-                                                contributers['name'],
-                                                style: Theme.of(context).textTheme.bodyText2
-                                              ),
+                                              child: Text(contributers['name'],
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText2),
                                             ),
                                           ),
                                         ),
