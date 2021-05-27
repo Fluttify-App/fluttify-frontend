@@ -17,9 +17,12 @@ class FluttifyPlaylistService {
         headers: _apiService.headers);
 
     if (response.statusCode == 200) {
-      myplaylists = (json.decode(response.body)['created'] as List)
-          .map((data) => Playlist.fromJson(data))
-          .toList();
+      var createdPlaylists = (json.decode(response.body)['created'] as List);
+      var subscribedPlaylists =
+          (json.decode(response.body)['subscribed'] as List);
+      var showPlaylists = createdPlaylists + subscribedPlaylists;
+      myplaylists =
+          showPlaylists.map((data) => Playlist.fromJson(data)).toList();
     } else {
       myplaylists = [];
     }
