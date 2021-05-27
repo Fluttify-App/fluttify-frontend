@@ -27,6 +27,8 @@ class EditPlaylistView extends StatelessWidget {
                       automaticallyImplyLeading: !model.playlist!.canEdit,
                       actions: [
                         !model.playlist!.canEdit
+                        && model.playlist!.creator == model.authService
+                                                        .currentUser.id
                             ? Padding(
                                 padding: EdgeInsets.only(right: 20.0),
                                 child: GestureDetector(
