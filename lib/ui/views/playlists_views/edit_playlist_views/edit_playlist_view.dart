@@ -11,28 +11,14 @@ import 'package:flutter/services.dart';
 import 'dart:io';
 
 class EditPlaylistView extends StatelessWidget {
-  /*
-  const EditPlaylistView({
-    this.playlistId = "",
-     playlist
-  )} : playlist = playlist ?? Playlist();
-*/
-  String playlistId = "";
-  Playlist playlist = Playlist();
-  EditPlaylistView(String playlistId, Playlist playlist) {
-    this.playlistId = playlistId;
-    this.playlist = playlist;
-  }
+  const EditPlaylistView({required this.playlistId});
+  final String playlistId;
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
         onModelReady: (EditPlaylistViewModel model) {
-          if (this.playlist.id != null) {
-            model.setPlaylist(playlist);
-          } else {
-            model.getPlaylist(playlistId);
-          }
+          model.getPlaylist(playlistId);
         },
         builder: (BuildContext context, EditPlaylistViewModel model,
                 Widget? child) =>
@@ -255,8 +241,8 @@ class EditPlaylistView extends StatelessWidget {
                                     alignment: WrapAlignment.start,
                                     direction: Axis.horizontal,
                                     children: [
-                                      for (String contributers
-                                          in model.playlist!.contributers!)
+                                      for (dynamic contributers in model
+                                          .playlist!.displayContributers!)
                                         Container(
                                           padding:
                                               EdgeInsets.fromLTRB(15, 5, 0, 5),
@@ -271,7 +257,7 @@ class EditPlaylistView extends StatelessWidget {
                                               padding: EdgeInsets.fromLTRB(
                                                   12, 5, 12, 5),
                                               child: Text(
-                                                contributers,
+                                                contributers['name'],
                                               ),
                                             ),
                                           ),
