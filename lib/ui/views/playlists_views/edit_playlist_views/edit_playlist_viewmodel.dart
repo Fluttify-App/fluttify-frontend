@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
+import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/services/playlist_service.dart';
+import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:stacked/stacked.dart';
 
@@ -13,7 +16,9 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   final PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
+
   final PlaylistService playlistService = locator<PlaylistService>();
+  final AuthService authService = locator<AuthService>();
 
   final FluttifyPlaylistService fluttifyPlaylistService =
       locator<FluttifyPlaylistService>();
@@ -69,5 +74,45 @@ class EditPlaylistViewModel extends BaseViewModel {
     Playlist playlist =
         await fluttifyPlaylistService.getFluttifyPlaylist(playlistId);
     setPlaylist(playlist);
+  }
+
+  Future<void> leavePlaylist(BuildContext context) async {
+    fluttifyPlaylistService
+        .removeFluttifyPlaylist(this.playlist!)
+        .then((value) {
+      var snackbarText;
+      if (value) {
+        snackbarText = Text("Playlist removed from library");
+      } else {
+        snackbarText = Text("Could not remove playlist");
+      }
+      Navigator.of(context).pop(true);
+      final snackBar = SnackBar(
+        content: snackbarText,
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 1500),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
+  }
+
+  Future<void> joinPlaylist(BuildContext context) async {
+    fluttifyPlaylistService
+        .joinFluttifyPlaylist(this.playlist!)
+        .then((playlistUpdate) {
+      setPlaylist(playlistUpdate);
+      final snackBar = SnackBar(
+        content: Text("Joined Playlist"),
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 1500),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
   }
 }

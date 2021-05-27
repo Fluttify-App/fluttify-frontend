@@ -58,7 +58,7 @@ class PlaylistViewModel extends BaseViewModel {
     playlistService.removeFluttifyPlaylist(playlist).then((value) {
       var snackbarText;
       if (value) {
-        snackbarText = Text("Plalyist removed from library");
+        snackbarText = Text("Playlist removed from library");
       } else {
         snackbarText = Text("Could not remove playlist");
       }

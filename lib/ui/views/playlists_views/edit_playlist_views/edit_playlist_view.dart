@@ -417,6 +417,21 @@ class EditPlaylistView extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
+                                            (model.playlist!.contributers!
+                                                    .contains(model.authService
+                                                        .currentUser.id))
+                                                ? TextButton(
+                                                    child: Text("Leave"),
+                                                    onPressed: () {
+                                                      model.leavePlaylist(
+                                                          context);
+                                                    })
+                                                : TextButton(
+                                                    child: Text("Join"),
+                                                    onPressed: () {
+                                                      model.joinPlaylist(
+                                                          context);
+                                                    }),
                                           ],
                                         ),
                                       ),
