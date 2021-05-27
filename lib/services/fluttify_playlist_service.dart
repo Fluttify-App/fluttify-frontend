@@ -11,6 +11,17 @@ class FluttifyPlaylistService {
   final String baseUrl = "fluttify.herokuapp.com";
 
   List<Playlist> myplaylists = [];
+  List<dynamic> genres = [];
+
+  FluttifyPlaylistService() {
+    // get genres
+    http
+        .get(Uri.https(baseUrl, 'fluttify/genres'),
+            headers: _apiService.headers)
+        .then((response) {
+      genres = json.decode(response.body);
+    });
+  }
 
   Future<void> refreshFluttifyPlaylists() async {
     final response = await http.get(Uri.https(baseUrl, 'fluttify/myplaylists'),

@@ -25,7 +25,7 @@ class AddPlaylistViewModel extends BaseViewModel {
   List<MultiSelectItem<dynamic>>? playlistGenre;
 
   AddPlaylistViewModel() {
-    playlistGenre = playlistService.genres!
+    playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
   }

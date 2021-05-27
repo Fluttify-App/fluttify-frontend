@@ -33,7 +33,7 @@ class EditPlaylistViewModel extends BaseViewModel {
   Playlist? playlist;
 
   EditPlaylistViewModel() {
-    playlistGenre = playlistService.genres!
+    playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
   }
