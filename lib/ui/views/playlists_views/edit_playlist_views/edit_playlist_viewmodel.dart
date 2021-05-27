@@ -103,7 +103,7 @@ class EditPlaylistViewModel extends BaseViewModel {
     fluttifyPlaylistService
         .joinFluttifyPlaylist(this.playlist!)
         .then((playlistUpdate) {
-      setPlaylist(playlistUpdate);
+      Navigator.of(context).pop(true);
       final snackBar = SnackBar(
         content: Text("Joined Playlist"),
         behavior: SnackBarBehavior.floating,
