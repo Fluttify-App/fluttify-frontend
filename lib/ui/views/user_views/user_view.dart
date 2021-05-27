@@ -121,7 +121,7 @@ class UserView extends StatelessWidget {
                       widthFactor: 0.7,
                       child: TextButton(
                         onPressed: model.authService.logoutBackend,
-                        child: Text("Logout"),
+                        child: Text("Logout", style: Theme.of(context).textTheme.bodyText2,),
                       ),
                     ),
                   ),

@@ -69,4 +69,17 @@ class FluttifyPlaylistService {
       return false;
     }
   }
+
+  Future<Playlist> joinFluttifyPlaylist(Playlist playlist) async {
+    var payload = {};
+    payload['id'] = playlist.dbID;
+    final response = await http.put(Uri.https(baseUrl, 'fluttify/playlist'),
+        headers: _apiService.headers, body: jsonEncode(payload));
+    if (response.statusCode == 200) {
+      return Playlist.fromJson(json.decode(response.body));
+    } else {
+      print("Something went wrong");
+      throw Exception();
+    }
+  }
 }
