@@ -262,7 +262,7 @@ class EditPlaylistView extends StatelessWidget {
                                               child: Text(contributers['name'],
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .bodyText2),
+                                                      .subtitle1),
                                             ),
                                           ),
                                         ),

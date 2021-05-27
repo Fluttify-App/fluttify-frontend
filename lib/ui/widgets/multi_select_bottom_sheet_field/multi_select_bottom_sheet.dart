@@ -304,7 +304,7 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
                             Text(
                               "CANCEL",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Theme.of(context).primaryColor,
                               ),
                             ),
                       ),
@@ -320,7 +320,7 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
                             Text(
                               "OK",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Theme.of(context).primaryColor,
                               ),
                             ),
                       ),

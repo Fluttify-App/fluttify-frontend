@@ -16,17 +16,6 @@ class PlaylistView extends StatelessWidget {
           title:
               Text("Playlists", style: Theme.of(context).textTheme.headline1),
           centerTitle: true,
-          /*
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[fluttify_gradient_1, fluttify_gradient_2],
-              ),
-            ),
-          ),
-          */
         ),
         body: Center(
           child: Container(
