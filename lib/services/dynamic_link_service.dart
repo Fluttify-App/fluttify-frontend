@@ -1,4 +1,6 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:fluttify/app/fluttify_router.router.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
@@ -6,7 +8,9 @@ import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/home_view.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
 import 'package:share/share.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 class DynamicLinkService {
   final PlaylistNavigationService _navigationService =
@@ -44,7 +48,9 @@ class DynamicLinkService {
 
       // Check if we want to make a post
       var isPlaylist = deepLink.pathSegments.contains('playlist');
-
+      var isAuthentication = deepLink.pathSegments.contains('fluttifyAuth');
+      var token = deepLink.queryParameters['auth'];
+      print(token);
       if (isPlaylist) {
         // get the title of the post
         var playlist = deepLink.queryParameters['id'];
@@ -55,6 +61,12 @@ class DynamicLinkService {
           _navigationService.navigateTo(
               '/edit-playlist', EditPlaylistView(playlistId: playlist));
         }
+      } else if (isAuthentication) {
+        // get the title of the post
+        var token = deepLink.queryParameters['auth'];
+        StreamingSharedPreferences.instance.then((sharedPrefs) {
+          sharedPrefs.setString("token", token!);
+        });
       }
     }
   }
