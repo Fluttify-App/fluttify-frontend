@@ -108,7 +108,10 @@ class EditPlaylistView extends StatelessWidget {
                                         ),
                                         Align(
                                           alignment: Alignment.topRight,
-                                          child: Icon(Icons.launch),
+                                          child: Icon(
+                                            Icons.launch,
+                                            color: Colors.white,
+                                          ),
                                         )
                                       ]),
                                     )),
