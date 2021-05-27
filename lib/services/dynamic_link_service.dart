@@ -1,6 +1,7 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:fluttify/app/fluttify_router.router.dart';
 import 'package:fluttify/app/locator.dart';
+import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/home_view.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
@@ -52,7 +53,7 @@ class DynamicLinkService {
           print("Playlist: $playlist");
 
           _navigationService.navigateTo(
-              '/edit-playlist', EditPlaylistView(playlistId: playlist));
+              '/edit-playlist', EditPlaylistView(playlist, Playlist()));
         }
       }
     }
