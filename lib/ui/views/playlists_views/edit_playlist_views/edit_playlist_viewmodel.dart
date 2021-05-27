@@ -122,4 +122,8 @@ class EditPlaylistViewModel extends BaseViewModel {
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
   }
+
+  void navigateBack(BuildContext context) {
+    Navigator.of(context, rootNavigator: true).pop();
+  }
 }

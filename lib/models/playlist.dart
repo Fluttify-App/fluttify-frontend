@@ -12,6 +12,7 @@ class Playlist {
   List<dynamic>? displayContributers;
   dynamic allgenres;
   List<dynamic>? genres;
+  String? href;
   String? image;
   int? numberOfSongs;
   bool canEdit;
@@ -28,6 +29,7 @@ class Playlist {
       this.allgenres = false,
       this.genres,
       this.image,
+      this.href,
       this.canEdit = false,
       this.numberOfSongs,
       this.songs});
@@ -43,6 +45,7 @@ class Playlist {
         allgenres,
         genres!,
         image!,
+        href!,
         canEdit,
         numberOfSongs!
       ];
@@ -64,6 +67,7 @@ class Playlist {
         displayContributers: parsedJson['display_contributers'],
         allgenres: parsedJson['allgenres'],
         genres: parsedJson['genres'],
+        href: parsedJson['href'],
         canEdit: false,
         numberOfSongs: parsedJson['totalTracks'],
         songs: playlistSongs,
