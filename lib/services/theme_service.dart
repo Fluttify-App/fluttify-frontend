@@ -42,19 +42,19 @@ class ThemeService extends ChangeNotifier {
       button: const TextStyle(
           fontSize: 14, fontFamily: 'Montserrat', color: Colors.white),
       bodyText1: const TextStyle(
-          fontSize: 20.0,
+          fontSize: 16.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
       bodyText2: const TextStyle(
-          fontSize: 18.0,
+          fontSize: 14.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
       headline1: const TextStyle(
-          fontSize: 25.0,
+          fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
       subtitle1: const TextStyle(
-          fontSize: 14.0,
+          fontSize: 12.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
     ),
@@ -87,22 +87,22 @@ class ThemeService extends ChangeNotifier {
           fontSize: 14, fontFamily: 'Montserrat', color: Colors.black),
       bodyText1: const TextStyle(
           color: Colors.black,
-          fontSize: 20.0,
+          fontSize: 16.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
       bodyText2: const TextStyle(
           color: Colors.black,
-          fontSize: 18.0,
+          fontSize: 14.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
       headline1: const TextStyle(
           color: Colors.black,
-          fontSize: 25.0,
+          fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
       subtitle1: const TextStyle(
           color: Colors.black,
-          fontSize: 14.0,
+          fontSize: 12.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
     ),
