@@ -35,7 +35,7 @@ class ThemeService extends ChangeNotifier {
     scaffoldBackgroundColor: Color(0xff1c1c1c),
     cardColor: Color(0xff424242),
     hintColor: Color(0xffbdb9ba),
-    appBarTheme: AppBarTheme(backgroundColor: Color(0xff424242)),
+    appBarTheme: AppBarTheme(backgroundColor: Color.fromARGB(255, 203, 45, 62)),
     bottomNavigationBarTheme:
         BottomNavigationBarThemeData(backgroundColor: Color(0xff424242)),
     textTheme: TextTheme(
@@ -74,14 +74,14 @@ class ThemeService extends ChangeNotifier {
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: Colors.black,
     accentColor: Color.fromARGB(255, 203, 45, 62),
-    scaffoldBackgroundColor: Colors.white,
-    cardColor: Color(0xffcfcfcf),
+    scaffoldBackgroundColor: Color(0xffdae0e6),
+    cardColor: Colors.white,
     hintColor: Color(0xff3b3b3b),
     appBarTheme: AppBarTheme(
         backgroundColor: Color.fromARGB(255, 203, 45, 62),
         titleTextStyle: TextStyle(color: Colors.black)),
     bottomNavigationBarTheme:
-        BottomNavigationBarThemeData(backgroundColor: Color.fromARGB(255, 203, 45, 62)),
+        BottomNavigationBarThemeData(backgroundColor: Colors.white),
     textTheme: TextTheme(
       button: const TextStyle(
           fontSize: 14, fontFamily: 'Montserrat', color: Colors.black),

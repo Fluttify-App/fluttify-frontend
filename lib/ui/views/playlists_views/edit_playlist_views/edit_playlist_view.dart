@@ -26,9 +26,9 @@ class EditPlaylistView extends StatelessWidget {
                       // back button is only visible when you're not editing the playlist
                       automaticallyImplyLeading: !model.playlist!.canEdit,
                       actions: [
-                        !model.playlist!.canEdit
-                        && model.playlist!.creator == model.authService
-                                                        .currentUser.id
+                        !model.playlist!.canEdit &&
+                                model.playlist!.creator ==
+                                    model.authService.currentUser.id
                             ? Padding(
                                 padding: EdgeInsets.only(right: 20.0),
                                 child: GestureDetector(
@@ -333,9 +333,16 @@ class EditPlaylistView extends StatelessWidget {
                               if (!model.playlist!.canEdit)
                                 Column(
                                   children: [
-                                    Divider(
-                                      color: Theme.of(context).dividerColor,
-                                      height: 50,
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(25, 25, 0, 15),
+                                      alignment: Alignment.centerLeft,
+                                      child: DefaultTextStyle(
+                                        child: Text("Current Songs"),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!,
+                                      ),
                                     ),
                                     Container(
                                       child: FractionallySizedBox(
@@ -431,6 +438,11 @@ class EditPlaylistView extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
+                                            Divider(
+                                              color: Theme.of(context)
+                                                  .dividerColor,
+                                              height: 50,
+                                            ),
                                             (model.playlist!.contributers!
                                                     .contains(model.authService
                                                         .currentUser.id))
