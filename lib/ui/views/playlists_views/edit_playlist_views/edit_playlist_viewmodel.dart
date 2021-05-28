@@ -33,7 +33,7 @@ class EditPlaylistViewModel extends BaseViewModel {
   Playlist? playlist;
 
   EditPlaylistViewModel() {
-    playlistGenre = playlistService.genres!
+    playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
   }
@@ -121,5 +121,9 @@ class EditPlaylistViewModel extends BaseViewModel {
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
+  }
+
+  void navigateBack(BuildContext context) {
+    Navigator.of(context, rootNavigator: true).pop();
   }
 }

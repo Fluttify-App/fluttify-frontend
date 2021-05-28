@@ -60,47 +60,61 @@ class EditPlaylistView extends StatelessWidget {
                           alignment: Alignment.topCenter,
                           child: Column(
                             children: [
-                              model.playlist!.image == null
-                                  ? Container(
-                                      height: 150,
-                                      width: 250,
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context).cardColor,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(15),
+                              if (model.playlist!.image == null)
+                                Container(
+                                  height: 150,
+                                  width: 250,
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).cardColor,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(15),
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.music_note,
+                                    size: 50,
+                                  ),
+                                )
+                              else
+                                Container(
+                                    height: 250,
+                                    width: 250,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            topRight: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10),
+                                            bottomRight: Radius.circular(10)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.5),
+                                            spreadRadius: 5,
+                                            blurRadius: 9,
+                                            offset: Offset(0,
+                                                3), // changes position of shadow
+                                          ),
+                                        ]),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        launch(model.playlist!.href!);
+                                      },
+                                      child: Stack(children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          child: Image.network(
+                                              model.playlist!.image!),
                                         ),
-                                      ),
-                                      child: Icon(
-                                        Icons.music_note,
-                                        size: 50,
-                                      ),
-                                    )
-                                  : Container(
-                                      height: 250,
-                                      width: 250,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(10),
-                                              topRight: Radius.circular(10),
-                                              bottomLeft: Radius.circular(10),
-                                              bottomRight: Radius.circular(10)),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.grey.withOpacity(0.5),
-                                              spreadRadius: 5,
-                                              blurRadius: 9,
-                                              offset: Offset(0,
-                                                  3), // changes position of shadow
-                                            ),
-                                          ]),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
-                                        child: Image.network(
-                                            model.playlist!.image!),
-                                      )),
+                                        Align(
+                                          alignment: Alignment.topRight,
+                                          child: Icon(
+                                            Icons.launch,
+                                            color: Colors.white,
+                                          ),
+                                        )
+                                      ]),
+                                    )),
                               Container(
                                 padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
                                 alignment: Alignment.topLeft,
@@ -449,14 +463,93 @@ class EditPlaylistView extends StatelessWidget {
                                                 ? TextButton(
                                                     child: Text("Leave"),
                                                     onPressed: () {
-                                                      model.leavePlaylist(
-                                                          context);
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (_) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Delete Playlist'),
+                                                            content:
+                                                                SingleChildScrollView(
+                                                              child: ListBody(
+                                                                children: <
+                                                                    Widget>[
+                                                                  Text(
+                                                                      'Would you like to leave playlist: ${model.playlist!.name}'),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            actions: <Widget>[
+                                                              TextButton(
+                                                                child:
+                                                                    const Text(
+                                                                        'No'),
+                                                                onPressed: () {
+                                                                  model.navigateBack(
+                                                                      context);
+                                                                },
+                                                              ),
+                                                              TextButton(
+                                                                child:
+                                                                    const Text(
+                                                                        'Yes'),
+                                                                onPressed: () {
+                                                                  model.leavePlaylist(
+                                                                      context);
+                                                                  model.navigateBack(
+                                                                      context);
+                                                                },
+                                                              )
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
                                                     })
                                                 : TextButton(
                                                     child: Text("Join"),
                                                     onPressed: () {
-                                                      model.joinPlaylist(
-                                                          context);
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (_) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Delete Playlist'),
+                                                            content:
+                                                                SingleChildScrollView(
+                                                              child: ListBody(
+                                                                children: <
+                                                                    Widget>[
+                                                                  Text(
+                                                                      'Would you like to join playlist: ${model.playlist!.name}'),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            actions: <Widget>[
+                                                              TextButton(
+                                                                child:
+                                                                    const Text(
+                                                                        'No'),
+                                                                onPressed: () {
+                                                                  model.navigateBack(
+                                                                      context);
+                                                                },
+                                                              ),
+                                                              TextButton(
+                                                                child:
+                                                                    const Text(
+                                                                        'Yes'),
+                                                                onPressed: () {
+                                                                  model.joinPlaylist(
+                                                                      context);
+
+                                                                  model.navigateBack(
+                                                                      context);
+                                                                },
+                                                              )
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
                                                     }),
                                           ],
                                         ),
