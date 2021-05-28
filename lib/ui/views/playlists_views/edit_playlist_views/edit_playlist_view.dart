@@ -4,6 +4,7 @@ import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playl
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_chip_display.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
+import 'package:fluttify/ui/widgets/scrolling_text.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -42,9 +43,7 @@ class EditPlaylistView extends StatelessWidget {
                       ],
                       title: model.playlist!.canEdit
                           ? TextField(
-                              inputFormatters: [
-                                  LengthLimitingTextInputFormatter(13),
-                                ],
+                            
                               controller: model.nameController,
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.headline1)
@@ -227,7 +226,6 @@ class EditPlaylistView extends StatelessWidget {
                                                 25, 25, 25, 15),
                                             icon: Icon(
                                               Icons.share,
-                                              color: Colors.white,
                                             ),
                                             onPressed: () {
                                               model.pressShare(
@@ -388,6 +386,8 @@ class EditPlaylistView extends StatelessWidget {
                                                                   .start,
                                                           children: <Widget>[
                                                             Container(
+                                                              height: 40,
+                                                              width: 270,
                                                               padding:
                                                                   EdgeInsets
                                                                       .fromLTRB(
@@ -395,13 +395,23 @@ class EditPlaylistView extends StatelessWidget {
                                                                           10,
                                                                           0,
                                                                           10),
-                                                              child: Text(
-                                                                song.name!,
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .bodyText2,
-                                                              ),
+                                                              child: song.name!
+                                                                          .length >=
+                                                                      40
+                                                                  ? ScrollingText(
+                                                                      text: song
+                                                                          .name!,
+                                                                      textStyle: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .bodyText2)
+                                                                  : Text(
+                                                                      song.name!,
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .bodyText2,
+                                                                    ),
                                                             ),
                                                             Container(
                                                               padding:

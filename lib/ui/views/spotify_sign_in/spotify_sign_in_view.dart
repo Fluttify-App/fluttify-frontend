@@ -32,7 +32,7 @@ class SpotifySignInView extends StatelessWidget {
                       Column(
                         children: <Widget>[
                           Image.asset(
-                            'assets/images/Fluttify.png',
+                            'assets/images/FluttifyRed.png',
                             width: 280.0,
                           )
                         ],

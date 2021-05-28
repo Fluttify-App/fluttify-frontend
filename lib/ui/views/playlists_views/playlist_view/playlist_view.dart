@@ -4,6 +4,7 @@ import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+import 'package:fluttify/ui/widgets/scrolling_text.dart';
 
 class PlaylistView extends StatelessWidget {
   @override
@@ -107,15 +108,30 @@ class PlaylistView extends StatelessWidget {
                                                     CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Container(
+                                                    height: 60,
+                                                    width: 210,
+                                                    alignment:
+                                                        Alignment.centerLeft,
                                                     padding:
                                                         EdgeInsets.fromLTRB(
                                                             25, 20, 0, 10),
-                                                    child: Text(
-                                                      playlist.name!,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline1,
-                                                    ),
+                                                    child: playlist
+                                                                .name!.length >=
+                                                            20
+                                                        ? ScrollingText(
+                                                            text:
+                                                                playlist.name!,
+                                                            textStyle: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline1)
+                                                        : Text(
+                                                            playlist.name!,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline1,
+                                                          ),
                                                   ),
                                                   Container(
                                                     padding:

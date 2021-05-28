@@ -79,7 +79,7 @@ class ThemeService extends ChangeNotifier {
     hintColor: Color(0xff3b3b3b),
     appBarTheme: AppBarTheme(
         backgroundColor: Color.fromARGB(255, 203, 45, 62),
-        titleTextStyle: TextStyle(color: Colors.black)),
+        titleTextStyle: TextStyle(color: Colors.black), iconTheme: IconThemeData(color: Colors.black)),
     bottomNavigationBarTheme:
         BottomNavigationBarThemeData(backgroundColor: Colors.white),
     textTheme: TextTheme(

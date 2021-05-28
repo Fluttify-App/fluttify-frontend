@@ -54,9 +54,7 @@ class AddPlaylistView extends StatelessWidget {
                                 padding: EdgeInsets.all(10),
                                 alignment: Alignment.centerLeft,
                                 child: TextField(
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(13),
-                                  ],
+                                  
                                   controller: model.nameController,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(fontSize: 20),
