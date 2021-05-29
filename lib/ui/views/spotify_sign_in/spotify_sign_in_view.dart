@@ -27,7 +27,7 @@ class SpotifySignInView extends StatelessWidget {
                 body: Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Column(
                         children: <Widget>[
@@ -37,21 +37,23 @@ class SpotifySignInView extends StatelessWidget {
                           )
                         ],
                       ),
-                      model.isLoading
-                          ? SpinKitFadingCube(size: 36, color: Colors.green)
-                          : ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16)),
-                                  padding: EdgeInsets.all(16),
-                                  primary: Colors.black),
-                              onPressed: () => model.handleSignIn(),
-                              child: Text("Sign In with Spotify",
-                                  style: TextStyle(
-                                      color: Colors.green,
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w600)),
-                            ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 64.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16)),
+                              padding: EdgeInsets.only(
+                                  left: 32, right: 32, top: 8, bottom: 8),
+                              primary: Color(0xffb1a1a1a)),
+                          onPressed: () => model.handleSignIn(),
+                          child: Text("Sign In With Spotify",
+                              style: TextStyle(
+                                  color: Theme.of(context).accentColor,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w600)),
+                        ),
+                      ),
                     ],
                   ),
                 ),
