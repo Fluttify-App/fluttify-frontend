@@ -43,7 +43,9 @@ class EditPlaylistView extends StatelessWidget {
                       ],
                       title: model.playlist!.canEdit
                           ? TextField(
-                            
+                              inputFormatters: [
+                                LengthLimitingTextInputFormatter(40),
+                              ],
                               controller: model.nameController,
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.headline1)
@@ -387,7 +389,11 @@ class EditPlaylistView extends StatelessWidget {
                                                           children: <Widget>[
                                                             Container(
                                                               height: 40,
-                                                              width: 270,
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width -
+                                                                  110,
                                                               padding:
                                                                   EdgeInsets
                                                                       .fromLTRB(
@@ -434,8 +440,8 @@ class EditPlaylistView extends StatelessWidget {
                                                       ),
                                                       song.image == null
                                                           ? Container(
-                                                              height: 50,
-                                                              width: 50,
+                                                              height: 75,
+                                                              width: 75,
                                                               child: Icon(
                                                                 Icons
                                                                     .music_note,

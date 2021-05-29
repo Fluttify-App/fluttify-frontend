@@ -109,7 +109,7 @@ class PlaylistView extends StatelessWidget {
                                                 children: <Widget>[
                                                   Container(
                                                     height: 60,
-                                                    width: 210,
+                                                    width: MediaQuery.of(context).size.width - 180,
                                                     alignment:
                                                         Alignment.centerLeft,
                                                     padding:
