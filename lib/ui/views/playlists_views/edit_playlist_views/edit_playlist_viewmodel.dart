@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
@@ -32,10 +34,23 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   Playlist? playlist;
 
+  Timer? _timer;
+
   EditPlaylistViewModel() {
     playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
+    _timer = new Timer.periodic(
+        Duration(seconds: 15),
+        (Timer timer) => {
+              if (playlist!.updating!) {getPlaylist(playlist!.dbID!)}
+            });
+  }
+
+  @override
+  void dispose() {
+    _timer!.cancel();
+    super.dispose();
   }
 
   void setPlaylist(Playlist playlist) {
@@ -113,6 +128,23 @@ class EditPlaylistViewModel extends BaseViewModel {
       Navigator.of(context).pop(true);
       final snackBar = SnackBar(
         content: Text("Joined Playlist"),
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 1500),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
+  }
+
+  Future<void> updatePlaylist(BuildContext context) async {
+    fluttifyPlaylistService
+        .updateFluttifyPlaylist(this.playlist!)
+        .then((playlistUpdate) {
+      setPlaylist(playlistUpdate);
+      final snackBar = SnackBar(
+        content: Text("Playlist is getting updated"),
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1500),
         shape: RoundedRectangleBorder(

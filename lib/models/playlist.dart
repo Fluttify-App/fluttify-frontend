@@ -17,6 +17,7 @@ class Playlist {
   int? numberOfSongs;
   bool canEdit;
   List<Song>? songs;
+  bool? updating;
 
   Playlist(
       {this.dbID, //Database ID
@@ -32,7 +33,8 @@ class Playlist {
       this.href,
       this.canEdit = false,
       this.numberOfSongs,
-      this.songs});
+      this.songs,
+      this.updating});
 
   List<Object> get props => [
         dbID!,
@@ -47,7 +49,8 @@ class Playlist {
         image!,
         href!,
         canEdit,
-        numberOfSongs!
+        numberOfSongs!,
+        updating!
       ];
 
   factory Playlist.fromJson(Map<String, dynamic> parsedJson) {
@@ -73,7 +76,8 @@ class Playlist {
         songs: playlistSongs,
         image: parsedJson['images'].length != 0
             ? parsedJson['images'][0]['url']
-            : null);
+            : null,
+        updating: parsedJson['updating']);
   }
 
   Map<String, dynamic> toJson() {

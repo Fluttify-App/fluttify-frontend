@@ -96,4 +96,17 @@ class FluttifyPlaylistService {
       throw Exception();
     }
   }
+
+  Future<Playlist> updateFluttifyPlaylist(Playlist playlist) async {
+    var payload = {};
+    payload['id'] = playlist.dbID;
+    final response = await http.post(Uri.https(baseUrl, 'fluttify/playlistjob'),
+        headers: _apiService.headers, body: jsonEncode(payload));
+    if (response.statusCode == 200) {
+      return Playlist.fromJson(json.decode(response.body));
+    } else {
+      print("Something went wrong");
+      throw Exception();
+    }
+  }
 }

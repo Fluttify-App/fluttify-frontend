@@ -44,8 +44,8 @@ class EditPlaylistView extends StatelessWidget {
                       title: model.playlist!.canEdit
                           ? TextField(
                               inputFormatters: [
-                                LengthLimitingTextInputFormatter(40),
-                              ],
+                                  LengthLimitingTextInputFormatter(40),
+                                ],
                               controller: model.nameController,
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.headline1)
@@ -358,219 +358,209 @@ class EditPlaylistView extends StatelessWidget {
                                             .bodyText1!,
                                       ),
                                     ),
-                                    Container(
-                                      child: FractionallySizedBox(
-                                        widthFactor: 0.95,
-                                        child: Column(
-                                          children: [
-                                            for (Song song
-                                                in model.playlist!.songs!)
-                                              GestureDetector(
-                                                onTap: () {
-                                                  launch(song.link!);
-                                                },
-                                                child: Card(
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Container(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: <Widget>[
+                                    !model.playlist!.updating!
+                                        ? Container(
+                                            child: FractionallySizedBox(
+                                                widthFactor: 0.95,
+                                                child: Column(children: [
+                                                  for (Song song
+                                                      in model.playlist!.songs!)
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        launch(song.link!);
+                                                      },
+                                                      child: Card(
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0)),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
                                                             Container(
-                                                              height: 40,
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width -
-                                                                  110,
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .fromLTRB(
-                                                                          25,
-                                                                          10,
-                                                                          0,
-                                                                          10),
-                                                              child: song.name!
-                                                                          .length >=
-                                                                      40
-                                                                  ? ScrollingText(
-                                                                      text: song
-                                                                          .name!,
-                                                                      textStyle: Theme.of(
-                                                                              context)
-                                                                          .textTheme
-                                                                          .bodyText2)
-                                                                  : Text(
-                                                                      song.name!,
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: <
+                                                                    Widget>[
+                                                                  Container(
+                                                                    height: 40,
+                                                                    width: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width -
+                                                                        110,
+                                                                    padding: EdgeInsets
+                                                                        .fromLTRB(
+                                                                            25,
+                                                                            10,
+                                                                            0,
+                                                                            10),
+                                                                    child: song.name!.length >=
+                                                                            40
+                                                                        ? ScrollingText(
+                                                                            text:
+                                                                                song.name!,
+                                                                            textStyle: Theme.of(context).textTheme.bodyText2)
+                                                                        : Text(
+                                                                            song.name!,
+                                                                            style:
+                                                                                Theme.of(context).textTheme.bodyText2,
+                                                                          ),
+                                                                  ),
+                                                                  Container(
+                                                                    padding: EdgeInsets
+                                                                        .fromLTRB(
+                                                                            25,
+                                                                            0,
+                                                                            0,
+                                                                            10),
+                                                                    child: Text(
+                                                                      song.artist!,
                                                                       style: Theme.of(
                                                                               context)
                                                                           .textTheme
-                                                                          .bodyText2,
+                                                                          .subtitle1,
                                                                     ),
-                                                            ),
-                                                            Container(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .fromLTRB(
-                                                                          25,
-                                                                          0,
-                                                                          0,
-                                                                          10),
-                                                              child: Text(
-                                                                song.artist!,
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .subtitle1,
+                                                                  ),
+                                                                ],
                                                               ),
                                                             ),
+                                                            song.image == null
+                                                                ? Container(
+                                                                    height: 75,
+                                                                    width: 75,
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .music_note,
+                                                                      size: 30,
+                                                                    ),
+                                                                  )
+                                                                : Container(
+                                                                    height: 75,
+                                                                    width: 75,
+                                                                    child: ClipRRect(
+                                                                        borderRadius: BorderRadius.only(
+                                                                            topRight: Radius.circular(
+                                                                                10),
+                                                                            bottomRight: Radius.circular(
+                                                                                10)),
+                                                                        child: ClipRRect(
+                                                                            child:
+                                                                                Image.network(song.image!))),
+                                                                  ),
                                                           ],
                                                         ),
                                                       ),
-                                                      song.image == null
-                                                          ? Container(
-                                                              height: 75,
-                                                              width: 75,
-                                                              child: Icon(
-                                                                Icons
-                                                                    .music_note,
-                                                                size: 30,
-                                                              ),
-                                                            )
-                                                          : Container(
-                                                              height: 75,
-                                                              width: 75,
-                                                              child: ClipRRect(
-                                                                  borderRadius: BorderRadius.only(
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              10),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              10)),
-                                                                  child: ClipRRect(
-                                                                      child: Image
-                                                                          .network(
-                                                                              song.image!))),
-                                                            ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            Divider(
-                                              color: Theme.of(context)
-                                                  .dividerColor,
-                                              height: 50,
-                                            ),
-                                            (model.playlist!.contributers!
-                                                    .contains(model.authService
-                                                        .currentUser.id))
-                                                ? TextButton(
-                                                    child: Text("Leave"),
-                                                    onPressed: () {
-                                                      showDialog(
-                                                        context: context,
-                                                        builder: (_) {
-                                                          return AlertDialog(
-                                                            title: Text(
-                                                                'Delete Playlist'),
-                                                            content:
-                                                                SingleChildScrollView(
-                                                              child: ListBody(
-                                                                children: <
-                                                                    Widget>[
-                                                                  Text(
-                                                                      'Would you like to leave playlist: ${model.playlist!.name}'),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            actions: <Widget>[
-                                                              TextButton(
-                                                                child:
-                                                                    const Text(
-                                                                        'No'),
-                                                                onPressed: () {
-                                                                  model.navigateBack(
-                                                                      context);
-                                                                },
-                                                              ),
-                                                              TextButton(
-                                                                child:
-                                                                    const Text(
-                                                                        'Yes'),
-                                                                onPressed: () {
-                                                                  model.leavePlaylist(
-                                                                      context);
-                                                                  model.navigateBack(
-                                                                      context);
-                                                                },
-                                                              )
-                                                            ],
-                                                          );
-                                                        },
-                                                      );
-                                                    })
-                                                : TextButton(
-                                                    child: Text("Join"),
-                                                    onPressed: () {
-                                                      showDialog(
-                                                        context: context,
-                                                        builder: (_) {
-                                                          return AlertDialog(
-                                                            title: Text(
-                                                                'Delete Playlist'),
-                                                            content:
-                                                                SingleChildScrollView(
-                                                              child: ListBody(
-                                                                children: <
-                                                                    Widget>[
-                                                                  Text(
-                                                                      'Would you like to join playlist: ${model.playlist!.name}'),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            actions: <Widget>[
-                                                              TextButton(
-                                                                child:
-                                                                    const Text(
-                                                                        'No'),
-                                                                onPressed: () {
-                                                                  model.navigateBack(
-                                                                      context);
-                                                                },
-                                                              ),
-                                                              TextButton(
-                                                                child:
-                                                                    const Text(
-                                                                        'Yes'),
-                                                                onPressed: () {
-                                                                  model.joinPlaylist(
-                                                                      context);
-
-                                                                  model.navigateBack(
-                                                                      context);
-                                                                },
-                                                              )
-                                                            ],
-                                                          );
-                                                        },
-                                                      );
-                                                    }),
-                                          ],
-                                        ),
-                                      ),
+                                                    )
+                                                ])))
+                                        : Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                                CircularProgressIndicator()
+                                              ]),
+                                    Divider(
+                                      color: Theme.of(context).dividerColor,
+                                      height: 50,
                                     ),
+                                    !model.playlist!.updating!
+                                        ? TextButton(
+                                            child: Text("Update Playlist"),
+                                            onPressed: () {
+                                              model.updatePlaylist(context);
+                                            })
+                                        : Container(),
+                                    (model.playlist!.contributers!.contains(
+                                            model.authService.currentUser.id))
+                                        ? TextButton(
+                                            child: Text("Leave"),
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (_) {
+                                                  return AlertDialog(
+                                                    title:
+                                                        Text('Delete Playlist'),
+                                                    content:
+                                                        SingleChildScrollView(
+                                                      child: ListBody(
+                                                        children: <Widget>[
+                                                          Text(
+                                                              'Would you like to leave playlist: ${model.playlist!.name}'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    actions: <Widget>[
+                                                      TextButton(
+                                                        child: const Text('No'),
+                                                        onPressed: () {
+                                                          model.navigateBack(
+                                                              context);
+                                                        },
+                                                      ),
+                                                      TextButton(
+                                                        child:
+                                                            const Text('Yes'),
+                                                        onPressed: () {
+                                                          model.leavePlaylist(
+                                                              context);
+                                                          model.navigateBack(
+                                                              context);
+                                                        },
+                                                      )
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            })
+                                        : TextButton(
+                                            child: Text("Join"),
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (_) {
+                                                  return AlertDialog(
+                                                    title:
+                                                        Text('Delete Playlist'),
+                                                    content:
+                                                        SingleChildScrollView(
+                                                      child: ListBody(
+                                                        children: <Widget>[
+                                                          Text(
+                                                              'Would you like to join playlist: ${model.playlist!.name}'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    actions: <Widget>[
+                                                      TextButton(
+                                                        child: const Text('No'),
+                                                        onPressed: () {
+                                                          model.navigateBack(
+                                                              context);
+                                                        },
+                                                      ),
+                                                      TextButton(
+                                                        child:
+                                                            const Text('Yes'),
+                                                        onPressed: () {
+                                                          model.joinPlaylist(
+                                                              context);
+
+                                                          model.navigateBack(
+                                                              context);
+                                                        },
+                                                      )
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            }),
                                   ],
                                 )
                               else
