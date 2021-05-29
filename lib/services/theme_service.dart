@@ -53,8 +53,18 @@ class ThemeService extends ChangeNotifier {
           fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
+      headline2: const TextStyle(
+          color: Colors.white,
+          fontSize: 20.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w600),
       subtitle1: const TextStyle(
           fontSize: 12.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.normal),
+      subtitle2: const TextStyle(
+          color: Colors.white,
+          fontSize: 14.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
     ),
@@ -79,12 +89,13 @@ class ThemeService extends ChangeNotifier {
     hintColor: Color(0xff3b3b3b),
     appBarTheme: AppBarTheme(
         backgroundColor: Color.fromARGB(255, 203, 45, 62),
-        titleTextStyle: TextStyle(color: Colors.black), iconTheme: IconThemeData(color: Colors.black)),
+        titleTextStyle: TextStyle(color: Colors.black),
+        iconTheme: IconThemeData(color: Colors.black)),
     bottomNavigationBarTheme:
         BottomNavigationBarThemeData(backgroundColor: Colors.white),
     textTheme: TextTheme(
       button: const TextStyle(
-          fontSize: 14, fontFamily: 'Montserrat', color: Colors.black),
+          fontSize: 14, fontFamily: 'Montserrat', color: Colors.white),
       bodyText1: const TextStyle(
           color: Colors.black,
           fontSize: 16.0,
@@ -100,9 +111,19 @@ class ThemeService extends ChangeNotifier {
           fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
+      headline2: const TextStyle(
+          color: Colors.white,
+          fontSize: 20.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w600),
       subtitle1: const TextStyle(
           color: Colors.black,
           fontSize: 12.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.normal),
+      subtitle2: const TextStyle(
+          color: Colors.white,
+          fontSize: 14.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
     ),

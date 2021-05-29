@@ -13,7 +13,7 @@ class UserView extends StatelessWidget {
       builder: (BuildContext context, UserViewModel model, Widget? child) =>
           Scaffold(
         appBar: AppBar(
-          title: Text("User", style: Theme.of(context).textTheme.headline1),
+          title: Text("User", style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
         ),
         body: Center(
@@ -112,7 +112,7 @@ class UserView extends StatelessWidget {
                         onPressed: model.authService.logoutBackend,
                         child: Text(
                           "Logout",
-                          style: Theme.of(context).textTheme.bodyText2,
+                          style: Theme.of(context).textTheme.subtitle2,
                         ),
                       ),
                     ),

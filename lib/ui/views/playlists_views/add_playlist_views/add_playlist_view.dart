@@ -18,7 +18,7 @@ class AddPlaylistView extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text("Add Playlist",
-              style: Theme.of(context).textTheme.headline1),
+              style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
           /*
           flexibleSpace: Container(
