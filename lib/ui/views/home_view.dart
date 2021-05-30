@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/styles/colors.dart';
-import 'package:fluttify/ui/views/community_views/community_view.dart';
+import 'package:fluttify/ui/views/community_views/community_view/community_view.dart';
 import 'package:fluttify/ui/views/home_viewmodel.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
