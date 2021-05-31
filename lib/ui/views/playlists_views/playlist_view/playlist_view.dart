@@ -15,7 +15,7 @@ class PlaylistView extends StatelessWidget {
           Scaffold(
         appBar: AppBar(
           title:
-              Text("Playlists", style: Theme.of(context).textTheme.headline1),
+              Text("Playlists", style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
         ),
         body: Center(

@@ -48,11 +48,13 @@ class EditPlaylistView extends StatelessWidget {
                                 ],
                               controller: model.nameController,
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.headline1)
+                              style: Theme.of(context).textTheme.headline2)
                           : Text(model.playlist!.name!,
-                              style: Theme.of(context).textTheme.bodyText1),
+                              style: Theme.of(context).textTheme.headline2),
                       centerTitle: true,
-                      titleTextStyle: Theme.of(context).textTheme.headline1,
+                      iconTheme: IconThemeData(
+                        color: Colors.white, //change your color here
+                      ),
                     ),
                     body: Center(
                       child: SingleChildScrollView(
@@ -261,22 +263,22 @@ class EditPlaylistView extends StatelessWidget {
                                       for (dynamic contributers in model
                                           .playlist!.displayContributers!)
                                         Container(
-                                          padding:
-                                              EdgeInsets.fromLTRB(15, 5, 0, 5),
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 10, 0, 10),
                                           child: Card(
                                             color:
                                                 Theme.of(context).accentColor,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.0)),
+                                            shape: StadiumBorder(
+                                              side: BorderSide(
+                                                  color: Colors.transparent),
+                                            ),
                                             child: Container(
                                               padding: EdgeInsets.fromLTRB(
                                                   12, 5, 12, 5),
                                               child: Text(contributers['name'],
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .subtitle1),
+                                                      .button),
                                             ),
                                           ),
                                         ),
@@ -325,13 +327,15 @@ class EditPlaylistView extends StatelessWidget {
                                               width: 100,
                                               child: TextButton(
                                                   style: TextButton.styleFrom(
-                                                      backgroundColor:
-                                                          Theme.of(context)
-                                                              .accentColor,
-                                                      shape: StadiumBorder(
-                                                          side: BorderSide(
-                                                              color: Colors
-                                                                  .transparent))),
+                                                    backgroundColor:
+                                                        Theme.of(context)
+                                                            .accentColor,
+                                                    shape: StadiumBorder(
+                                                      side: BorderSide(
+                                                          color: Colors
+                                                              .transparent),
+                                                    ),
+                                                  ),
                                                   child: Text('Save',
                                                       style: Theme.of(context)
                                                           .textTheme
@@ -471,15 +475,26 @@ class EditPlaylistView extends StatelessWidget {
                                     ),
                                     !model.playlist!.updating!
                                         ? TextButton(
-                                            child: Text("Update Playlist"),
+                                            child: Text(
+                                              "Update Playlist",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2,
+                                            ),
                                             onPressed: () {
                                               model.updatePlaylist(context);
-                                            })
+                                            },
+                                          )
                                         : Container(),
                                     (model.playlist!.contributers!.contains(
                                             model.authService.currentUser.id))
                                         ? TextButton(
-                                            child: Text("Leave"),
+                                            child: Text(
+                                              "Leave",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2,
+                                            ),
                                             onPressed: () {
                                               showDialog(
                                                 context: context,
@@ -572,7 +587,11 @@ class EditPlaylistView extends StatelessWidget {
                     ),
                   )
                 : Scaffold(
-                    appBar: AppBar(),
+                    appBar: AppBar(
+                      iconTheme: IconThemeData(
+                        color: Colors.white, //change your color here
+                      ),
+                    ),
                     body: Center(child: CircularProgressIndicator())),
         viewModelBuilder: () => EditPlaylistViewModel());
   }

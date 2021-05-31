@@ -1,7 +1,7 @@
 # Fluttify
 ## Share music with your friends
 <p align="center">
-  <img width=250 src="https://gitlab.in.htwg-konstanz.de/lehre/rschimka/mobile/g-mobile-sose21/09-mobile-sose21/-/wikis/uploads/8b96117eb5f2ff034b03f9466e3f9d95/FluttifyRed.png">
+  <img width=250 src="https://gitlab.in.htwg-konstanz.de/lehre/rschimka/mobile/g-mobile-sose21/09-mobile-sose21/-/wikis/uploads/1fd5e0324f1d854821ed95b0a747f1ea/FluttifyRed.png">
 </p>
 
 A Flutter project built for the lecture "Mobile Anwendungen SoSe 2021" held by Prof. Dr.
