@@ -47,12 +47,19 @@ class SpotifySignInView extends StatelessWidget {
                                   left: 32, right: 32, top: 8, bottom: 8),
                               primary: Color(0xffb1a1a1a)),
                           onPressed: () => model.handleSignIn(),
-                          child: Text("Sign In With Spotify",
-                              style: TextStyle(
-                                  color: Theme.of(context).accentColor,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w600)),
+                          child: Text(
+                            "Sign In With Spotify",
+                            style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w600),
+                          ),
                         ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                        child: Text('Leave',
+                            style: Theme.of(context).textTheme.headline3),
                       ),
                     ],
                   ),

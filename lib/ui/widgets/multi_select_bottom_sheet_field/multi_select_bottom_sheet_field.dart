@@ -446,13 +446,20 @@ class __MultiSelectBottomSheetFieldViewState<V>
                     )
                 : widget.decoration,
             padding: EdgeInsets.all(10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                widget.buttonText ?? Text("Select"),
-                widget.buttonIcon ?? Icon(Icons.arrow_downward),
-              ],
-            ),
+            child: widget.canEdit
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      widget.buttonText ?? Text("Select"),
+                      widget.buttonIcon ?? Icon(Icons.keyboard_arrow_down)
+                    ],
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      widget.buttonText ?? Text("Select"),
+                    ],
+                  ),
           ),
         ),
         _buildInheritedChipDisplay(),

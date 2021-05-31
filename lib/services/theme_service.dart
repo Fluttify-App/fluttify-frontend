@@ -40,7 +40,7 @@ class ThemeService extends ChangeNotifier {
         BottomNavigationBarThemeData(backgroundColor: Color(0xff424242)),
     textTheme: TextTheme(
       button: const TextStyle(
-          fontSize: 14, fontFamily: 'Montserrat', color: Colors.white),
+          fontSize: 16, fontFamily: 'Montserrat', color: Colors.white),
       bodyText1: const TextStyle(
           fontSize: 16.0,
           fontFamily: 'Montserrat',
@@ -55,6 +55,11 @@ class ThemeService extends ChangeNotifier {
           fontWeight: FontWeight.w600),
       headline2: const TextStyle(
           color: Colors.white,
+          fontSize: 20.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w600),
+      headline3: const TextStyle(
+          color: Colors.black,
           fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
@@ -95,7 +100,7 @@ class ThemeService extends ChangeNotifier {
         BottomNavigationBarThemeData(backgroundColor: Colors.white),
     textTheme: TextTheme(
       button: const TextStyle(
-          fontSize: 14, fontFamily: 'Montserrat', color: Colors.white),
+          fontSize: 16, fontFamily: 'Montserrat', color: Colors.white),
       bodyText1: const TextStyle(
           color: Colors.black,
           fontSize: 16.0,
@@ -113,6 +118,11 @@ class ThemeService extends ChangeNotifier {
           fontWeight: FontWeight.w600),
       headline2: const TextStyle(
           color: Colors.white,
+          fontSize: 20.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w600),
+      headline3: const TextStyle(
+          color: Colors.black,
           fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),

@@ -1,6 +1,8 @@
 import 'package:fluttify/models/song.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_viewmodel.dart';
+import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_chip_display.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
@@ -172,12 +174,12 @@ class EditPlaylistView extends StatelessWidget {
                                             selectedItemsTextStyle:
                                                 Theme.of(context)
                                                     .textTheme
-                                                    .button,
+                                                    .subtitle2,
                                             selectedColor:
                                                 Theme.of(context).accentColor,
                                             itemsTextStyle: Theme.of(context)
                                                 .textTheme
-                                                .button,
+                                                .subtitle2,
                                             searchable: true,
                                             buttonText: Text("Genres",
                                                 style: Theme.of(context)
@@ -196,7 +198,7 @@ class EditPlaylistView extends StatelessWidget {
                                                   Theme.of(context).accentColor,
                                               textStyle: Theme.of(context)
                                                   .textTheme
-                                                  .button,
+                                                  .subtitle2,
                                               onTap: (String value) =>
                                                   model.removeGenre(value),
                                             ),
@@ -278,7 +280,7 @@ class EditPlaylistView extends StatelessWidget {
                                               child: Text(contributers['name'],
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .button),
+                                                      .subtitle2),
                                             ),
                                           ),
                                         ),
@@ -287,65 +289,26 @@ class EditPlaylistView extends StatelessWidget {
                                 ),
                               ),
                               model.playlist!.canEdit
-                                  ? Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.all(10),
-                                          child: Container(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 10),
-                                            child: SizedBox(
-                                              height: 45,
-                                              width: 100,
-                                              child: TextButton(
-                                                  style: TextButton.styleFrom(
-                                                      backgroundColor:
-                                                          Theme.of(context)
-                                                              .accentColor,
-                                                      shape: StadiumBorder(
-                                                          side: BorderSide(
-                                                              color: Colors
-                                                                  .transparent))),
-                                                  child: Text('Cancel',
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1),
-                                                  onPressed: () =>
-                                                      model.canEdit()),
-                                            ),
+                                  ? Container(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          FluttifyButton(
+                                            onPressed: () => model.canEdit(),
+                                            text: 'Cancel',
+                                            width: 150,
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.all(10),
-                                          child: Container(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 10),
-                                            child: SizedBox(
-                                              height: 45,
-                                              width: 100,
-                                              child: TextButton(
-                                                  style: TextButton.styleFrom(
-                                                    backgroundColor:
-                                                        Theme.of(context)
-                                                            .accentColor,
-                                                    shape: StadiumBorder(
-                                                      side: BorderSide(
-                                                          color: Colors
-                                                              .transparent),
-                                                    ),
-                                                  ),
-                                                  child: Text('Save',
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1),
-                                                  onPressed: () =>
-                                                      model.save(context)),
-                                            ),
+                                          FluttifyButton(
+                                            onPressed: () =>
+                                                model.save(context),
+                                            text: 'Save',
+                                            width: 150,
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     )
                                   : Container(),
                               if (!model.playlist!.canEdit)
@@ -474,108 +437,118 @@ class EditPlaylistView extends StatelessWidget {
                                       height: 50,
                                     ),
                                     !model.playlist!.updating!
-                                        ? TextButton(
-                                            child: Text(
-                                              "Update Playlist",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .subtitle2,
-                                            ),
-                                            onPressed: () {
-                                              model.updatePlaylist(context);
-                                            },
-                                          )
+                                        ? FluttifyButton(
+                                            onPressed: () =>
+                                                model.updatePlaylist(context),
+                                            text: 'Update Playlist')
                                         : Container(),
                                     (model.playlist!.contributers!.contains(
                                             model.authService.currentUser.id))
-                                        ? TextButton(
-                                            child: Text(
-                                              "Leave",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .subtitle2,
-                                            ),
+                                        ? FluttifyButton(
+                                            color: Color.fromARGB(
+                                                255, 233, 30, 30),
+                                            onPressed: () => {
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (_) {
+                                                      return AlertDialog(
+                                                        title: Text(
+                                                          'Leave Playlist',
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .headline1,
+                                                        ),
+                                                        content:
+                                                            SingleChildScrollView(
+                                                          child: ListBody(
+                                                            children: <Widget>[
+                                                              Text(
+                                                                'Would you like to leave playlist: ${model.playlist!.name}',
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyText2,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        actions: <Widget>[
+                                                          FluttifyButton(
+                                                              onPressed: () => model
+                                                                  .navigateBack(
+                                                                      context),
+                                                              text: 'No',
+                                                              width: 80,
+                                                              height: 35),
+                                                          FluttifyButton(
+                                                              onPressed: () => {
+                                                                    model.leavePlaylist(
+                                                                        context),
+                                                                    model.navigateBack(
+                                                                        context)
+                                                                  },
+                                                              text: 'Yes',
+                                                              width: 80,
+                                                              height: 35),
+                                                        ],
+                                                      );
+                                                    },
+                                                  )
+                                                },
+                                            text: 'Leave Playlist')
+                                        : FluttifyButton(
                                             onPressed: () {
                                               showDialog(
                                                 context: context,
                                                 builder: (_) {
                                                   return AlertDialog(
-                                                    title:
-                                                        Text('Delete Playlist'),
+                                                    title: Text(
+                                                      'Join Playlist',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline1,
+                                                    ),
                                                     content:
                                                         SingleChildScrollView(
                                                       child: ListBody(
                                                         children: <Widget>[
                                                           Text(
-                                                              'Would you like to leave playlist: ${model.playlist!.name}'),
+                                                            'Would you like to join playlist: ${model.playlist!.name}',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyText2,
+                                                          ),
                                                         ],
                                                       ),
                                                     ),
                                                     actions: <Widget>[
-                                                      TextButton(
-                                                        child: const Text('No'),
-                                                        onPressed: () {
-                                                          model.navigateBack(
-                                                              context);
-                                                        },
-                                                      ),
-                                                      TextButton(
-                                                        child:
-                                                            const Text('Yes'),
-                                                        onPressed: () {
-                                                          model.leavePlaylist(
-                                                              context);
-                                                          model.navigateBack(
-                                                              context);
-                                                        },
-                                                      )
+                                                      FluttifyButton(
+                                                          onPressed: () => model
+                                                              .navigateBack(
+                                                                  context),
+                                                          text: 'No',
+                                                          width: 80,
+                                                          height: 35),
+                                                      FluttifyButton(
+                                                          onPressed: () => {
+                                                                model.joinPlaylist(
+                                                                    context),
+                                                                model.navigateBack(
+                                                                    context),
+                                                              },
+                                                          text: 'Yes',
+                                                          width: 80,
+                                                          height: 35),
                                                     ],
                                                   );
                                                 },
                                               );
-                                            })
-                                        : TextButton(
-                                            child: Text("Join"),
-                                            onPressed: () {
-                                              showDialog(
-                                                context: context,
-                                                builder: (_) {
-                                                  return AlertDialog(
-                                                    title:
-                                                        Text('Delete Playlist'),
-                                                    content:
-                                                        SingleChildScrollView(
-                                                      child: ListBody(
-                                                        children: <Widget>[
-                                                          Text(
-                                                              'Would you like to join playlist: ${model.playlist!.name}'),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    actions: <Widget>[
-                                                      TextButton(
-                                                        child: const Text('No'),
-                                                        onPressed: () {
-                                                          model.navigateBack(
-                                                              context);
-                                                        },
-                                                      ),
-                                                      TextButton(
-                                                        child:
-                                                            const Text('Yes'),
-                                                        onPressed: () {
-                                                          model.joinPlaylist(
-                                                              context);
-
-                                                          model.navigateBack(
-                                                              context);
-                                                        },
-                                                      )
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            }),
+                                            },
+                                            text: 'Join Playlist',
+                                            color: Colors.green,
+                                          ),
                                   ],
                                 )
                               else

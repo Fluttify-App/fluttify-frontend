@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_viewmodel.dart';
+import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:stacked/stacked.dart';
 import 'package:fluttify/ui/widgets/scrolling_text.dart';
 
@@ -44,30 +45,41 @@ class PlaylistView extends StatelessWidget {
                                       context: context,
                                       builder: (_) {
                                         return AlertDialog(
-                                          title: Text('Delete Playlist'),
+                                          title: Text(
+                                            'Delete Playlist',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1,
+                                          ),
                                           content: SingleChildScrollView(
                                             child: ListBody(
                                               children: <Widget>[
                                                 Text(
-                                                    'Would you like to delete playlist: ${playlist.name}'),
+                                                  'Would you like to delete playlist: ${playlist.name}',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText2,
+                                                ),
                                               ],
                                             ),
                                           ),
                                           actions: <Widget>[
-                                            TextButton(
-                                              child: const Text('No'),
-                                              onPressed: () {
-                                                model.navigateBack(context);
-                                              },
-                                            ),
-                                            TextButton(
-                                              child: const Text('Yes'),
-                                              onPressed: () {
-                                                model.dismissPlaylist(
-                                                    playlist, context);
-                                                model.navigateBack(context);
-                                              },
-                                            )
+                                            FluttifyButton(
+                                                onPressed: () =>
+                                                    model.navigateBack(context),
+                                                text: 'No',
+                                                width: 80,
+                                                height: 35),
+                                            FluttifyButton(
+                                                onPressed: () => {
+                                                      model.dismissPlaylist(
+                                                          playlist, context),
+                                                      model.navigateBack(
+                                                          context),
+                                                    },
+                                                text: 'Yes',
+                                                width: 80,
+                                                height: 35),
                                           ],
                                         );
                                       },
@@ -109,7 +121,11 @@ class PlaylistView extends StatelessWidget {
                                                 children: <Widget>[
                                                   Container(
                                                     height: 60,
-                                                    width: MediaQuery.of(context).size.width - 180,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width -
+                                                            180,
                                                     alignment:
                                                         Alignment.centerLeft,
                                                     padding:
