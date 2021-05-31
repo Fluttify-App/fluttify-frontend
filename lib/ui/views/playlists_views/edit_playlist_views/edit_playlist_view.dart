@@ -587,7 +587,11 @@ class EditPlaylistView extends StatelessWidget {
                     ),
                   )
                 : Scaffold(
-                    appBar: AppBar(),
+                    appBar: AppBar(
+                      iconTheme: IconThemeData(
+                        color: Colors.white, //change your color here
+                      ),
+                    ),
                     body: Center(child: CircularProgressIndicator())),
         viewModelBuilder: () => EditPlaylistViewModel());
   }
