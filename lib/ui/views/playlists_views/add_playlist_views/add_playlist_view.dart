@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_viewmodel.dart';
+import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_chip_display.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
@@ -20,17 +21,6 @@ class AddPlaylistView extends StatelessWidget {
           title: Text("Add Playlist",
               style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
-          /*
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[fluttify_gradient_1, fluttify_gradient_2],
-              ),
-            ),
-          ),
-          */
         ),
         body: Center(
           child: Container(
@@ -44,7 +34,6 @@ class AddPlaylistView extends StatelessWidget {
                     child: Column(
                       children: [
                         Container(
-                          //padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           child: FractionallySizedBox(
                             widthFactor: 0.95,
                             child: Card(
@@ -123,7 +112,7 @@ class AddPlaylistView extends StatelessWidget {
                                     TextStyle(color: Colors.white),
                                 selectedColor: Theme.of(context).accentColor,
                                 itemsTextStyle:
-                                    Theme.of(context).textTheme.button,
+                                    Theme.of(context).textTheme.subtitle2,
                                 searchable: true,
                                 buttonText: Text("Genres",
                                     style:
@@ -137,7 +126,8 @@ class AddPlaylistView extends StatelessWidget {
                                 },
                                 chipDisplay: MultiSelectChipDisplay(
                                   chipColor: Theme.of(context).accentColor,
-                                  textStyle: Theme.of(context).textTheme.button,
+                                  textStyle:
+                                      Theme.of(context).textTheme.subtitle2,
                                   onTap: (String value) {
                                     model.removeGenre(value);
                                   },
@@ -149,51 +139,25 @@ class AddPlaylistView extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 10),
-                                child: SizedBox(
-                                  height: 45,
-                                  width: 100,
-                                  child: TextButton(
-                                      style: TextButton.styleFrom(
-                                          backgroundColor:
-                                              Theme.of(context).accentColor,
-                                          shape: StadiumBorder(
-                                              side: BorderSide(
-                                                  color: Colors.transparent))),
-                                      child: Text('Cancel',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1),
-                                      onPressed: () =>
-                                          model.navigateBack(context)),
-                                ),
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  FluttifyButton(
+                                    onPressed: () =>
+                                        model.navigateBack(context),
+                                    text: 'Cancel',
+                                    width: 150,
+                                  ),
+                                  FluttifyButton(
+                                    onPressed: () => model.save(context),
+                                    text: 'Save',
+                                    width: 150,
+                                  ),
+                                ],
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 10),
-                                child: SizedBox(
-                                  height: 45,
-                                  width: 100,
-                                  child: TextButton(
-                                      style: TextButton.styleFrom(
-                                          backgroundColor:
-                                              Theme.of(context).accentColor,
-                                          shape: StadiumBorder(
-                                              side: BorderSide(
-                                                  color: Colors.transparent))),
-                                      child: Text('Save',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1),
-                                      onPressed: () => model.save(context)),
-                                ),
-                              ),
-                            ),
+                            )
                           ],
                         )
                       ],
