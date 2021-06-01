@@ -60,7 +60,6 @@ class App extends StatelessWidget {
     return PreferenceBuilder<String>(
         preference: preferences.getString('token', defaultValue: ""),
         builder: (BuildContext context, String token) {
-          print("getting it");
           return FutureBuilder<bool>(
               future: _auth.initializeAuthentication(),
               builder:

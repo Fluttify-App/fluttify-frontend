@@ -219,7 +219,7 @@ class EditPlaylistView extends StatelessWidget {
                                               25, 25, 0, 15),
                                           alignment: Alignment.topLeft,
                                           child: DefaultTextStyle(
-                                            child: Text("Contributors"),
+                                            child: Text("Contributers"),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1!,
@@ -246,7 +246,7 @@ class EditPlaylistView extends StatelessWidget {
                                           EdgeInsets.fromLTRB(25, 25, 0, 15),
                                       alignment: Alignment.topLeft,
                                       child: DefaultTextStyle(
-                                        child: Text("Contributors"),
+                                        child: Text("Contributers"),
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1!,

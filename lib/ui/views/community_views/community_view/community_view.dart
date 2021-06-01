@@ -105,17 +105,27 @@ class CommunityView extends StatelessWidget {
                                                       ),
                                                       Text(
                                                         playlist.contributers!
-                                                                .length
-                                                                .toString() +
-                                                            " Contributers",
+                                                                    .length ==
+                                                                1
+                                                            ? '1 Contributer'
+                                                            : playlist
+                                                                    .contributers!
+                                                                    .length
+                                                                    .toString() +
+                                                                " Contributers",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodyText2,
                                                       ),
                                                       Text(
-                                                        playlist.numberOfSongs
-                                                                .toString() +
-                                                            ' Songs',
+                                                        playlist.likes!
+                                                                    .length ==
+                                                                1
+                                                            ? '1 Like'
+                                                            : playlist.likes!
+                                                                    .length
+                                                                    .toString() +
+                                                                ' Likes',
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodyText2,

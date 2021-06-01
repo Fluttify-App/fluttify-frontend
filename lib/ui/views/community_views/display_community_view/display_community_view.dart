@@ -2,6 +2,7 @@ import 'package:fluttify/models/song.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/ui/views/community_views/display_community_view/display_community_viewmodel.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_viewmodel.dart';
+import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_chip_display.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
@@ -141,17 +142,17 @@ class DisplayCommunityView extends StatelessWidget {
                                           child: Card(
                                             color:
                                                 Theme.of(context).accentColor,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.0)),
+                                            shape: StadiumBorder(
+                                              side: BorderSide(
+                                                  color: Colors.transparent),
+                                            ),
                                             child: Container(
                                               padding: EdgeInsets.fromLTRB(
                                                   12, 5, 12, 5),
                                               child: Text(genre,
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .subtitle1),
+                                                      .subtitle2),
                                             ),
                                           ),
                                         ),
@@ -163,7 +164,7 @@ class DisplayCommunityView extends StatelessWidget {
                                 padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
                                 alignment: Alignment.topLeft,
                                 child: DefaultTextStyle(
-                                  child: Text("Contributors"),
+                                  child: Text("Contributers"),
                                   style: Theme.of(context).textTheme.bodyText1!,
                                 ),
                               ),
@@ -185,17 +186,17 @@ class DisplayCommunityView extends StatelessWidget {
                                           child: Card(
                                             color:
                                                 Theme.of(context).accentColor,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.0)),
+                                            shape: StadiumBorder(
+                                              side: BorderSide(
+                                                  color: Colors.transparent),
+                                            ),
                                             child: Container(
                                               padding: EdgeInsets.fromLTRB(
                                                   12, 5, 12, 5),
                                               child: Text(contributers['name'],
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .subtitle1),
+                                                      .subtitle2),
                                             ),
                                           ),
                                         ),
@@ -329,6 +330,31 @@ class DisplayCommunityView extends StatelessWidget {
                                     color: Theme.of(context).dividerColor,
                                     height: 50,
                                   ),
+                                  (!model.playlist!.likes!.contains(
+                                          model.authService.currentUser.id))
+                                      ? FluttifyButton(
+                                          onPressed: () {
+                                            model.likePlaylist(context);
+                                          },
+                                          text: 'Like Playlist',
+                                          icon: Icon(
+                                            Icons.favorite,
+                                            color: Colors.white,
+                                          ),
+                                          width: 200,
+                                          color: Color(0xff8AAB21),
+                                        )
+                                      : FluttifyButton(
+                                          onPressed: () {
+                                            model.unlikePlaylist(context);
+                                          },
+                                          text: 'Unlike Playlist',
+                                          icon: Icon(
+                                            Icons.favorite_border_outlined,
+                                            color: Colors.white,
+                                          ),
+                                          width: 200,
+                                        ),
                                 ],
                               )
                             ],

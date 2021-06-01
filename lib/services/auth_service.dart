@@ -1,8 +1,5 @@
 import 'dart:convert';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttify/app/fluttify_router.router.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/user.dart';
 import 'package:http/http.dart' as http;
@@ -27,7 +24,6 @@ class AuthService extends ChangeNotifier {
     // initialize the authorization header
     var sharedPrefs = await SharedPreferences.getInstance();
     var token = sharedPrefs.getString("token");
-    print(token);
     if (token == null || token != "initial") {
       headers.putIfAbsent('Authorization', () => 'Bearer $token');
       var loggedIn = await _getUser();

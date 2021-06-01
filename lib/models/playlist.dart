@@ -17,6 +17,7 @@ class Playlist {
   int? numberOfSongs;
   bool canEdit;
   List<Song>? songs;
+  List<dynamic>? likes;
   bool? updating;
 
   Playlist(
@@ -34,6 +35,7 @@ class Playlist {
       this.canEdit = false,
       this.numberOfSongs,
       this.songs,
+      this.likes,
       this.updating});
 
   List<Object> get props => [
@@ -50,6 +52,8 @@ class Playlist {
         href!,
         canEdit,
         numberOfSongs!,
+        songs!,
+        likes!,
         updating!
       ];
 
@@ -60,7 +64,6 @@ class Playlist {
           .map((song) => Song.fromJson(song))
           .toList();
     }
-    print(parsedJson);
     return Playlist(
         dbID: parsedJson['_id'],
         id: parsedJson['id'],
@@ -75,6 +78,7 @@ class Playlist {
         canEdit: false,
         numberOfSongs: parsedJson['totalTracks'],
         songs: playlistSongs,
+        likes: parsedJson['likes'],
         image: parsedJson['images'].length != 0
             ? parsedJson['images'][0]['url']
             : null,
