@@ -60,6 +60,7 @@ class Playlist {
           .map((song) => Song.fromJson(song))
           .toList();
     }
+    print(parsedJson);
     return Playlist(
         dbID: parsedJson['_id'],
         id: parsedJson['id'],

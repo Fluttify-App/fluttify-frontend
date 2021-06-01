@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttify/services/theme_service.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/user_views/user_viewmodel.dart';
+import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
@@ -106,15 +107,47 @@ class UserView extends StatelessWidget {
                 Expanded(
                   child: Align(
                     alignment: Alignment.bottomCenter,
-                    child: FractionallySizedBox(
-                      widthFactor: 0.7,
-                      child: TextButton(
-                        onPressed: model.authService.logoutBackend,
-                        child: Text(
-                          "Logout",
-                          style: Theme.of(context).textTheme.subtitle2,
+                    child: FluttifyButton(
+                      onPressed: () => {
+                        showDialog(
+                          context: context,
+                          builder: (_) {
+                            return AlertDialog(
+                              title: Text(
+                                'Logout',
+                                style: Theme.of(context).textTheme.headline1,
+                              ),
+                              content: SingleChildScrollView(
+                                child: ListBody(
+                                  children: <Widget>[
+                                    Text(
+                                      'Would you like to logout from Fluttify?',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              actions: <Widget>[
+                                FluttifyButton(
+                                    onPressed: () =>
+                                        model.navigateBack(context),
+                                    text: 'No',
+                                    width: 80,
+                                    height: 35),
+                                FluttifyButton(
+                                    onPressed: () =>
+                                        model.authService.logoutBackend(),
+                                    text: 'Yes',
+                                    width: 80,
+                                    height: 35),
+                              ],
+                            );
+                          },
                         ),
-                      ),
+                      },
+                      text: "Logout",
+                      color: Color.fromARGB(255, 233, 30, 30),
                     ),
                   ),
                 ),
