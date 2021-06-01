@@ -9,7 +9,6 @@ import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
-import 'package:fluttify/services/playlist_service.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:stacked/stacked.dart';
@@ -21,7 +20,6 @@ class EditPlaylistViewModel extends BaseViewModel {
   final PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
 
-  final PlaylistService playlistService = locator<PlaylistService>();
   final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
   final AuthService authService = locator<AuthService>();
 
@@ -69,7 +67,6 @@ class EditPlaylistViewModel extends BaseViewModel {
     playlist!.description = descriptionController.text;
     playlist!.name = nameController.text;
     playlist!.genres = selectedGenres;
-    playlistService.playlists!.add(playlist!);
     fluttifyPlaylistService.saveFluttifyPlaylist(playlist!).then((success) {
       if (success) {
         canEdit();

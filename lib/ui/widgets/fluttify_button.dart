@@ -6,12 +6,14 @@ class FluttifyButton extends StatelessWidget {
   String? text;
   double? height;
   double? width;
+  Icon? icon;
   Color? color;
   FluttifyButton(
       {required this.onPressed,
       required this.text,
       this.height,
       this.width,
+      this.icon,
       this.color});
 
   @override
@@ -29,7 +31,20 @@ class FluttifyButton extends StatelessWidget {
                   side: BorderSide(color: Colors.transparent),
                 ),
               ),
-              child: Text(text!, style: Theme.of(context).textTheme.button),
+              child: this.icon == null
+                  ? Text(text!, style: Theme.of(context).textTheme.button)
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      // Replace with a Row for horizontal icon + text
+                      children: <Widget>[
+                        icon!,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(text!,
+                              style: Theme.of(context).textTheme.button),
+                        )
+                      ],
+                    ),
               onPressed: onPressed as void Function()?),
         ),
       ),

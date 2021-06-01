@@ -4,7 +4,6 @@ import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
-import 'package:fluttify/services/playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
@@ -17,7 +16,6 @@ class PlaylistViewModel extends BaseViewModel {
       locator<FluttifyPlaylistService>();
   final PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
-  final PlaylistService mockplaylistService = locator<PlaylistService>();
   final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
 
   bool isLoading = true;

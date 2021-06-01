@@ -45,9 +45,11 @@ class FluttifyPlaylistService {
         headers: _apiService.headers);
 
     if (response.statusCode == 200) {
-      communityplaylists = (json.decode(response.body) as List)
+      List<Playlist> responseList = (json.decode(response.body) as List)
           .map((data) => Playlist.fromJson(data))
           .toList();
+      responseList.sort((a, b) => a.likes!.length.compareTo(b.likes!.length));
+      communityplaylists = responseList;
     } else {
       myplaylists = [];
     }
@@ -115,6 +117,32 @@ class FluttifyPlaylistService {
     var payload = {};
     payload['id'] = playlist.dbID;
     final response = await http.post(Uri.https(baseUrl, 'fluttify/playlistjob'),
+        headers: _apiService.headers, body: jsonEncode(payload));
+    if (response.statusCode == 200) {
+      return Playlist.fromJson(json.decode(response.body));
+    } else {
+      print("Something went wrong");
+      throw Exception();
+    }
+  }
+
+  Future<Playlist> likeFluttifyPlaylist(Playlist playlist) async {
+    var payload = {};
+    payload['id'] = playlist.dbID;
+    final response = await http.put(Uri.https(baseUrl, 'fluttify/like'),
+        headers: _apiService.headers, body: jsonEncode(payload));
+    if (response.statusCode == 200) {
+      return Playlist.fromJson(json.decode(response.body));
+    } else {
+      print("Something went wrong");
+      throw Exception();
+    }
+  }
+
+  Future<Playlist> unlikeFluttifyPlaylist(Playlist playlist) async {
+    var payload = {};
+    payload['id'] = playlist.dbID;
+    final response = await http.delete(Uri.https(baseUrl, 'fluttify/like'),
         headers: _apiService.headers, body: jsonEncode(payload));
     if (response.statusCode == 200) {
       return Playlist.fromJson(json.decode(response.body));

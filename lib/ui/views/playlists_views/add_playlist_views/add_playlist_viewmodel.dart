@@ -3,12 +3,10 @@ import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
-import 'package:fluttify/services/playlist_service.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:stacked/stacked.dart';
 
 class AddPlaylistViewModel extends BaseViewModel {
-  PlaylistService playlistService = locator<PlaylistService>();
   PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
 
@@ -43,7 +41,6 @@ class AddPlaylistViewModel extends BaseViewModel {
         Navigator.of(context).pop(true);
       }
     });
-    playlistService.playlists!.add(playlist);
   }
 
   void addGenre(List<dynamic> value) {
