@@ -306,6 +306,7 @@ class EditPlaylistView extends StatelessWidget {
                                                 model.save(context),
                                             text: 'Save',
                                             width: 150,
+                                            color: Color(0xff8AAB21),
                                           ),
                                         ],
                                       ),
@@ -547,7 +548,7 @@ class EditPlaylistView extends StatelessWidget {
                                               );
                                             },
                                             text: 'Join Playlist',
-                                            color: Colors.green,
+                                            color: Color(0xff8AAB21),
                                           ),
                                   ],
                                 )

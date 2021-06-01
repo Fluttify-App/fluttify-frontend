@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_actions.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
@@ -296,29 +297,24 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
-                      child: TextButton(
-                        onPressed: () {
-                          widget.onCancelTap(context, widget.initialValue!);
-                        },
-                        child: widget.cancelText ??
-                            Text(
-                              "CANCEL",
-                              style: Theme.of(context).textTheme.button,
-                            ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: TextButton(
+                      child: FluttifyButton(
+                        text: 'CANCEL',
                         onPressed: () {
                           widget.onConfirmTap(
                               context, _selectedValues, widget.onConfirm);
                         },
-                        child: widget.confirmText ??
-                            Text(
-                              "OK",
-                              style: Theme.of(context).textTheme.button,
-                            ),
+                        width: 100,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: FluttifyButton(
+                        text: 'OK',
+                        onPressed: () {
+                          widget.onConfirmTap(
+                              context, _selectedValues, widget.onConfirm);
+                        },
+                        width: 100,
                       ),
                     ),
                   ],

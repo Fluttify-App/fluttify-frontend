@@ -109,9 +109,9 @@ class AddPlaylistView extends StatelessWidget {
                                 initialChildSize: 0.4,
                                 listType: MultiSelectListType.CHIP,
                                 selectedItemsTextStyle:
-                                    TextStyle(color: Colors.white),
+                                    Theme.of(context).textTheme.subtitle2,
                                 selectedColor: Theme.of(context).accentColor,
-                                itemsTextStyle:
+                                itemsTextStyle: 
                                     Theme.of(context).textTheme.subtitle2,
                                 searchable: true,
                                 buttonText: Text("Genres",
@@ -154,6 +154,7 @@ class AddPlaylistView extends StatelessWidget {
                                     onPressed: () => model.save(context),
                                     text: 'Save',
                                     width: 150,
+                                    color: Color(0xff8AAB21),
                                   ),
                                 ],
                               ),
