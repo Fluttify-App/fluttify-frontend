@@ -11,6 +11,7 @@ class FluttifyPlaylistService {
   final String baseUrl = "fluttify.herokuapp.com";
 
   List<Playlist> myplaylists = [];
+  List<Playlist> communityplaylists = [];
   List<dynamic> genres = [];
 
   FluttifyPlaylistService() {
@@ -34,6 +35,19 @@ class FluttifyPlaylistService {
       var showPlaylists = createdPlaylists + subscribedPlaylists;
       myplaylists =
           showPlaylists.map((data) => Playlist.fromJson(data)).toList();
+    } else {
+      myplaylists = [];
+    }
+  }
+
+  Future<void> getCommunityFluttifyPlaylists() async {
+    final response = await http.get(Uri.https(baseUrl, 'fluttify/community'),
+        headers: _apiService.headers);
+
+    if (response.statusCode == 200) {
+      communityplaylists = (json.decode(response.body) as List)
+          .map((data) => Playlist.fromJson(data))
+          .toList();
     } else {
       myplaylists = [];
     }
