@@ -29,37 +29,44 @@ class SpotifySignInView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Image.asset(
+                      Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              border:
+                                  Border.all(color: Colors.white, width: 10),
+                              borderRadius: BorderRadius.circular(150)),
+                          child: Image.asset(
                             'assets/images/FluttifyRed.png',
                             width: 280.0,
-                          )
-                        ],
-                      ),
+                          )),
                       Padding(
                         padding: const EdgeInsets.only(top: 64.0),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16)),
-                              padding: EdgeInsets.only(
-                                  left: 32, right: 32, top: 8, bottom: 8),
-                              primary: Color(0xffb1a1a1a)),
-                          onPressed: () => model.handleSignIn(),
-                          child: Text(
-                            "Sign In With Spotify",
-                            style: TextStyle(
-                                color: Theme.of(context).accentColor,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w600),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            color: Colors.white,
+                            border: Border.all(width: 2, color: Colors.white),
+                          ),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8))),
+                                padding: EdgeInsets.only(
+                                    left: 32, right: 32, top: 8, bottom: 8),
+                                primary: Color(0xffb1a1a1a)),
+                            onPressed: () => model.handleSignIn(),
+                            child: Text(
+                              "Sign In With Spotify",
+                              style: TextStyle(
+                                  color: Colors
+                                      .white, // Theme.of(context).accentColor,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                        child: Text('Leave',
-                            style: Theme.of(context).textTheme.headline3),
                       ),
                     ],
                   ),
