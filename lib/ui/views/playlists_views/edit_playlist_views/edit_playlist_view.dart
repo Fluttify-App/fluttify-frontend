@@ -1,6 +1,5 @@
 import 'package:fluttify/models/song.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
@@ -10,6 +9,8 @@ import 'package:fluttify/ui/widgets/scrolling_text.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:intl/intl.dart';
+import 'package:instant/instant.dart';
 
 class EditPlaylistView extends StatelessWidget {
   const EditPlaylistView({required this.playlistId});
@@ -319,12 +320,30 @@ class EditPlaylistView extends StatelessWidget {
                                       padding:
                                           EdgeInsets.fromLTRB(25, 25, 0, 15),
                                       alignment: Alignment.centerLeft,
-                                      child: DefaultTextStyle(
-                                        child: Text("Current Songs"),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1!,
-                                      ),
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            DefaultTextStyle(
+                                              child: Text("Current Songs"),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1!,
+                                            ),
+                                            DefaultTextStyle(
+                                              child: Text("Last Update: " +
+                                                  DateFormat(
+                                                          'yyyy-MM-dd HH:mm:ss')
+                                                      .format(dateTimeToZone(
+                                                          zone: "GST",
+                                                          datetime: model
+                                                              .playlist!
+                                                              .lastUpdate!))),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2!,
+                                            ),
+                                          ]),
                                     ),
                                     !model.playlist!.updating!
                                         ? Container(
