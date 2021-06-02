@@ -16,7 +16,7 @@ class CommunityView extends StatelessWidget {
               Scaffold(
         appBar: AppBar(
           title:
-              Text("Playlists", style: Theme.of(context).textTheme.headline1),
+              Text("Community", style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
         ),
         body: Center(
@@ -107,12 +107,12 @@ class CommunityView extends StatelessWidget {
                                                         playlist.contributers!
                                                                     .length ==
                                                                 1
-                                                            ? '1 Contributer'
+                                                            ? '1 Contributor'
                                                             : playlist
                                                                     .contributers!
                                                                     .length
                                                                     .toString() +
-                                                                " Contributers",
+                                                                " Contributors",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodyText2,
@@ -142,25 +142,25 @@ class CommunityView extends StatelessWidget {
                                             children: [
                                               playlist.image == null
                                                   ? Container(
-                                                      margin: EdgeInsets.only(
-                                                          right: 16),
-                                                      height: 100,
-                                                      width: 100,
+                                                      height: 130,
+                                                      width: 130,
                                                       child: Icon(
                                                         Icons.music_note,
                                                         size: 30,
                                                       ),
                                                     )
                                                   : Container(
-                                                      margin: EdgeInsets.only(
-                                                          right: 16),
-                                                      height: 100,
-                                                      width: 100,
+                                                      height: 130,
+                                                      width: 130,
                                                       child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    10)),
+                                                       borderRadius:
+                                                              BorderRadius.only(
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          10),
+                                                                  bottomRight:
+                                                                      Radius.circular(
+                                                                          10)),
                                                         child: Image.network(
                                                             playlist.image!),
                                                       ),

@@ -161,7 +161,7 @@ class DisplayCommunityView extends StatelessWidget {
                                 padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
                                 alignment: Alignment.topLeft,
                                 child: DefaultTextStyle(
-                                  child: Text("Contributers"),
+                                  child: Text("Contributors"),
                                   style: Theme.of(context).textTheme.bodyText1!,
                                 ),
                               ),

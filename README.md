@@ -10,8 +10,8 @@ Ralf Schimkat at HTWG Konstanz.
 ## Feature Overview
 Fluttify offers the opportunity to create auto-refreshing Spotify Playlists with friends. 
 - Create a playlists and specify your desired music genres.
-- Share your playlist with friends and let them join as contributers.
-- The application automatically adds the current favorite songs of each contributer to the spotify playlist. The job is running several times a day and ensures that the playlist is up-to-date at all times.
+- Share your playlist with friends and let them join as contributors.
+- The application automatically adds the current favorite songs of each contributor to the spotify playlist. The job is running several times a day and ensures that the playlist is up-to-date at all times.
 
 ## Technology
 - Flutter-Frontend

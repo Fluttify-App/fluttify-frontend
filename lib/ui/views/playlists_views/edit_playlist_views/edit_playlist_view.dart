@@ -220,7 +220,7 @@ class EditPlaylistView extends StatelessWidget {
                                               25, 25, 0, 15),
                                           alignment: Alignment.topLeft,
                                           child: DefaultTextStyle(
-                                            child: Text("Contributers"),
+                                            child: Text("Contributors"),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1!,
@@ -247,7 +247,7 @@ class EditPlaylistView extends StatelessWidget {
                                           EdgeInsets.fromLTRB(25, 25, 0, 15),
                                       alignment: Alignment.topLeft,
                                       child: DefaultTextStyle(
-                                        child: Text("Contributers"),
+                                        child: Text("Contributors"),
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1!,
@@ -330,6 +330,7 @@ class EditPlaylistView extends StatelessWidget {
                                                   .textTheme
                                                   .bodyText1!,
                                             ),
+                                            SizedBox(height: 5),
                                             DefaultTextStyle(
                                               child: Text("Last Update: " +
                                                   DateFormat(
@@ -341,7 +342,7 @@ class EditPlaylistView extends StatelessWidget {
                                                               .lastUpdate!))),
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .bodyText2!,
+                                                  .subtitle1!,
                                             ),
                                           ]),
                                     ),
