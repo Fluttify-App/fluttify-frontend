@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/ui/styles/colors.dart';
@@ -41,9 +42,8 @@ class SpotifySignInView extends StatelessWidget {
                           child: FluttifyButton(
                             onPressed: () => model.handleSignIn(),
                             text: "Sign In With Spotify",
-                            textStyle: Theme.of(context).textTheme.headline2,
-                            color: Colors.transparent,
-                            //color: Color.fromARGB(255, 233, 30, 30),
+                            textStyle: Theme.of(context).textTheme.headline1,
+                            color: Color(0xff1a1a1a),
                           ),
                         ),
                       ),
@@ -51,7 +51,7 @@ class SpotifySignInView extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 10.0),
                         child: Container(
                           child: FluttifyButton(
-                            onPressed: () => model.handleSignIn(),
+                            onPressed: () => SystemNavigator.pop(),
                             text: "Leave",
                             textStyle: Theme.of(context).textTheme.button,
                             color: Colors.transparent,

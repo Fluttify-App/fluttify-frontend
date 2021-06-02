@@ -39,7 +39,6 @@ class FluttifyButton extends StatelessWidget {
                       style: textStyle ?? Theme.of(context).textTheme.button)
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      // Replace with a Row for horizontal icon + text
                       children: <Widget>[
                         icon!,
                         Padding(
