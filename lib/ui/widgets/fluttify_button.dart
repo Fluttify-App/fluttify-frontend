@@ -8,13 +8,16 @@ class FluttifyButton extends StatelessWidget {
   double? width;
   Icon? icon;
   Color? color;
+  TextStyle? textStyle;
+
   FluttifyButton(
       {required this.onPressed,
       required this.text,
       this.height,
       this.width,
       this.icon,
-      this.color});
+      this.color,
+      this.textStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +25,8 @@ class FluttifyButton extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: Container(
         child: SizedBox(
-          height: height ?? 45,
-          width: width ?? 300,
+          height: height ?? MediaQuery.of(context).size.width / 2 - 150,
+          width: width ?? MediaQuery.of(context).size.width - 100,
           child: TextButton(
               style: TextButton.styleFrom(
                 backgroundColor: color ?? Theme.of(context).accentColor,
@@ -32,7 +35,8 @@ class FluttifyButton extends StatelessWidget {
                 ),
               ),
               child: this.icon == null
-                  ? Text(text!, style: Theme.of(context).textTheme.button)
+                  ? Text(text!,
+                      style: textStyle ?? Theme.of(context).textTheme.button)
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       // Replace with a Row for horizontal icon + text

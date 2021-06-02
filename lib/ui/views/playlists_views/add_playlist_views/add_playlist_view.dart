@@ -148,12 +148,12 @@ class AddPlaylistView extends StatelessWidget {
                                     onPressed: () =>
                                         model.navigateBack(context),
                                     text: 'Cancel',
-                                    width: 150,
+                                    width: MediaQuery.of(context).size.width / 2 - 50,
                                   ),
                                   FluttifyButton(
                                     onPressed: () => model.save(context),
                                     text: 'Save',
-                                    width: 150,
+                                    width: MediaQuery.of(context).size.width / 2 - 50,
                                     color: Color(0xff8AAB21),
                                   ),
                                 ],

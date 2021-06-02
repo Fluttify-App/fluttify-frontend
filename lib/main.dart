@@ -7,6 +7,8 @@ import 'package:fluttify/services/auth_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/theme_service.dart';
+import 'package:fluttify/ui/styles/colors.dart';
+import 'package:fluttify/ui/views/splashscreen_views/splashscreen_view.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -58,30 +60,33 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     //_auth.logoutBackend();
     return PreferenceBuilder<String>(
-        preference: preferences.getString('token', defaultValue: ""),
-        builder: (BuildContext context, String token) {
-          return FutureBuilder<bool>(
-              future: _auth.initializeAuthentication(),
-              builder:
-                  (BuildContext context, AsyncSnapshot<bool> authSnapshot) {
-                if (authSnapshot.connectionState == ConnectionState.done) {
-                  return Consumer<ThemeService>(
-                    builder: (context, notifire, child) {
-                      return MaterialApp(
-                        title: 'Fluttify',
-                        theme: notifire.getTheme(),
-                        initialRoute: token != "" && token != "initial"
-                            ? Routes.homeView
-                            : Routes.spotifySignInView,
-                        navigatorKey: StackedService.navigatorKey,
-                        onGenerateRoute: StackedRouter().onGenerateRoute,
-                      );
-                    },
+      preference: preferences.getString('token', defaultValue: ""),
+      builder: (BuildContext context, String token) {
+        return FutureBuilder<bool>(
+          future: _auth.initializeAuthentication(),
+          builder: (BuildContext context, AsyncSnapshot<bool> authSnapshot) {
+            if (authSnapshot.connectionState == ConnectionState.done) {
+              return Consumer<ThemeService>(
+                builder: (context, notifire, child) {
+                  return MaterialApp(
+                    title: 'Fluttify',
+                    theme: notifire.getTheme(),
+                    initialRoute: token != "" && token != "initial"
+                        ? Routes.homeView
+                        : Routes.spotifySignInView,
+                    navigatorKey: StackedService.navigatorKey,
+                    onGenerateRoute: StackedRouter().onGenerateRoute,
                   );
-                } else {
-                  return Container();
-                }
-              });
-        });
+                },
+              );
+            } else {
+              return MaterialApp(
+                home: SplashScreenView(),
+              );
+            }
+          },
+        );
+      },
+    );
   }
 }
