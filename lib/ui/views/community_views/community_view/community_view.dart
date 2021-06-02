@@ -142,6 +142,8 @@ class CommunityView extends StatelessWidget {
                                             children: [
                                               playlist.image == null
                                                   ? Container(
+                                                      margin: EdgeInsets.only(
+                                                          right: 16),
                                                       height: 100,
                                                       width: 100,
                                                       child: Icon(
@@ -150,17 +152,15 @@ class CommunityView extends StatelessWidget {
                                                       ),
                                                     )
                                                   : Container(
+                                                      margin: EdgeInsets.only(
+                                                          right: 16),
                                                       height: 100,
                                                       width: 100,
                                                       child: ClipRRect(
                                                         borderRadius:
-                                                            BorderRadius.only(
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        10),
-                                                                bottomRight: Radius
-                                                                    .circular(
-                                                                        10)),
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    10)),
                                                         child: Image.network(
                                                             playlist.image!),
                                                       ),
