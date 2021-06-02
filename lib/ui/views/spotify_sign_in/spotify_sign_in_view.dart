@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/spotify_sign_in/spotify_sign_in_viewmodel.dart';
+import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
@@ -14,13 +15,12 @@ class SpotifySignInView extends StatelessWidget {
                 Widget? child) =>
             Container(
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: <Color>[
-                    fluttify_gradient_1,
-                    fluttify_gradient_2
-                  ])),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: <Color>[fluttify_gradient_1, fluttify_gradient_2],
+                ),
+              ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 extendBodyBehindAppBar: true,
@@ -30,41 +30,31 @@ class SpotifySignInView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border:
-                                  Border.all(color: Colors.white, width: 10),
-                              borderRadius: BorderRadius.circular(150)),
-                          child: Image.asset(
-                            'assets/images/FluttifyRed.png',
-                            width: 280.0,
-                          )),
+                        child: Image.asset(
+                          'assets/images/FluttifyRed.png',
+                          width: 280.0,
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 64.0),
                         child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.all(Radius.circular(8)),
-                            color: Colors.white,
-                            border: Border.all(width: 2, color: Colors.white),
-                          ),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8))),
-                                padding: EdgeInsets.only(
-                                    left: 32, right: 32, top: 8, bottom: 8),
-                                primary: Color(0xffb1a1a1a)),
+                          child: FluttifyButton(
                             onPressed: () => model.handleSignIn(),
-                            child: Text(
-                              "Sign In With Spotify",
-                              style: TextStyle(
-                                  color: Colors
-                                      .white, // Theme.of(context).accentColor,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w600),
-                            ),
+                            text: "Sign In With Spotify",
+                            textStyle: Theme.of(context).textTheme.headline2,
+                            color: Colors.transparent,
+                            //color: Color.fromARGB(255, 233, 30, 30),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Container(
+                          child: FluttifyButton(
+                            onPressed: () => model.handleSignIn(),
+                            text: "Leave",
+                            textStyle: Theme.of(context).textTheme.button,
+                            color: Colors.transparent,
                           ),
                         ),
                       ),

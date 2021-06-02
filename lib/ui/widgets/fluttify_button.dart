@@ -7,12 +7,15 @@ class FluttifyButton extends StatelessWidget {
   double? height;
   double? width;
   Color? color;
+  TextStyle? textStyle;
+
   FluttifyButton(
       {required this.onPressed,
       required this.text,
       this.height,
       this.width,
-      this.color});
+      this.color,
+      this.textStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +23,8 @@ class FluttifyButton extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: Container(
         child: SizedBox(
-          height: height ?? 45,
-          width: width ?? 300,
+          height: height ?? MediaQuery.of(context).size.width / 2 - 150,
+          width: width ?? MediaQuery.of(context).size.width - 100,
           child: TextButton(
               style: TextButton.styleFrom(
                 backgroundColor: color ?? Theme.of(context).accentColor,
@@ -29,7 +32,7 @@ class FluttifyButton extends StatelessWidget {
                   side: BorderSide(color: Colors.transparent),
                 ),
               ),
-              child: Text(text!, style: Theme.of(context).textTheme.button),
+              child: Text(text!, style: textStyle ?? Theme.of(context).textTheme.button),
               onPressed: onPressed as void Function()?),
         ),
       ),
