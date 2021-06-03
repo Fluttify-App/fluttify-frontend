@@ -13,6 +13,8 @@ class FluttifyPlaylistService {
   List<Playlist> myplaylists = [];
   List<Playlist> communityplaylists = [];
   List<dynamic> genres = [];
+  List<Playlist> contributed = <Playlist>[];
+  List<Playlist> liked = <Playlist>[];
 
   FluttifyPlaylistService() {
     // get genres
@@ -29,12 +31,15 @@ class FluttifyPlaylistService {
         headers: _apiService.headers);
 
     if (response.statusCode == 200) {
-      var createdPlaylists = (json.decode(response.body)['created'] as List);
-      var subscribedPlaylists =
+      List createdPlaylists = (json.decode(response.body)['created'] as List);
+      List subscribedPlaylists =
           (json.decode(response.body)['subscribed'] as List);
-      var showPlaylists = createdPlaylists + subscribedPlaylists;
+      List likedPlaylists = (json.decode(response.body)['liked'] as List);
       myplaylists =
-          showPlaylists.map((data) => Playlist.fromJson(data)).toList();
+          createdPlaylists.map((data) => Playlist.fromJson(data)).toList();
+      contributed =
+          subscribedPlaylists.map((data) => Playlist.fromJson(data)).toList();
+      liked = likedPlaylists.map((data) => Playlist.fromJson(data)).toList();
     } else {
       myplaylists = [];
     }

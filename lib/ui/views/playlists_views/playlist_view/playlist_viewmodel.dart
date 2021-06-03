@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
+import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
@@ -17,8 +18,24 @@ class PlaylistViewModel extends BaseViewModel {
   final PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
   final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
+  final AuthService authService = locator<AuthService>();
 
   bool isLoading = true;
+
+  List<Playlist> contributed = <Playlist>[];
+
+  List<Playlist> liked = <Playlist>[];
+
+  void getLikedandContributed() {
+    for (Playlist playlist in playlistService.myplaylists) {
+      if (playlist.creator != authService.currentUser.id) {
+        contributed.add(playlist);
+      }
+      if (playlist.likes!.contains(authService.currentUser.id)) {
+        liked.add(playlist);
+      }
+    }
+  }
 
   void refreshPlaylists() {
     isLoading = true;

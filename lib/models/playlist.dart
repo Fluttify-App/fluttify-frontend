@@ -68,7 +68,8 @@ class Playlist {
           .map((song) => Song.fromJson(song))
           .toList();
     }
-    print(parsedJson['lastUpdate']);
+    //print(parsedJson['lastUpdate']);
+    //print(parsedJson['likes']);
     return Playlist(
         dbID: parsedJson['_id'],
         id: parsedJson['id'],
