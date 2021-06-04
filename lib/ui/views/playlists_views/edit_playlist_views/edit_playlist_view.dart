@@ -1,5 +1,7 @@
+import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/models/song.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
@@ -263,26 +265,30 @@ class EditPlaylistView extends StatelessWidget {
                                     alignment: WrapAlignment.start,
                                     direction: Axis.horizontal,
                                     children: [
+                                      // TODO: change color of currentuser
                                       for (dynamic contributers in model
                                           .playlist!.displayContributers!)
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
                                               15, 10, 0, 10),
                                           child: Card(
-                                            color:
-                                                Theme.of(context).accentColor,
+                                            color: contributers['id'] !=
+                                                    model.authService
+                                                        .currentUser.id
+                                                ? Theme.of(context).accentColor
+                                                : Color(0xff8AAB21),
                                             shape: StadiumBorder(
                                               side: BorderSide(
                                                   color: Colors.transparent),
                                             ),
                                             child: Container(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  12, 5, 12, 5),
-                                              child: Text(contributers['name'],
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .subtitle2),
-                                            ),
+                                                padding: EdgeInsets.fromLTRB(
+                                                    12, 5, 12, 5),
+                                                child: Text(
+                                                    contributers['name'],
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .subtitle2)),
                                           ),
                                         ),
                                     ],
@@ -320,31 +326,57 @@ class EditPlaylistView extends StatelessWidget {
                                       padding:
                                           EdgeInsets.fromLTRB(25, 25, 0, 15),
                                       alignment: Alignment.centerLeft,
-                                      child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            DefaultTextStyle(
-                                              child: Text("Current Songs"),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1!,
-                                            ),
-                                            SizedBox(height: 5),
-                                            DefaultTextStyle(
-                                              child: Text("Last Update: " +
-                                                  DateFormat(
-                                                          'yyyy-MM-dd HH:mm:ss')
-                                                      .format(dateTimeToZone(
-                                                          zone: "GST",
-                                                          datetime: model
-                                                              .playlist!
-                                                              .lastUpdate!))),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .subtitle1!,
-                                            ),
-                                          ]),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              DefaultTextStyle(
+                                                child: Text("Current Songs"),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1!,
+                                              ),
+                                              SizedBox(height: 5),
+                                              DefaultTextStyle(
+                                                child: Text("Last Update: " +
+                                                    DateFormat(
+                                                            'yyyy-MM-dd HH:mm:ss')
+                                                        .format(dateTimeToZone(
+                                                            zone: "GST",
+                                                            datetime: model
+                                                                .playlist!
+                                                                .lastUpdate!))),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .subtitle1!,
+                                              ),
+                                              DefaultTextStyle(
+                                                child: Text("Created by: " +
+                                                    model.getCreator()!),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .subtitle1!,
+                                              ),
+                                            ],
+                                          ),
+                                          !model.playlist!.updating!
+                                              ? Container(
+                                                  padding: EdgeInsets.only(
+                                                      right: 15),
+                                                  child: IconButton(
+                                                    onPressed: () =>
+                                                        model.updatePlaylist(
+                                                            context),
+                                                    icon: Icon(Icons.refresh),
+                                                  ),
+                                                )
+                                              : Container(),
+                                        ],
+                                      ),
                                     ),
                                     !model.playlist!.updating!
                                         ? Container(
@@ -457,15 +489,10 @@ class EditPlaylistView extends StatelessWidget {
                                       color: Theme.of(context).dividerColor,
                                       height: 50,
                                     ),
-                                    !model.playlist!.updating!
-                                        ? FluttifyButton(
-                                            onPressed: () =>
-                                                model.updatePlaylist(context),
-                                            text: 'Update Playlist')
-                                        : Container(),
                                     (model.playlist!.contributers!.contains(
                                             model.authService.currentUser.id))
                                         ? FluttifyButton(
+                                            width: 150,
                                             color: Color.fromARGB(
                                                 255, 233, 30, 30),
                                             onPressed: () => {
@@ -519,6 +546,7 @@ class EditPlaylistView extends StatelessWidget {
                                                 },
                                             text: 'Leave Playlist')
                                         : FluttifyButton(
+                                            width: 150,
                                             onPressed: () {
                                               showDialog(
                                                 context: context,
@@ -568,7 +596,7 @@ class EditPlaylistView extends StatelessWidget {
                                               );
                                             },
                                             text: 'Join Playlist',
-                                            color: Color(0xff8AAB21),
+                                            color: fluttify_gradient_2,
                                           ),
                                   ],
                                 )

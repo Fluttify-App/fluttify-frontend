@@ -8,7 +8,7 @@ import 'package:fluttify/ui/widgets/scrolling_text.dart';
 class PlaylistCard extends StatelessWidget {
   PlaylistViewModel? model;
   Playlist? playlist;
-  PlaylistCard({required this.model, required this.playlist});
+  PlaylistCard({required this.model, required this.playlist, t});
   @override
   Widget build(BuildContext context) {
     return Dismissible(
@@ -70,46 +70,55 @@ class PlaylistCard extends StatelessWidget {
           onTap: () => {model!.navigateToEditPage(playlist!)},
           child: Card(
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        height: 60,
-                        width: MediaQuery.of(context).size.width - 180,
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.fromLTRB(25, 20, 0, 10),
-                        child: playlist!.name!.length >= 20
-                            ? ScrollingText(
-                                text: playlist!.name!,
-                                textStyle:
-                                    Theme.of(context).textTheme.headline1)
-                            : Text(
-                                playlist!.name!,
-                                style: Theme.of(context).textTheme.headline1,
-                              ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.fromLTRB(25, 0, 0, 20),
-                        child: Text(
-                          playlist!.numberOfSongs.toString() + ' Songs',
-                          style: Theme.of(context).textTheme.bodyText2,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      height: 60,
+                      width: MediaQuery.of(context).size.width - 180,
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.fromLTRB(25, 20, 0, 10),
+                      child: playlist!.name!.length >= 20
+                          ? ScrollingText(
+                              text: playlist!.name!,
+                              textStyle: Theme.of(context).textTheme.headline1)
+                          : Text(
+                              playlist!.name!,
+                              style: Theme.of(context).textTheme.headline1,
+                            ),
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.fromLTRB(25, 0, 0, 20),
+                          child: Text(
+                            playlist!.numberOfSongs.toString() + ' Songs',
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(25, 0, 0, 20),
+                          child: Text(
+                            playlist!.contributers!.length == 1
+                                ? '1 Contributor'
+                                : playlist!.contributers!.length.toString() +
+                                    " Contributors",
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       child: IconButton(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
                         icon: Icon(
                           Icons.share,
                         ),
@@ -123,7 +132,7 @@ class PlaylistCard extends StatelessWidget {
                             height: 100,
                             width: 100,
                             child: Icon(
-                              Icons.music_note,
+                              Icons.image,
                               size: 30,
                             ),
                           )
@@ -132,8 +141,9 @@ class PlaylistCard extends StatelessWidget {
                             width: 100,
                             child: ClipRRect(
                               borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(10),
-                                  bottomRight: Radius.circular(10)),
+                                topRight: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
                               child: Image.network(playlist!.image!),
                             ),
                           ),

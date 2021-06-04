@@ -108,6 +108,7 @@ class UserView extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: FluttifyButton(
+                      width: 150,
                       onPressed: () => {
                         showDialog(
                           context: context,
