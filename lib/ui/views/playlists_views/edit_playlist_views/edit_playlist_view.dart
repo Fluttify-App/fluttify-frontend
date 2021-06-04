@@ -344,7 +344,7 @@ class EditPlaylistView extends StatelessWidget {
                                               DefaultTextStyle(
                                                 child: Text("Last Update: " +
                                                     DateFormat(
-                                                            'yyyy-MM-dd HH:mm:ss')
+                                                            'dd.MM.yyyy HH:mm:ss')
                                                         .format(dateTimeToZone(
                                                             zone: "GST",
                                                             datetime: model
