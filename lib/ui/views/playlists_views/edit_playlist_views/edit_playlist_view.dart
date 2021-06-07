@@ -85,29 +85,31 @@ class EditPlaylistView extends StatelessWidget {
                                 )
                               else
                                 Container(
-                                    height: 250,
-                                    width: 250,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
-                                            bottomLeft: Radius.circular(10),
-                                            bottomRight: Radius.circular(10)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 5,
-                                            blurRadius: 9,
-                                            offset: Offset(0,
-                                                3), // changes position of shadow
-                                          ),
-                                        ]),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        launch(model.playlist!.href!);
-                                      },
-                                      child: Stack(children: [
+                                  height: 250,
+                                  width: 250,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 5,
+                                        blurRadius: 9,
+                                        offset: Offset(
+                                            0, 3), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      launch(model.playlist!.href!);
+                                    },
+                                    child: Stack(
+                                      children: [
                                         ClipRRect(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(10)),
@@ -121,8 +123,10 @@ class EditPlaylistView extends StatelessWidget {
                                             color: Colors.white,
                                           ),
                                         )
-                                      ]),
-                                    )),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               Container(
                                 padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
                                 alignment: Alignment.topLeft,
@@ -282,13 +286,13 @@ class EditPlaylistView extends StatelessWidget {
                                                   color: Colors.transparent),
                                             ),
                                             child: Container(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    12, 5, 12, 5),
-                                                child: Text(
-                                                    contributers['name'],
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .subtitle2)),
+                                              padding: EdgeInsets.fromLTRB(
+                                                  12, 5, 12, 5),
+                                              child: Text(contributers['name'],
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .subtitle2),
+                                            ),
                                           ),
                                         ),
                                     ],
@@ -381,8 +385,9 @@ class EditPlaylistView extends StatelessWidget {
                                     !model.playlist!.updating!
                                         ? Container(
                                             child: FractionallySizedBox(
-                                                widthFactor: 0.95,
-                                                child: Column(children: [
+                                              widthFactor: 0.95,
+                                              child: Column(
+                                                children: [
                                                   for (Song song
                                                       in model.playlist!.songs!)
                                                     GestureDetector(
@@ -478,13 +483,17 @@ class EditPlaylistView extends StatelessWidget {
                                                         ),
                                                       ),
                                                     )
-                                                ])))
+                                                ],
+                                              ),
+                                            ),
+                                          )
                                         : Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                                CircularProgressIndicator()
-                                              ]),
+                                              CircularProgressIndicator()
+                                            ],
+                                          ),
                                     Divider(
                                       color: Theme.of(context).dividerColor,
                                       height: 50,
@@ -596,6 +605,7 @@ class EditPlaylistView extends StatelessWidget {
                                               );
                                             },
                                             text: 'Join Playlist',
+                                            // TODO: think about which color it should have
                                             color: fluttify_gradient_2,
                                           ),
                                   ],
