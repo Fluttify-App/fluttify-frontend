@@ -39,24 +39,88 @@ class PlaylistView extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              for (Playlist playlist
-                                  in model.playlistService.myplaylists.reversed)
-                                PlaylistCard(
-                                  model: model,
-                                  playlist: playlist,
-                                ),
-                              for (Playlist playlist
-                                  in model.playlistService.contributed.reversed)
-                                PlaylistCard(
-                                  model: model,
-                                  playlist: playlist,
-                                ),
-                              for (Playlist playlist
-                                  in model.playlistService.liked.reversed)
-                                PlaylistCard(
-                                  model: model,
-                                  playlist: playlist,
-                                ),
+                              model.playlistService.myplaylists.isEmpty
+                                  ? Container()
+                                  : Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 20, 0, 10),
+                                          child: Text('Created',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline4),
+                                        ),
+                                        Divider(
+                                          color: Theme.of(context).dividerColor,
+                                          height: 20,
+                                        ),
+                                        for (Playlist playlist in model
+                                            .playlistService
+                                            .myplaylists
+                                            .reversed)
+                                          PlaylistCard(
+                                            model: model,
+                                            playlist: playlist,
+                                          ),
+                                      ],
+                                    ),
+                              model.playlistService.contributed.isEmpty
+                                  ? Container()
+                                  : Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 20, 0, 10),
+                                          child: Text('Joined',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline4),
+                                        ),
+                                        Divider(
+                                          color: Theme.of(context).dividerColor,
+                                          height: 20,
+                                        ),
+                                        for (Playlist playlist in model
+                                            .playlistService
+                                            .contributed
+                                            .reversed)
+                                          PlaylistCard(
+                                            model: model,
+                                            playlist: playlist,
+                                          ),
+                                      ],
+                                    ),
+                              model.playlistService.liked.isEmpty
+                                  ? Container()
+                                  : Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 20, 0, 10),
+                                          child: Text('Liked',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline4),
+                                        ),
+                                        Divider(
+                                          color: Theme.of(context).dividerColor,
+                                          height: 20,
+                                        ),
+                                        for (Playlist playlist in model
+                                            .playlistService.liked.reversed)
+                                          PlaylistCard(
+                                            model: model,
+                                            playlist: playlist,
+                                          ),
+                                      ],
+                                    ),
                             ],
                           ),
                         ),
