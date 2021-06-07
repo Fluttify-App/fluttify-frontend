@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/user.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class AuthService extends ChangeNotifier {
   Preference<String>? token;
@@ -42,7 +44,13 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<void> authenticateBackend() async {
-    final response = await http.get(Uri.https(baseUrl, 'auth/login'));
+    Response response;
+    if (kIsWeb) {
+      response =
+          await http.get(Uri.https(baseUrl, 'auth/login', {"web": "true"}));
+    } else {
+      response = await http.get(Uri.https(baseUrl, 'auth/login'));
+    }
     final url = response.body;
     try {
       await launch(url.toString());

@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class HomeViewModel extends BaseViewModel {
   final PlaylistNavigationService _playlistNavigation =
@@ -40,5 +43,17 @@ class HomeViewModel extends BaseViewModel {
     _playlistNavigation.popAll();
     _addPlaylistNavigation.popAll();
     _friendsNavigation.popAll();
+  }
+
+  Future<void> initializeWebAuth(context) async {
+    if (kIsWeb) {
+      final dynamic uri = ModalRoute.of(context)!.settings.name;
+      final token = Uri.parse(uri).queryParameters['auth'];
+      if (token != null) {
+        dynamic sharedPrefs = await StreamingSharedPreferences.instance;
+        await sharedPrefs.setString("token", token);
+      }
+    }
+    return;
   }
 }

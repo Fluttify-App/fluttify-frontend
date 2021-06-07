@@ -353,7 +353,7 @@ class DisplayCommunityView extends StatelessWidget {
                                           },
                                           text: 'Like Playlist',
                                           icon: Icon(
-                                            Icons.favorite,
+                                            Icons.favorite_border_outlined,
                                             color: Colors.white,
                                           ),
                                           width: 200,
@@ -365,7 +365,7 @@ class DisplayCommunityView extends StatelessWidget {
                                           },
                                           text: 'Unlike Playlist',
                                           icon: Icon(
-                                            Icons.favorite_border_outlined,
+                                            Icons.favorite,
                                             color: Colors.white,
                                           ),
                                           width: 200,
