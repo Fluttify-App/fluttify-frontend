@@ -155,9 +155,7 @@ class AddPlaylistView extends StatelessWidget {
                                     onPressed: () => model.save(context),
                                     text: 'Save',
                                     width: MediaQuery.of(context).size.width / 2 - 50,
-                                    // TODO: think about which color it should have
                                     color: fluttify_gradient_2
-                                    //color: Color(0xff8AAB21),
                                   ),
                                 ],
                               ),
