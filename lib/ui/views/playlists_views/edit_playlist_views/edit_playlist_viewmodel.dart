@@ -161,4 +161,15 @@ class EditPlaylistViewModel extends BaseViewModel {
       if (playlist!.creator == contributor['id'])
         return contributor['name'].toString();
   }
+
+  bool checkIfPlaylistIsLiked() {
+    for (Playlist pl in fluttifyPlaylistService.myplaylists) {
+      for (Playlist pl1 in fluttifyPlaylistService.contributed) {
+        if (pl.id == playlist!.id || pl1.id == playlist!.id) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }

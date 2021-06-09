@@ -494,9 +494,7 @@ class EditPlaylistView extends StatelessWidget {
                                               CircularProgressIndicator()
                                             ],
                                           ),
-                                    // TODO: fix bug with link
-                                    if (model.playlist!.contributers!.contains(
-                                        model.authService.currentUser.id))
+                                    if (model.checkIfPlaylistIsLiked())
                                       model.playlist!.contributers!.contains(
                                               model.authService.currentUser.id)
                                           ? Column(
