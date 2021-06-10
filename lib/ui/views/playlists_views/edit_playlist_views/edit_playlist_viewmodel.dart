@@ -34,6 +34,8 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   Timer? _timer;
 
+  bool isChanged = false;
+
   EditPlaylistViewModel() {
     playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
@@ -70,7 +72,7 @@ class EditPlaylistViewModel extends BaseViewModel {
     fluttifyPlaylistService.saveFluttifyPlaylist(playlist!).then((success) {
       if (success) {
         canEdit();
-        Navigator.of(context).pop(true);
+        this.isChanged = true;
       }
     });
   }
@@ -153,7 +155,7 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   void navigateBack(BuildContext context) {
-    Navigator.of(context, rootNavigator: true).pop();
+    Navigator.of(context, rootNavigator: true).pop(this.isChanged);
   }
 
   String? getCreator() {

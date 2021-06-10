@@ -39,7 +39,7 @@ class PlaylistViewModel extends BaseViewModel {
     _navigationService.navigateTo(
         '/edit-playlist', EditPlaylistView(playlistId: playlist.dbID!),
         withNavBar: false, callback: (value) {
-      if (value != null) {
+      if (value != null && value == true) {
         refreshPlaylists();
       }
     });
