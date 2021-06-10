@@ -95,32 +95,6 @@ class PlaylistView extends StatelessWidget {
                                           ),
                                       ],
                                     ),
-                              model.playlistService.liked.isEmpty
-                                  ? Container()
-                                  : Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.fromLTRB(
-                                              15, 20, 0, 10),
-                                          child: Text('Liked',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline4),
-                                        ),
-                                        Divider(
-                                          color: Theme.of(context).dividerColor,
-                                          height: 20,
-                                        ),
-                                        for (Playlist playlist in model
-                                            .playlistService.liked.reversed)
-                                          PlaylistCard(
-                                            model: model,
-                                            playlist: playlist,
-                                          ),
-                                      ],
-                                    ),
                             ],
                           ),
                         ),

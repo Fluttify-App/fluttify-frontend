@@ -14,7 +14,7 @@ class FluttifyPlaylistService {
   List<Playlist> communityplaylists = [];
   List<dynamic> genres = [];
   List<Playlist> contributed = <Playlist>[];
-  List<Playlist> liked = <Playlist>[];
+  List<Playlist> communitylikedplaylists = <Playlist>[];
 
   FluttifyPlaylistService() {
     // get genres
@@ -34,12 +34,10 @@ class FluttifyPlaylistService {
       List createdPlaylists = (json.decode(response.body)['created'] as List);
       List subscribedPlaylists =
           (json.decode(response.body)['subscribed'] as List);
-      List likedPlaylists = (json.decode(response.body)['liked'] as List);
       myplaylists =
           createdPlaylists.map((data) => Playlist.fromJson(data)).toList();
       contributed =
           subscribedPlaylists.map((data) => Playlist.fromJson(data)).toList();
-      liked = likedPlaylists.map((data) => Playlist.fromJson(data)).toList();
     } else {
       myplaylists = [];
     }
@@ -50,11 +48,17 @@ class FluttifyPlaylistService {
         headers: _apiService.headers);
 
     if (response.statusCode == 200) {
-      List<Playlist> responseList = (json.decode(response.body) as List)
-          .map((data) => Playlist.fromJson(data))
-          .toList();
-      responseList.sort((a, b) => a.likes!.length.compareTo(b.likes!.length));
-      communityplaylists = responseList;
+      List<Playlist> communitylist =
+          (json.decode(response.body)["community"] as List)
+              .map((data) => Playlist.fromJson(data))
+              .toList();
+      communitylist.sort((a, b) => a.likes!.length.compareTo(b.likes!.length));
+      List<Playlist> communitylikedlist =
+          (json.decode(response.body)['liked'] as List)
+              .map((data) => Playlist.fromJson(data))
+              .toList();
+      communitylikedplaylists = communitylikedlist;
+      communityplaylists = communitylist;
     } else {
       myplaylists = [];
     }
