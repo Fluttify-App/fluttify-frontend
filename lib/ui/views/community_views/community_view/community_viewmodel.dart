@@ -38,7 +38,7 @@ class CommunityViewModel extends BaseViewModel {
     _navigationService.navigateTo(
         '/display-community', DisplayCommunityView(playlistId: playlist.dbID!),
         withNavBar: false, callback: (value) {
-      if (value != null) {
+      if (value != null && value == true) {
         refreshCommunityPlaylists();
       }
     });

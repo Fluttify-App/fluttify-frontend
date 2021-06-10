@@ -23,6 +23,11 @@ class DisplayCommunityView extends StatelessWidget {
             model.playlist != null
                 ? Scaffold(
                     appBar: AppBar(
+                      leading: IconButton(
+                          icon: Icon(Icons.arrow_back),
+                          onPressed: () {
+                            model.navigateBack(context);
+                          }),
                       // back button is only visible when you're not editing the playlist
                       automaticallyImplyLeading: true,
                       title: Text(model.playlist!.name!,

@@ -24,6 +24,8 @@ class DisplayCommunityViewModel extends BaseViewModel {
 
   Playlist? playlist;
 
+  bool isChanged = false;
+
   EditPlaylistViewModel() {
     playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
@@ -74,6 +76,7 @@ class DisplayCommunityViewModel extends BaseViewModel {
     fluttifyPlaylistService
         .likeFluttifyPlaylist(this.playlist!)
         .then((playlistUpdate) {
+      this.isChanged = true;
       setPlaylist(playlistUpdate);
       final snackBar = SnackBar(
         content: Text("Liked Playlist"),
@@ -91,6 +94,7 @@ class DisplayCommunityViewModel extends BaseViewModel {
     fluttifyPlaylistService
         .unlikeFluttifyPlaylist(this.playlist!)
         .then((playlistUpdate) {
+      this.isChanged = true;
       setPlaylist(playlistUpdate);
       final snackBar = SnackBar(
         content: Text("Unliked Playlist"),
@@ -105,6 +109,6 @@ class DisplayCommunityViewModel extends BaseViewModel {
   }
 
   void navigateBack(BuildContext context) {
-    Navigator.of(context, rootNavigator: true).pop();
+    Navigator.of(context, rootNavigator: true).pop(this.isChanged);
   }
 }
