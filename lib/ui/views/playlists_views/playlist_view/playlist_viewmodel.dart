@@ -26,17 +26,6 @@ class PlaylistViewModel extends BaseViewModel {
 
   List<Playlist> liked = <Playlist>[];
 
-  void getLikedandContributed() {
-    for (Playlist playlist in playlistService.myplaylists) {
-      if (playlist.creator != authService.currentUser.id) {
-        contributed.add(playlist);
-      }
-      if (playlist.likes!.contains(authService.currentUser.id)) {
-        liked.add(playlist);
-      }
-    }
-  }
-
   void refreshPlaylists() {
     isLoading = true;
     notifyListeners();
