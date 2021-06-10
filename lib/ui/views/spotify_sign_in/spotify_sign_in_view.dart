@@ -42,19 +42,8 @@ class SpotifySignInView extends StatelessWidget {
                           child: FluttifyButton(
                             onPressed: () => model.handleSignIn(),
                             text: "Sign In With Spotify",
-                            textStyle: Theme.of(context).textTheme.headline1,
+                            textStyle: Theme.of(context).textTheme.headline2,
                             color: Color(0xff1a1a1a),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Container(
-                          child: FluttifyButton(
-                            onPressed: () => SystemNavigator.pop(),
-                            text: "Leave",
-                            textStyle: Theme.of(context).textTheme.button,
-                            color: Colors.transparent,
                           ),
                         ),
                       ),

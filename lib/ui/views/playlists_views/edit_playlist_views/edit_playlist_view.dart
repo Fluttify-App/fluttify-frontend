@@ -311,6 +311,8 @@ class EditPlaylistView extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           FluttifyButton(
+                                            color: Color.fromARGB(
+                                                255, 233, 30, 30),
                                             onPressed: () => model.canEdit(),
                                             text: 'Cancel',
                                             width: 150,
@@ -320,7 +322,6 @@ class EditPlaylistView extends StatelessWidget {
                                                 model.save(context),
                                             text: 'Save',
                                             width: 150,
-                                            color: Color(0xff8AAB21),
                                           ),
                                         ],
                                       ),
@@ -502,143 +503,133 @@ class EditPlaylistView extends StatelessWidget {
                                               CircularProgressIndicator()
                                             ],
                                           ),
-                                    if (model.checkIfPlaylistIsLiked())
-                                      model.playlist!.contributers!.contains(
-                                              model.authService.currentUser.id)
-                                          ? Column(
-                                              children: [
-                                                Divider(
-                                                  color: Theme.of(context)
-                                                      .dividerColor,
-                                                  height: 50,
-                                                ),
-                                                FluttifyButton(
-                                                    width: 150,
-                                                    color: Color.fromARGB(
-                                                        255, 233, 30, 30),
-                                                    onPressed: () => {
-                                                          showDialog(
-                                                            context: context,
-                                                            builder: (_) {
-                                                              return AlertDialog(
-                                                                title: Text(
-                                                                  'Leave Playlist',
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .headline1,
-                                                                ),
-                                                                content:
-                                                                    SingleChildScrollView(
-                                                                  child:
-                                                                      ListBody(
-                                                                    children: <
-                                                                        Widget>[
-                                                                      Text(
-                                                                        'Would you like to leave playlist: ${model.playlist!.name}',
-                                                                        style: Theme.of(context)
-                                                                            .textTheme
-                                                                            .bodyText2,
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                actions: <
-                                                                    Widget>[
-                                                                  FluttifyButton(
-                                                                      onPressed: () =>
-                                                                          model.navigateBack(
-                                                                              context),
-                                                                      text:
-                                                                          'No',
-                                                                      width: 80,
-                                                                      height:
-                                                                          35),
-                                                                  FluttifyButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              {
-                                                                                model.leavePlaylist(context),
-                                                                                model.navigateBack(context)
-                                                                              },
-                                                                      text:
-                                                                          'Yes',
-                                                                      width: 80,
-                                                                      height:
-                                                                          35),
-                                                                ],
-                                                              );
-                                                            },
-                                                          )
-                                                        },
-                                                    text: 'Leave Playlist')
-                                              ],
-                                            )
-                                          : Column(
-                                              children: [
-                                                Divider(
-                                                  color: Theme.of(context)
-                                                      .dividerColor,
-                                                  height: 50,
-                                                ),
-                                                FluttifyButton(
+                                    model.playlist!.contributers!.contains(
+                                            model.authService.currentUser.id)
+                                        ? Column(
+                                            children: [
+                                              Divider(
+                                                color: Theme.of(context)
+                                                    .dividerColor,
+                                                height: 50,
+                                              ),
+                                              FluttifyButton(
                                                   width: 150,
-                                                  onPressed: () {
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (_) {
-                                                        return AlertDialog(
-                                                          title: Text(
-                                                            'Join Playlist',
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .headline1,
-                                                          ),
-                                                          content:
-                                                              SingleChildScrollView(
-                                                            child: ListBody(
-                                                              children: <
-                                                                  Widget>[
-                                                                Text(
-                                                                  'Would you like to join playlist: ${model.playlist!.name}',
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .bodyText2,
+                                                  color: Color.fromARGB(
+                                                      255, 233, 30, 30),
+                                                  onPressed: () => {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (_) {
+                                                            return AlertDialog(
+                                                              title: Text(
+                                                                'Leave Playlist',
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .headline1,
+                                                              ),
+                                                              content:
+                                                                  SingleChildScrollView(
+                                                                child: ListBody(
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Text(
+                                                                      'Would you like to leave playlist: ${model.playlist!.name}',
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .bodyText2,
+                                                                    ),
+                                                                  ],
                                                                 ),
+                                                              ),
+                                                              actions: <Widget>[
+                                                                FluttifyButton(
+                                                                    onPressed: () =>
+                                                                        model.navigateBack(
+                                                                            context),
+                                                                    text: 'No',
+                                                                    width: 80,
+                                                                    height: 35),
+                                                                FluttifyButton(
+                                                                    onPressed:
+                                                                        () => {
+                                                                              model.leavePlaylist(context),
+                                                                              model.navigateBack(context)
+                                                                            },
+                                                                    text: 'Yes',
+                                                                    width: 80,
+                                                                    height: 35),
                                                               ],
-                                                            ),
+                                                            );
+                                                          },
+                                                        )
+                                                      },
+                                                  text: 'Leave Playlist')
+                                            ],
+                                          )
+                                        : Column(
+                                            children: [
+                                              Divider(
+                                                color: Theme.of(context)
+                                                    .dividerColor,
+                                                height: 50,
+                                              ),
+                                              FluttifyButton(
+                                                width: 150,
+                                                onPressed: () {
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (_) {
+                                                      return AlertDialog(
+                                                        title: Text(
+                                                          'Join Playlist',
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .headline1,
+                                                        ),
+                                                        content:
+                                                            SingleChildScrollView(
+                                                          child: ListBody(
+                                                            children: <Widget>[
+                                                              Text(
+                                                                'Would you like to join playlist: ${model.playlist!.name}',
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyText2,
+                                                              ),
+                                                            ],
                                                           ),
-                                                          actions: <Widget>[
-                                                            FluttifyButton(
-                                                                onPressed: () =>
+                                                        ),
+                                                        actions: <Widget>[
+                                                          FluttifyButton(
+                                                              onPressed: () => model
+                                                                  .navigateBack(
+                                                                      context),
+                                                              text: 'No',
+                                                              width: 80,
+                                                              height: 35),
+                                                          FluttifyButton(
+                                                              onPressed: () => {
+                                                                    model.joinPlaylist(
+                                                                        context),
                                                                     model.navigateBack(
                                                                         context),
-                                                                text: 'No',
-                                                                width: 80,
-                                                                height: 35),
-                                                            FluttifyButton(
-                                                                onPressed: () =>
-                                                                    {
-                                                                      model.joinPlaylist(
-                                                                          context),
-                                                                      model.navigateBack(
-                                                                          context),
-                                                                    },
-                                                                text: 'Yes',
-                                                                width: 80,
-                                                                height: 35),
-                                                          ],
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                  text: 'Join Playlist',
-                                                  color: fluttify_gradient_2,
-                                                ),
-                                              ],
-                                            )
+                                                                  },
+                                                              text: 'Yes',
+                                                              width: 80,
+                                                              height: 35),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                                text: 'Join Playlist',
+                                              ),
+                                            ],
+                                          )
                                   ],
                                 )
                               else
