@@ -8,7 +8,7 @@ import 'package:fluttify/ui/widgets/scrolling_text.dart';
 class PlaylistCard extends StatelessWidget {
   PlaylistViewModel? model;
   Playlist? playlist;
-  PlaylistCard({required this.model, required this.playlist, t});
+  PlaylistCard({required this.model, required this.playlist});
   @override
   Widget build(BuildContext context) {
     return Dismissible(
@@ -34,7 +34,7 @@ class PlaylistCard extends StatelessWidget {
               ),
               actions: <Widget>[
                 FluttifyButton(
-                    onPressed: () => Navigator.of(context).pop(),
+                    onPressed: () => model!.navigateBack(context),
                     text: 'No',
                     width: 80,
                     height: 35),
