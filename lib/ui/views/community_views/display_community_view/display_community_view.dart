@@ -2,6 +2,9 @@ import 'package:fluttify/models/song.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/ui/views/community_views/display_community_view/display_community_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_chip_display.dart';
+import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
 import 'package:fluttify/ui/widgets/scrolling_text.dart';
 import 'package:stacked/stacked.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -24,16 +27,15 @@ class DisplayCommunityView extends StatelessWidget {
                 ? Scaffold(
                     appBar: AppBar(
                       leading: IconButton(
-                          icon: Icon(Icons.arrow_back),
-                          onPressed: () {
-                            model.navigateBack(context);
-                          }),
-                      // back button is only visible when you're not editing the playlist
-                      automaticallyImplyLeading: true,
+                        icon: Icon(Icons.arrow_back),
+                        onPressed: () {
+                          model.navigateBack(context);
+                        },
+                      ),
                       title: Text(model.playlist!.name!,
-                          style: Theme.of(context).textTheme.bodyText1),
+                          style: Theme.of(context).textTheme.headline2),
                       centerTitle: true,
-                      titleTextStyle: Theme.of(context).textTheme.headline1,
+                      iconTheme: IconThemeData(color: Colors.white),
                     ),
                     body: Center(
                       child: SingleChildScrollView(
@@ -59,29 +61,30 @@ class DisplayCommunityView extends StatelessWidget {
                                 )
                               else
                                 Container(
-                                    height: 250,
-                                    width: 250,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
-                                            bottomLeft: Radius.circular(10),
-                                            bottomRight: Radius.circular(10)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 5,
-                                            blurRadius: 9,
-                                            offset: Offset(0,
-                                                3), // changes position of shadow
-                                          ),
-                                        ]),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        launch(model.playlist!.href!);
-                                      },
-                                      child: Stack(children: [
+                                  height: 250,
+                                  width: 250,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                          bottomLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 5,
+                                          blurRadius: 9,
+                                          offset: Offset(0,
+                                              3), // changes position of shadow
+                                        ),
+                                      ]),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      launch(model.playlist!.href!);
+                                    },
+                                    child: Stack(
+                                      children: [
                                         ClipRRect(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(10)),
@@ -95,8 +98,10 @@ class DisplayCommunityView extends StatelessWidget {
                                             color: Colors.white,
                                           ),
                                         )
-                                      ]),
-                                    )),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               Container(
                                 padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
                                 alignment: Alignment.topLeft,
@@ -118,47 +123,60 @@ class DisplayCommunityView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
-                                alignment: Alignment.centerLeft,
-                                child: DefaultTextStyle(
-                                  child: Text("Genres"),
-                                  style: Theme.of(context).textTheme.bodyText1!,
-                                ),
-                              ),
                               FractionallySizedBox(
                                 widthFactor: 0.95,
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10.0)),
-                                  child: Wrap(
-                                    alignment: WrapAlignment.start,
-                                    direction: Axis.horizontal,
-                                    children: [
-                                      for (dynamic genre
-                                          in model.playlist!.genres!)
-                                        Container(
-                                          padding:
-                                              EdgeInsets.fromLTRB(15, 5, 0, 5),
-                                          child: Card(
-                                            color:
+                                child: Container(
+                                  padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                                  alignment: Alignment.centerLeft,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    child: FractionallySizedBox(
+                                      child: Container(
+                                        padding:
+                                            EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                        alignment: Alignment.centerLeft,
+                                        child: MultiSelectBottomSheetField(
+                                          canEdit: model.playlist!.canEdit,
+                                          decoration: BoxDecoration(),
+                                          initialValue: model.playlist!.genres,
+                                          initialChildSize: 0.4,
+                                          listType: MultiSelectListType.CHIP,
+                                          selectedItemsTextStyle:
+                                              Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2,
+                                          selectedColor:
+                                              Theme.of(context).accentColor,
+                                          itemsTextStyle: Theme.of(context)
+                                              .textTheme
+                                              .subtitle2,
+                                          searchable: true,
+                                          buttonText: Text("Genres",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1),
+                                          title: Text("Genres",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1),
+                                          items: model.playlistGenre!,
+                                          onConfirm: (values) {
+                                            model.addGenre(values);
+                                          },
+                                          chipDisplay: MultiSelectChipDisplay(
+                                            chipColor:
                                                 Theme.of(context).accentColor,
-                                            shape: StadiumBorder(
-                                              side: BorderSide(
-                                                  color: Colors.transparent),
-                                            ),
-                                            child: Container(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  12, 5, 12, 5),
-                                              child: Text(genre,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .subtitle2),
-                                            ),
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .subtitle2,
+                                            onTap: (String value) =>
+                                                model.removeGenre(value),
                                           ),
                                         ),
-                                    ],
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -184,7 +202,7 @@ class DisplayCommunityView extends StatelessWidget {
                                           .playlist!.displayContributers!)
                                         Container(
                                           padding:
-                                              EdgeInsets.fromLTRB(15, 5, 0, 5),
+                                              EdgeInsets.fromLTRB(15, 10, 0, 10),
                                           child: Card(
                                             color:
                                                 Theme.of(context).accentColor,
@@ -221,13 +239,18 @@ class DisplayCommunityView extends StatelessWidget {
                                               .textTheme
                                               .bodyText1!,
                                         ),
+                                        SizedBox(height: 5),
                                         DefaultTextStyle(
-                                          child: Text("Last Update: " +
-                                              DateFormat('yyyy-MM-dd HH:mm:ss')
-                                                  .format(dateTimeToZone(
+                                          child: Text(
+                                            "Last Update: " +
+                                                DateFormat('dd.MM.yyyy HH:mm')
+                                                    .format(
+                                                  dateTimeToZone(
                                                       zone: "GST",
                                                       datetime: model.playlist!
-                                                          .lastUpdate!))),
+                                                          .lastUpdate!),
+                                                ),
+                                          ),
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1!,
@@ -243,115 +266,116 @@ class DisplayCommunityView extends StatelessWidget {
                                     ),
                                   ),
                                   Container(
-                                      child: FractionallySizedBox(
-                                          widthFactor: 0.95,
-                                          child: Column(children: [
-                                            for (Song song
-                                                in model.playlist!.songs!)
-                                              GestureDetector(
-                                                onTap: () {
-                                                  launch(song.link!);
-                                                },
-                                                child: Card(
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Container(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: <Widget>[
-                                                            Container(
-                                                              height: 40,
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width -
-                                                                  110,
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .fromLTRB(
-                                                                          25,
-                                                                          10,
-                                                                          0,
-                                                                          10),
-                                                              child: song.name!
-                                                                          .length >=
-                                                                      40
-                                                                  ? ScrollingText(
-                                                                      text: song
-                                                                          .name!,
-                                                                      textStyle: Theme.of(
-                                                                              context)
-                                                                          .textTheme
-                                                                          .bodyText2)
-                                                                  : Text(
-                                                                      song.name!,
-                                                                      style: Theme.of(
-                                                                              context)
-                                                                          .textTheme
-                                                                          .bodyText2,
-                                                                    ),
-                                                            ),
-                                                            Container(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .fromLTRB(
-                                                                          25,
-                                                                          0,
-                                                                          0,
-                                                                          10),
-                                                              child: Text(
-                                                                song.artist!,
-                                                                style: Theme.of(
+                                    child: FractionallySizedBox(
+                                      widthFactor: 0.95,
+                                      child: Column(
+                                        children: [
+                                          for (Song song
+                                              in model.playlist!.songs!)
+                                            GestureDetector(
+                                              onTap: () {
+                                                launch(song.link!);
+                                              },
+                                              child: Card(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0)),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Container(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: <Widget>[
+                                                          Container(
+                                                            height: 40,
+                                                            width: MediaQuery.of(
                                                                         context)
-                                                                    .textTheme
-                                                                    .subtitle1,
-                                                              ),
+                                                                    .size
+                                                                    .width -
+                                                                110,
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(25,
+                                                                    10, 0, 10),
+                                                            child: song.name!
+                                                                        .length >=
+                                                                    40
+                                                                ? ScrollingText(
+                                                                    text: song
+                                                                        .name!,
+                                                                    textStyle: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .bodyText2)
+                                                                : Text(
+                                                                    song.name!,
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .bodyText2,
+                                                                  ),
+                                                          ),
+                                                          Container(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(25, 0,
+                                                                    0, 10),
+                                                            child: Text(
+                                                              song.artist!,
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .subtitle1,
                                                             ),
-                                                          ],
-                                                        ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      song.image == null
-                                                          ? Container(
-                                                              height: 75,
-                                                              width: 75,
-                                                              child: Icon(
-                                                                Icons
-                                                                    .music_note,
-                                                                size: 30,
-                                                              ),
-                                                            )
-                                                          : Container(
-                                                              height: 75,
-                                                              width: 75,
-                                                              child: ClipRRect(
-                                                                  borderRadius: BorderRadius.only(
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              10),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              10)),
-                                                                  child: ClipRRect(
-                                                                      child: Image
-                                                                          .network(
-                                                                              song.image!))),
+                                                    ),
+                                                    song.image == null
+                                                        ? Container(
+                                                            height: 75,
+                                                            width: 75,
+                                                            child: Icon(
+                                                              Icons.music_note,
+                                                              size: 30,
                                                             ),
-                                                    ],
-                                                  ),
+                                                          )
+                                                        : Container(
+                                                            height: 75,
+                                                            width: 75,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .only(
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        10),
+                                                                bottomRight:
+                                                                    Radius
+                                                                        .circular(
+                                                                            10),
+                                                              ),
+                                                              child: ClipRRect(
+                                                                child: Image
+                                                                    .network(song
+                                                                        .image!),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                  ],
                                                 ),
-                                              )
-                                          ]))),
+                                              ),
+                                            )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                   Divider(
                                     color: Theme.of(context).dividerColor,
                                     height: 50,
@@ -382,7 +406,7 @@ class DisplayCommunityView extends StatelessWidget {
                                           width: 200,
                                         ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -391,7 +415,10 @@ class DisplayCommunityView extends StatelessWidget {
                   )
                 : Scaffold(
                     appBar: AppBar(),
-                    body: Center(child: CircularProgressIndicator())),
+                    body: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
         viewModelBuilder: () => DisplayCommunityViewModel());
   }
 }

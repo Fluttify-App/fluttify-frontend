@@ -26,7 +26,7 @@ class DisplayCommunityViewModel extends BaseViewModel {
 
   bool isChanged = false;
 
-  EditPlaylistViewModel() {
+  DisplayCommunityViewModel() {
     playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();

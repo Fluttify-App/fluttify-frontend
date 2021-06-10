@@ -28,44 +28,49 @@ class EditPlaylistView extends StatelessWidget {
                 Widget? child) =>
             model.playlist != null
                 ? Scaffold(
-                    appBar: AppBar(
-                      // back button is only visible when you're not editing the playlist
-                      leading: IconButton(
-                          icon: Icon(Icons.arrow_back),
-                          onPressed: () {
-                            model.navigateBack(context);
-                          }),
-                      automaticallyImplyLeading: !model.playlist!.canEdit,
-                      actions: [
-                        !model.playlist!.canEdit &&
-                                model.playlist!.creator ==
-                                    model.authService.currentUser.id
-                            ? Padding(
-                                padding: EdgeInsets.only(right: 20.0),
-                                child: GestureDetector(
-                                  child: Icon(Icons.edit),
-                                  onTap: () => {
-                                    model.canEdit(),
-                                  },
-                                ),
-                              )
-                            : Container()
-                      ],
-                      title: model.playlist!.canEdit
-                          ? TextField(
-                              inputFormatters: [
+                    appBar: !model.playlist!.canEdit
+                        ? AppBar(
+                            leading: IconButton(
+                              icon: Icon(Icons.arrow_back),
+                              onPressed: () {
+                                model.navigateBack(context);
+                              },
+                            ),
+                            actions: [
+                              model.playlist!.creator ==
+                                      model.authService.currentUser.id
+                                  ? Padding(
+                                      padding: EdgeInsets.only(right: 20.0),
+                                      child: GestureDetector(
+                                        child: Icon(Icons.edit),
+                                        onTap: () => {
+                                          model.canEdit(),
+                                        },
+                                      ),
+                                    )
+                                  : Container()
+                            ],
+                            title: Text(model.playlist!.name!,
+                                style: Theme.of(context).textTheme.headline2),
+                            centerTitle: true,
+                            iconTheme: IconThemeData(
+                              color: Colors.white, //change your color here
+                            ),
+                          )
+                        : AppBar(
+                            automaticallyImplyLeading: false,
+                            title: TextField(
+                                inputFormatters: [
                                   LengthLimitingTextInputFormatter(40),
                                 ],
-                              controller: model.nameController,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.headline2)
-                          : Text(model.playlist!.name!,
-                              style: Theme.of(context).textTheme.headline2),
-                      centerTitle: true,
-                      iconTheme: IconThemeData(
-                        color: Colors.white, //change your color here
-                      ),
-                    ),
+                                controller: model.nameController,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.headline2),
+                            centerTitle: true,
+                            iconTheme: IconThemeData(
+                              color: Colors.white, //change your color here
+                            ),
+                          ),
                     body: Center(
                       child: SingleChildScrollView(
                         child: Container(
@@ -158,64 +163,58 @@ class EditPlaylistView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
-                                alignment: Alignment.centerLeft,
-                                child: DefaultTextStyle(
-                                  child: Text("Genres"),
-                                  style: Theme.of(context).textTheme.bodyText1!,
-                                ),
-                              ),
                               FractionallySizedBox(
                                 widthFactor: 0.95,
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10.0)),
-                                  child: FractionallySizedBox(
-                                    child: Container(
-                                      child: Column(
-                                        children: <Widget>[
-                                          MultiSelectBottomSheetField(
-                                            canEdit: model.playlist!.canEdit,
-                                            decoration: BoxDecoration(),
-                                            initialValue:
-                                                model.playlist!.genres,
-                                            initialChildSize: 0.4,
-                                            listType: MultiSelectListType.CHIP,
-                                            selectedItemsTextStyle:
-                                                Theme.of(context)
-                                                    .textTheme
-                                                    .subtitle2,
-                                            selectedColor:
-                                                Theme.of(context).accentColor,
-                                            itemsTextStyle: Theme.of(context)
-                                                .textTheme
-                                                .subtitle2,
-                                            searchable: true,
-                                            buttonText: Text("Genres",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText2),
-                                            title: Text("Genres",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1),
-                                            items: model.playlistGenre!,
-                                            onConfirm: (values) {
-                                              model.addGenre(values);
-                                            },
-                                            chipDisplay: MultiSelectChipDisplay(
-                                              chipColor:
-                                                  Theme.of(context).accentColor,
-                                              textStyle: Theme.of(context)
+                                child: Container(
+                                  padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                                  alignment: Alignment.centerLeft,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    child: FractionallySizedBox(
+                                      child: Container(
+                                        padding:
+                                            EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                        alignment: Alignment.centerLeft,
+                                        child: MultiSelectBottomSheetField(
+                                          canEdit: model.playlist!.canEdit,
+                                          decoration: BoxDecoration(),
+                                          initialValue: model.playlist!.genres,
+                                          initialChildSize: 0.4,
+                                          listType: MultiSelectListType.CHIP,
+                                          selectedItemsTextStyle:
+                                              Theme.of(context)
                                                   .textTheme
                                                   .subtitle2,
-                                              onTap: (String value) =>
-                                                  model.removeGenre(value),
-                                            ),
+                                          selectedColor:
+                                              Theme.of(context).accentColor,
+                                          itemsTextStyle: Theme.of(context)
+                                              .textTheme
+                                              .subtitle2,
+                                          searchable: true,
+                                          buttonText: Text("Genres",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1),
+                                          title: Text("Genres",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1),
+                                          items: model.playlistGenre!,
+                                          onConfirm: (values) {
+                                            model.addGenre(values);
+                                          },
+                                          chipDisplay: MultiSelectChipDisplay(
+                                            chipColor:
+                                                Theme.of(context).accentColor,
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .subtitle2,
+                                            onTap: (String value) =>
+                                                model.removeGenre(value),
                                           ),
-                                        ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -350,14 +349,18 @@ class EditPlaylistView extends StatelessWidget {
                                               ),
                                               SizedBox(height: 5),
                                               DefaultTextStyle(
-                                                child: Text("Last Update: " +
-                                                    DateFormat(
-                                                            'dd.MM.yyyy HH:mm:ss')
-                                                        .format(dateTimeToZone(
+                                                child: Text(
+                                                  "Last Update: " +
+                                                      DateFormat(
+                                                              'dd.MM.yyyy HH:mm')
+                                                          .format(
+                                                        dateTimeToZone(
                                                             zone: "GST",
                                                             datetime: model
                                                                 .playlist!
-                                                                .lastUpdate!))),
+                                                                .lastUpdate!),
+                                                      ),
+                                                ),
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .subtitle1!,
