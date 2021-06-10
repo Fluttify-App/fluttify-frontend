@@ -107,4 +107,10 @@ class DisplayCommunityViewModel extends BaseViewModel {
   void navigateBack(BuildContext context) {
     Navigator.of(context, rootNavigator: true).pop();
   }
+
+  String? getCreator() {
+    for (dynamic contributor in playlist!.displayContributers!)
+      if (playlist!.creator == contributor['id'])
+        return contributor['name'].toString();
+  }
 }

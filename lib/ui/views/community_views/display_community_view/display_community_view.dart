@@ -207,29 +207,35 @@ class DisplayCommunityView extends StatelessWidget {
                                     padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
                                     alignment: Alignment.centerLeft,
                                     child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          DefaultTextStyle(
-                                            child: Text("Current Songs"),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1!,
-                                          ),
-                                          DefaultTextStyle(
-                                            child: Text("Last Update: " +
-                                                DateFormat(
-                                                        'yyyy-MM-dd HH:mm:ss')
-                                                    .format(dateTimeToZone(
-                                                        zone: "GST",
-                                                        datetime: model
-                                                            .playlist!
-                                                            .lastUpdate!))),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2!,
-                                          ),
-                                        ]),
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        DefaultTextStyle(
+                                          child: Text("Current Songs"),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1!,
+                                        ),
+                                        DefaultTextStyle(
+                                          child: Text("Last Update: " +
+                                              DateFormat('yyyy-MM-dd HH:mm:ss')
+                                                  .format(dateTimeToZone(
+                                                      zone: "GST",
+                                                      datetime: model.playlist!
+                                                          .lastUpdate!))),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle1!,
+                                        ),
+                                        DefaultTextStyle(
+                                          child: Text("Created by: " +
+                                              model.getCreator()!),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle1!,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   Container(
                                       child: FractionallySizedBox(
