@@ -30,6 +30,11 @@ class EditPlaylistView extends StatelessWidget {
                 ? Scaffold(
                     appBar: AppBar(
                       // back button is only visible when you're not editing the playlist
+                      leading: IconButton(
+                          icon: Icon(Icons.arrow_back),
+                          onPressed: () {
+                            model.navigateBack(context);
+                          }),
                       automaticallyImplyLeading: !model.playlist!.canEdit,
                       actions: [
                         !model.playlist!.canEdit &&

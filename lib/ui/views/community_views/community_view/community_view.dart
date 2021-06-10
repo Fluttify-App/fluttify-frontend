@@ -74,8 +74,7 @@ class CommunityView extends StatelessWidget {
                                           ),
                                       ],
                                     ),
-                              model.playlistService.communitylikedplaylists
-                                      .isEmpty
+                              model.playlistService.communityplaylists.isEmpty
                                   ? Container()
                                   : Column(
                                       crossAxisAlignment:
