@@ -22,10 +22,6 @@ class PlaylistViewModel extends BaseViewModel {
 
   bool isLoading = true;
 
-  List<Playlist> contributed = <Playlist>[];
-
-  List<Playlist> liked = <Playlist>[];
-
   void refreshPlaylists() {
     isLoading = true;
     notifyListeners();
