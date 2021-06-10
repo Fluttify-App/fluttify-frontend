@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttify/models/playlist.dart';
-import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_viewmodel.dart';
-import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/playlist_card.dart';
 import 'package:stacked/stacked.dart';
-import 'package:fluttify/ui/widgets/scrolling_text.dart';
 
 class PlaylistView extends StatelessWidget {
   @override
@@ -61,9 +59,18 @@ class PlaylistView extends StatelessWidget {
                                             .playlistService
                                             .myplaylists
                                             .reversed)
-                                          PlaylistCard(
-                                            model: model,
-                                            playlist: playlist,
+                                          AnimationConfiguration.synchronized(
+                                            duration: const Duration(
+                                                milliseconds: 300),
+                                            child: SlideAnimation(
+                                              horizontalOffset: 250.0,
+                                              child: FadeInAnimation(
+                                                child: PlaylistCard(
+                                                  model: model,
+                                                  playlist: playlist,
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                       ],
                                     ),
@@ -89,9 +96,18 @@ class PlaylistView extends StatelessWidget {
                                             .playlistService
                                             .contributed
                                             .reversed)
-                                          PlaylistCard(
-                                            model: model,
-                                            playlist: playlist,
+                                          AnimationConfiguration.synchronized(
+                                            duration: const Duration(
+                                                milliseconds: 600),
+                                            child: SlideAnimation(
+                                              horizontalOffset: 250.0,
+                                              child: FadeInAnimation(
+                                                child: PlaylistCard(
+                                                  model: model,
+                                                  playlist: playlist,
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                       ],
                                     ),
