@@ -74,6 +74,44 @@ class CommunityView extends StatelessWidget {
                                           ),
                                       ],
                                     ),
+                              model.playlistService.communitylikedplaylists
+                                      .isEmpty
+                                  ? Container()
+                                  : Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 20, 0, 10),
+                                          child: Text('Community',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline4),
+                                        ),
+                                        Divider(
+                                          color: Theme.of(context).dividerColor,
+                                          height: 20,
+                                        ),
+                                        for (Playlist playlist in model
+                                            .playlistService
+                                            .communityplaylists
+                                            .reversed)
+                                          AnimationConfiguration.synchronized(
+                                            duration: const Duration(
+                                                milliseconds: 600),
+                                            child: SlideAnimation(
+                                              horizontalOffset: 250.0,
+                                              child: FadeInAnimation(
+                                                child: CommunityPlaylistCard(
+                                                  model: model,
+                                                  playlist: playlist,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
                             ],
                           ),
                         ),
