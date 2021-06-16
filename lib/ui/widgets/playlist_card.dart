@@ -127,26 +127,29 @@ class PlaylistCard extends StatelessWidget {
                         },
                       ),
                     ),
-                    playlist!.image == null
-                        ? Container(
-                            height: 100,
-                            width: 100,
-                            child: Icon(
-                              Icons.image,
-                              size: 30,
-                            ),
-                          )
-                        : Container(
-                            height: 100,
-                            width: 100,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(10),
-                                bottomRight: Radius.circular(10),
-                              ),
-                              child: Image.network(playlist!.image!),
-                            ),
+                    if (playlist!.image == null)
+                      Container(
+                        height: 100,
+                        width: 100,
+                        child: Icon(
+                          Icons.image,
+                          size: 30,
+                        ),
+                      )
+                    else
+                      Container(
+                        height: 100,
+                        width: 100,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
+                          child: Hero(
+                              tag: playlist!.image!,
+                              child: Image.network(playlist!.image!)),
+                        ),
+                      ),
                   ],
                 ),
               ],

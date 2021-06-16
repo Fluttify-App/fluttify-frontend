@@ -15,14 +15,16 @@ import 'package:intl/intl.dart';
 import 'package:instant/instant.dart';
 
 class EditPlaylistView extends StatelessWidget {
-  const EditPlaylistView({required this.playlistId});
-  final String playlistId;
-
+  const EditPlaylistView({this.playlist, this.playlistId});
+  final Playlist? playlist;
+  final String? playlistId;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
         onModelReady: (EditPlaylistViewModel model) {
-          model.getPlaylist(playlistId);
+          if (this.playlist == null) {
+            model.getPlaylist(this.playlistId!);
+          }
         },
         builder: (BuildContext context, EditPlaylistViewModel model,
                 Widget? child) =>
@@ -118,8 +120,11 @@ class EditPlaylistView extends StatelessWidget {
                                         ClipRRect(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(10)),
-                                          child: Image.network(
-                                              model.playlist!.image!),
+                                          child: Hero(
+                                            tag: model.playlist!.image!,
+                                            child: Image.network(
+                                                model.playlist!.image!),
+                                          ),
                                         ),
                                         Align(
                                           alignment: Alignment.topRight,
@@ -653,6 +658,8 @@ class EditPlaylistView extends StatelessWidget {
                       ),
                     ),
                     body: Center(child: CircularProgressIndicator())),
-        viewModelBuilder: () => EditPlaylistViewModel());
+        viewModelBuilder: () {
+          return EditPlaylistViewModel(this.playlist, this.playlistId);
+        });
   }
 }

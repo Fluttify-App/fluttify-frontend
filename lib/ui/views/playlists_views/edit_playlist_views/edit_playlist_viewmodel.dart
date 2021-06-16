@@ -36,14 +36,17 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   bool isChanged = false;
 
-  EditPlaylistViewModel() {
+  EditPlaylistViewModel(Playlist? playlist, String? playlistId) {
+    if (playlist != null) {
+      setPlaylist(playlist);
+    }
     playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
     _timer = new Timer.periodic(
         Duration(seconds: 15),
         (Timer timer) => {
-              if (playlist!.updating!) {getPlaylist(playlist!.dbID!)}
+              if (this.playlist!.updating!) {getPlaylist(this.playlist!.dbID!)}
             });
   }
 
