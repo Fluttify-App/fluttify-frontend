@@ -104,7 +104,8 @@ class Playlist {
       "name": this.name,
       "description": this.description,
       "genres": this.genres,
-      "allgenres": this.allgenres
+      "allgenres": this.allgenres,
+      "contributers": this.contributers,
     };
   }
 }
