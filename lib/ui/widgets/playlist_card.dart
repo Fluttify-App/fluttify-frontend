@@ -117,16 +117,17 @@ class PlaylistCard extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Container(
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.share,
+                    if (playlist!.creator == model!.authService.currentUser.id)
+                      Container(
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.person_add_alt_1,
+                          ),
+                          onPressed: () {
+                            model!.pressShare(playlist!.dbID!);
+                          },
                         ),
-                        onPressed: () {
-                          model!.pressShare(playlist!.dbID!);
-                        },
                       ),
-                    ),
                     if (playlist!.image == null)
                       Container(
                         height: 100,

@@ -17,8 +17,8 @@ class PlaylistViewModel extends BaseViewModel {
       locator<FluttifyPlaylistService>();
   final PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
-  final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
   final AuthService authService = locator<AuthService>();
+  final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
 
   bool isLoading = true;
 

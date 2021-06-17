@@ -247,7 +247,7 @@ class EditPlaylistView extends StatelessWidget {
                                             padding: const EdgeInsets.fromLTRB(
                                                 25, 25, 25, 15),
                                             icon: Icon(
-                                              Icons.share,
+                                              Icons.person_add,
                                             ),
                                             onPressed: () {
                                               model.pressShare(
