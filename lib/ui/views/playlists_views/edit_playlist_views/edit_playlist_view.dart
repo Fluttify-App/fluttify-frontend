@@ -296,10 +296,92 @@ class EditPlaylistView extends StatelessWidget {
                                             child: Container(
                                               padding: EdgeInsets.fromLTRB(
                                                   12, 5, 12, 5),
-                                              child: Text(contributers['name'],
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .subtitle2),
+                                              child: playlist!.canEdit &&
+                                                      !(contributers['id'] ==
+                                                          model.authService
+                                                              .currentUser.id)
+                                                  ? Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        Text(
+                                                            contributers[
+                                                                'name'],
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .subtitle2),
+                                                        SizedBox(width: 5),
+                                                        GestureDetector(
+                                                          child: Icon(
+                                                            Icons.close,
+                                                            size: 14,
+                                                            color: Colors.white,
+                                                          ),
+                                                          onTap: () => {
+                                                            showDialog(
+                                                              context: context,
+                                                              builder: (_) {
+                                                                return AlertDialog(
+                                                                  title: Text(
+                                                                    'Remove User',
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .headline1,
+                                                                  ),
+                                                                  content:
+                                                                      SingleChildScrollView(
+                                                                    child:
+                                                                        ListBody(
+                                                                      children: <
+                                                                          Widget>[
+                                                                        Text(
+                                                                          'Would you like to remove User: ${contributers['name']}',
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyText2,
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  actions: <
+                                                                      Widget>[
+                                                                    FluttifyButton(
+                                                                        onPressed: () =>
+                                                                            model.navigateBack(
+                                                                                context),
+                                                                        text:
+                                                                            'No',
+                                                                        width:
+                                                                            80,
+                                                                        height:
+                                                                            35),
+                                                                    FluttifyButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                {
+                                                                                  model.removeUser(contributers['id']),
+                                                                                  model.navigateBack(context),
+                                                                                },
+                                                                        text:
+                                                                            'Yes',
+                                                                        width:
+                                                                            80,
+                                                                        height:
+                                                                            35),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            ),
+                                                          },
+                                                        ),
+                                                      ],
+                                                    )
+                                                  : Text(contributers['name'],
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .subtitle2),
                                             ),
                                           ),
                                         ),
