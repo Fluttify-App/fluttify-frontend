@@ -53,7 +53,11 @@ class AuthService extends ChangeNotifier {
     }
     final url = response.body;
     try {
-      await launch(url.toString());
+      await launch(
+        url.toString(),
+        forceSafariVC: false,
+        forceWebView: false,
+      );
     } catch (e) {
       print(e);
     }
