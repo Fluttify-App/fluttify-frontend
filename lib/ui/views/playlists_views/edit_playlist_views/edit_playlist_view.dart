@@ -296,7 +296,7 @@ class EditPlaylistView extends StatelessWidget {
                                             child: Container(
                                               padding: EdgeInsets.fromLTRB(
                                                   12, 5, 12, 5),
-                                              child: playlist!.canEdit &&
+                                              child: model.playlist!.canEdit &&
                                                       !(contributers['id'] ==
                                                           model.authService
                                                               .currentUser.id)
