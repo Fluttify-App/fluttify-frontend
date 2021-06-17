@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/horizontal_scrollbar.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 
-
 /// A widget meant to display selected values as chips.
 // ignore: must_be_immutable
 class MultiSelectChipDisplay<V> extends StatelessWidget {
@@ -129,7 +128,7 @@ class MultiSelectChipDisplay<V> extends StatelessWidget {
 
   Widget _buildItem(MultiSelectItem<V> item, BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.all(4.0),
       child: ChoiceChip(
         shape: shape as OutlinedBorder?,
         avatar: icon != null
@@ -142,22 +141,9 @@ class MultiSelectChipDisplay<V> extends StatelessWidget {
             : null,
         label: Container(
           width: chipWidth,
-          child: Text(
-            item.label,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              color: colorator != null && colorator!(item.value) != null
-                  ? textStyle != null
-                      ? textStyle!.color ?? colorator!(item.value)
-                      : colorator!(item.value)
-                  : textStyle != null && textStyle!.color != null
-                      ? textStyle!.color
-                      : chipColor != null
-                          ? chipColor!.withOpacity(1)
-                          : null,
-              fontSize: textStyle != null ? textStyle!.fontSize : null,
-            ),
-          ),
+          child: Text(item.label,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.subtitle2),
         ),
         selected: items!.contains(item),
         selectedColor: colorator != null && colorator!(item.value) != null

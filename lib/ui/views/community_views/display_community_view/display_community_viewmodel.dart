@@ -26,7 +26,7 @@ class DisplayCommunityViewModel extends BaseViewModel {
 
   bool isChanged = false;
 
-  EditPlaylistViewModel() {
+  DisplayCommunityViewModel() {
     playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
@@ -110,5 +110,11 @@ class DisplayCommunityViewModel extends BaseViewModel {
 
   void navigateBack(BuildContext context) {
     Navigator.of(context, rootNavigator: true).pop(this.isChanged);
+  }
+
+  String? getCreator() {
+    for (dynamic contributor in playlist!.displayContributers!)
+      if (playlist!.creator == contributor['id'])
+        return contributor['name'].toString();
   }
 }

@@ -19,7 +19,6 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   final PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
-
   final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
   final AuthService authService = locator<AuthService>();
 
@@ -165,16 +164,5 @@ class EditPlaylistViewModel extends BaseViewModel {
     for (dynamic contributor in playlist!.displayContributers!)
       if (playlist!.creator == contributor['id'])
         return contributor['name'].toString();
-  }
-
-  bool checkIfPlaylistIsLiked() {
-    for (Playlist pl in fluttifyPlaylistService.myplaylists) {
-      for (Playlist pl1 in fluttifyPlaylistService.contributed) {
-        if (pl.id == playlist!.id || pl1.id == playlist!.id) {
-          return true;
-        }
-      }
-    }
-    return false;
   }
 }
