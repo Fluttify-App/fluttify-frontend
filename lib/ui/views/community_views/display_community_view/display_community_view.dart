@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:fluttify/models/song.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/ui/views/community_views/display_community_view/display_community_viewmodel.dart';
@@ -201,8 +203,8 @@ class DisplayCommunityView extends StatelessWidget {
                                       for (dynamic contributers in model
                                           .playlist!.displayContributers!)
                                         Container(
-                                          padding:
-                                              EdgeInsets.fromLTRB(15, 10, 0, 10),
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 10, 0, 10),
                                           child: Card(
                                             color:
                                                 Theme.of(context).accentColor,
@@ -304,23 +306,39 @@ class DisplayCommunityView extends StatelessWidget {
                                                             padding: EdgeInsets
                                                                 .fromLTRB(25,
                                                                     10, 0, 10),
-                                                            child: song.name!
-                                                                        .length >=
-                                                                    40
-                                                                ? ScrollingText(
-                                                                    text: song
-                                                                        .name!,
-                                                                    textStyle: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .bodyText2)
-                                                                : Text(
-                                                                    song.name!,
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .bodyText2,
-                                                                  ),
+                                                            child:
+                                                                LayoutBuilder(
+                                                              builder: (_,
+                                                                      constraints) =>
+                                                                  (TextPainter(
+                                                                    textDirection: ui.TextDirection.ltr,
+                                                                            text:
+                                                                                TextSpan(text: song.name!),
+                                                                            maxLines:
+                                                                                1,
+                                                                            textScaleFactor:
+                                                                                MediaQuery.of(context).textScaleFactor,
+                                                                          )
+                                                                                ..layout())
+                                                                              .size >=
+                                                                          Offset(
+                                                                              constraints
+                                                                                  .widthConstraints()
+                                                                                  .minWidth,
+                                                                              0)
+                                                                      ? ScrollingText(
+                                                                          text: song
+                                                                              .name!,
+                                                                          textStyle: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyText2)
+                                                                      : Text(
+                                                                          song.name!,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyText2,
+                                                                        ),
+                                                            ),
                                                           ),
                                                           Container(
                                                             padding: EdgeInsets

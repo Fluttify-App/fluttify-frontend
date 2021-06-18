@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/models/song.dart';
 import 'package:flutter/material.dart';
@@ -521,18 +523,22 @@ class EditPlaylistView extends StatelessWidget {
                                                                             10,
                                                                             0,
                                                                             10),
-                                                                    // TODO: fix start of animation bug
-                                                                    child: song.name!.length >=
-                                                                            40
-                                                                        ? ScrollingText(
-                                                                            text:
-                                                                                song.name!,
-                                                                            textStyle: Theme.of(context).textTheme.bodyText2)
-                                                                        : Text(
-                                                                            song.name!,
-                                                                            style:
-                                                                                Theme.of(context).textTheme.bodyText2,
-                                                                          ),
+                                                                    child:
+                                                                        LayoutBuilder(
+                                                                      builder: (_, constraints) => (TextPainter(
+                                                                                textDirection: ui.TextDirection.ltr,
+                                                                                text: TextSpan(text: song.name!),
+                                                                                maxLines: 1,
+                                                                                textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                                                                              )..layout())
+                                                                                  .size >=
+                                                                              Offset(constraints.widthConstraints().minWidth, 0)
+                                                                          ? ScrollingText(text: song.name!, textStyle: Theme.of(context).textTheme.bodyText2)
+                                                                          : Text(
+                                                                              song.name!,
+                                                                              style: Theme.of(context).textTheme.bodyText2,
+                                                                            ),
+                                                                    ),
                                                                   ),
                                                                   Container(
                                                                     padding: EdgeInsets
