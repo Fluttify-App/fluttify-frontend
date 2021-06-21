@@ -59,7 +59,7 @@ class DynamicLinkService {
           print("Playlist: $playlist");
 
           _navigationService.navigateTo(
-              '/edit-playlist', EditPlaylistView(playlistId: playlist));
+              '/edit-playlist', EditPlaylistView(playlistId: playlist), withNavBar: false);
         }
       } else if (isAuthentication) {
         // get the title of the post
