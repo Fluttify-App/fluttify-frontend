@@ -25,7 +25,7 @@ class FluttifyButton extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: Container(
         child: SizedBox(
-          height: height ?? MediaQuery.of(context).size.width / 2 - 150,
+          height: height ?? 45,
           width: width ?? MediaQuery.of(context).size.width - 100,
           child: TextButton(
               style: TextButton.styleFrom(
