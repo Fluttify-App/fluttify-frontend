@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:fluttify/app/fluttify_router.router.dart';
 import 'package:fluttify/app/locator.dart';
@@ -20,6 +21,10 @@ Future main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   final preferences = await StreamingSharedPreferences.instance;
 
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+      
   bool? darkMode = prefs.getBool('darkMode') ?? false;
   runApp(Phoenix(
     child: MultiProvider(providers: [
