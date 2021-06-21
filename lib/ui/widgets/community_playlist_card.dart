@@ -8,6 +8,13 @@ class CommunityPlaylistCard extends StatelessWidget {
   CommunityViewModel? model;
   Playlist? playlist;
   CommunityPlaylistCard({required this.model, required this.playlist, t});
+
+  String? getCreator() {
+    for (dynamic contributor in playlist!.displayContributers!)
+      if (playlist!.creator == contributor['id'])
+        return contributor['name'].toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,8 +53,7 @@ class CommunityPlaylistCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            playlist!.displayContributers![0]["name"]
-                                .toString(),
+                           getCreator()!,
                             style: Theme.of(context).textTheme.bodyText2,
                           ),
                           Text(
