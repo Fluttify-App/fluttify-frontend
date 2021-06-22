@@ -627,7 +627,6 @@ class EditPlaylistView extends StatelessWidget {
                                                 height: 50,
                                               ),
                                               FluttifyButton(
-                                                  width: 150,
                                                   color: Color.fromARGB(
                                                       255, 233, 30, 30),
                                                   onPressed: () => {
@@ -703,7 +702,6 @@ class EditPlaylistView extends StatelessWidget {
                                                 height: 50,
                                               ),
                                               FluttifyButton(
-                                                width: 150,
                                                 onPressed: () {
                                                   showDialog(
                                                     context: context,
