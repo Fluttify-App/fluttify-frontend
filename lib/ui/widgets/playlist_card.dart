@@ -4,6 +4,7 @@ import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/scrolling_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PlaylistCard extends StatelessWidget {
   PlaylistViewModel? model;
@@ -19,14 +20,16 @@ class PlaylistCard extends StatelessWidget {
           builder: (_) {
             return AlertDialog(
               title: Text(
-                'Delete Playlist',
+                AppLocalizations.of(context)!.deleteplaylist,
                 style: Theme.of(context).textTheme.headline1,
               ),
               content: SingleChildScrollView(
                 child: ListBody(
                   children: <Widget>[
                     Text(
-                      'Would you like to delete playlist: ${playlist!.name}',
+                      AppLocalizations.of(context)!.deleteplaylistcheck +
+                          playlist!.name! +
+                          "?",
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
                   ],
@@ -35,7 +38,7 @@ class PlaylistCard extends StatelessWidget {
               actions: <Widget>[
                 FluttifyButton(
                     onPressed: () => model!.navigateBack(context),
-                    text: 'No',
+                    text: AppLocalizations.of(context)!.no,
                     width: 80,
                     height: 35),
                 FluttifyButton(
@@ -43,7 +46,7 @@ class PlaylistCard extends StatelessWidget {
                           model!.dismissPlaylist(playlist!, context),
                           model!.navigateBack(context),
                         },
-                    text: 'Yes',
+                    text: AppLocalizations.of(context)!.yes,
                     width: 80,
                     height: 35),
               ],
@@ -97,7 +100,9 @@ class PlaylistCard extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.fromLTRB(25, 0, 0, 20),
                           child: Text(
-                            playlist!.numberOfSongs.toString() + ' Songs',
+                            playlist!.numberOfSongs.toString() +
+                                " " +
+                                AppLocalizations.of(context)!.songs,
                             style: Theme.of(context).textTheme.bodyText2,
                           ),
                         ),
@@ -105,9 +110,11 @@ class PlaylistCard extends StatelessWidget {
                           padding: EdgeInsets.fromLTRB(25, 0, 0, 20),
                           child: Text(
                             playlist!.contributers!.length == 1
-                                ? '1 Contributor'
+                                ? '1 ' +
+                                    AppLocalizations.of(context)!.contributor
                                 : playlist!.contributers!.length.toString() +
-                                    " Contributors",
+                                    ' ' +
+                                    AppLocalizations.of(context)!.contributors,
                             style: Theme.of(context).textTheme.bodyText2,
                           ),
                         ),

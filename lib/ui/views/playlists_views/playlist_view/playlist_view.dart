@@ -5,6 +5,7 @@ import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_viewmodel.dart';
 import 'package:fluttify/ui/widgets/playlist_card.dart';
 import 'package:stacked/stacked.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PlaylistView extends StatelessWidget {
   @override
@@ -15,8 +16,8 @@ class PlaylistView extends StatelessWidget {
       builder: (BuildContext context, PlaylistViewModel model, Widget? child) =>
           Scaffold(
         appBar: AppBar(
-          title:
-              Text("Playlists", style: Theme.of(context).textTheme.headline2),
+          title: Text(AppLocalizations.of(context)!.playlists,
+              style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
         ),
         body: Center(
@@ -46,7 +47,9 @@ class PlaylistView extends StatelessWidget {
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
                                               15, 20, 0, 10),
-                                          child: Text('Created',
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .created,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline4),
@@ -83,7 +86,9 @@ class PlaylistView extends StatelessWidget {
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
                                               15, 20, 0, 10),
-                                          child: Text('Joined',
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .joined,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline4),

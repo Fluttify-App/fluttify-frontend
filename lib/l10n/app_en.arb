@@ -1,0 +1,49 @@
+{
+    "playlists": "Playlists",
+    "community": "Community",
+    "user": "User",
+
+    "signin": "SignIn With Spotify",
+    "created": "Created",
+    "joined": "Joined",
+    "songs": "Songs",
+    "contributors": "Contributors",
+    "contributor": "Contributor",
+    "likes": "Followers",
+    "like": "Follower",
+    "genres": "Genres",
+
+    "liked": "Following",
+    "morecommunity": "More from Community",
+
+    "email": "Email",
+    "followers": "Followers",
+    "darkmode": "Dark Mode",
+    "language": "Language",
+    "logout": "Logout",
+    
+    "addplaylist": "Add Playlist",
+    "description": "Description",
+    "currentsongs": "Current Songs",
+    "lastupdate": "Last Update: ",
+    "createdby": "Created by: ",
+
+    "leaveplaylist": "Leave Playlist",
+    "joinplaylist": "Join Playlist",
+    "likeplaylist": "Follow Playlist",
+    "unlikeplaylist": "Unfollow Playlist",
+
+    "removeuser": "Remove User",
+    "removeusercheck": "Would you like to remove the User: ",
+    "leaveplaylistcheck": "Would you like to leave playlist: ",
+    "joinplaylistcheck": "Willst du dieser Playlist beitreten: ",
+    "logoutcheck": "'Would you like to logout from Fluttify?",
+    "deleteplaylist": "Remove playlist",
+    "deleteplaylistcheck": "Would you like to remove playlist: ",
+
+    "no": "No",
+    "yes": "Yes",
+    "cancel": "Cancel",
+    "save": "Save"
+
+}

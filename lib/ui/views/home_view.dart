@@ -7,6 +7,7 @@ import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.da
 import 'package:fluttify/ui/views/user_views/user_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeView extends StatelessWidget {
   final PersistentTabController _controller =
@@ -66,7 +67,7 @@ class HomeView extends StatelessWidget {
   List<PersistentBottomNavBarItem> _buildNavBarItems(BuildContext context) {
     return <PersistentBottomNavBarItem>[
       PersistentBottomNavBarItem(
-        title: 'Playlists',
+        title: AppLocalizations.of(context)!.playlists,
         icon: Icon(Icons.queue_music),
         activeColorPrimary: Theme.of(context).primaryColor,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
@@ -75,7 +76,7 @@ class HomeView extends StatelessWidget {
         ),
       ),
       PersistentBottomNavBarItem(
-        title: 'Community',
+        title: AppLocalizations.of(context)!.community,
         icon: Icon(Icons.people),
         activeColorPrimary: Theme.of(context).primaryColor,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
@@ -84,7 +85,7 @@ class HomeView extends StatelessWidget {
         ),
       ),
       PersistentBottomNavBarItem(
-        title: 'User',
+        title: AppLocalizations.of(context)!.user,
         icon: Icon(Icons.account_circle),
         activeColorPrimary: Theme.of(context).primaryColor,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(

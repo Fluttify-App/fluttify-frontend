@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttify/services/locale_service.dart';
 import 'package:fluttify/services/theme_service.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/user_views/user_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
+import 'package:toggle_switch/toggle_switch.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UserView extends StatelessWidget {
   @override
@@ -14,7 +17,8 @@ class UserView extends StatelessWidget {
       builder: (BuildContext context, UserViewModel model, Widget? child) =>
           Scaffold(
         appBar: AppBar(
-          title: Text("User", style: Theme.of(context).textTheme.headline2),
+          title: Text(AppLocalizations.of(context)!.user,
+              style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
         ),
         body: Center(
@@ -53,7 +57,7 @@ class UserView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "E-Mail",
+                        AppLocalizations.of(context)!.email,
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                       Text(
@@ -70,7 +74,7 @@ class UserView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Followers",
+                        AppLocalizations.of(context)!.followers,
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                       Text(
@@ -87,7 +91,7 @@ class UserView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Dark Mode",
+                        AppLocalizations.of(context)!.darkmode,
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                       Switch(
@@ -104,6 +108,38 @@ class UserView extends StatelessWidget {
                   ),
                 ),
                 Divider(color: Theme.of(context).dividerColor, height: 10),
+                Container(
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.language,
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      ToggleSwitch(
+                        initialLabelIndex:
+                            Provider.of<LocaleService>(context, listen: false)
+                                        .locale ==
+                                    Locale("en")
+                                ? 0
+                                : 1,
+                        labels: ["en", "de"],
+                        activeBgColor: [Color.fromARGB(255, 203, 45, 62)],
+                        activeFgColor: Colors.white,
+                        inactiveFgColor: Colors.white,
+                        onToggle: (int index) {
+                          String newLocale = 'en';
+                          if (index == 1) newLocale = 'de';
+                          Provider.of<LocaleService>(context, listen: false)
+                              .setLocale(newLocale);
+                        },
+                        totalSwitches: 2,
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(color: Theme.of(context).dividerColor, height: 10),
                 Expanded(
                   child: Align(
                     alignment: Alignment.bottomCenter,
@@ -115,14 +151,14 @@ class UserView extends StatelessWidget {
                           builder: (_) {
                             return AlertDialog(
                               title: Text(
-                                'Logout',
+                                AppLocalizations.of(context)!.logout,
                                 style: Theme.of(context).textTheme.headline1,
                               ),
                               content: SingleChildScrollView(
                                 child: ListBody(
                                   children: <Widget>[
                                     Text(
-                                      'Would you like to logout from Fluttify?',
+                                      AppLocalizations.of(context)!.logoutcheck,
                                       style:
                                           Theme.of(context).textTheme.bodyText2,
                                     ),
@@ -133,13 +169,13 @@ class UserView extends StatelessWidget {
                                 FluttifyButton(
                                     onPressed: () =>
                                         model.navigateBack(context),
-                                    text: 'No',
+                                    text: AppLocalizations.of(context)!.no,
                                     width: 80,
                                     height: 35),
                                 FluttifyButton(
                                     onPressed: () =>
                                         model.authService.logoutBackend(),
-                                    text: 'Yes',
+                                    text: AppLocalizations.of(context)!.yes,
                                     width: 80,
                                     height: 35),
                               ],
@@ -147,7 +183,7 @@ class UserView extends StatelessWidget {
                           },
                         ),
                       },
-                      text: "Logout",
+                      text: AppLocalizations.of(context)!.logout,
                       color: Color.fromARGB(255, 233, 30, 30),
                     ),
                   ),

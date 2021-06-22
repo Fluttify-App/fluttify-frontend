@@ -15,6 +15,7 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
 import 'package:instant/instant.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditPlaylistView extends StatelessWidget {
   const EditPlaylistView({this.playlist, this.playlistId});
@@ -148,7 +149,8 @@ class EditPlaylistView extends StatelessWidget {
                                 padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
                                 alignment: Alignment.topLeft,
                                 child: DefaultTextStyle(
-                                  child: Text("Beschreibung"),
+                                  child: Text(AppLocalizations.of(context)!
+                                      .description),
                                   style: Theme.of(context).textTheme.bodyText1!,
                                 ),
                               ),
@@ -200,11 +202,15 @@ class EditPlaylistView extends StatelessWidget {
                                               .textTheme
                                               .subtitle2,
                                           searchable: true,
-                                          buttonText: Text("Genres",
+                                          buttonText: Text(
+                                              AppLocalizations.of(context)!
+                                                  .genres,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyText1),
-                                          title: Text("Genres",
+                                          title: Text(
+                                              AppLocalizations.of(context)!
+                                                  .genres,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyText1),
@@ -237,7 +243,9 @@ class EditPlaylistView extends StatelessWidget {
                                               25, 25, 0, 15),
                                           alignment: Alignment.topLeft,
                                           child: DefaultTextStyle(
-                                            child: Text("Contributors"),
+                                            child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .contributors),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1!,
@@ -264,7 +272,9 @@ class EditPlaylistView extends StatelessWidget {
                                           EdgeInsets.fromLTRB(25, 25, 0, 15),
                                       alignment: Alignment.topLeft,
                                       child: DefaultTextStyle(
-                                        child: Text("Contributors"),
+                                        child: Text(
+                                            AppLocalizations.of(context)!
+                                                .contributors),
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1!,
@@ -326,7 +336,9 @@ class EditPlaylistView extends StatelessWidget {
                                                               builder: (_) {
                                                                 return AlertDialog(
                                                                   title: Text(
-                                                                    'Remove User',
+                                                                    AppLocalizations.of(
+                                                                            context)!
+                                                                        .removeuser,
                                                                     style: Theme.of(
                                                                             context)
                                                                         .textTheme
@@ -339,7 +351,9 @@ class EditPlaylistView extends StatelessWidget {
                                                                       children: <
                                                                           Widget>[
                                                                         Text(
-                                                                          'Would you like to remove User: ${contributers['name']}',
+                                                                          AppLocalizations.of(context)!.removeusercheck +
+                                                                              contributers['name'] +
+                                                                              '?',
                                                                           style: Theme.of(context)
                                                                               .textTheme
                                                                               .bodyText2,
@@ -353,8 +367,8 @@ class EditPlaylistView extends StatelessWidget {
                                                                         onPressed: () =>
                                                                             model.navigateBack(
                                                                                 context),
-                                                                        text:
-                                                                            'No',
+                                                                        text: AppLocalizations.of(context)!
+                                                                            .no,
                                                                         width:
                                                                             80,
                                                                         height:
@@ -366,8 +380,8 @@ class EditPlaylistView extends StatelessWidget {
                                                                                   model.removeUser(contributers['id']),
                                                                                   model.navigateBack(context),
                                                                                 },
-                                                                        text:
-                                                                            'Yes',
+                                                                        text: AppLocalizations.of(context)!
+                                                                            .yes,
                                                                         width:
                                                                             80,
                                                                         height:
@@ -403,13 +417,15 @@ class EditPlaylistView extends StatelessWidget {
                                             color: Color.fromARGB(
                                                 255, 233, 30, 30),
                                             onPressed: () => model.canEdit(),
-                                            text: 'Cancel',
+                                            text: AppLocalizations.of(context)!
+                                                .cancel,
                                             width: 150,
                                           ),
                                           FluttifyButton(
                                             onPressed: () =>
                                                 model.save(context),
-                                            text: 'Save',
+                                            text: AppLocalizations.of(context)!
+                                                .save,
                                             width: 150,
                                           ),
                                         ],
@@ -432,7 +448,9 @@ class EditPlaylistView extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               DefaultTextStyle(
-                                                child: Text("Current Songs"),
+                                                child: Text(AppLocalizations.of(
+                                                        context)!
+                                                    .currentsongs),
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyText1!,
@@ -440,7 +458,8 @@ class EditPlaylistView extends StatelessWidget {
                                               SizedBox(height: 5),
                                               DefaultTextStyle(
                                                 child: Text(
-                                                  "Last Update: " +
+                                                  AppLocalizations.of(context)!
+                                                          .lastupdate +
                                                       DateFormat(
                                                               'dd.MM.yyyy HH:mm')
                                                           .format(
@@ -456,7 +475,9 @@ class EditPlaylistView extends StatelessWidget {
                                                     .subtitle1!,
                                               ),
                                               DefaultTextStyle(
-                                                child: Text("Created by: " +
+                                                child: Text(AppLocalizations.of(
+                                                            context)!
+                                                        .createdby +
                                                     model.getCreator()!),
                                                 style: Theme.of(context)
                                                     .textTheme
@@ -615,7 +636,9 @@ class EditPlaylistView extends StatelessWidget {
                                                           builder: (_) {
                                                             return AlertDialog(
                                                               title: Text(
-                                                                'Leave Playlist',
+                                                                AppLocalizations.of(
+                                                                        context)!
+                                                                    .leaveplaylist,
                                                                 style: Theme.of(
                                                                         context)
                                                                     .textTheme
@@ -627,7 +650,12 @@ class EditPlaylistView extends StatelessWidget {
                                                                   children: <
                                                                       Widget>[
                                                                     Text(
-                                                                      'Would you like to leave playlist: ${model.playlist!.name}',
+                                                                      AppLocalizations.of(context)!
+                                                                              .leaveplaylistcheck +
+                                                                          model
+                                                                              .playlist!
+                                                                              .name! +
+                                                                          '?',
                                                                       style: Theme.of(
                                                                               context)
                                                                           .textTheme
@@ -641,7 +669,9 @@ class EditPlaylistView extends StatelessWidget {
                                                                     onPressed: () =>
                                                                         model.navigateBack(
                                                                             context),
-                                                                    text: 'No',
+                                                                    text: AppLocalizations.of(
+                                                                            context)!
+                                                                        .no,
                                                                     width: 80,
                                                                     height: 35),
                                                                 FluttifyButton(
@@ -650,7 +680,9 @@ class EditPlaylistView extends StatelessWidget {
                                                                               model.leavePlaylist(context),
                                                                               model.navigateBack(context)
                                                                             },
-                                                                    text: 'Yes',
+                                                                    text: AppLocalizations.of(
+                                                                            context)!
+                                                                        .yes,
                                                                     width: 80,
                                                                     height: 35),
                                                               ],
@@ -658,7 +690,9 @@ class EditPlaylistView extends StatelessWidget {
                                                           },
                                                         )
                                                       },
-                                                  text: 'Leave Playlist')
+                                                  text: AppLocalizations.of(
+                                                          context)!
+                                                      .leaveplaylist)
                                             ],
                                           )
                                         : Column(
@@ -676,7 +710,9 @@ class EditPlaylistView extends StatelessWidget {
                                                     builder: (_) {
                                                       return AlertDialog(
                                                         title: Text(
-                                                          'Join Playlist',
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .joinplaylist,
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
@@ -687,7 +723,13 @@ class EditPlaylistView extends StatelessWidget {
                                                           child: ListBody(
                                                             children: <Widget>[
                                                               Text(
-                                                                'Would you like to join playlist: ${model.playlist!.name}',
+                                                                AppLocalizations.of(
+                                                                            context)!
+                                                                        .joinplaylistcheck +
+                                                                    model
+                                                                        .playlist!
+                                                                        .name! +
+                                                                    '?',
                                                                 style: Theme.of(
                                                                         context)
                                                                     .textTheme
@@ -701,7 +743,9 @@ class EditPlaylistView extends StatelessWidget {
                                                               onPressed: () => model
                                                                   .navigateBack(
                                                                       context),
-                                                              text: 'No',
+                                                              text: AppLocalizations
+                                                                      .of(context)!
+                                                                  .no,
                                                               width: 80,
                                                               height: 35),
                                                           FluttifyButton(
@@ -711,7 +755,9 @@ class EditPlaylistView extends StatelessWidget {
                                                                     model.navigateBack(
                                                                         context),
                                                                   },
-                                                              text: 'Yes',
+                                                              text: AppLocalizations
+                                                                      .of(context)!
+                                                                  .yes,
                                                               width: 80,
                                                               height: 35),
                                                         ],
@@ -719,7 +765,9 @@ class EditPlaylistView extends StatelessWidget {
                                                     },
                                                   );
                                                 },
-                                                text: 'Join Playlist',
+                                                text: AppLocalizations.of(
+                                                        context)!
+                                                    .joinplaylist,
                                               ),
                                             ],
                                           )

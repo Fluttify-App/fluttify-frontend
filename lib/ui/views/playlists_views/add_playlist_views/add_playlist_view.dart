@@ -8,6 +8,7 @@ import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_chip_display.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
 import 'package:stacked/stacked.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddPlaylistView extends StatelessWidget {
   @override
@@ -18,7 +19,7 @@ class AddPlaylistView extends StatelessWidget {
               Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text("Add Playlist",
+          title: Text(AppLocalizations.of(context)!.addplaylist,
               style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
         ),
@@ -85,7 +86,8 @@ class AddPlaylistView extends StatelessWidget {
                                         EdgeInsets.symmetric(horizontal: 10),
                                     floatingLabelBehavior:
                                         FloatingLabelBehavior.never,
-                                    hintText: 'Beschreibung',
+                                    hintText: AppLocalizations.of(context)!
+                                        .description,
                                     border: InputBorder.none,
                                   ),
                                   onSubmitted: (String value) {
@@ -111,13 +113,15 @@ class AddPlaylistView extends StatelessWidget {
                                 selectedItemsTextStyle:
                                     Theme.of(context).textTheme.subtitle2,
                                 selectedColor: Theme.of(context).accentColor,
-                                itemsTextStyle: 
+                                itemsTextStyle:
                                     Theme.of(context).textTheme.subtitle2,
                                 searchable: true,
-                                buttonText: Text("Genres",
+                                buttonText: Text(
+                                    AppLocalizations.of(context)!.genres,
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
-                                title: Text("Genres",
+                                title: Text(
+                                    AppLocalizations.of(context)!.genres,
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
                                 items: model.playlistGenre!,
@@ -147,16 +151,19 @@ class AddPlaylistView extends StatelessWidget {
                                   FluttifyButton(
                                     onPressed: () =>
                                         model.navigateBack(context),
-                                    text: 'Cancel',
-                                    width: MediaQuery.of(context).size.width / 2 - 50,
+                                    text: AppLocalizations.of(context)!.cancel,
+                                    width:
+                                        MediaQuery.of(context).size.width / 2 -
+                                            50,
                                     color: Color.fromARGB(255, 233, 30, 30),
                                   ),
                                   FluttifyButton(
-                                    onPressed: () => model.save(context),
-                                    text: 'Save',
-                                    width: MediaQuery.of(context).size.width / 2 - 50,
-                                    color: fluttify_gradient_2
-                                  ),
+                                      onPressed: () => model.save(context),
+                                      text: AppLocalizations.of(context)!.save,
+                                      width: MediaQuery.of(context).size.width /
+                                              2 -
+                                          50,
+                                      color: fluttify_gradient_2),
                                 ],
                               ),
                             )
