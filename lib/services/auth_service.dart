@@ -27,7 +27,8 @@ class AuthService extends ChangeNotifier {
     var sharedPrefs = await SharedPreferences.getInstance();
     var token = sharedPrefs.getString("token");
     if (token == null || token != "initial") {
-      headers.putIfAbsent('Authorization', () => 'Bearer $token');
+      headers.update('Authorization', (oldToken) => 'Bearer $token',
+          ifAbsent: () => 'Bearer $token');
       var loggedIn = await _getUser();
       if (loggedIn) {
         return true;
@@ -53,11 +54,8 @@ class AuthService extends ChangeNotifier {
     }
     final url = response.body;
     try {
-      await launch(
-        url.toString(),
-        forceSafariVC: false,
-        forceWebView: false,
-      );
+      await launch(url.toString(),
+          forceSafariVC: false, forceWebView: false, enableJavaScript: true);
     } catch (e) {
       print(e);
     }

@@ -45,7 +45,7 @@ class DynamicLinkService {
     }
   }
 
-  void _handleDeepLink(PendingDynamicLinkData data) {
+  void _handleDeepLink(PendingDynamicLinkData data) async {
     final Uri deepLink = data.link;
     if (deepLink != null) {
       // Check if we want to make a post
@@ -59,14 +59,15 @@ class DynamicLinkService {
           print("Playlist: $playlist");
 
           _navigationService.navigateTo(
-              '/edit-playlist', EditPlaylistView(playlistId: playlist), withNavBar: false);
+              '/edit-playlist', EditPlaylistView(playlistId: playlist),
+              withNavBar: false);
         }
       } else if (isAuthentication) {
         // get the title of the post
         var token = deepLink.queryParameters['auth'];
-        StreamingSharedPreferences.instance.then((sharedPrefs) {
-          sharedPrefs.setString("token", token!);
-        });
+        StreamingSharedPreferences sharedPrefs =
+            await StreamingSharedPreferences.instance;
+        sharedPrefs.setString("token", token!);
       }
     }
   }
