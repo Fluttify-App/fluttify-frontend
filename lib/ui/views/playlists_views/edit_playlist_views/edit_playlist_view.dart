@@ -184,7 +184,7 @@ class EditPlaylistView extends StatelessWidget {
                                     child: FractionallySizedBox(
                                       child: Container(
                                         padding:
-                                            EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                            EdgeInsets.fromLTRB(5, 5, 0, 5),
                                         alignment: Alignment.centerLeft,
                                         child: MultiSelectBottomSheetField(
                                           canEdit: model.playlist!.canEdit,
