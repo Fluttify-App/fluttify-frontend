@@ -100,11 +100,12 @@ class AddPlaylistView extends StatelessWidget {
                         ),
                         FractionallySizedBox(
                           widthFactor: 0.95,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 10),
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              alignment: Alignment.centerLeft,
                               child: MultiSelectBottomSheetField(
                                 canEdit: true,
                                 decoration: BoxDecoration(),
@@ -117,9 +118,11 @@ class AddPlaylistView extends StatelessWidget {
                                     Theme.of(context).textTheme.subtitle2,
                                 searchable: true,
                                 buttonText: Text(
-                                    AppLocalizations.of(context)!.genres,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1),
+                                  AppLocalizations.of(context)!.genres,
+                                  style: TextStyle(
+                                      color: Theme.of(context).hintColor,
+                                      fontSize: 20),
+                                ),
                                 title: Text(
                                     AppLocalizations.of(context)!.genres,
                                     style:
