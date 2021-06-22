@@ -59,6 +59,7 @@ class EditPlaylistViewModel extends BaseViewModel {
     this.playlist = playlist;
     descriptionController.text = playlist.description!;
     nameController.text = playlist.name!;
+    selectedGenres = playlist.genres!;
     notifyListeners();
   }
 
@@ -167,7 +168,8 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   void removeUser(String id) {
-    playlist!.displayContributers!.removeWhere((element) => element['id'] == id);
+    playlist!.displayContributers!
+        .removeWhere((element) => element['id'] == id);
     playlist!.contributers!.removeWhere((element) => element == id);
     notifyListeners();
   }
