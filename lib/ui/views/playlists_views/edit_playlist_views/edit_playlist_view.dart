@@ -161,7 +161,8 @@ class EditPlaylistView extends StatelessWidget {
                                       borderRadius:
                                           BorderRadius.circular(10.0)),
                                   child: Container(
-                                    padding: EdgeInsets.all(13),
+                                    padding:
+                                        EdgeInsets.fromLTRB(13, 20, 13, 20),
                                     alignment: Alignment.centerLeft,
                                     child: model.playlist!.canEdit
                                         ? TextField(
@@ -221,7 +222,7 @@ class EditPlaylistView extends StatelessWidget {
                                       child: FractionallySizedBox(
                                         child: Container(
                                           padding:
-                                              EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                              EdgeInsets.fromLTRB(5, 5, 0, 5),
                                           alignment: Alignment.centerLeft,
                                           child: MultiSelectBottomSheetField(
                                             canEdit: model.playlist!.canEdit,
