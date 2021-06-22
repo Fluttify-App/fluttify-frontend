@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/spotify_sign_in/spotify_sign_in_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
-import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SpotifySignInView extends StatelessWidget {
   @override
@@ -41,7 +38,8 @@ class SpotifySignInView extends StatelessWidget {
                         child: Container(
                           child: FluttifyButton(
                             onPressed: () => model.handleSignIn(),
-                            text: "Sign In With Spotify",
+                            text: AppLocalizations.of(context)!
+                                .signin, //"Sign In With Spotify",
                             textStyle: Theme.of(context).textTheme.headline2,
                             color: Color(0xff1a1a1a),
                           ),

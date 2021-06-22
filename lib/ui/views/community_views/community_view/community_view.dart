@@ -5,6 +5,7 @@ import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/ui/views/community_views/community_view/community_viewmodel.dart';
 import 'package:fluttify/ui/widgets/community_playlist_card.dart';
 import 'package:stacked/stacked.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CommunityView extends StatelessWidget {
   @override
@@ -15,8 +16,8 @@ class CommunityView extends StatelessWidget {
           (BuildContext context, CommunityViewModel model, Widget? child) =>
               Scaffold(
         appBar: AppBar(
-          title:
-              Text("Community", style: Theme.of(context).textTheme.headline2),
+          title: Text(AppLocalizations.of(context)!.community,
+              style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
         ),
         body: Center(
@@ -46,7 +47,9 @@ class CommunityView extends StatelessWidget {
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
                                               15, 20, 0, 10),
-                                          child: Text('Liked',
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .liked,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline4),
@@ -83,7 +86,9 @@ class CommunityView extends StatelessWidget {
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
                                               15, 20, 0, 10),
-                                          child: Text('Community',
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .morecommunity,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline4),

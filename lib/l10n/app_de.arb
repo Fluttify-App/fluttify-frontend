@@ -1,0 +1,47 @@
+{
+    "playlists": "Playlists",
+    "community": "Netzwerk",
+    "user": "User",
+
+    "signin": "Login mit Spotify",
+    "created": "Erstellt",
+    "joined": "Beigetreten",
+    "songs": "Lieder",
+    "contributors": "Teilnehmer",
+    "contributor": "Teilnehmer",
+    "genres": "Genres",
+
+    "liked": "Playlists, denen du folgst",
+    "morecommunity": "Mehr vom Netzwerk",
+
+    "email": "E-Mail",
+    "followers": "Followers",
+    "darkmode": "Dunkles Design",
+    "language": "Sprache",
+    "logout": "Ausloggen",
+
+    "addplaylist": "Playlist erstellen",
+    "description": "Beschreibung",
+    "currentsongs": "Aktualle Lieder",
+    "lastupdate": "Letztes Update: ",
+    "createdby": "Erstellt von: ",
+
+    "leaveplaylist": "Playlist verlassen",
+    "joinplaylist": "Playlist beitreten",
+    "likeplaylist": "Playlist folgen",
+    "unlikeplaylist": "Playlist entfolgen",
+
+    "removeuser": "User entfernen",
+    "removeusercheck": "Willst du diesen User entfernen: ",
+    "leaveplaylistcheck": "Willst du diese Playlist verlassen: ",
+    "joinplaylistcheck": "Willst du dieser Playlist beitreten: ",
+    "logoutcheck": "Willst du dich ausloggen?",
+    "deleteplaylist": "Playlist entfernen",
+    "deleteplaylistcheck": "Willst du diese Playlist entfernen: ",
+
+    "no": "Nein",
+    "yes": "Ja",
+    "cancel": "Abbrechen",
+    "save": "Speichern"
+
+}

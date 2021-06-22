@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/ui/views/community_views/community_view/community_viewmodel.dart';
 import 'package:fluttify/ui/widgets/scrolling_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CommunityPlaylistCard extends StatelessWidget {
   CommunityViewModel? model;
@@ -53,20 +54,24 @@ class CommunityPlaylistCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                           getCreator()!,
+                            getCreator()!,
                             style: Theme.of(context).textTheme.bodyText2,
                           ),
                           Text(
                             playlist!.contributers!.length == 1
-                                ? '1 Contributor'
+                                ? '1 ' +
+                                    AppLocalizations.of(context)!.contributor
                                 : playlist!.contributers!.length.toString() +
-                                    " Contributors",
+                                    ' ' +
+                                    AppLocalizations.of(context)!.contributors,
                             style: Theme.of(context).textTheme.bodyText2,
                           ),
                           Text(
-                            playlist!.likes!.length == 1
-                                ? '1 Like'
-                                : playlist!.likes!.length.toString() + ' Likes',
+                            playlist!.contributers!.length == 1
+                                ? '1 ' + AppLocalizations.of(context)!.like
+                                : playlist!.contributers!.length.toString() +
+                                    ' ' +
+                                    AppLocalizations.of(context)!.likes,
                             style: Theme.of(context).textTheme.bodyText2,
                           )
                         ],

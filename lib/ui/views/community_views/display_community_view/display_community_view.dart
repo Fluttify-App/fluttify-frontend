@@ -12,6 +12,7 @@ import 'package:stacked/stacked.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:instant/instant.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DisplayCommunityView extends StatelessWidget {
   const DisplayCommunityView({required this.playlistId});
@@ -108,7 +109,8 @@ class DisplayCommunityView extends StatelessWidget {
                                 padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
                                 alignment: Alignment.topLeft,
                                 child: DefaultTextStyle(
-                                  child: Text("Beschreibung"),
+                                  child: Text(AppLocalizations.of(context)!
+                                      .description),
                                   style: Theme.of(context).textTheme.bodyText1!,
                                 ),
                               ),
@@ -155,11 +157,15 @@ class DisplayCommunityView extends StatelessWidget {
                                               .textTheme
                                               .subtitle2,
                                           searchable: true,
-                                          buttonText: Text("Genres",
+                                          buttonText: Text(
+                                              AppLocalizations.of(context)!
+                                                  .genres,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyText1),
-                                          title: Text("Genres",
+                                          title: Text(
+                                              AppLocalizations.of(context)!
+                                                  .genres,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyText1),
@@ -186,7 +192,8 @@ class DisplayCommunityView extends StatelessWidget {
                                 padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
                                 alignment: Alignment.topLeft,
                                 child: DefaultTextStyle(
-                                  child: Text("Contributors"),
+                                  child: Text(AppLocalizations.of(context)!
+                                      .contributors),
                                   style: Theme.of(context).textTheme.bodyText1!,
                                 ),
                               ),
@@ -236,7 +243,9 @@ class DisplayCommunityView extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         DefaultTextStyle(
-                                          child: Text("Current Songs"),
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .currentsongs),
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1!,
@@ -244,7 +253,8 @@ class DisplayCommunityView extends StatelessWidget {
                                         SizedBox(height: 5),
                                         DefaultTextStyle(
                                           child: Text(
-                                            "Last Update: " +
+                                            AppLocalizations.of(context)!
+                                                    .lastupdate +
                                                 DateFormat('dd.MM.yyyy HH:mm')
                                                     .format(
                                                   dateTimeToZone(
@@ -258,8 +268,10 @@ class DisplayCommunityView extends StatelessWidget {
                                               .subtitle1!,
                                         ),
                                         DefaultTextStyle(
-                                          child: Text("Created by: " +
-                                              model.getCreator()!),
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                      .createdby +
+                                                  model.getCreator()!),
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1!,
@@ -311,7 +323,8 @@ class DisplayCommunityView extends StatelessWidget {
                                                               builder: (_,
                                                                       constraints) =>
                                                                   (TextPainter(
-                                                                    textDirection: ui.TextDirection.ltr,
+                                                                            textDirection:
+                                                                                ui.TextDirection.ltr,
                                                                             text:
                                                                                 TextSpan(text: song.name!),
                                                                             maxLines:
@@ -404,7 +417,8 @@ class DisplayCommunityView extends StatelessWidget {
                                           onPressed: () {
                                             model.likePlaylist(context);
                                           },
-                                          text: 'Like Playlist',
+                                          text: AppLocalizations.of(context)!
+                                              .likeplaylist,
                                           icon: Icon(
                                             Icons.favorite_border_outlined,
                                             color: Colors.white,
@@ -416,7 +430,8 @@ class DisplayCommunityView extends StatelessWidget {
                                           onPressed: () {
                                             model.unlikePlaylist(context);
                                           },
-                                          text: 'Unlike Playlist',
+                                          text: AppLocalizations.of(context)!
+                                              .unlikeplaylist,
                                           icon: Icon(
                                             Icons.favorite,
                                             color: Colors.white,
