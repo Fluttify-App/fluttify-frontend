@@ -1,9 +1,9 @@
 {
     "playlists": "Playlists",
     "community": "Community",
-    "user": "User",
+    "user": "Benutzer",
 
-    "signin": "Login mit Spotify",
+    "signin": "Anmelden mit Spotify",
     "created": "Erstellt",
     "joined": "Beigetreten",
     "songs": "Lieder",
@@ -12,7 +12,7 @@
     "genres": "Genres",
 
     "liked": "Playlists, denen du folgst",
-    "morecommunity": "Mehr vom Netzwerk",
+    "morecommunity": "Mehr von der Community",
 
     "email": "E-Mail",
     "followers": "Followers",
@@ -31,11 +31,11 @@
     "likeplaylist": "Playlist folgen",
     "unlikeplaylist": "Playlist entfolgen",
 
-    "removeuser": "User entfernen",
-    "removeusercheck": "Willst du diesen User entfernen: ",
+    "removeuser": "Benutzer entfernen",
+    "removeusercheck": "Willst du diesen Benutzer entfernen: ",
     "leaveplaylistcheck": "Willst du diese Playlist verlassen: ",
     "joinplaylistcheck": "Willst du dieser Playlist beitreten: ",
-    "logoutcheck": "Willst du dich ausloggen?",
+    "logoutcheck": "Willst du dich abmelden?",
     "deleteplaylist": "Playlist entfernen",
     "deleteplaylistcheck": "Willst du diese Playlist entfernen: ",
 
