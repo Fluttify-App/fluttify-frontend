@@ -100,11 +100,12 @@ class AddPlaylistView extends StatelessWidget {
                         ),
                         FractionallySizedBox(
                           widthFactor: 0.95,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 10),
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              alignment: Alignment.centerLeft,
                               child: MultiSelectBottomSheetField(
                                 canEdit: true,
                                 decoration: BoxDecoration(),
