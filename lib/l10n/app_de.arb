@@ -10,6 +10,7 @@
     "contributors": "Teilnehmer",
     "contributor": "Teilnehmer",
     "genres": "Genre",
+    "selectedgenres": "Ausgewählte Genres",
     "allgenres": "Alle Genres",
 
     "liked": "Playlists, denen du folgst",
