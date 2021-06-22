@@ -9,7 +9,8 @@
     "songs": "Lieder",
     "contributors": "Teilnehmer",
     "contributor": "Teilnehmer",
-    "genres": "Genres",
+    "genres": "Genre",
+    "allgenres": "Alle Genres",
 
     "liked": "Playlists, denen du folgst",
     "morecommunity": "Mehr von der Community",

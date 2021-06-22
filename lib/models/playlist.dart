@@ -30,7 +30,7 @@ class Playlist {
       this.description,
       this.contributers,
       this.displayContributers,
-      this.allgenres = false,
+      this.allgenres = true,
       this.genres,
       this.image,
       this.href,

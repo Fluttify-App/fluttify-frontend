@@ -161,7 +161,8 @@ class EditPlaylistView extends StatelessWidget {
                                       borderRadius:
                                           BorderRadius.circular(10.0)),
                                   child: Container(
-                                    padding: EdgeInsets.all(13),
+                                    padding:
+                                        EdgeInsets.fromLTRB(13, 20, 13, 20),
                                     alignment: Alignment.centerLeft,
                                     child: model.playlist!.canEdit
                                         ? TextField(
@@ -172,67 +173,105 @@ class EditPlaylistView extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              Container(
+                                padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
+                                alignment: Alignment.topLeft,
+                                child: DefaultTextStyle(
+                                  child: Text(
+                                      AppLocalizations.of(context)!.genres),
+                                  style: Theme.of(context).textTheme.bodyText1!,
+                                ),
+                              ),
                               FractionallySizedBox(
-                                widthFactor: 0.95,
-                                child: Container(
-                                  padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
-                                  alignment: Alignment.centerLeft,
+                                  widthFactor: 0.95,
                                   child: Card(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0)),
-                                    child: FractionallySizedBox(
-                                      child: Container(
-                                        padding:
-                                            EdgeInsets.fromLTRB(5, 5, 0, 5),
-                                        alignment: Alignment.centerLeft,
-                                        child: MultiSelectBottomSheetField(
-                                          canEdit: model.playlist!.canEdit,
-                                          decoration: BoxDecoration(),
-                                          initialValue: model.playlist!.genres,
-                                          initialChildSize: 0.4,
-                                          listType: MultiSelectListType.CHIP,
-                                          selectedItemsTextStyle:
-                                              Theme.of(context)
-                                                  .textTheme
-                                                  .subtitle2,
-                                          selectedColor:
-                                              Theme.of(context).accentColor,
-                                          itemsTextStyle: Theme.of(context)
-                                              .textTheme
-                                              .subtitle2,
-                                          searchable: true,
-                                          buttonText: Text(
-                                              AppLocalizations.of(context)!
-                                                  .genres,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1),
-                                          title: Text(
-                                              AppLocalizations.of(context)!
-                                                  .genres,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1),
-                                          items: model.playlistGenre!,
-                                          onConfirm: (values) {
-                                            model.addGenre(values);
-                                          },
-                                          chipDisplay: MultiSelectChipDisplay(
-                                            chipColor:
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0)),
+                                      child: FractionallySizedBox(
+                                          child: Container(
+                                              child: CheckboxListTile(
+                                                  title: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .allgenres,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText1!,
+                                                  ),
+                                                  checkColor: Colors.white,
+                                                  activeColor: Theme.of(context)
+                                                      .accentColor,
+                                                  value: model
+                                                      .playlist!.allgenres!,
+                                                  onChanged: (value) {
+                                                    if (model.playlist!.canEdit)
+                                                      model
+                                                          .setAllGenres(value!);
+                                                  }))))),
+                              if (!model.playlist!.allgenres)
+                                FractionallySizedBox(
+                                  widthFactor: 0.95,
+                                  child: Container(
+                                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                    alignment: Alignment.centerLeft,
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0)),
+                                      child: FractionallySizedBox(
+                                        child: Container(
+                                          padding:
+                                              EdgeInsets.fromLTRB(5, 5, 0, 5),
+                                          alignment: Alignment.centerLeft,
+                                          child: MultiSelectBottomSheetField(
+                                            canEdit: model.playlist!.canEdit,
+                                            decoration: BoxDecoration(),
+                                            initialValue:
+                                                model.playlist!.genres,
+                                            initialChildSize: 0.4,
+                                            listType: MultiSelectListType.CHIP,
+                                            selectedItemsTextStyle:
+                                                Theme.of(context)
+                                                    .textTheme
+                                                    .subtitle2,
+                                            selectedColor:
                                                 Theme.of(context).accentColor,
-                                            textStyle: Theme.of(context)
+                                            itemsTextStyle: Theme.of(context)
                                                 .textTheme
                                                 .subtitle2,
-                                            onTap: (String value) =>
-                                                model.removeGenre(value),
+                                            searchable: true,
+                                            buttonText: Text(
+                                                AppLocalizations.of(context)!
+                                                    .genres,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1),
+                                            title: Text(
+                                                AppLocalizations.of(context)!
+                                                    .genres,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1),
+                                            items: model.playlistGenre!,
+                                            onConfirm: (values) {
+                                              model.addGenre(values);
+                                            },
+                                            chipDisplay: MultiSelectChipDisplay(
+                                              chipColor:
+                                                  Theme.of(context).accentColor,
+                                              textStyle: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2,
+                                              onTap: (String value) =>
+                                                  model.removeGenre(value),
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
                               model.playlist!.canEdit
                                   ? Row(
                                       mainAxisAlignment:

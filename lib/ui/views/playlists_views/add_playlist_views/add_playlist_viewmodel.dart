@@ -43,6 +43,11 @@ class AddPlaylistViewModel extends BaseViewModel {
     });
   }
 
+  void setAllGenres(bool allgenres) {
+    playlist.allgenres = allgenres;
+    notifyListeners();
+  }
+
   void addGenre(List<dynamic> value) {
     selectedGenres = value;
     notifyListeners();
