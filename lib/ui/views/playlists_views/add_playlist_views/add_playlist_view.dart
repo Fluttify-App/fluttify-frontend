@@ -118,9 +118,11 @@ class AddPlaylistView extends StatelessWidget {
                                     Theme.of(context).textTheme.subtitle2,
                                 searchable: true,
                                 buttonText: Text(
-                                    AppLocalizations.of(context)!.genres,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1),
+                                  AppLocalizations.of(context)!.genres,
+                                  style: TextStyle(
+                                      color: Theme.of(context).hintColor,
+                                      fontSize: 20),
+                                ),
                                 title: Text(
                                     AppLocalizations.of(context)!.genres,
                                     style:
