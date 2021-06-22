@@ -1,6 +1,6 @@
 {
     "playlists": "Playlists",
-    "community": "Netzwerk",
+    "community": "Community",
     "user": "User",
 
     "signin": "Login mit Spotify",
@@ -18,7 +18,7 @@
     "followers": "Followers",
     "darkmode": "Dunkles Design",
     "language": "Sprache",
-    "logout": "Ausloggen",
+    "logout": "Abmelden",
 
     "addplaylist": "Playlist erstellen",
     "description": "Beschreibung",
