@@ -11,9 +11,11 @@ class CommunityPlaylistCard extends StatelessWidget {
   CommunityPlaylistCard({required this.model, required this.playlist, t});
 
   String? getCreator() {
-    for (dynamic contributor in playlist!.displayContributers!)
-      if (playlist!.creator == contributor['id'])
-        return contributor['name'].toString();
+    String? creatorName;
+    playlist!.displayContributers!.forEach((element) {
+      if (element['id'] == playlist!.creator) creatorName = element['name'];
+    });
+    return creatorName;
   }
 
   @override
@@ -54,7 +56,7 @@ class CommunityPlaylistCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            getCreator()!,
+                            getCreator() ?? playlist!.creator.toString(),
                             style: Theme.of(context).textTheme.bodyText2,
                           ),
                           Text(

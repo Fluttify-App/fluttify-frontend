@@ -112,9 +112,11 @@ class DisplayCommunityViewModel extends BaseViewModel {
     Navigator.of(context, rootNavigator: true).pop(this.isChanged);
   }
 
-  String? getCreator() {
-    for (dynamic contributor in playlist!.displayContributers!)
-      if (playlist!.creator == contributor['id'])
-        return contributor['name'].toString();
+   String? getCreator() {
+    String? creatorName;
+    playlist!.displayContributers!.forEach((element) {
+      if (element['id'] == playlist!.creator) creatorName = element['name'];
+    });
+    return creatorName;
   }
 }

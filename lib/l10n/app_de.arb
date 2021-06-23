@@ -44,6 +44,9 @@
     "no": "Nein",
     "yes": "Ja",
     "cancel": "Abbrechen",
-    "save": "Speichern"
+    "save": "Speichern",
+    "keepItFresh": "Halt es frisch",
+
+    "advancedSettings": "Erweiterte Einstellungen"
 
 }

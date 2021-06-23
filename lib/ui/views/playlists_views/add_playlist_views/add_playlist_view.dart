@@ -9,6 +9,7 @@ import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_list_type.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:expandable/expandable.dart';
 
 class AddPlaylistView extends StatelessWidget {
   @override
@@ -99,31 +100,44 @@ class AddPlaylistView extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // padding: EdgeInsets.symmetric(vertical: 10),
+                          //padding: EdgeInsets.symmetric(vertical: 10),
                           child: FractionallySizedBox(
-                              widthFactor: 0.95,
-                              child: Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10.0)),
-                                  child: Container(
-                                      padding: EdgeInsets.all(7),
-                                      child: CheckboxListTile(
-                                          title: Text(
-                                            AppLocalizations.of(context)!
-                                                .allgenres,
-                                            style: TextStyle(
-                                                color:
-                                                    Theme.of(context).hintColor,
-                                                fontSize: 20),
-                                          ),
-                                          checkColor: Colors.white,
-                                          activeColor:
-                                              Theme.of(context).accentColor,
-                                          value: model.playlist.allgenres!,
-                                          onChanged: (value) {
-                                            model.setAllGenres(value!);
-                                          })))),
+                            widthFactor: 0.95,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              child: Container(
+                                padding: EdgeInsets.all(7),
+                                child: CheckboxListTile(
+                                  title: Row(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(right: 10),
+                                        child: Text(
+                                          AppLocalizations.of(context)!
+                                              .allgenres,
+                                          style: TextStyle(
+                                              color:
+                                                  Theme.of(context).hintColor,
+                                              fontSize: 20),
+                                        ),
+                                      ),
+                                      IconButton(
+                                        icon: Icon(Icons.info_outline_rounded),
+                                        onPressed: () {},
+                                      ),
+                                    ],
+                                  ),
+                                  checkColor: Colors.white,
+                                  activeColor: Theme.of(context).accentColor,
+                                  value: model.playlist.allgenres!,
+                                  onChanged: (value) {
+                                    model.setAllGenres(value!);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                         if (!model.playlist.allgenres)
                           Container(
@@ -176,6 +190,87 @@ class AddPlaylistView extends StatelessWidget {
                               ),
                             ),
                           ),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: ExpandableNotifier(
+                            child: ScrollOnExpand(
+                              scrollOnExpand: true,
+                              scrollOnCollapse: false,
+                              // ignore: missing_required_param
+                              child: ExpandablePanel(
+                                theme: ExpandableThemeData(
+                                  hasIcon: false,
+                                ),
+                                header: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(20, 10, 0, 0),
+                                      child: Text(
+                                          AppLocalizations.of(context)!
+                                              .advancedSettings,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline4),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(right: 22),
+                                      child: Icon(Icons.keyboard_arrow_down),
+                                    )
+                                  ],
+                                ),
+                                expanded: Column(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 10),
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
+                                        child: Container(
+                                          padding: EdgeInsets.all(7),
+                                          child: CheckboxListTile(
+                                            title: Row(
+                                              children: [
+                                                Container(
+                                                  padding: EdgeInsets.only(
+                                                      right: 10),
+                                                  child: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .keepItFresh,
+                                                    style: TextStyle(
+                                                        color: Theme.of(context)
+                                                            .hintColor,
+                                                        fontSize: 20),
+                                                  ),
+                                                ),
+                                                IconButton(
+                                                  icon: Icon(Icons
+                                                      .info_outline_rounded),
+                                                  onPressed: () {},
+                                                ),
+                                              ],
+                                            ),
+                                            checkColor: Colors.white,
+                                            activeColor:
+                                                Theme.of(context).accentColor,
+                                            value: model.playlist.allgenres!,
+                                            onChanged: (value) {},
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                collapsed: Container(),
+                              ),
+                            ),
+                          ),
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

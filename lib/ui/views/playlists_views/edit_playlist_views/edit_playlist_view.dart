@@ -129,7 +129,7 @@ class EditPlaylistView extends StatelessWidget {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(10)),
                                           child: Hero(
-                                            tag: model.playlist!.image!,
+                                            tag: model.playlist!.id!,
                                             child: Image.network(
                                                 model.playlist!.image!),
                                           ),
@@ -522,7 +522,7 @@ class EditPlaylistView extends StatelessWidget {
                                                 child: Text(AppLocalizations.of(
                                                             context)!
                                                         .createdby +
-                                                    model.getCreator()!),
+                                                    model.getCreator()),
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .subtitle1!,
