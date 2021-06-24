@@ -112,11 +112,11 @@ class DisplayCommunityViewModel extends BaseViewModel {
     Navigator.of(context, rootNavigator: true).pop(this.isChanged);
   }
 
-   String? getCreator() {
-    String? creatorName;
+   String getCreator() {
+    String creatorName = '';
     playlist!.displayContributers!.forEach((element) {
       if (element['id'] == playlist!.creator) creatorName = element['name'];
     });
-    return creatorName;
+    return creatorName == '' ? playlist!.creator! : creatorName;
   }
 }

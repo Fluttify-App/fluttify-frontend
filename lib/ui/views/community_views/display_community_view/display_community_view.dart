@@ -307,7 +307,7 @@ class DisplayCommunityView extends StatelessWidget {
                                           child: Text(
                                               AppLocalizations.of(context)!
                                                       .createdby +
-                                                  model.getCreator()!),
+                                                  model.getCreator()),
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1!,
