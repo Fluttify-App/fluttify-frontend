@@ -28,20 +28,10 @@ class _OnboardingPageState extends State<OnboardingView> {
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 19.0);
-
-    const pageDecoration = const PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
-      bodyTextStyle: bodyStyle,
-      descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-      titlePadding: EdgeInsets.fromLTRB(32, 132, 32, 32),
-      pageColor: Colors.white,
-      imagePadding: EdgeInsets.zero,
-    );
-
     const startPageDecoration = const PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
-      bodyTextStyle: bodyStyle,
+      titleTextStyle: TextStyle(
+          color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.w700),
+      bodyTextStyle: TextStyle(color: Colors.black, fontSize: 19.0),
       descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       //  titlePadding: EdgeInsets.fromLTRB(32, 132, 32, 32),
       pageColor: Colors.white,
