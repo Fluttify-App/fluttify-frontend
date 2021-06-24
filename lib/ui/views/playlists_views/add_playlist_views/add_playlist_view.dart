@@ -284,7 +284,7 @@ class AddPlaylistView extends StatelessWidget {
                                           padding: EdgeInsets.only(right: 10),
                                           child: Text(
                                             AppLocalizations.of(context)!
-                                                .keepItFresh,
+                                                .keepAllTracks,
                                             style: TextStyle(
                                                 color:
                                                     Theme.of(context).hintColor,
@@ -333,7 +333,7 @@ class AddPlaylistView extends StatelessWidget {
                                     ),
                                     checkColor: Colors.white,
                                     activeColor: Theme.of(context).accentColor,
-                                    value: model.playlist.keepItFresh,
+                                    value: model.playlist.keepAllTracks,
                                     onChanged: (value) {
                                       model.keepItFresh(value!);
                                     },

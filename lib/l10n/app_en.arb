@@ -47,8 +47,8 @@
     "yes": "Yes",
     "cancel": "Cancel",
     "save": "Save",
-    "keepItFresh": "Keep it fresh",
-    "infoDialog": "Updating the playlist removes all songs first. After that, most recent songs from every contributor will be added again to your playlist. This will keep it up to date.",
+    "keepAllTracks": "Keep all Tracks",
+    "infoDialog": "Songs will stay in your playlist, so that you can listen to old bangers from you and your friends.",
 
     "advancedSettings": "Advanced Settings",
 
@@ -62,7 +62,7 @@
     "onboardingcontent3": "Press the share button on a playlist to invite your friends. You can share directly via WhatsApp or other social apps. \n\n Your friends can join your playlist by opening the Fluttify link.",
 
     "onboardingtitle4": "Fluttify Algorithm",
-    "onboardingcontent4": "Fluttify uses the Spotify API to automatically select songs that will get added to your playlist. It scans the recently-liked and frequently-listened songs of each playlist-contributor and adds the songs that match with the specified genre.",
+    "onboardingcontent4": "Fluttify uses the Spotify API to automatically select songs that will get added to your playlist. It scans the recently-liked and frequently-listened songs of each playlist-contributor and adds the songs that match with the specified genre. You can decide whether or not these will songs will stay in your playlist.",
 
     "onboardingtitle5": "Lean back & \n enjoy your favorites",
     "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. Your playlists will always be up-to-date!\n\n Have Fun!"
