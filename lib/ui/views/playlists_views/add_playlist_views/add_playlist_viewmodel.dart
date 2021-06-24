@@ -20,12 +20,19 @@ class AddPlaylistViewModel extends BaseViewModel {
 
   List<dynamic> selectedGenres = [];
 
+  Color? chipColor;
+
+  Color? selectedColor;
+
   List<MultiSelectItem<dynamic>>? playlistGenre;
 
   AddPlaylistViewModel() {
+    chipColor = Color.fromARGB(255, 203, 45, 62);
+    selectedColor = Color.fromARGB(255, 203, 45, 62);
     playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
+    playlistGenre!.insert(0, MultiSelectItem('All Genres', 'All Genres'));
   }
 
   void navigateBack(BuildContext context) {
@@ -49,7 +56,19 @@ class AddPlaylistViewModel extends BaseViewModel {
   }
 
   void addGenre(List<dynamic> value) {
+    if (value.contains('All Genres')) {
+      playlist.allgenres = !playlist.allgenres;
+      chipColor = Color(0xff8AAB21);
+    }
     selectedGenres = value;
+    notifyListeners();
+  }
+
+  void checkAllGenres(List<dynamic> value) {
+    if (value.contains('All Genres')) {
+      value.removeRange(0, value.length - 1);
+      selectedColor = Color(0xff8AAB21);
+    }
     notifyListeners();
   }
 
@@ -64,5 +83,10 @@ class AddPlaylistViewModel extends BaseViewModel {
 
   void saveDescription(String value) {
     descriptionController.text = value;
+  }
+
+  void keepItFresh(bool value) {
+    playlist.keepItFresh = value;
+    notifyListeners();
   }
 }

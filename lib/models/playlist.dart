@@ -21,6 +21,7 @@ class Playlist {
   List<dynamic>? likes;
   DateTime? lastUpdate;
   bool? updating;
+  dynamic keepItFresh;
 
   Playlist(
       {this.dbID, //Database ID
@@ -39,7 +40,8 @@ class Playlist {
       this.songs,
       this.likes,
       this.lastUpdate,
-      this.updating});
+      this.updating,
+      this.keepItFresh = false});
 
   List<Object> get props => [
         dbID!,
@@ -94,7 +96,8 @@ class Playlist {
         image: parsedJson['images'].length != 0
             ? parsedJson['images'][0]['url']
             : null,
-        updating: parsedJson['updating']);
+        updating: parsedJson['updating'],
+        keepItFresh: parsedJson['keepItFresh']);
   }
 
   Map<String, dynamic> toJson() {
@@ -106,6 +109,7 @@ class Playlist {
       "genres": this.genres,
       "allgenres": this.allgenres,
       "contributers": this.contributers,
+      "keepItFresh": this.keepItFresh
     };
   }
 }
