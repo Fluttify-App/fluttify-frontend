@@ -70,7 +70,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var localeService = Provider.of<LocaleService>(context);
-
+    bool isOnboarded = false;
     return PreferenceBuilder<String>(
       preference: preferences.getString('token', defaultValue: ""),
       builder: (BuildContext context, String token) {
@@ -92,7 +92,9 @@ class App extends StatelessWidget {
                     title: 'Fluttify',
                     theme: notifire.getTheme(),
                     initialRoute: token != "" && token != "initial"
-                        ? Routes.homeView
+                        ? isOnboarded
+                            ? Routes.homeView
+                            : Routes.onboardingView
                         : Routes.spotifySignInView,
                     navigatorKey: StackedService.navigatorKey,
                     onGenerateRoute: StackedRouter().onGenerateRoute,

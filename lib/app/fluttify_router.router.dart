@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:fluttify/ui/views/onboarding_view.dart';
 import 'package:fluttify/ui/views/splashscreen_views/splashscreen_view.dart';
 import 'package:fluttify/ui/views/spotify_sign_in/spotify_sign_in_view.dart';
 import 'package:stacked/stacked.dart';
@@ -15,10 +16,12 @@ import '../ui/views/home_view.dart';
 
 class Routes {
   static const String spotifySignInView = '/';
+  static const String onboardingView = '/onboarding';
   static const String homeView = '/home-view';
   static const String splashScreenView = '/splash-view';
   static const all = <String>{
     splashScreenView,
+    onboardingView,
     spotifySignInView,
     homeView,
   };
@@ -29,6 +32,7 @@ class StackedRouter extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.splashScreenView, page: SplashScreenView),
+    RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.spotifySignInView, page: SpotifySignInView),
     RouteDef(Routes.homeView, page: HomeView),
   ];
@@ -38,6 +42,12 @@ class StackedRouter extends RouterBase {
     SplashScreenView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => SplashScreenView(),
+        settings: data,
+      );
+    },
+    OnboardingView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => OnboardingView(),
         settings: data,
       );
     },

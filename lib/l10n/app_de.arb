@@ -48,7 +48,20 @@
     "keepItFresh": "Halt es frisch",
     "infoDialog": "Bei der Aktualisierung der Playlist werden zunächst alle Songs entfernt. Anschließend werden dann wieder die aktuellsten Songs von jedem Teilnehmer hinzugefügt. So habt ihr eine Playlist die immer auf dem neuesten Stand ist.",
 
-    "advancedSettings": "Erweiterte Einstellungen"
+    "advancedSettings": "Erweiterte Einstellungen",
 
+    "welcome": "Welcome to Fluttiy",
+    "onboardingcontent1": "Create auto-refreshing Spotify Playlists with your friends. \n\n Login with your Spotify Account to get started!",
 
+    "onboardingtitle2": "Create a Playlist",
+    "onboardingcontent2": "Choose your playlist name and description. You can choose between specific genres or allow all music genres. The playlist is automatically added to your Spotify Library.",
+
+    "onboardingtitle3": "Invite friends",
+    "onboardingcontent3": "Press the share button to invite your friends. You can share directly via WhatsApp or other messengers.",
+
+    "onboardingtitle4": "That's it!",
+    "onboardingcontent4": "Fluttify uses the Spotify API to automatically retrieve the favorite songs of each contributor and adds them to the playlist.",
+
+    "onboardingtitle5": "Lean back & enjoy your favorites",
+    "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. The playlists are fresh at all times."
 }
