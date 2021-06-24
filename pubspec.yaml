@@ -53,6 +53,7 @@ dependencies:
   intl: ^0.17.0
   toggle_switch: ^1.2.0
   expandable: ^5.0.1
+  introduction_screen: ^2.1.0
 
 dev_dependencies:
   build_runner: ^2.0.4
@@ -76,6 +77,7 @@ flutter:
   assets:
     - assets/.env
     - assets/images/
+    - assets/images/onboarding/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
