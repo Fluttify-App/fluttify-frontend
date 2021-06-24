@@ -28,6 +28,7 @@ class PlaylistView extends StatelessWidget {
                 ? FractionallySizedBox(
                     widthFactor: 0.95,
                     child: RefreshIndicator(
+                      color: Theme.of(context).primaryColor,
                       onRefresh: () async {
                         model.refreshPlaylists();
                       },
@@ -123,7 +124,8 @@ class PlaylistView extends StatelessWidget {
                     ),
                   )
                 : Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                        color: Theme.of(context).primaryColor),
                   ),
           ),
         ),

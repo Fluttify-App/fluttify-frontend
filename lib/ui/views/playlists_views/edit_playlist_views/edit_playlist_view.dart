@@ -658,7 +658,9 @@ class EditPlaylistView extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              CircularProgressIndicator()
+                                              CircularProgressIndicator(
+                                                  color: Theme.of(context)
+                                                      .primaryColor)
                                             ],
                                           ),
                                     model.playlist!.contributers!.contains(
@@ -829,7 +831,9 @@ class EditPlaylistView extends StatelessWidget {
                         color: Colors.white, //change your color here
                       ),
                     ),
-                    body: Center(child: CircularProgressIndicator())),
+                    body: Center(
+                        child: CircularProgressIndicator(
+                            color: Theme.of(context).primaryColor))),
         viewModelBuilder: () {
           return EditPlaylistViewModel(this.playlist, this.playlistId);
         });
