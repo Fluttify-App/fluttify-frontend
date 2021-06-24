@@ -109,24 +109,11 @@ class AddPlaylistView extends StatelessWidget {
                               child: Container(
                                 padding: EdgeInsets.all(7),
                                 child: CheckboxListTile(
-                                  title: Row(
-                                    children: [
-                                      Container(
-                                        padding: EdgeInsets.only(right: 10),
-                                        child: Text(
-                                          AppLocalizations.of(context)!
-                                              .allgenres,
-                                          style: TextStyle(
-                                              color:
-                                                  Theme.of(context).hintColor,
-                                              fontSize: 20),
-                                        ),
-                                      ),
-                                      IconButton(
-                                        icon: Icon(Icons.info_outline_rounded),
-                                        onPressed: () {},
-                                      ),
-                                    ],
+                                  title: Text(
+                                    AppLocalizations.of(context)!.allgenres,
+                                    style: TextStyle(
+                                        color: Theme.of(context).hintColor,
+                                        fontSize: 20),
                                   ),
                                   checkColor: Colors.white,
                                   activeColor: Theme.of(context).accentColor,
@@ -251,7 +238,39 @@ class AddPlaylistView extends StatelessWidget {
                                                 IconButton(
                                                   icon: Icon(Icons
                                                       .info_outline_rounded),
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (_) {
+                                                        return AlertDialog(
+                                                          content:
+                                                              SingleChildScrollView(
+                                                            child: ListBody(
+                                                              children: <
+                                                                  Widget>[
+                                                                Text(
+                                                                  AppLocalizations.of(context)!.infoDialog,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .bodyText2,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          actions: <Widget>[
+                                                            FluttifyButton(
+                                                                onPressed: () =>
+                                                                    model.navigateBack(
+                                                                        context),
+                                                                text: 'Okay',
+                                                                width: 80,
+                                                                height: 35),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  },
                                                 ),
                                               ],
                                             ),

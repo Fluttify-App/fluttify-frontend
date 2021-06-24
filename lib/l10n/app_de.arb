@@ -46,7 +46,9 @@
     "cancel": "Abbrechen",
     "save": "Speichern",
     "keepItFresh": "Halt es frisch",
+    "infoDialog": "Bei der Aktualisierung der Playlist werden zunächst alle Songs entfernt. Anschließend werden dann wieder die aktuellsten Songs von jedem Teilnehmer hinzugefügt. So habt ihr eine Playlist die immer auf dem neuesten Stand ist.",
 
     "advancedSettings": "Erweiterte Einstellungen"
+
 
 }

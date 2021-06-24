@@ -48,6 +48,7 @@
     "cancel": "Cancel",
     "save": "Save",
     "keepItFresh": "Keep it fresh",
+    "infoDialog": "Updating the playlist removes all songs first. After that, most recent songs from every contributor will be added again to your playlist. This will keep it up to date.",
 
     "advancedSettings": "Advanced Settings"
 
