@@ -140,7 +140,7 @@ class AddPlaylistView extends StatelessWidget {
                                     chipColor: Theme.of(context).accentColor,
                                     textStyle:
                                         Theme.of(context).textTheme.subtitle2,
-                                    onTap: (String value) {
+                                    onTap: (dynamic value) {
                                       model.removeGenre(value);
                                     },
                                   ),

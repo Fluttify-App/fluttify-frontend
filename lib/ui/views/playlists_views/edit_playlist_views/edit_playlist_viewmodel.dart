@@ -69,11 +69,6 @@ class EditPlaylistViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void setAllGenres(bool allgenres) {
-    playlist!.allgenres = allgenres;
-    notifyListeners();
-  }
-
   void save(BuildContext context) {
     playlist!.description = descriptionController.text;
     playlist!.name = nameController.text;
