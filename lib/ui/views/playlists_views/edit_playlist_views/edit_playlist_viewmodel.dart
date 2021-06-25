@@ -42,6 +42,7 @@ class EditPlaylistViewModel extends BaseViewModel {
     playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
+    playlistGenre!.insert(0, MultiSelectItem('All Genres', 'All Genres'));
     _timer = new Timer.periodic(
         Duration(seconds: 15),
         (Timer timer) => {
@@ -86,7 +87,18 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   void addGenre(List<dynamic> value) {
+    if (value.contains('All Genres')) {
+      playlist!.allgenres = !playlist!.allgenres;
+      value.remove(value[0]);
+    }
     selectedGenres = value;
+    notifyListeners();
+  }
+
+  void checkAllGenres(List<dynamic> value) {
+    if (value.contains('All Genres')) {
+      value.removeRange(0, value.length - 1);
+    }
     notifyListeners();
   }
 
