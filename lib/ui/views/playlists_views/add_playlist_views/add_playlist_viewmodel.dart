@@ -86,7 +86,7 @@ class AddPlaylistViewModel extends BaseViewModel {
   }
 
   void keepItFresh(bool value) {
-    playlist.keepItFresh = value;
+    playlist.keepAllTracks = value;
     notifyListeners();
   }
 }
