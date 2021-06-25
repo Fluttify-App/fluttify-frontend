@@ -115,7 +115,7 @@ class AddPlaylistView extends StatelessWidget {
                                   listType: MultiSelectListType.CHIP,
                                   selectedItemsTextStyle:
                                       Theme.of(context).textTheme.subtitle2,
-                                  selectedColor: model.selectedColor,
+                                  selectedColor: Theme.of(context).accentColor,
                                   itemsTextStyle:
                                       Theme.of(context).textTheme.subtitle2,
                                   searchable: true,
@@ -137,7 +137,7 @@ class AddPlaylistView extends StatelessWidget {
                                   onSelectionChanged: (List<dynamic> values) =>
                                       model.checkAllGenres(values),
                                   chipDisplay: MultiSelectChipDisplay(
-                                    chipColor:  model.chipColor,
+                                    chipColor: Theme.of(context).accentColor,
                                     textStyle:
                                         Theme.of(context).textTheme.subtitle2,
                                     onTap: (String value) {
@@ -149,124 +149,6 @@ class AddPlaylistView extends StatelessWidget {
                             ),
                           ),
                         ),
-                        /*
-                        Container(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          child: ExpandableNotifier(
-                            child: ScrollOnExpand(
-                              scrollOnExpand: true,
-                              scrollOnCollapse: false,
-                              // ignore: missing_required_param
-                              child: ExpandablePanel(
-                                theme: ExpandableThemeData(
-                                  hasIcon: false,
-                                ),
-                                header: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      padding:
-                                          EdgeInsets.fromLTRB(20, 10, 0, 0),
-                                      child: Text(
-                                          AppLocalizations.of(context)!
-                                              .advancedSettings,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline4),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(right: 22),
-                                      child: Icon(Icons.keyboard_arrow_down),
-                                    )
-                                  ],
-                                ),
-                                expanded: Column(
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 10),
-                                      child: Card(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                        child: Container(
-                                          padding: EdgeInsets.all(7),
-                                          child: CheckboxListTile(
-                                            title: Row(
-                                              children: [
-                                                Container(
-                                                  padding: EdgeInsets.only(
-                                                      right: 10),
-                                                  child: Text(
-                                                    AppLocalizations.of(
-                                                            context)!
-                                                        .keepItFresh,
-                                                    style: TextStyle(
-                                                        color: Theme.of(context)
-                                                            .hintColor,
-                                                        fontSize: 20),
-                                                  ),
-                                                ),
-                                                IconButton(
-                                                  icon: Icon(Icons
-                                                      .info_outline_rounded),
-                                                  onPressed: () {
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (_) {
-                                                        return AlertDialog(
-                                                          content:
-                                                              SingleChildScrollView(
-                                                            child: ListBody(
-                                                              children: <
-                                                                  Widget>[
-                                                                Text(
-                                                                  AppLocalizations.of(
-                                                                          context)!
-                                                                      .infoDialog,
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .bodyText2,
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          actions: <Widget>[
-                                                            FluttifyButton(
-                                                                onPressed: () =>
-                                                                    model.navigateBack(
-                                                                        context),
-                                                                text: 'Okay',
-                                                                width: 80,
-                                                                height: 35),
-                                                          ],
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                            checkColor: Colors.white,
-                                            activeColor:
-                                                Theme.of(context).accentColor,
-                                            value: model.playlist.keepItFresh,
-                                            onChanged: (value) {
-                                              model.keepItFresh(value!);
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                collapsed: Container(),
-                              ),
-                            ),
-                          ),
-                        ),*/
                         Column(
                           children: [
                             Container(
