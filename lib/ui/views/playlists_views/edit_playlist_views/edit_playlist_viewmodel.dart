@@ -72,6 +72,8 @@ class EditPlaylistViewModel extends BaseViewModel {
   void save(BuildContext context) {
     playlist!.description = descriptionController.text;
     playlist!.name = nameController.text;
+    if (selectedGenres.contains('All Genres'))
+      selectedGenres.remove('All Genres');
     playlist!.genres = selectedGenres;
     fluttifyPlaylistService.saveFluttifyPlaylist(playlist!).then((success) {
       if (success) {
@@ -84,7 +86,6 @@ class EditPlaylistViewModel extends BaseViewModel {
   void addGenre(List<dynamic> value) {
     if (value.contains('All Genres')) {
       playlist!.allgenres = !playlist!.allgenres;
-      value.remove(value[0]);
     }
     selectedGenres = value;
     notifyListeners();
