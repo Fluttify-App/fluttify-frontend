@@ -35,6 +35,8 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   bool isChanged = false;
 
+  String lastContributor = "";
+
   EditPlaylistViewModel(Playlist? playlist, String? playlistId) {
     if (playlist != null) {
       setPlaylist(playlist);
@@ -186,5 +188,24 @@ class EditPlaylistViewModel extends BaseViewModel {
         .removeWhere((element) => element['id'] == id);
     playlist!.contributers!.removeWhere((element) => element == id);
     notifyListeners();
+  }
+
+  Widget getSongContributors(song) {
+    String? contributor = playlist!.currentTracks![song.uri!];
+    if (contributor != null && contributor != lastContributor) {
+      lastContributor = playlist!.currentTracks![song.uri];
+      dynamic contributorName = playlist!.displayContributers!
+          .firstWhere((element) => element['id'] == contributor);
+      return Row(children: <Widget>[
+        Expanded(child: Divider()),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(contributorName['name']),
+        ),
+        Expanded(child: Divider()),
+      ]);
+    } else {
+      return Container();
+    }
   }
 }
