@@ -3,7 +3,6 @@ import 'dart:ui' as ui;
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/models/song.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
@@ -525,98 +524,108 @@ class EditPlaylistView extends StatelessWidget {
                                                       onTap: () {
                                                         launch(song.link!);
                                                       },
-                                                      child: Card(
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0)),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Container(
-                                                              alignment: Alignment
-                                                                  .centerLeft,
-                                                              child: Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: <
-                                                                    Widget>[
-                                                                  Container(
-                                                                    height: 40,
-                                                                    width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width -
-                                                                        110,
-                                                                    padding: EdgeInsets
-                                                                        .fromLTRB(
+                                                      child: Column(
+                                                        children: [
+                                                          if (model.playlist!
+                                                                  .currentTracks !=
+                                                              null)
+                                                            model
+                                                                .getSongContributors(
+                                                                    song),
+                                                          Card(
+                                                            shape: RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10.0)),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Container(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
+                                                                  child: Column(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: <
+                                                                        Widget>[
+                                                                      Container(
+                                                                        height:
+                                                                            40,
+                                                                        width: MediaQuery.of(context).size.width -
+                                                                            110,
+                                                                        padding: EdgeInsets.fromLTRB(
                                                                             25,
                                                                             10,
                                                                             0,
                                                                             10),
-                                                                    child:
-                                                                        LayoutBuilder(
-                                                                      builder: (_, constraints) => (TextPainter(
-                                                                                textDirection: ui.TextDirection.ltr,
-                                                                                text: TextSpan(text: song.name!),
-                                                                                maxLines: 1,
-                                                                                textScaleFactor: MediaQuery.of(context).textScaleFactor,
-                                                                              )..layout())
-                                                                                  .size >=
-                                                                              Offset(constraints.widthConstraints().minWidth, 0)
-                                                                          ? ScrollingText(text: song.name!, textStyle: Theme.of(context).textTheme.bodyText2)
-                                                                          : Text(
-                                                                              song.name!,
-                                                                              style: Theme.of(context).textTheme.bodyText2,
-                                                                            ),
-                                                                    ),
-                                                                  ),
-                                                                  Container(
-                                                                    padding: EdgeInsets
-                                                                        .fromLTRB(
+                                                                        child:
+                                                                            LayoutBuilder(
+                                                                          builder: (_, constraints) => (TextPainter(
+                                                                                    textDirection: ui.TextDirection.ltr,
+                                                                                    text: TextSpan(text: song.name!),
+                                                                                    maxLines: 1,
+                                                                                    textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                                                                                  )..layout())
+                                                                                      .size >=
+                                                                                  Offset(constraints.widthConstraints().minWidth, 0)
+                                                                              ? ScrollingText(text: song.name!, textStyle: Theme.of(context).textTheme.bodyText2)
+                                                                              : Text(
+                                                                                  song.name!,
+                                                                                  style: Theme.of(context).textTheme.bodyText2,
+                                                                                ),
+                                                                        ),
+                                                                      ),
+                                                                      Container(
+                                                                        padding: EdgeInsets.fromLTRB(
                                                                             25,
                                                                             0,
                                                                             0,
                                                                             10),
-                                                                    child: Text(
-                                                                      song.artist!,
-                                                                      style: Theme.of(
-                                                                              context)
-                                                                          .textTheme
-                                                                          .subtitle1,
-                                                                    ),
+                                                                        child:
+                                                                            Text(
+                                                                          song.artist!,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .subtitle1,
+                                                                        ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            song.image == null
-                                                                ? Container(
-                                                                    height: 75,
-                                                                    width: 75,
-                                                                    child: Icon(
-                                                                      Icons
-                                                                          .music_note,
-                                                                      size: 30,
-                                                                    ),
-                                                                  )
-                                                                : Container(
-                                                                    height: 75,
-                                                                    width: 75,
-                                                                    child: ClipRRect(
-                                                                        borderRadius: BorderRadius.only(
-                                                                            topRight: Radius.circular(
-                                                                                10),
-                                                                            bottomRight: Radius.circular(
-                                                                                10)),
+                                                                ),
+                                                                song.image ==
+                                                                        null
+                                                                    ? Container(
+                                                                        height:
+                                                                            75,
+                                                                        width:
+                                                                            75,
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .music_note,
+                                                                          size:
+                                                                              30,
+                                                                        ),
+                                                                      )
+                                                                    : Container(
+                                                                        height:
+                                                                            75,
+                                                                        width:
+                                                                            75,
                                                                         child: ClipRRect(
-                                                                            child:
-                                                                                Image.network(song.image!))),
-                                                                  ),
-                                                          ],
-                                                        ),
+                                                                            borderRadius:
+                                                                                BorderRadius.only(topRight: Radius.circular(10), bottomRight: Radius.circular(10)),
+                                                                            child: ClipRRect(child: Image.network(song.image!))),
+                                                                      ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     )
                                                 ],

@@ -22,6 +22,7 @@ class Playlist {
   DateTime? lastUpdate;
   bool? updating;
   dynamic keepAllTracks;
+  dynamic currentTracks;
 
   Playlist(
       {this.dbID, //Database ID
@@ -41,7 +42,8 @@ class Playlist {
       this.likes,
       this.lastUpdate,
       this.updating,
-      this.keepAllTracks = false});
+      this.keepAllTracks = false,
+      this.currentTracks});
 
   List<Object> get props => [
         dbID!,
@@ -60,7 +62,8 @@ class Playlist {
         songs!,
         likes!,
         lastUpdate!,
-        updating!
+        updating!,
+        currentTracks
       ];
 
   factory Playlist.fromJson(Map<String, dynamic> parsedJson) {
@@ -97,7 +100,8 @@ class Playlist {
             ? parsedJson['images'][0]['url']
             : null,
         updating: parsedJson['updating'],
-        keepAllTracks: parsedJson['keepAllTracks']);
+        keepAllTracks: parsedJson['keepAllTracks'],
+        currentTracks: parsedJson['currentTracks']);
   }
 
   Map<String, dynamic> toJson() {
