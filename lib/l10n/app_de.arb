@@ -60,7 +60,7 @@
     "onboardingcontent3": "Drück auf den Teilen Button bei der Playlist um deine Freunde einzuladen. Alle sozialen Medien stehen dir zur Verfügung. \n\n Über den link sehen deine Freunde die Playlist in der Fluttify App und können direkt beitreten.",
 
     "onboardingtitle4": "Fluttify Algorithmus",
-    "onboardingcontent4": "Fluttify benutzt die Spotify API um direkt Songs von deinem Account zu der Playlist hinzuzufügen. Es werden die zuletzt gehörten oder häufig gehörten Songs ausgewählt und der Playlist hinzugefügt, solang es einem Genre der Playlist entspricht. Du entscheidest ob die Songs in der Playlist bleiben oder ob sie aktuell bleiben soll.",
+    "onboardingcontent4": "Fluttify benutzt die Spotify API um direkt Songs von deinem Account zu der Playlist hinzuzufügen. Es werden die zuletzt gehörten und häufig gehörten Songs ausgewählt und der Playlist hinzugefügt, solang es einem Genre der Playlist entspricht. Du entscheidest ob die Songs in der Playlist bleiben oder ob sie aktuell bleiben soll.",
 
     "onboardingtitle5": "Lehn dich zurück & \n genieße deine Lieblingssongs",
     "onboardingcontent5": "Fluttify aktualisiert deine Playlist alle 24 Stunden automatisch. Deine Playlist wird immer auf dem neusten Stand sein! \n\n Viel Spaß!"
