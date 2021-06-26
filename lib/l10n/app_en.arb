@@ -53,10 +53,10 @@
     "advancedSettings": "Advanced Settings",
 
     "welcome": "Welcome to Fluttify",
-    "onboardingcontent1": "Create auto-refreshing Spotify Playlists with your friends. \n\n Login with your Spotify Account to get started!",
+    "onboardingcontent1": "\n Create auto-refreshing Spotify Playlists with your friends.",
 
     "onboardingtitle2": "Create a Playlist",
-    "onboardingcontent2": "Choose a playlist name and description.\nAditionally you can specify which music genres should be added to the playlist or allow all genres.\n\nThe playlist will be automatically added to your Spotify Library.",
+    "onboardingcontent2": "Choose a playlist name and description.\nAditionally you can specify which music genres should be added to the playlist or allow all genres. \n\n The playlist will be automatically added to your Spotify Library.",
 
     "onboardingtitle3": "Invite your friends",
     "onboardingcontent3": "Press the share button on a playlist to invite your friends. You can share directly via WhatsApp or other social apps. \n\n Your friends can join your playlist by opening the Fluttify link.",
@@ -65,5 +65,5 @@
     "onboardingcontent4": "Fluttify uses the Spotify API to automatically select songs that will get added to your playlist. It scans the recently-liked and frequently-listened songs of each playlist-contributor and adds the songs that match with the specified genre. You can decide whether or not these will songs will stay in your playlist.",
 
     "onboardingtitle5": "Lean back & \n enjoy your favorites",
-    "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. Your playlists will always be up-to-date!\n\n Have Fun!"
+    "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. Your playlists will always be up-to-date! \n\n Have Fun!"
 }

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,14 +31,19 @@ Future main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   bool? darkMode = prefs.getBool('darkMode') ?? false;
-  String? language = prefs.getString('locale') ?? 'en';
+  List<String?> language = <String?>[prefs.getString('locale')];
   runApp(Phoenix(
     child: MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (context) => ThemeService(darkMode),
       ),
       ChangeNotifierProvider(
-          create: (context) => LocaleService(Locale(language)))
+          create: (context) => LocaleService(language[0] == null
+              ? (!(Platform.localeName.split('_')[0] == 'en' ||
+                      Platform.localeName.split('_')[0] == 'de')
+                  ? Locale('en')
+                  : Locale(Platform.localeName.split('_')[0]))
+              : Locale(language[0]!)))
     ], child: Fluttify(preferences)),
   ));
 }
