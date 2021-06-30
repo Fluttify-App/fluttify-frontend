@@ -127,45 +127,38 @@ class DisplayCommunityView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
-                                alignment: Alignment.topLeft,
-                                child: DefaultTextStyle(
-                                  child: Text(
-                                      AppLocalizations.of(context)!.genres),
-                                  style: Theme.of(context).textTheme.bodyText1!,
-                                ),
-                              ),
                               if (model.playlist!.allgenres)
                                 FractionallySizedBox(
-                                    widthFactor: 0.95,
-                                    child: Card(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                        child: FractionallySizedBox(
-                                            child: Container(
-                                                child: CheckboxListTile(
-                                                    title: Text(
-                                                      AppLocalizations.of(
-                                                              context)!
-                                                          .allgenres,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1!,
-                                                    ),
-                                                    checkColor: Colors.white,
-                                                    activeColor:
-                                                        Theme.of(context)
-                                                            .accentColor,
-                                                    value: model
-                                                        .playlist!.allgenres!,
-                                                    onChanged: (value) {}))))),
+                                  widthFactor: 0.95,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    child: FractionallySizedBox(
+                                      child: Container(
+                                        child: CheckboxListTile(
+                                          title: Text(
+                                            AppLocalizations.of(context)!
+                                                .allgenres,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!,
+                                          ),
+                                          checkColor: Colors.white,
+                                          activeColor:
+                                              Theme.of(context).accentColor,
+                                          value: model.playlist!.allgenres!,
+                                          onChanged: (value) {},
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               if (!model.playlist!.allgenres)
                                 FractionallySizedBox(
                                   widthFactor: 0.95,
                                   child: Container(
-                                    // padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                                    padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
                                     alignment: Alignment.centerLeft,
                                     child: Card(
                                       shape: RoundedRectangleBorder(
