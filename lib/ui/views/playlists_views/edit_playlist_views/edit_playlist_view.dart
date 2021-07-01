@@ -172,19 +172,10 @@ class EditPlaylistView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
-                                alignment: Alignment.topLeft,
-                                child: DefaultTextStyle(
-                                  child: Text(
-                                      AppLocalizations.of(context)!.genres),
-                                  style: Theme.of(context).textTheme.bodyText1!,
-                                ),
-                              ),
                               FractionallySizedBox(
                                 widthFactor: 0.95,
                                 child: Container(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                  padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
                                   alignment: Alignment.centerLeft,
                                   child: Card(
                                     shape: RoundedRectangleBorder(
