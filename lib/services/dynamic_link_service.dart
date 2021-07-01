@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/services.dart';
 
 class DynamicLinkService {
   final PlaylistNavigationService _navigationService =
@@ -73,19 +74,25 @@ class DynamicLinkService {
   }
 
   Future<void> createFirstPostLink(String playlistID) async {
-    final DynamicLinkParameters parameters = DynamicLinkParameters(
-      uriPrefix: 'https://fluttify.page.link',
-      link: Uri.parse('https://www.fluttify.com/playlist?id=$playlistID'),
-      androidParameters: AndroidParameters(
-        packageName: 'de.htwg.fluttify',
-      ),
-      // NOT ALL ARE REQUIRED ===== HERE AS AN EXAMPLE =====
-      socialMetaTagParameters: SocialMetaTagParameters(
-        title: 'Fluttify',
-        description: 'Join my playlist on Fluttify!',
-      ),
-    );
-    final Uri dynamicUrl = await parameters.buildUrl();
-    Share.share(dynamicUrl.toString());
+    if (kIsWeb) {
+      Clipboard.setData(ClipboardData(
+          text: "https://fluttify.herokuapp.com/#/home-view?playlist=" +
+              playlistID));
+    } else {
+      final DynamicLinkParameters parameters = DynamicLinkParameters(
+        uriPrefix: 'https://fluttify.page.link',
+        link: Uri.parse('https://www.fluttify.com/playlist?id=$playlistID'),
+        androidParameters: AndroidParameters(
+          packageName: 'de.htwg.fluttify',
+        ),
+        // NOT ALL ARE REQUIRED ===== HERE AS AN EXAMPLE =====
+        socialMetaTagParameters: SocialMetaTagParameters(
+          title: 'Fluttify',
+          description: 'Join my playlist on Fluttify!',
+        ),
+      );
+      final Uri dynamicUrl = await parameters.buildUrl();
+      Share.share(dynamicUrl.toString());
+    }
   }
 }

@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (BuildContext context, HomeViewModel model, Widget? child) =>
           FutureBuilder<void>(
-              future: model.initializeWebAuth(context),
+              future: model.routeInWeb(context),
               builder:
                   (BuildContext context, AsyncSnapshot<void> authSnapshot) {
                 return PersistentTabView(
