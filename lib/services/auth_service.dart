@@ -22,30 +22,33 @@ class AuthService extends ChangeNotifier {
 
   AuthService() {}
 
-  Future<bool> initializeAuthentication(String webToken) async {
+  Future<bool> initializeAuthentication() async {
     // initialize the authorization header
-    if (webToken != "") {
-      headers.update('Authorization', (oldToken) => 'Bearer $webToken',
-          ifAbsent: () => 'Bearer $webToken');
+    var sharedPrefs = await SharedPreferences.getInstance();
+    var token = sharedPrefs.getString("token");
+    if (token == null || token != "initial") {
+      headers.update('Authorization', (oldToken) => 'Bearer $token',
+          ifAbsent: () => 'Bearer $token');
       var loggedIn = await _getUser();
       if (loggedIn) {
         return true;
       } else {
         return false;
       }
+    }
+    return false;
+  }
+
+  Future<bool> setWebAuthentication(String webToken) async {
+    var sharedPrefs = await SharedPreferences.getInstance();
+
+    headers.update('Authorization', (oldToken) => 'Bearer $webToken',
+        ifAbsent: () => 'Bearer $webToken');
+    sharedPrefs.setString("token", webToken);
+    var loggedIn = await _getUser();
+    if (loggedIn) {
+      return true;
     } else {
-      var sharedPrefs = await SharedPreferences.getInstance();
-      var token = sharedPrefs.getString("token");
-      if (token == null || token != "initial") {
-        headers.update('Authorization', (oldToken) => 'Bearer $token',
-            ifAbsent: () => 'Bearer $token');
-        var loggedIn = await _getUser();
-        if (loggedIn) {
-          return true;
-        } else {
-          return false;
-        }
-      }
       return false;
     }
   }

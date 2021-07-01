@@ -19,7 +19,6 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:url_strategy/url_strategy.dart';
 import 'dart:html' as html;
 
 Future main() async {
@@ -30,7 +29,6 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  //setPathUrlStrategy();
 
   bool? darkMode = prefs.getBool('darkMode') ?? false;
   List<String?> language = <String?>[prefs.getString('locale')];
@@ -89,8 +87,8 @@ class App extends StatelessWidget {
       builder: (BuildContext context, String token) {
         return FutureBuilder<bool>(
           future: !redirectedFromWeb
-              ? _auth.initializeAuthentication("")
-              : _auth.initializeAuthentication(url
+              ? _auth.initializeAuthentication()
+              : _auth.setWebAuthentication(url
                   .substring(url.indexOf('?') + 6)), // cut token after '?auth='
           builder: (BuildContext context, AsyncSnapshot<bool> authSnapshot) {
             if (authSnapshot.connectionState == ConnectionState.done) {
