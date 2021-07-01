@@ -8,25 +8,24 @@ import 'package:fluttify/app/fluttify_router.router.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/l10n/l10n.dart';
 import 'package:fluttify/services/auth_service.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/locale_service.dart';
 import 'package:fluttify/services/theme_service.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/splashscreen_views/splashscreen_view.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future main() async {
-  await DotEnv.load(fileName: "assets/.env");
   setupLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
   final preferences = await StreamingSharedPreferences.instance;
 
-  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 

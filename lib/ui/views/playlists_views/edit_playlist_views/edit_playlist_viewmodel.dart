@@ -45,9 +45,6 @@ class EditPlaylistViewModel extends BaseViewModel {
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
     playlistGenre!.insert(0, MultiSelectItem('All Genres', 'All Genres'));
-    if (playlist!.allgenres) {
-      selectedGenres.add('All Genres');
-    }
     _timer = new Timer.periodic(
         Duration(seconds: 15),
         (Timer timer) => {
@@ -66,6 +63,9 @@ class EditPlaylistViewModel extends BaseViewModel {
     descriptionController.text = playlist.description!;
     nameController.text = playlist.name!;
     selectedGenres = playlist.genres!;
+    if (playlist.allgenres) {
+      selectedGenres.add('All Genres');
+    }
     notifyListeners();
   }
 
