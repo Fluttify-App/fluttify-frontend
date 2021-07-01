@@ -22,21 +22,32 @@ class AuthService extends ChangeNotifier {
 
   AuthService() {}
 
-  Future<bool> initializeAuthentication() async {
+  Future<bool> initializeAuthentication(String webToken) async {
     // initialize the authorization header
-    var sharedPrefs = await SharedPreferences.getInstance();
-    var token = sharedPrefs.getString("token");
-    if (token == null || token != "initial") {
-      headers.update('Authorization', (oldToken) => 'Bearer $token',
-          ifAbsent: () => 'Bearer $token');
+    if (webToken != "") {
+      headers.update('Authorization', (oldToken) => 'Bearer $webToken',
+          ifAbsent: () => 'Bearer $webToken');
       var loggedIn = await _getUser();
       if (loggedIn) {
         return true;
       } else {
         return false;
       }
+    } else {
+      var sharedPrefs = await SharedPreferences.getInstance();
+      var token = sharedPrefs.getString("token");
+      if (token == null || token != "initial") {
+        headers.update('Authorization', (oldToken) => 'Bearer $token',
+            ifAbsent: () => 'Bearer $token');
+        var loggedIn = await _getUser();
+        if (loggedIn) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      return false;
     }
-    return false;
   }
 
   void logoutBackend() async {
@@ -54,8 +65,12 @@ class AuthService extends ChangeNotifier {
     }
     final url = response.body;
     try {
-      await launch(url.toString(),
-          forceSafariVC: false, forceWebView: false, enableJavaScript: true);
+      await launch(
+        url.toString(),
+        forceSafariVC: true,
+        forceWebView: true,
+        webOnlyWindowName: '_self',
+      );
     } catch (e) {
       print(e);
     }

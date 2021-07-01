@@ -49,6 +49,7 @@ class HomeViewModel extends BaseViewModel {
     if (kIsWeb) {
       final dynamic uri = ModalRoute.of(context)!.settings.name;
       final token = Uri.parse(uri).queryParameters['auth'];
+      print("Token:" + token.toString());
       if (token != null) {
         dynamic sharedPrefs = await StreamingSharedPreferences.instance;
         await sharedPrefs.setString("token", token);

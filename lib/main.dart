@@ -8,7 +8,6 @@ import 'package:fluttify/app/fluttify_router.router.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/l10n/l10n.dart';
 import 'package:fluttify/services/auth_service.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/locale_service.dart';
 import 'package:fluttify/services/theme_service.dart';
@@ -19,9 +18,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:url_strategy/url_strategy.dart';
+import 'dart:html' as html;
 
 Future main() async {
-  await DotEnv.load(fileName: "assets/.env");
   setupLocator();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   final preferences = await StreamingSharedPreferences.instance;
@@ -29,6 +30,7 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  //setPathUrlStrategy();
 
   bool? darkMode = prefs.getBool('darkMode') ?? false;
   List<String?> language = <String?>[prefs.getString('locale')];
@@ -39,10 +41,12 @@ Future main() async {
       ),
       ChangeNotifierProvider(
           create: (context) => LocaleService(language[0] == null
-              ? (!(Platform.localeName.split('_')[0] == 'en' ||
-                      Platform.localeName.split('_')[0] == 'de')
-                  ? Locale('en')
-                  : Locale(Platform.localeName.split('_')[0]))
+              ? !kIsWeb
+                  ? (!(Platform.localeName.split('_')[0] == 'en' ||
+                          Platform.localeName.split('_')[0] == 'de')
+                      ? Locale('en')
+                      : Locale(Platform.localeName.split('_')[0]))
+                  : Locale('en')
               : Locale(language[0]!)))
     ], child: Fluttify(preferences)),
   ));
@@ -78,11 +82,16 @@ class App extends StatelessWidget {
     var localeService = Provider.of<LocaleService>(context);
     Preference<bool> isOnboarded =
         preferences.getBool('isOnboarded', defaultValue: false);
+    var url = html.window.location.href;
+    bool redirectedFromWeb = url.contains('auth');
     return PreferenceBuilder<String>(
       preference: preferences.getString('token', defaultValue: ""),
       builder: (BuildContext context, String token) {
         return FutureBuilder<bool>(
-          future: _auth.initializeAuthentication(),
+          future: !redirectedFromWeb
+              ? _auth.initializeAuthentication("")
+              : _auth.initializeAuthentication(url
+                  .substring(url.indexOf('?') + 6)), // cut token after '?auth='
           builder: (BuildContext context, AsyncSnapshot<bool> authSnapshot) {
             if (authSnapshot.connectionState == ConnectionState.done) {
               return Consumer<ThemeService>(
@@ -98,7 +107,8 @@ class App extends StatelessWidget {
                     ],
                     title: 'Fluttify',
                     theme: notifire.getTheme(),
-                    initialRoute: token != "" && token != "initial"
+                    initialRoute: (token != "" && token != "initial") ||
+                            (redirectedFromWeb == true)
                         ? isOnboarded.getValue()
                             ? Routes.homeView
                             : Routes.onboardingView
