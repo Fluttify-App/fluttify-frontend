@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/navigation_service.dart';
+import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
@@ -45,14 +46,14 @@ class HomeViewModel extends BaseViewModel {
     _friendsNavigation.popAll();
   }
 
-  Future<void> initializeWebAuth(context) async {
+  Future<void> routeInWeb(context) async {
     if (kIsWeb) {
       final dynamic uri = ModalRoute.of(context)!.settings.name;
-      final token = Uri.parse(uri).queryParameters['auth'];
-      print("Token:" + token.toString());
-      if (token != null) {
-        dynamic sharedPrefs = await StreamingSharedPreferences.instance;
-        await sharedPrefs.setString("token", token);
+      final playlistId = Uri.parse(uri).queryParameters['playlist'];
+      if (playlistId != null && playlistId != "") {
+        _playlistNavigation.navigateTo(
+            '/edit-playlist', EditPlaylistView(playlistId: playlistId),
+            withNavBar: false);
       }
     }
     return;

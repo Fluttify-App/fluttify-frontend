@@ -41,7 +41,6 @@ class AuthService extends ChangeNotifier {
 
   Future<bool> setWebAuthentication(String webToken) async {
     var sharedPrefs = await SharedPreferences.getInstance();
-
     headers.update('Authorization', (oldToken) => 'Bearer $webToken',
         ifAbsent: () => 'Bearer $webToken');
     sharedPrefs.setString("token", webToken);
