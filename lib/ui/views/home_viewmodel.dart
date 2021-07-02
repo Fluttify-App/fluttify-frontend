@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
@@ -48,9 +49,10 @@ class HomeViewModel extends BaseViewModel {
 
   Future<void> routeInWeb(context) async {
     if (kIsWeb) {
-      final dynamic uri = ModalRoute.of(context)!.settings.name;
-      final playlistId = Uri.parse(uri).queryParameters['playlist'];
+      SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+      String? playlistId = sharedPrefs.getString("playlist");
       if (playlistId != null && playlistId != "") {
+        sharedPrefs.setString("playlist", "");
         _playlistNavigation.navigateTo(
             '/edit-playlist', EditPlaylistView(playlistId: playlistId),
             withNavBar: false);

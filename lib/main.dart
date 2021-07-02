@@ -82,12 +82,16 @@ class App extends StatelessWidget {
     Preference<bool> isOnboarded =
         preferences.getBool('isOnboarded', defaultValue: false);
     var url = html.window.location.href;
-    bool redirectedFromWeb = url.contains('auth');
+    bool redirectedFromWebAuth = url.contains('auth');
+    bool redirectedFromWebPlaylist = url.contains('playlist');
+    if (redirectedFromWebPlaylist) {
+      preferences.setString('playlist', url.substring(url.indexOf('?') + 10));
+    }
     return PreferenceBuilder<String>(
       preference: preferences.getString('token', defaultValue: ""),
       builder: (BuildContext context, String token) {
         return FutureBuilder<bool>(
-          future: !redirectedFromWeb
+          future: !redirectedFromWebAuth
               ? _auth.initializeAuthentication()
               : _auth.setWebAuthentication(url
                   .substring(url.indexOf('?') + 6)), // cut token after '?auth='
@@ -107,7 +111,7 @@ class App extends StatelessWidget {
                     title: 'Fluttify',
                     theme: notifire.getTheme(),
                     initialRoute: (token != "" && token != "initial") ||
-                            (redirectedFromWeb == true)
+                            (redirectedFromWebAuth == true)
                         ? isOnboarded.getValue()
                             ? Routes.homeView
                             : Routes.onboardingView
