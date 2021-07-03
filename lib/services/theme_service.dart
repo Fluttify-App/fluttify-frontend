@@ -52,6 +52,7 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
       headline1: const TextStyle(
+          color: Colors.white,
           fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
