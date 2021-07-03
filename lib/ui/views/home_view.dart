@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/navigation_service.dart';
@@ -8,8 +10,11 @@ import 'package:fluttify/ui/views/user_views/user_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:web_browser_detect/web_browser_detect.dart';
 
 class HomeView extends StatelessWidget {
+  var browser = Browser.detectOrNull();
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
@@ -20,37 +25,45 @@ class HomeView extends StatelessWidget {
                   (BuildContext context, AsyncSnapshot<void> authSnapshot) {
                 return GestureDetector(
                   onHorizontalDragEnd: model.detectSwipe,
-                  child: PersistentTabView(
-                    context,
-                    controller: model.controller,
-                    onItemSelected: model.resetOnItemchange,
-                    screens: _buildScreens(),
-                    items: _buildNavBarItems(context),
-                    backgroundColor: Theme.of(context)
+                  child: Container(
+                    padding: browser!.browserAgent == BrowserAgent.Safari
+                        ? const EdgeInsets.only(bottom: 12)
+                        : null,
+                    color: Theme.of(context)
                         .bottomNavigationBarTheme
                         .backgroundColor!,
-                    confineInSafeArea: true,
-                    handleAndroidBackButtonPress: true, // Default is true.
-                    resizeToAvoidBottomInset:
-                        true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-                    stateManagement: false, // Default is true.
-                    hideNavigationBarWhenKeyboardShows:
-                        true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-                    popAllScreensOnTapOfSelectedTab: true,
-                    popActionScreens: PopActionScreensType.once,
-                    itemAnimationProperties: ItemAnimationProperties(
-                      // Navigation Bar's items animation properties.
-                      duration: Duration(milliseconds: 200),
-                      curve: Curves.ease,
+                    child: PersistentTabView(
+                      context,
+                      controller: model.controller,
+                      onItemSelected: model.resetOnItemchange,
+                      screens: _buildScreens(),
+                      items: _buildNavBarItems(context),
+                      backgroundColor: Theme.of(context)
+                          .bottomNavigationBarTheme
+                          .backgroundColor!,
+                      confineInSafeArea: true,
+                      handleAndroidBackButtonPress: true, // Default is true.
+                      resizeToAvoidBottomInset:
+                          true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+                      stateManagement: false, // Default is true.
+                      hideNavigationBarWhenKeyboardShows:
+                          true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+                      popAllScreensOnTapOfSelectedTab: true,
+                      popActionScreens: PopActionScreensType.once,
+                      itemAnimationProperties: ItemAnimationProperties(
+                        // Navigation Bar's items animation properties.
+                        duration: Duration(milliseconds: 200),
+                        curve: Curves.ease,
+                      ),
+                      screenTransitionAnimation: ScreenTransitionAnimation(
+                        // Screen transition animation on change of selected tab.
+                        animateTabTransition: true,
+                        curve: Curves.ease,
+                        duration: Duration(milliseconds: 200),
+                      ),
+                      navBarStyle: NavBarStyle
+                          .style6, // Choose the nav bar style with this property.
                     ),
-                    screenTransitionAnimation: ScreenTransitionAnimation(
-                      // Screen transition animation on change of selected tab.
-                      animateTabTransition: true,
-                      curve: Curves.ease,
-                      duration: Duration(milliseconds: 200),
-                    ),
-                    navBarStyle: NavBarStyle
-                        .style6, // Choose the nav bar style with this property.
                   ),
                 );
               }),
