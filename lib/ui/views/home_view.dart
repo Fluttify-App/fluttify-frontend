@@ -10,8 +10,6 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeView extends StatelessWidget {
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
@@ -20,36 +18,40 @@ class HomeView extends StatelessWidget {
               future: model.routeInWeb(context),
               builder:
                   (BuildContext context, AsyncSnapshot<void> authSnapshot) {
-                return PersistentTabView(
-                  context,
-                  onItemSelected: model.resetOnItemchange,
-                  screens: _buildScreens(),
-                  items: _buildNavBarItems(context),
-                  backgroundColor: Theme.of(context)
-                      .bottomNavigationBarTheme
-                      .backgroundColor!,
-                  confineInSafeArea: true,
-                  handleAndroidBackButtonPress: true, // Default is true.
-                  resizeToAvoidBottomInset:
-                      true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-                  stateManagement: false, // Default is true.
-                  hideNavigationBarWhenKeyboardShows:
-                      true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-                  popAllScreensOnTapOfSelectedTab: true,
-                  popActionScreens: PopActionScreensType.once,
-                  itemAnimationProperties: ItemAnimationProperties(
-                    // Navigation Bar's items animation properties.
-                    duration: Duration(milliseconds: 200),
-                    curve: Curves.ease,
+                return GestureDetector(
+                  onHorizontalDragEnd: model.detectSwipe,
+                  child: PersistentTabView(
+                    context,
+                    controller: model.controller,
+                    onItemSelected: model.resetOnItemchange,
+                    screens: _buildScreens(),
+                    items: _buildNavBarItems(context),
+                    backgroundColor: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .backgroundColor!,
+                    confineInSafeArea: true,
+                    handleAndroidBackButtonPress: true, // Default is true.
+                    resizeToAvoidBottomInset:
+                        true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+                    stateManagement: false, // Default is true.
+                    hideNavigationBarWhenKeyboardShows:
+                        true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+                    popAllScreensOnTapOfSelectedTab: true,
+                    popActionScreens: PopActionScreensType.once,
+                    itemAnimationProperties: ItemAnimationProperties(
+                      // Navigation Bar's items animation properties.
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.ease,
+                    ),
+                    screenTransitionAnimation: ScreenTransitionAnimation(
+                      // Screen transition animation on change of selected tab.
+                      animateTabTransition: true,
+                      curve: Curves.ease,
+                      duration: Duration(milliseconds: 200),
+                    ),
+                    navBarStyle: NavBarStyle
+                        .style6, // Choose the nav bar style with this property.
                   ),
-                  screenTransitionAnimation: ScreenTransitionAnimation(
-                    // Screen transition animation on change of selected tab.
-                    animateTabTransition: true,
-                    curve: Curves.ease,
-                    duration: Duration(milliseconds: 200),
-                  ),
-                  navBarStyle: NavBarStyle
-                      .style6, // Choose the nav bar style with this property.
                 );
               }),
       viewModelBuilder: () => HomeViewModel(),
