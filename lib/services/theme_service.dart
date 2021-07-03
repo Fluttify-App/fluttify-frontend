@@ -42,10 +42,12 @@ class ThemeService extends ChangeNotifier {
       button: const TextStyle(
           fontSize: 16, fontFamily: 'Montserrat', color: Colors.white),
       bodyText1: const TextStyle(
+          color: Colors.white,
           fontSize: 16.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
       bodyText2: const TextStyle(
+          color: Colors.white,
           fontSize: 14.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
@@ -69,6 +71,7 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
       subtitle1: const TextStyle(
+          color: Colors.white,
           fontSize: 12.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
