@@ -19,9 +19,9 @@ class HomeViewModel extends BaseViewModel {
       locator<SettingsNavigationService>();
 
   void detectSwipe(DragEndDetails details) {
-    if (details.velocity.pixelsPerSecond.dx < 0 && controller.index > 0) {
+    if (details.velocity.pixelsPerSecond.dx > 0 && controller.index > 0) {
       controller.index--;
-    } else if (details.velocity.pixelsPerSecond.dx > 0 &&
+    } else if (details.velocity.pixelsPerSecond.dx < 0 &&
         controller.index < 2) {
       controller.index++;
     }
