@@ -1,18 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/navigation_service.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class HomeViewModel extends BaseViewModel {
+  final PersistentTabController controller =
+      PersistentTabController(initialIndex: 0);
+
   final PlaylistNavigationService _playlistNavigation =
       locator<PlaylistNavigationService>();
   final CommunityNavigationService _addPlaylistNavigation =
       locator<CommunityNavigationService>();
   final SettingsNavigationService _friendsNavigation =
       locator<SettingsNavigationService>();
+
+  void detectSwipe(DragEndDetails details) {
+    if (details.velocity.pixelsPerSecond.dx < 0 && controller.index > 0) {
+      controller.index--;
+    } else if (details.velocity.pixelsPerSecond.dx > 0 &&
+        controller.index < 2) {
+      controller.index++;
+    }
+  }
 
   /// Define the navigators you want to get popped to initial when you switch to another tab
   void resetOnItemchange(int index) {
