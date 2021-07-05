@@ -3,7 +3,6 @@ import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 

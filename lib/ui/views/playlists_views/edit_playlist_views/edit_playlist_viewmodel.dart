@@ -4,12 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
-import 'package:fluttify/models/song.dart';
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
-import 'package:fluttify/services/navigation_service.dart';
-import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:stacked/stacked.dart';
 
@@ -17,8 +14,6 @@ class EditPlaylistViewModel extends BaseViewModel {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController nameController = TextEditingController();
 
-  final PlaylistNavigationService _navigationService =
-      locator<PlaylistNavigationService>();
   final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
   final AuthService authService = locator<AuthService>();
 

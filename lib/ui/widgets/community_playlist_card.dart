@@ -6,8 +6,8 @@ import 'package:fluttify/ui/widgets/scrolling_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CommunityPlaylistCard extends StatelessWidget {
-  CommunityViewModel? model;
-  Playlist? playlist;
+  final CommunityViewModel? model;
+  final Playlist? playlist;
   CommunityPlaylistCard({required this.model, required this.playlist, t});
 
   String? getCreator() {

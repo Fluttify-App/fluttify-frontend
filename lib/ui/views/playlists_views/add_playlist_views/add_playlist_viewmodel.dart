@@ -2,14 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
-import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:stacked/stacked.dart';
 
 class AddPlaylistViewModel extends BaseViewModel {
-  PlaylistNavigationService _navigationService =
-      locator<PlaylistNavigationService>();
-
   final FluttifyPlaylistService fluttifyPlaylistService =
       locator<FluttifyPlaylistService>();
 
