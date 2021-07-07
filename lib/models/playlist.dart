@@ -72,8 +72,6 @@ class Playlist {
           .map((song) => Song.fromJson(song))
           .toList();
     }
-    //print(parsedJson['lastUpdate']);
-    //print(parsedJson['likes']);
     return Playlist(
         dbID: parsedJson['_id'],
         id: parsedJson['id'],
@@ -88,9 +86,7 @@ class Playlist {
         canEdit: false,
         numberOfSongs: parsedJson['totalTracks'],
         songs: playlistSongs,
-        likes: parsedJson[
-            'likes'], //var dateTime1 = DateFormat('d/M/yyyy').parse(dmyString);
-
+        likes: parsedJson['likes'],
         lastUpdate: parsedJson['lastUpdate'] != null
             ? DateFormat('yyyy-MM-ddThh:mm:sssZ')
                 .parse(parsedJson['lastUpdate'])

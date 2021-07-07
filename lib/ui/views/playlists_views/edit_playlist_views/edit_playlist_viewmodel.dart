@@ -69,12 +69,17 @@ class EditPlaylistViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  // TODO: 'All Genres should be visible in view without adding it to playlist.genres'
   void save(BuildContext context) {
     playlist!.description = descriptionController.text;
     playlist!.name = nameController.text;
-    if (selectedGenres.contains('All Genres'))
+    if (selectedGenres.contains('All Genres')) {
       selectedGenres.remove('All Genres');
-    playlist!.genres = selectedGenres;
+      playlist!.genres = selectedGenres;
+      //selectedGenres.add('All Genres');
+    } else {
+      playlist!.genres = selectedGenres;
+    }
     fluttifyPlaylistService.saveFluttifyPlaylist(playlist!).then((success) {
       if (success) {
         canEdit();
@@ -85,9 +90,12 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   void addGenre(List<dynamic> value) {
     if (value.contains('All Genres')) {
-      playlist!.allgenres = !playlist!.allgenres;
+      playlist!.allgenres = true;
+      selectedGenres = value;
+    } else {
+      selectedGenres = value;
+      playlist!.allgenres = false;
     }
-    selectedGenres = value;
     notifyListeners();
   }
 
@@ -100,6 +108,11 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   void removeGenre(String value) {
     selectedGenres.remove(value);
+    notifyListeners();
+  }
+
+  void keepItFresh(bool value) {
+    playlist!.keepAllTracks = value;
     notifyListeners();
   }
 

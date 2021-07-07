@@ -44,9 +44,12 @@ class AddPlaylistViewModel extends BaseViewModel {
 
   void addGenre(List<dynamic> value) {
     if (value.contains('All Genres')) {
-      playlist.allgenres = !playlist.allgenres;
+      playlist.allgenres = true;
+      selectedGenres = value;
+    } else {
+      selectedGenres = value;
+      playlist.allgenres = false;
     }
-    selectedGenres = value;
     notifyListeners();
   }
 
