@@ -69,9 +69,9 @@ class CommunityPlaylistCard extends StatelessWidget {
                             style: Theme.of(context).textTheme.bodyText2,
                           ),
                           Text(
-                            playlist!.contributers!.length == 1
+                            playlist!.likes!.length == 1
                                 ? '1 ' + AppLocalizations.of(context)!.like
-                                : playlist!.contributers!.length.toString() +
+                                : playlist!.likes!.length.toString() +
                                     ' ' +
                                     AppLocalizations.of(context)!.likes,
                             style: Theme.of(context).textTheme.bodyText2,
