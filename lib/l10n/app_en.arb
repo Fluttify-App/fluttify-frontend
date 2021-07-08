@@ -3,7 +3,7 @@
     "community": "Community",
     "user": "User",
 
-    "signin": "SignIn With Spotify",
+    "signin": "Sign In With Spotify",
     "created": "Created",
     "joined": "Joined",
     "songs": "Songs",
@@ -39,7 +39,7 @@
     "removeusercheck": "Would you like to remove the User: ",
     "leaveplaylistcheck": "Would you like to leave playlist: ",
     "joinplaylistcheck": "Willst du dieser Playlist beitreten: ",
-    "logoutcheck": "'Would you like to logout from Fluttify?",
+    "logoutcheck": "Would you like to logout from Fluttify?",
     "deleteplaylist": "Remove playlist",
     "deleteplaylistcheck": "Would you like to remove playlist: ",
 
@@ -49,6 +49,7 @@
     "save": "Save",
     "keepAllTracks": "Keep all Tracks",
     "infoDialog": "Songs will stay in your playlist, so that you can listen to old bangers from you and your friends.",
+    "editKeepAllTracks": "You can only do that when you're in edit mode",
 
     "advancedSettings": "Advanced Settings",
 

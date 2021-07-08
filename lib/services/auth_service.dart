@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -16,7 +14,6 @@ class AuthService extends ChangeNotifier {
   Map<String, String> headers = {"Content-Type": "application/json"};
   late User currentUser = User.empty();
 
-  final NavigationService _navigationService = locator<NavigationService>();
 
   List<Object> get props => [headers];
 
