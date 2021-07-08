@@ -7,8 +7,8 @@ import 'package:fluttify/ui/widgets/scrolling_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PlaylistCard extends StatelessWidget {
-  PlaylistViewModel? model;
-  Playlist? playlist;
+  final PlaylistViewModel? model;
+  final Playlist? playlist;
   PlaylistCard({required this.model, required this.playlist});
   @override
   Widget build(BuildContext context) {

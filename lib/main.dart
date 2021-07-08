@@ -11,7 +11,6 @@ import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/locale_service.dart';
 import 'package:fluttify/services/theme_service.dart';
-import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/splashscreen_views/splashscreen_view.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked_services/stacked_services.dart';
