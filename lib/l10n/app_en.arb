@@ -32,6 +32,9 @@
 
     "leaveplaylist": "Leave Playlist",
     "joinplaylist": "Join Playlist",
+    "joinedPlaylistSnackBar": "Joined Playlist",
+    "removePlaylistSnackBar": "Playlist removed from library",
+    "couldNotRemoveSnackBar": "Could not remove playlist",
     "likeplaylist": "Follow Playlist",
     "unlikeplaylist": "Unfollow Playlist",
 
@@ -42,6 +45,7 @@
     "logoutcheck": "Would you like to logout from Fluttify?",
     "deleteplaylist": "Remove playlist",
     "deleteplaylistcheck": "Would you like to remove playlist: ",
+    "playlistUpdateSnackBar": "Playlist is getting updated",
 
     "no": "No",
     "yes": "Yes",

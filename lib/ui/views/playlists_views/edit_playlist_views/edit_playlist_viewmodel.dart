@@ -9,6 +9,7 @@ import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:stacked/stacked.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditPlaylistViewModel extends BaseViewModel {
   TextEditingController descriptionController = TextEditingController();
@@ -132,9 +133,9 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((value) {
       var snackbarText;
       if (value) {
-        snackbarText = Text("Playlist removed from library");
+        snackbarText = Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
       } else {
-        snackbarText = Text("Could not remove playlist");
+        snackbarText = Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
       }
       Navigator.of(context).pop(true);
       final snackBar = SnackBar(
@@ -155,7 +156,7 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((playlistUpdate) {
       Navigator.of(context).pop(true);
       final snackBar = SnackBar(
-        content: Text("Joined Playlist"),
+        content: Text(AppLocalizations.of(context)!.joinedPlaylistSnackBar),
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1500),
         shape: RoundedRectangleBorder(
@@ -172,7 +173,7 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((playlistUpdate) {
       setPlaylist(playlistUpdate);
       final snackBar = SnackBar(
-        content: Text("Playlist is getting updated"),
+        content: Text(AppLocalizations.of(context)!.playlistUpdateSnackBar),
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1500),
         shape: RoundedRectangleBorder(
