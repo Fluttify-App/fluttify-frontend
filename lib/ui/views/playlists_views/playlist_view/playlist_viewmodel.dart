@@ -56,9 +56,11 @@ class PlaylistViewModel extends BaseViewModel {
     playlistService.removeFluttifyPlaylist(playlist).then((value) {
       var snackbarText;
       if (value) {
-        snackbarText = Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
+        snackbarText =
+            Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
       } else {
-        snackbarText = Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
+        snackbarText =
+            Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
       }
       refreshPlaylists();
       final snackBar = SnackBar(
@@ -73,7 +75,7 @@ class PlaylistViewModel extends BaseViewModel {
     });
   }
 
-  Future<void> pressShare(String playlistId) async {
-    _dynamicLinkService.createFirstPostLink(playlistId);
+  Future<void> pressShare(BuildContext context, String playlistId) async {
+    _dynamicLinkService.createFirstPostLink(context, playlistId);
   }
 }

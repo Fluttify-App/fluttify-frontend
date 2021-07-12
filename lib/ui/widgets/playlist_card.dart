@@ -131,7 +131,7 @@ class PlaylistCard extends StatelessWidget {
                             Icons.person_add_alt_1,
                           ),
                           onPressed: () {
-                            model!.pressShare(playlist!.dbID!);
+                            model!.pressShare(context, playlist!.dbID!);
                           },
                         ),
                       ),

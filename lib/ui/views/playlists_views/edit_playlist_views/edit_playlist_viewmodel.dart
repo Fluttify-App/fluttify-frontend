@@ -123,8 +123,8 @@ class EditPlaylistViewModel extends BaseViewModel {
     setPlaylist(playlist);
   }
 
-  Future<void> pressShare(String playlistId) async {
-    _dynamicLinkService.createFirstPostLink(playlistId);
+  Future<void> pressShare(BuildContext context, String playlistId) async {
+    _dynamicLinkService.createFirstPostLink(context, playlistId);
   }
 
   Future<void> leavePlaylist(BuildContext context) async {
@@ -133,9 +133,11 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((value) {
       var snackbarText;
       if (value) {
-        snackbarText = Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
+        snackbarText =
+            Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
       } else {
-        snackbarText = Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
+        snackbarText =
+            Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
       }
       Navigator.of(context).pop(true);
       final snackBar = SnackBar(

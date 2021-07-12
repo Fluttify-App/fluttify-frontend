@@ -1,4 +1,6 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
@@ -63,11 +65,21 @@ class DynamicLinkService {
     }
   }
 
-  Future<void> createFirstPostLink(String playlistID) async {
+  Future<void> createFirstPostLink(
+      BuildContext context, String playlistID) async {
     if (kIsWeb) {
       Clipboard.setData(ClipboardData(
           text: "https://fluttify.herokuapp.com/#/home-view?playlist=" +
               playlistID));
+      final snackBar = SnackBar(
+        content: Text("Link copied to clipboard"),
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 1500),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else {
       final DynamicLinkParameters parameters = DynamicLinkParameters(
         uriPrefix: 'https://fluttify.page.link',

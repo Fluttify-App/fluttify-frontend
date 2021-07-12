@@ -160,8 +160,7 @@ class EditPlaylistView extends StatelessWidget {
                                       borderRadius:
                                           BorderRadius.circular(10.0)),
                                   child: Container(
-                                    padding:
-                                        EdgeInsets.fromLTRB(13, 20, 13, 0),
+                                    padding: EdgeInsets.fromLTRB(13, 20, 13, 0),
                                     alignment: Alignment.centerLeft,
                                     child: model.playlist!.canEdit
                                         ? TextField(
@@ -384,7 +383,7 @@ class EditPlaylistView extends StatelessWidget {
                                               Icons.person_add,
                                             ),
                                             onPressed: () {
-                                              model.pressShare(
+                                              model.pressShare(context,
                                                   model.playlist!.dbID!);
                                             },
                                           ),
