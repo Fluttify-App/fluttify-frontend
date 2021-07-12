@@ -161,7 +161,7 @@ class EditPlaylistView extends StatelessWidget {
                                           BorderRadius.circular(10.0)),
                                   child: Container(
                                     padding:
-                                        EdgeInsets.fromLTRB(13, 20, 13, 0),
+                                        EdgeInsets.fromLTRB(13, 20, 13, 20),
                                     alignment: Alignment.centerLeft,
                                     child: model.playlist!.canEdit
                                         ? TextField(
