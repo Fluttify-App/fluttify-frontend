@@ -1,9 +1,12 @@
 {
+    "title": "Fluttify",
+    "subtitle": "share music with friends",
+    
     "playlists": "Playlists",
     "community": "Community",
     "user": "User",
 
-    "signin": "SignIn With Spotify",
+    "signin": "Sign In With Spotify",
     "created": "Created",
     "joined": "Joined",
     "songs": "Songs",
@@ -32,6 +35,9 @@
 
     "leaveplaylist": "Leave Playlist",
     "joinplaylist": "Join Playlist",
+    "joinedPlaylistSnackBar": "Joined Playlist",
+    "removePlaylistSnackBar": "Playlist removed from library",
+    "couldNotRemoveSnackBar": "Could not remove playlist",
     "likeplaylist": "Follow Playlist",
     "unlikeplaylist": "Unfollow Playlist",
 
@@ -39,9 +45,10 @@
     "removeusercheck": "Would you like to remove the User: ",
     "leaveplaylistcheck": "Would you like to leave playlist: ",
     "joinplaylistcheck": "Willst du dieser Playlist beitreten: ",
-    "logoutcheck": "'Would you like to logout from Fluttify?",
+    "logoutcheck": "Would you like to logout from Fluttify?",
     "deleteplaylist": "Remove playlist",
     "deleteplaylistcheck": "Would you like to remove playlist: ",
+    "playlistUpdateSnackBar": "Playlist is getting updated",
 
     "no": "No",
     "yes": "Yes",
@@ -49,6 +56,7 @@
     "save": "Save",
     "keepAllTracks": "Keep all Tracks",
     "infoDialog": "Songs will stay in your playlist, so that you can listen to old bangers from you and your friends.",
+    "editKeepAllTracks": "You can only do that when you're in edit mode",
 
     "advancedSettings": "Advanced Settings",
 
@@ -56,14 +64,14 @@
     "onboardingcontent1": "\n Create auto-refreshing Spotify Playlists with your friends.",
 
     "onboardingtitle2": "Create a Playlist",
-    "onboardingcontent2": "Choose a playlist name and description.\nAditionally you can specify which music genres should be added to the playlist or allow all genres. \n\n The playlist will be automatically added to your Spotify Library.",
+    "onboardingcontent2": "Choose a playlist name and description.\nAditionally you can specify which the desired music genres for the playlist or allow all genres. \n\n The playlist will be automatically added to your Spotify Library.",
 
     "onboardingtitle3": "Invite your friends",
-    "onboardingcontent3": "Press the share button on a playlist to invite your friends. You can share directly via WhatsApp or other social apps. \n\n Your friends can join your playlist by opening the Fluttify link.",
+    "onboardingcontent3": "Press the share button on a playlist to invite your friends. You can share via WhatsApp or other messengers. \n\n Your friends can join your playlist by opening the Fluttify invitation link.",
 
     "onboardingtitle4": "Fluttify Algorithm",
-    "onboardingcontent4": "Fluttify uses the Spotify API to automatically select songs that will get added to your playlist. It scans the recently-liked and frequently-listened songs of each playlist-contributor and adds the songs that match with the specified genre. You can decide whether or not these will songs will stay in your playlist.",
+    "onboardingcontent4": "Fluttify uses the Spotify API to automatically select songs that will get added to your playlist. It scans the recently-liked and frequently-listened songs of each playlist-contributor and adds the songs that match with the specified genre. \n Additionally you can decide if these songs will stay in your playlist or get replaced after the next refresh.",
 
     "onboardingtitle5": "Lean back & \n enjoy your favorites",
-    "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. Your playlists will always be up-to-date! \n\n Have Fun!"
+    "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. \n Your playlists will always be up-to-date! \n\n Have Fun using Fluttify!"
 }

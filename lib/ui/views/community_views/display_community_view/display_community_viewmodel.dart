@@ -18,8 +18,6 @@ class DisplayCommunityViewModel extends BaseViewModel {
   final FluttifyPlaylistService fluttifyPlaylistService =
       locator<FluttifyPlaylistService>();
 
-  List<dynamic> selectedGenres = [];
-
   List<MultiSelectItem<dynamic>>? playlistGenre;
 
   Playlist? playlist;
@@ -30,39 +28,16 @@ class DisplayCommunityViewModel extends BaseViewModel {
     playlistGenre = fluttifyPlaylistService.genres
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
+    playlistGenre!.insert(0, MultiSelectItem('All Genres', 'All Genres'));
   }
 
   void setPlaylist(Playlist playlist) {
     this.playlist = playlist;
     descriptionController.text = playlist.description!;
     nameController.text = playlist.name!;
-    notifyListeners();
-  }
-
-  void canEdit() {
-    playlist!.canEdit = !playlist!.canEdit;
-    notifyListeners();
-  }
-
-  void save(BuildContext context) {
-    playlist!.description = descriptionController.text;
-    playlist!.name = nameController.text;
-    playlist!.genres = selectedGenres;
-    fluttifyPlaylistService.saveFluttifyPlaylist(playlist!).then((success) {
-      if (success) {
-        canEdit();
-        Navigator.of(context).pop(true);
-      }
-    });
-  }
-
-  void addGenre(List<dynamic> value) {
-    selectedGenres = value;
-    notifyListeners();
-  }
-
-  void removeGenre(String value) {
-    selectedGenres.remove(value);
+    if (playlist.allgenres) {
+      playlist.genres!.add('All Genres');
+    }
     notifyListeners();
   }
 
@@ -112,7 +87,7 @@ class DisplayCommunityViewModel extends BaseViewModel {
     Navigator.of(context, rootNavigator: true).pop(this.isChanged);
   }
 
-   String getCreator() {
+  String getCreator() {
     String creatorName = '';
     playlist!.displayContributers!.forEach((element) {
       if (element['id'] == playlist!.creator) creatorName = element['name'];

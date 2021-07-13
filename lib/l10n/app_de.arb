@@ -1,4 +1,7 @@
 {
+    "title": "Fluttify",
+    "subtitle": "share music with friends",
+    
     "playlists": "Playlists",
     "community": "Community",
     "user": "Benutzer",
@@ -30,6 +33,9 @@
 
     "leaveplaylist": "Playlist verlassen",
     "joinplaylist": "Playlist beitreten",
+    "joinedPlaylistSnackBar": "Playlist beigetreten",
+    "removePlaylistSnackBar": "Playlist aus der Bibliothek entfernt",
+    "couldNotRemoveSnackBar": "Playlist konnte nicht entfernt werden",
     "likeplaylist": "Playlist folgen",
     "unlikeplaylist": "Playlist entfolgen",
 
@@ -40,6 +46,7 @@
     "logoutcheck": "Willst du dich abmelden?",
     "deleteplaylist": "Playlist entfernen",
     "deleteplaylistcheck": "Willst du diese Playlist entfernen: ",
+    "playlistUpdateSnackBar": "Playlist wird aktualisiert",
 
     "no": "Nein",
     "yes": "Ja",
@@ -47,21 +54,22 @@
     "save": "Speichern",
     "keepAllTracks": "Behalte alle Songs",
     "infoDialog": "Songs bleiben in der Playlist. So kannst du zu einem späteren Zeitpunkt nochmal die Top Songs von dir und deinen Freunden hören.",
+    "editKeepAllTracks": "Du kannst dies nur tun wenn du dich im Edit Modus befindest",
 
     "advancedSettings": "Erweiterte Einstellungen",
 
     "welcome": "Willkommen zu Fluttify",
-    "onboardingcontent1": "\n Erstelle Playlists mit deinen Freunden die sich automatisch aktualisieren.",
+    "onboardingcontent1": "\n Erstelle selbst-aktualisierende Playlists mit deinen Freunden.",
 
     "onboardingtitle2": "Erstelle eine Playlist",
-    "onboardingcontent2": "Wähle einen Namen und optional eine Beschreibung. \n Du entscheidest welche Songs in die Playlist kommen anhand der Genres.\n\n Die Playlist wird automatisch deinem Account hinzugefügt.",
+    "onboardingcontent2": "Wähle einen Namen und optional eine Beschreibung. \n Du entscheidest welche Songs in die Playlist kommen anhand der Genres.\n\n Die Playlist wird automatisch deiner Spotify Bibliothek hinzugefügt.",
 
     "onboardingtitle3": "Lade deine Freunde ein",
-    "onboardingcontent3": "Drück auf den Teilen Button bei der Playlist um deine Freunde einzuladen. Alle sozialen Medien stehen dir zur Verfügung. \n\n Über den link sehen deine Freunde die Playlist in der Fluttify App und können direkt beitreten.",
+    "onboardingcontent3": "Drück auf den Teilen Button um deine Freunde einzuladen. Alle sozialen Medien stehen dir zur Verfügung. \n\n Deine Freunde können deiner Playlist über den Einladungslink beitreten.",
 
     "onboardingtitle4": "Fluttify Algorithmus",
-    "onboardingcontent4": "Fluttify benutzt die Spotify API um direkt Songs von deinem Account zu der Playlist hinzuzufügen. Es werden die zuletzt gehörten und häufig gehörten Songs ausgewählt und der Playlist hinzugefügt, solang es einem Genre der Playlist entspricht. Du entscheidest ob die Songs in der Playlist bleiben oder ob sie aktuell bleiben soll.",
+    "onboardingcontent4": "Fluttify benutzt die Spotify API um Songs auszuwählen, die der Playlist hinzugefügt werden. Es werden die zuletzt gespeicherten und häufig gehörten Songs ausgewählt und der Playlist hinzugefügt. Du entscheidest, ob alle Songs nach dem nächsten Aktualisieren in der Playlist bleiben sollen oder überschrieben werden.",
 
     "onboardingtitle5": "Lehn dich zurück & \n genieße deine Lieblingssongs",
-    "onboardingcontent5": "Fluttify aktualisiert deine Playlist alle 24 Stunden automatisch. Deine Playlist wird immer auf dem neusten Stand sein! \n\n Viel Spaß!"
+    "onboardingcontent5": "Fluttify aktualisiert deine Playlists alle 24 Stunden automatisch. Deine Playlist wird immer auf dem neusten Stand sein! \n\n Viel Spaß mit Fluttify!"
 }

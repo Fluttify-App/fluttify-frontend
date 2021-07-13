@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FluttifyButton extends StatelessWidget {
-  Function? onPressed;
-  String? text;
-  double? height;
-  double? width;
-  Icon? icon;
-  Color? color;
-  TextStyle? textStyle;
+  final Function? onPressed;
+  final String? text;
+  final double? height;
+  final double? width;
+  final Icon? icon;
+  final Color? color;
+  final TextStyle? textStyle;
 
   FluttifyButton(
       {required this.onPressed,

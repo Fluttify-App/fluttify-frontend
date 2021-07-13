@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
@@ -8,8 +7,7 @@ import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
-import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:stacked/stacked.dart';
 
 class PlaylistViewModel extends BaseViewModel {
@@ -58,9 +56,9 @@ class PlaylistViewModel extends BaseViewModel {
     playlistService.removeFluttifyPlaylist(playlist).then((value) {
       var snackbarText;
       if (value) {
-        snackbarText = Text("Playlist removed from library");
+        snackbarText = Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
       } else {
-        snackbarText = Text("Could not remove playlist");
+        snackbarText = Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
       }
       refreshPlaylists();
       final snackBar = SnackBar(

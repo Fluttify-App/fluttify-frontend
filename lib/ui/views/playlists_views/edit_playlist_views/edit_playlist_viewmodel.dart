@@ -4,21 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
-import 'package:fluttify/models/song.dart';
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
-import 'package:fluttify/services/navigation_service.dart';
-import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:stacked/stacked.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditPlaylistViewModel extends BaseViewModel {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController nameController = TextEditingController();
 
-  final PlaylistNavigationService _navigationService =
-      locator<PlaylistNavigationService>();
   final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
   final AuthService authService = locator<AuthService>();
 
@@ -75,12 +71,16 @@ class EditPlaylistViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  // TODO: 'All Genres should be visible in view without adding it to playlist.genres'
   void save(BuildContext context) {
     playlist!.description = descriptionController.text;
     playlist!.name = nameController.text;
-    if (selectedGenres.contains('All Genres'))
+    if (selectedGenres.contains('All Genres')) {
       selectedGenres.remove('All Genres');
-    playlist!.genres = selectedGenres;
+      playlist!.genres = selectedGenres;
+    } else {
+      playlist!.genres = selectedGenres;
+    }
     fluttifyPlaylistService.saveFluttifyPlaylist(playlist!).then((success) {
       if (success) {
         canEdit();
@@ -91,9 +91,12 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   void addGenre(List<dynamic> value) {
     if (value.contains('All Genres')) {
-      playlist!.allgenres = !playlist!.allgenres;
+      playlist!.allgenres = true;
+      selectedGenres = value;
+    } else {
+      selectedGenres = value;
+      playlist!.allgenres = false;
     }
-    selectedGenres = value;
     notifyListeners();
   }
 
@@ -106,6 +109,11 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   void removeGenre(String value) {
     selectedGenres.remove(value);
+    notifyListeners();
+  }
+
+  void keepItFresh(bool value) {
+    playlist!.keepAllTracks = value;
     notifyListeners();
   }
 
@@ -125,9 +133,11 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((value) {
       var snackbarText;
       if (value) {
-        snackbarText = Text("Playlist removed from library");
+        snackbarText =
+            Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
       } else {
-        snackbarText = Text("Could not remove playlist");
+        snackbarText =
+            Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
       }
       Navigator.of(context).pop(true);
       final snackBar = SnackBar(
@@ -148,7 +158,7 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((playlistUpdate) {
       Navigator.of(context).pop(true);
       final snackBar = SnackBar(
-        content: Text("Joined Playlist"),
+        content: Text(AppLocalizations.of(context)!.joinedPlaylistSnackBar),
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1500),
         shape: RoundedRectangleBorder(
@@ -165,7 +175,7 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((playlistUpdate) {
       setPlaylist(playlistUpdate);
       final snackBar = SnackBar(
-        content: Text("Playlist is getting updated"),
+        content: Text(AppLocalizations.of(context)!.playlistUpdateSnackBar),
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1500),
         shape: RoundedRectangleBorder(

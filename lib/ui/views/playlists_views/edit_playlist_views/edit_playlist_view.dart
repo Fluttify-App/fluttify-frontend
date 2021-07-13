@@ -165,6 +165,9 @@ class EditPlaylistView extends StatelessWidget {
                                     alignment: Alignment.centerLeft,
                                     child: model.playlist!.canEdit
                                         ? TextField(
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1,
                                             controller:
                                                 model.descriptionController,
                                             maxLines: null)
@@ -172,19 +175,10 @@ class EditPlaylistView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
-                                alignment: Alignment.topLeft,
-                                child: DefaultTextStyle(
-                                  child: Text(
-                                      AppLocalizations.of(context)!.genres),
-                                  style: Theme.of(context).textTheme.bodyText1!,
-                                ),
-                              ),
                               FractionallySizedBox(
                                 widthFactor: 0.95,
                                 child: Container(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                  padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
                                   alignment: Alignment.centerLeft,
                                   child: Card(
                                     shape: RoundedRectangleBorder(
@@ -243,6 +237,124 @@ class EditPlaylistView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
+                                ),
+                              ),
+                              FractionallySizedBox(
+                                widthFactor: 0.95,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
+                                        child: Container(
+                                          padding: EdgeInsets.all(7),
+                                          child: CheckboxListTile(
+                                            title: Row(
+                                              children: [
+                                                Container(
+                                                  padding: EdgeInsets.only(
+                                                      right: 10),
+                                                  child: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .keepAllTracks,
+                                                    style: TextStyle(
+                                                        color: Theme.of(context)
+                                                            .hintColor,
+                                                        fontSize: 20),
+                                                  ),
+                                                ),
+                                                IconButton(
+                                                  icon: Icon(Icons
+                                                      .info_outline_rounded),
+                                                  onPressed: () {
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (_) {
+                                                        return AlertDialog(
+                                                          content:
+                                                              SingleChildScrollView(
+                                                            child: ListBody(
+                                                              children: <
+                                                                  Widget>[
+                                                                Text(
+                                                                  AppLocalizations.of(
+                                                                          context)!
+                                                                      .infoDialog,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .bodyText2,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          actions: <Widget>[
+                                                            FluttifyButton(
+                                                                onPressed: () =>
+                                                                    model.navigateBack(
+                                                                        context),
+                                                                text: 'Okay',
+                                                                width: 80,
+                                                                height: 35),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                            checkColor: Colors.white,
+                                            activeColor:
+                                                Theme.of(context).accentColor,
+                                            value:
+                                                model.playlist!.keepAllTracks,
+                                            onChanged: (value) {
+                                              if (playlist!.canEdit)
+                                                model.keepItFresh(value!);
+                                              else
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (_) {
+                                                    return AlertDialog(
+                                                      content:
+                                                          SingleChildScrollView(
+                                                        child: ListBody(
+                                                          children: <Widget>[
+                                                            Text(
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .editKeepAllTracks,
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyText2,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      actions: <Widget>[
+                                                        FluttifyButton(
+                                                            onPressed: () => model
+                                                                .navigateBack(
+                                                                    context),
+                                                            text: 'Okay',
+                                                            width: 80,
+                                                            height: 35),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               model.playlist!.canEdit

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttify/ui/styles/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeService extends ChangeNotifier {
@@ -42,14 +41,17 @@ class ThemeService extends ChangeNotifier {
       button: const TextStyle(
           fontSize: 16, fontFamily: 'Montserrat', color: Colors.white),
       bodyText1: const TextStyle(
+          color: Colors.white,
           fontSize: 16.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
       bodyText2: const TextStyle(
+          color: Colors.white,
           fontSize: 14.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
       headline1: const TextStyle(
+          color: Colors.white,
           fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
@@ -59,16 +61,17 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
       headline3: const TextStyle(
-          color: Colors.black,
+          color: Color(0xff1a1a1a),
           fontSize: 20.0,
           fontFamily: 'Montserrat',
-          fontWeight: FontWeight.w600),
+          fontWeight: FontWeight.w800),
       headline4: const TextStyle(
           color: Color(0xFF979797),
           fontSize: 15.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
       subtitle1: const TextStyle(
+          color: Colors.white,
           fontSize: 12.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
@@ -127,7 +130,7 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
       headline3: const TextStyle(
-          color: Colors.black,
+          color: Color(0xff1a1a1a),
           fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
