@@ -76,11 +76,16 @@ flutter:
   assets:
     - assets/images/
     - assets/images/onboarding/
+    - assets/fonts/kellvin.ttf
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
   generate: true
+  fonts:
+    - family: Kellvin
+      fonts:
+        - asset: assets/fonts/kellvin.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

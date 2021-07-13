@@ -61,10 +61,10 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
       headline3: const TextStyle(
-          color: Colors.black,
+          color: Color(0xff1a1a1a),
           fontSize: 20.0,
           fontFamily: 'Montserrat',
-          fontWeight: FontWeight.w600),
+          fontWeight: FontWeight.w800),
       headline4: const TextStyle(
           color: Color(0xFF979797),
           fontSize: 15.0,
@@ -130,7 +130,7 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
       headline3: const TextStyle(
-          color: Colors.black,
+          color: Color(0xff1a1a1a),
           fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
