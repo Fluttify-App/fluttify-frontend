@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
                   onHorizontalDragEnd: model.detectSwipe,
                   child: Container(
                     padding: browser!.browserAgent == BrowserAgent.Safari
-                        ? const EdgeInsets.only(bottom: 12)
+                        ? const EdgeInsets.only(bottom: 14, top: 4)
                         : null,
                     color: Theme.of(context)
                         .bottomNavigationBarTheme
