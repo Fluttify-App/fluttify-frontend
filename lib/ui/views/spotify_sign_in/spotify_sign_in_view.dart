@@ -33,14 +33,15 @@ class SpotifySignInView extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Fluttify",
+                              Text(AppLocalizations.of(context)!.title,
                                   style: TextStyle(
                                       fontFamily: 'Kellvin',
                                       fontSize: 80,
                                       color: Color(0xff1a1a1a))),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 22.0),
-                                child: Text("share music with friends",
+                                child: Text(
+                                    AppLocalizations.of(context)!.subtitle,
                                     style: TextStyle(
                                         fontFamily: 'Kellvin',
                                         fontSize: 22,
