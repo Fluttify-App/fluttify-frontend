@@ -77,7 +77,6 @@ class EditPlaylistViewModel extends BaseViewModel {
     if (selectedGenres.contains('All Genres')) {
       selectedGenres.remove('All Genres');
       playlist!.genres = selectedGenres;
-      //selectedGenres.add('All Genres');
     } else {
       playlist!.genres = selectedGenres;
     }
@@ -133,9 +132,11 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((value) {
       var snackbarText;
       if (value) {
-        snackbarText = Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
+        snackbarText =
+            Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
       } else {
-        snackbarText = Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
+        snackbarText =
+            Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
       }
       Navigator.of(context).pop(true);
       final snackBar = SnackBar(
