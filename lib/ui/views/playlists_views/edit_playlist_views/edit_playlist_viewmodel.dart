@@ -77,7 +77,6 @@ class EditPlaylistViewModel extends BaseViewModel {
     if (selectedGenres.contains('All Genres')) {
       selectedGenres.remove('All Genres');
       playlist!.genres = selectedGenres;
-      //selectedGenres.add('All Genres');
     } else {
       playlist!.genres = selectedGenres;
     }

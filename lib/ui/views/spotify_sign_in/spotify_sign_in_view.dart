@@ -22,31 +22,61 @@ class SpotifySignInView extends StatelessWidget {
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 extendBodyBehindAppBar: true,
-                body: Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        child: Image.asset(
-                          'assets/images/FluttifyRed.png',
-                          width: 280.0,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 64.0),
+                body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                        flex: 8,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Fluttify",
+                                  style: TextStyle(
+                                      fontFamily: 'Kellvin',
+                                      fontSize: 80,
+                                      color: Color(0xff1a1a1a))),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 22.0),
+                                child: Text("share music with friends",
+                                    style: TextStyle(
+                                        fontFamily: 'Kellvin',
+                                        fontSize: 22,
+                                        color: Color(0xff1a1a1a))),
+                              ),
+                              Image.asset(
+                                'assets/images/FluttifyRed.png',
+                                width: 220.0,
+                              ),
+                            ],
+                          ),
+                        )),
+                    Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          child: FluttifyButton(
-                            onPressed: () => model.handleSignIn(),
-                            text: AppLocalizations.of(context)!
-                                .signin, //"Sign In With Spotify",
-                            textStyle: Theme.of(context).textTheme.headline2,
-                            color: Color(0xff1a1a1a),
+                          decoration: BoxDecoration(
+                              color: Color(0xff1a1a1a),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(15),
+                              )),
+                          child: Center(
+                            child: FluttifyButton(
+                                width: 300,
+                                height: 50,
+                                onPressed: () => model.handleSignIn(),
+                                text: AppLocalizations.of(context)!
+                                    .signin, //"Sign In With Spotify",
+                                textStyle:
+                                    Theme.of(context).textTheme.headline3),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
