@@ -32,6 +32,7 @@
     "currentsongs": "Current Songs",
     "lastupdate": "Last Update: ",
     "createdby": "Created by: ",
+    "playlistupdating": "Playlist updating...",
 
     "leaveplaylist": "Leave Playlist",
     "joinplaylist": "Join Playlist",
