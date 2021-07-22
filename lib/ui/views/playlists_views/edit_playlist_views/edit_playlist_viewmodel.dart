@@ -41,6 +41,7 @@ class EditPlaylistViewModel extends BaseViewModel {
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
     playlistGenre!.insert(0, MultiSelectItem('All Genres', 'All Genres'));
+    // Timer for updating of playlist
     _timer = new Timer.periodic(
         Duration(seconds: 15),
         (Timer timer) => {
@@ -55,6 +56,8 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   void setPlaylist(Playlist playlist) {
+    playlist.songs!.sort((a, b) => playlist.currentTracks![a.uri]
+        .compareTo(playlist.currentTracks![b.uri]));
     this.playlist = playlist;
     descriptionController.text = playlist.description!;
     nameController.text = playlist.name!;

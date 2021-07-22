@@ -32,6 +32,7 @@
     "currentsongs": "Current Songs",
     "lastupdate": "Last Update: ",
     "createdby": "Created by: ",
+    "playlistupdating": "Playlist updating...",
 
     "leaveplaylist": "Leave Playlist",
     "joinplaylist": "Join Playlist",
@@ -64,7 +65,7 @@
     "onboardingcontent1": "\n Create auto-refreshing Spotify Playlists with your friends.",
 
     "onboardingtitle2": "Create a Playlist",
-    "onboardingcontent2": "Choose a playlist name and description.\nAditionally you can specify which the desired music genres for the playlist or allow all genres. \n\n The playlist will be automatically added to your Spotify Library.",
+    "onboardingcontent2": "Choose a playlist name and description.\nAditionally you can specify the desired music genres for the playlist or allow all genres. \n\n The playlist will be automatically added to your Spotify Library.",
 
     "onboardingtitle3": "Invite your friends",
     "onboardingcontent3": "Press the share button on a playlist to invite your friends. You can share via WhatsApp or other messengers. \n\n Your friends can join your playlist by opening the Fluttify invitation link.",
