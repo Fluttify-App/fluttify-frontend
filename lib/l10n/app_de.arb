@@ -12,6 +12,8 @@
     "songs": "Songs",
     "contributors": "Teilnehmer",
     "contributor": "Teilnehmer",
+    "likes": "Followers",
+    "like": "Follower",
     "genres": "Genre",
     "selectedgenres": "Ausgewählte Genres",
     "allgenres": "Alle Genres",
