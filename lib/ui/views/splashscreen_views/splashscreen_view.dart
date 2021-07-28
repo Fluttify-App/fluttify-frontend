@@ -37,8 +37,8 @@ class SplashScreenView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 100.0),
                           child: Container(
-                            child:
-                                CircularProgressIndicator(color: Colors.black),
+                            child: CircularProgressIndicator(
+                                color: Theme.of(context).primaryColor),
                           ),
                         ),
                       ],

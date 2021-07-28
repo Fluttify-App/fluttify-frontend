@@ -926,7 +926,8 @@ class EditPlaylistView extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .primaryColor)
                                               ],
-                                            )),
+                                            ),
+                                          ),
                                   ],
                                 )
                               else
@@ -944,8 +945,10 @@ class EditPlaylistView extends StatelessWidget {
                       ),
                     ),
                     body: Center(
-                        child: CircularProgressIndicator(
-                            color: Theme.of(context).primaryColor))),
+                      child: CircularProgressIndicator(
+                          color: Theme.of(context).primaryColor),
+                    ),
+                  ),
         viewModelBuilder: () {
           return EditPlaylistViewModel(this.playlist, this.playlistId);
         });
