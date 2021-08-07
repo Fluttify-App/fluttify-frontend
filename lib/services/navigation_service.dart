@@ -52,6 +52,11 @@ class CommunityNavigationService extends FluttifyNavigationService {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }
 
+class DiscoverNavigationService extends FluttifyNavigationService {
+  @override
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+}
+
 class SettingsNavigationService extends FluttifyNavigationService {
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
