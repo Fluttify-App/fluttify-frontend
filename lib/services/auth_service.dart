@@ -14,7 +14,6 @@ class AuthService extends ChangeNotifier {
   Map<String, String> headers = {"Content-Type": "application/json"};
   late User currentUser = User.empty();
 
-
   List<Object> get props => [headers];
 
   AuthService() {}
@@ -23,6 +22,7 @@ class AuthService extends ChangeNotifier {
     // initialize the authorization header
     var sharedPrefs = await SharedPreferences.getInstance();
     var token = sharedPrefs.getString("token");
+    print(token);
     if (token == null || token != "initial") {
       headers.update('Authorization', (oldToken) => 'Bearer $token',
           ifAbsent: () => 'Bearer $token');

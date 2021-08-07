@@ -12,6 +12,8 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:web_browser_detect/web_browser_detect.dart';
 
+import 'discover_views/discover_view.dart';
+
 class HomeView extends StatelessWidget {
   var browser = Browser.detectOrNull();
 
@@ -75,6 +77,7 @@ class HomeView extends StatelessWidget {
     return <Widget>[
       PlaylistView(),
       CommunityView(),
+      DiscoverView(),
       UserView(),
     ];
   }
@@ -96,6 +99,15 @@ class HomeView extends StatelessWidget {
         activeColorPrimary: Theme.of(context).primaryColor,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<CommunityNavigationService>().navigatorKey,
+          initialRoute: '/',
+        ),
+      ),
+      PersistentBottomNavBarItem(
+        title: AppLocalizations.of(context)!.discover,
+        icon: Icon(Icons.explore),
+        activeColorPrimary: Theme.of(context).primaryColor,
+        routeAndNavigatorSettings: RouteAndNavigatorSettings(
+          navigatorKey: locator<SettingsNavigationService>().navigatorKey,
           initialRoute: '/',
         ),
       ),

@@ -229,10 +229,40 @@ class DisplayCommunityView extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              Container(
+                                padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                                child: (!model.playlist!.likes!.contains(
+                                        model.authService.currentUser.id))
+                                    ? FluttifyButton(
+                                        onPressed: () {
+                                          model.likePlaylist(context);
+                                        },
+                                        text: AppLocalizations.of(context)!
+                                            .likeplaylist,
+                                        icon: Icon(
+                                          Icons.favorite_border_outlined,
+                                          color: Colors.white,
+                                        ),
+                                        //width: 200,
+                                        color: Color(0xff8AAB21),
+                                      )
+                                    : FluttifyButton(
+                                        onPressed: () {
+                                          model.unlikePlaylist(context);
+                                        },
+                                        text: AppLocalizations.of(context)!
+                                            .unlikeplaylist,
+                                        icon: Icon(
+                                          Icons.favorite,
+                                          color: Colors.white,
+                                        ),
+                                        //width: 200,
+                                      ),
+                              ),
                               Column(
                                 children: [
                                   Container(
-                                    padding: EdgeInsets.fromLTRB(25, 25, 0, 15),
+                                    padding: EdgeInsets.fromLTRB(25, 20, 0, 15),
                                     alignment: Alignment.centerLeft,
                                     child: Column(
                                       crossAxisAlignment:
@@ -403,37 +433,6 @@ class DisplayCommunityView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Divider(
-                                    color: Theme.of(context).dividerColor,
-                                    height: 50,
-                                  ),
-                                  (!model.playlist!.likes!.contains(
-                                          model.authService.currentUser.id))
-                                      ? FluttifyButton(
-                                          onPressed: () {
-                                            model.likePlaylist(context);
-                                          },
-                                          text: AppLocalizations.of(context)!
-                                              .likeplaylist,
-                                          icon: Icon(
-                                            Icons.favorite_border_outlined,
-                                            color: Colors.white,
-                                          ),
-                                          width: 200,
-                                          color: Color(0xff8AAB21),
-                                        )
-                                      : FluttifyButton(
-                                          onPressed: () {
-                                            model.unlikePlaylist(context);
-                                          },
-                                          text: AppLocalizations.of(context)!
-                                              .unlikeplaylist,
-                                          icon: Icon(
-                                            Icons.favorite,
-                                            color: Colors.white,
-                                          ),
-                                          width: 200,
-                                        ),
                                 ],
                               ),
                             ],

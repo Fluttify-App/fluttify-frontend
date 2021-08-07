@@ -4,6 +4,7 @@
     
     "playlists": "Playlists",
     "community": "Community",
+    "discover": "Entdecken",
     "user": "Benutzer",
 
     "signin": "Anmelden mit Spotify",
@@ -12,6 +13,8 @@
     "songs": "Songs",
     "contributors": "Teilnehmer",
     "contributor": "Teilnehmer",
+    "likes": "Followers",
+    "like": "Follower",
     "genres": "Genre",
     "selectedgenres": "Ausgewählte Genres",
     "allgenres": "Alle Genres",

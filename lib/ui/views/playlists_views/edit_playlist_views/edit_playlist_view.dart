@@ -564,7 +564,7 @@ class EditPlaylistView extends StatelessWidget {
                                           model.authService.currentUser.id)
                                       ? Container(
                                           padding: const EdgeInsets.fromLTRB(
-                                              25, 10, 25, 0),
+                                              25, 25, 25, 0),
                                           child: Column(
                                             children: [
                                               FluttifyButton(
@@ -642,6 +642,7 @@ class EditPlaylistView extends StatelessWidget {
                                           child: Column(
                                             children: [
                                               FluttifyButton(
+                                                color: Color(0xff8AAB21),
                                                 onPressed: () {
                                                   showDialog(
                                                     context: context,
@@ -716,7 +717,7 @@ class EditPlaylistView extends StatelessWidget {
                                   children: [
                                     Container(
                                       padding:
-                                          EdgeInsets.fromLTRB(25, 25, 0, 15),
+                                          EdgeInsets.fromLTRB(25, 20, 0, 15),
                                       alignment: Alignment.centerLeft,
                                       child: Row(
                                         mainAxisAlignment:
@@ -925,7 +926,8 @@ class EditPlaylistView extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .primaryColor)
                                               ],
-                                            )),
+                                            ),
+                                          ),
                                   ],
                                 )
                               else
@@ -943,8 +945,10 @@ class EditPlaylistView extends StatelessWidget {
                       ),
                     ),
                     body: Center(
-                        child: CircularProgressIndicator(
-                            color: Theme.of(context).primaryColor))),
+                      child: CircularProgressIndicator(
+                          color: Theme.of(context).primaryColor),
+                    ),
+                  ),
         viewModelBuilder: () {
           return EditPlaylistViewModel(this.playlist, this.playlistId);
         });
