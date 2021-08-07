@@ -22,7 +22,6 @@ class AuthService extends ChangeNotifier {
     // initialize the authorization header
     var sharedPrefs = await SharedPreferences.getInstance();
     var token = sharedPrefs.getString("token");
-    print(token);
     if (token == null || token != "initial") {
       headers.update('Authorization', (oldToken) => 'Bearer $token',
           ifAbsent: () => 'Bearer $token');

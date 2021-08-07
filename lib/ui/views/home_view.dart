@@ -107,7 +107,7 @@ class HomeView extends StatelessWidget {
         icon: Icon(Icons.explore),
         activeColorPrimary: Theme.of(context).primaryColor,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
-          navigatorKey: locator<SettingsNavigationService>().navigatorKey,
+          navigatorKey: locator<DiscoverNavigationService>().navigatorKey,
           initialRoute: '/',
         ),
       ),

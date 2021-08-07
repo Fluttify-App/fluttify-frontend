@@ -4,7 +4,8 @@
     
     "playlists": "Playlists",
     "community": "Community",
-    "discover": "Discover",
+    "discover": "Songs",
+    "discoverdesc": "Discover",
     "user": "User",
 
     "signin": "Sign In With Spotify",
