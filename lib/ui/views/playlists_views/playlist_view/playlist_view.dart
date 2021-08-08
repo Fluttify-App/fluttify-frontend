@@ -55,10 +55,6 @@ class PlaylistView extends StatelessWidget {
                                                   .textTheme
                                                   .headline4),
                                         ),
-                                        Divider(
-                                          color: Theme.of(context).dividerColor,
-                                          height: 20,
-                                        ),
                                         for (Playlist playlist in model
                                             .playlistService
                                             .myplaylists
@@ -93,10 +89,6 @@ class PlaylistView extends StatelessWidget {
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline4),
-                                        ),
-                                        Divider(
-                                          color: Theme.of(context).dividerColor,
-                                          height: 20,
                                         ),
                                         for (Playlist playlist in model
                                             .playlistService
