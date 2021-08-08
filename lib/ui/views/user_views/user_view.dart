@@ -51,7 +51,7 @@ class UserView extends StatelessWidget {
                       Expanded(
                         //flex: 7,
                         child: Align(
-                          alignment: Alignment.center,
+                          alignment: Alignment.centerRight,
                           child: Text(
                             model.authService.currentUser.name!,
                             style: Theme.of(context).textTheme.headline1,

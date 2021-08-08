@@ -12,6 +12,7 @@ class SpotifySignInView extends StatelessWidget {
         builder: (BuildContext context, SpotifySignInViewModel model,
                 Widget? child) =>
             Container(
+              padding: const EdgeInsets.symmetric(vertical: 50),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
@@ -57,7 +58,7 @@ class SpotifySignInView extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: Container(
                           decoration: BoxDecoration(
                               color: Color(0xff1a1a1a),
