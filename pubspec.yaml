@@ -53,6 +53,7 @@ dependencies:
   expandable: ^5.0.1
   introduction_screen: ^2.1.0
   shared_preferences: ^2.0.6
+  cached_network_image: ^3.1.0
 
 dev_dependencies:
   build_runner: ^2.0.4

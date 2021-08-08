@@ -47,7 +47,7 @@ class PlaylistView extends StatelessWidget {
                                       children: [
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
-                                              15, 20, 0, 10),
+                                              15, 10, 0, 10),
                                           child: Text(
                                               AppLocalizations.of(context)!
                                                   .created,
@@ -82,7 +82,7 @@ class PlaylistView extends StatelessWidget {
                                       children: [
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
-                                              15, 20, 0, 10),
+                                              15, 10, 0, 10),
                                           child: Text(
                                               AppLocalizations.of(context)!
                                                   .joined,

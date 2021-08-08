@@ -64,7 +64,7 @@ class DiscoverView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.fromLTRB(15, 20, 0, 10),
+                          padding: EdgeInsets.fromLTRB(15, 10, 0, 10),
                           child: Text(
                               AppLocalizations.of(context)!.discoversongs,
                               style: Theme.of(context).textTheme.headline4),

@@ -46,7 +46,7 @@ class CommunityView extends StatelessWidget {
                                       children: [
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
-                                              15, 20, 0, 10),
+                                              15, 10, 0, 10),
                                           child: Text(
                                               AppLocalizations.of(context)!
                                                   .liked,
@@ -81,7 +81,7 @@ class CommunityView extends StatelessWidget {
                                       children: [
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
-                                              15, 20, 0, 10),
+                                              15, 10, 0, 10),
                                           child: Text(
                                               AppLocalizations.of(context)!
                                                   .morecommunity,

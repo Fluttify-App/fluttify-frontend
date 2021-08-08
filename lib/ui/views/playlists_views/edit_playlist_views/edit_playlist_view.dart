@@ -129,11 +129,8 @@ class EditPlaylistView extends StatelessWidget {
                                         ClipRRect(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(10)),
-                                          child: Hero(
-                                            tag: model.playlist!.id!,
-                                            child: Image.network(
-                                                model.playlist!.image!),
-                                          ),
+                                          child: Image.network(
+                                              model.playlist!.image!),
                                         ),
                                         Align(
                                           alignment: Alignment.topRight,
@@ -147,7 +144,7 @@ class EditPlaylistView extends StatelessWidget {
                                   ),
                                 ),
                               Container(
-                                padding: EdgeInsets.fromLTRB(25, 40, 0, 15),
+                                padding: EdgeInsets.fromLTRB(25, 40, 0, 10),
                                 alignment: Alignment.topLeft,
                                 child: DefaultTextStyle(
                                   child: Text(AppLocalizations.of(context)!
@@ -177,10 +174,18 @@ class EditPlaylistView extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              Container(
+                                padding: EdgeInsets.fromLTRB(25, 15, 15, 10),
+                                alignment: Alignment.topLeft,
+                                child: DefaultTextStyle(
+                                  child: Text(
+                                      AppLocalizations.of(context)!.genres),
+                                  style: Theme.of(context).textTheme.bodyText1!,
+                                ),
+                              ),
                               FractionallySizedBox(
                                 widthFactor: 0.95,
                                 child: Container(
-                                  padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
                                   alignment: Alignment.centerLeft,
                                   child: Card(
                                     shape: RoundedRectangleBorder(
@@ -241,12 +246,20 @@ class EditPlaylistView extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              Container(
+                                padding: EdgeInsets.fromLTRB(25, 15, 15, 10),
+                                alignment: Alignment.topLeft,
+                                child: DefaultTextStyle(
+                                  child:
+                                      Text(AppLocalizations.of(context)!.songs),
+                                  style: Theme.of(context).textTheme.bodyText1!,
+                                ),
+                              ),
                               FractionallySizedBox(
                                 widthFactor: 0.95,
                                 child: Column(
                                   children: [
                                     Container(
-                                      padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
                                       child: Card(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -263,51 +276,51 @@ class EditPlaylistView extends StatelessWidget {
                                                     AppLocalizations.of(
                                                             context)!
                                                         .keepAllTracks,
-                                                    style: TextStyle(
-                                                        color: Theme.of(context)
-                                                            .hintColor,
-                                                        fontSize: 20),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText1!,
                                                   ),
                                                 ),
-                                                IconButton(
-                                                  icon: Icon(Icons
-                                                      .info_outline_rounded),
-                                                  onPressed: () {
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (_) {
-                                                        return AlertDialog(
-                                                          content:
-                                                              SingleChildScrollView(
-                                                            child: ListBody(
-                                                              children: <
-                                                                  Widget>[
-                                                                Text(
-                                                                  AppLocalizations.of(
-                                                                          context)!
-                                                                      .infoDialog,
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .bodyText2,
-                                                                ),
-                                                              ],
+                                                if (model.playlist!.canEdit)
+                                                  IconButton(
+                                                    icon: Icon(Icons
+                                                        .info_outline_rounded),
+                                                    onPressed: () {
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (_) {
+                                                          return AlertDialog(
+                                                            content:
+                                                                SingleChildScrollView(
+                                                              child: ListBody(
+                                                                children: <
+                                                                    Widget>[
+                                                                  Text(
+                                                                    AppLocalizations.of(
+                                                                            context)!
+                                                                        .infoDialog,
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .bodyText2,
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
-                                                          ),
-                                                          actions: <Widget>[
-                                                            FluttifyButton(
-                                                                onPressed: () =>
-                                                                    model.navigateBack(
-                                                                        context),
-                                                                text: 'Okay',
-                                                                width: 80,
-                                                                height: 35),
-                                                          ],
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
+                                                            actions: <Widget>[
+                                                              FluttifyButton(
+                                                                  onPressed: () =>
+                                                                      model.navigateBack(
+                                                                          context),
+                                                                  text: 'Okay',
+                                                                  width: 80,
+                                                                  height: 35),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
                                               ],
                                             ),
                                             checkColor: Colors.white,
@@ -366,7 +379,7 @@ class EditPlaylistView extends StatelessWidget {
                                       children: [
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
-                                              25, 25, 0, 15),
+                                              15, 15, 0, 10),
                                           alignment: Alignment.topLeft,
                                           child: DefaultTextStyle(
                                             child: Text(
@@ -395,7 +408,7 @@ class EditPlaylistView extends StatelessWidget {
                                     )
                                   : Container(
                                       padding:
-                                          EdgeInsets.fromLTRB(25, 25, 0, 15),
+                                          EdgeInsets.fromLTRB(25, 15, 0, 15),
                                       alignment: Alignment.topLeft,
                                       child: DefaultTextStyle(
                                         child: Text(
