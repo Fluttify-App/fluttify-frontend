@@ -37,7 +37,7 @@ class AuthService extends ChangeNotifier {
 
   void logoutBackend() async {
     final preferences = await StreamingSharedPreferences.instance;
-    preferences.setString('token', "initial");
+    await preferences.setString('token', "initial");
   }
 
   Future<void> authenticateBackend() async {
