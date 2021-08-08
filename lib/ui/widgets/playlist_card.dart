@@ -68,7 +68,8 @@ class PlaylistCard extends StatelessWidget {
       ),
       direction: DismissDirection.endToStart,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
+        //height: 96,
+        padding: EdgeInsets.symmetric(vertical: 1),
         child: GestureDetector(
           onTap: () => {model!.navigateToEditPage(playlist!)},
           child: Card(
@@ -82,19 +83,40 @@ class PlaylistCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      height: 60,
+                      height: 30,
                       width: MediaQuery.of(context).size.width - 180,
                       alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.fromLTRB(25, 20, 0, 10),
+                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
                       child: playlist!.name!.length >= 20
                           ? ScrollingText(
                               text: playlist!.name!,
-                              textStyle: Theme.of(context).textTheme.headline1)
+                              textStyle: Theme.of(context).textTheme.headline5)
                           : Text(
                               playlist!.name!,
-                              style: Theme.of(context).textTheme.headline1,
+                              style: Theme.of(context).textTheme.headline5,
                             ),
                     ),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                      child: Text(
+                        playlist!.numberOfSongs.toString() +
+                            " " +
+                            AppLocalizations.of(context)!.songs,
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                      child: Text(
+                        playlist!.contributers!.length == 1
+                            ? '1 ' + AppLocalizations.of(context)!.contributor
+                            : playlist!.contributers!.length.toString() +
+                                ' ' +
+                                AppLocalizations.of(context)!.contributors,
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                    ),
+                    /*
                     Row(
                       children: [
                         Container(
@@ -120,6 +142,7 @@ class PlaylistCard extends StatelessWidget {
                         ),
                       ],
                     )
+                    */
                   ],
                 ),
                 Row(
@@ -137,8 +160,9 @@ class PlaylistCard extends StatelessWidget {
                       ),
                     if (playlist!.image == null)
                       Container(
-                        height: 100,
-                        width: 100,
+                        height: 80,
+                        width: 80,
+                        margin: const EdgeInsets.fromLTRB(0, 8, 8, 8),
                         child: Icon(
                           Icons.image,
                           size: 30,
@@ -146,16 +170,14 @@ class PlaylistCard extends StatelessWidget {
                       )
                     else
                       Container(
-                        height: 100,
-                        width: 100,
+                        height: 80,
+                        width: 80,
+                        margin: const EdgeInsets.fromLTRB(0, 8, 8, 8),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
                           ),
-                          child: Hero(
-                              tag: playlist!.id!,
-                              child: Image.network(playlist!.image!)),
+                          child: Image.network(playlist!.image!),
                         ),
                       ),
                   ],

@@ -15,14 +15,16 @@ class HomeViewModel extends BaseViewModel {
       locator<PlaylistNavigationService>();
   final CommunityNavigationService _addPlaylistNavigation =
       locator<CommunityNavigationService>();
-  final SettingsNavigationService _friendsNavigation =
+  final SettingsNavigationService _discoverNavigation =
+      locator<SettingsNavigationService>();
+  final SettingsNavigationService _settingsNavigation =
       locator<SettingsNavigationService>();
 
   void detectSwipe(DragEndDetails details) {
     if (details.velocity.pixelsPerSecond.dx > 0 && controller.index > 0) {
       controller.index--;
     } else if (details.velocity.pixelsPerSecond.dx < 0 &&
-        controller.index < 2) {
+        controller.index < 3) {
       controller.index++;
     }
   }
@@ -55,7 +57,8 @@ class HomeViewModel extends BaseViewModel {
   void popAllNavigators() {
     _playlistNavigation.popAll();
     _addPlaylistNavigation.popAll();
-    _friendsNavigation.popAll();
+    _discoverNavigation.popAll();
+    _settingsNavigation.popAll();
   }
 
   Future<void> routeInWeb(context) async {

@@ -46,17 +46,13 @@ class CommunityView extends StatelessWidget {
                                       children: [
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
-                                              15, 20, 0, 10),
+                                              15, 10, 0, 10),
                                           child: Text(
                                               AppLocalizations.of(context)!
                                                   .liked,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline4),
-                                        ),
-                                        Divider(
-                                          color: Theme.of(context).dividerColor,
-                                          height: 20,
                                         ),
                                         for (Playlist playlist in model
                                             .playlistService
@@ -85,17 +81,13 @@ class CommunityView extends StatelessWidget {
                                       children: [
                                         Container(
                                           padding: EdgeInsets.fromLTRB(
-                                              15, 20, 0, 10),
+                                              15, 10, 0, 10),
                                           child: Text(
                                               AppLocalizations.of(context)!
                                                   .morecommunity,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline4),
-                                        ),
-                                        Divider(
-                                          color: Theme.of(context).dividerColor,
-                                          height: 20,
                                         ),
                                         for (Playlist playlist in model
                                             .playlistService

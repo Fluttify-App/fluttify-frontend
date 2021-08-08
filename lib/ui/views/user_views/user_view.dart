@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/services/locale_service.dart';
@@ -26,28 +27,39 @@ class UserView extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: Image.network(
-                            model.authService.currentUser.avatarImageUrl ??
-                                "https://img.icons8.com/color/452/avatar.png"),
+                Container(
+                  height: 100,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 100,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Center(
+                              child: CachedNetworkImage(
+                                progressIndicatorBuilder: (context, url,
+                                        downloadProgress) =>
+                                    CircularProgressIndicator(
+                                        color: Theme.of(context).primaryColor,
+                                        value: downloadProgress.progress),
+                                imageUrl: model.authService.currentUser
+                                        .avatarImageUrl ??
+                                    "https://img.icons8.com/color/452/avatar.png",
+                              ),
+                            )),
                       ),
-                    ),
-                    Expanded(
-                      flex: 7,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          model.authService.currentUser.name!,
-                          style: Theme.of(context).textTheme.headline1,
+                      Expanded(
+                        //flex: 7,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            model.authService.currentUser.name!,
+                            style: Theme.of(context).textTheme.headline1,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Divider(color: Theme.of(context).dividerColor, height: 10),
                 Container(

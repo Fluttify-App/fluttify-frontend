@@ -17,12 +17,14 @@
     "likes": "Followers",
     "like": "Follower",
     "genres": "Genre",
-    "selectedgenres": "Ausgewählte Genres",
+    "selectedgenres": "Genres auswählen",
     "allgenres": "Alle Genres",
 
     "liked": "Playlists, denen du folgst",
     "morecommunity": "Mehr von der Community",
 
+    "discoversongs": "Topsongs anderer Nutzer",
+    
     "email": "E-Mail",
     "followers": "Followers",
     "darkmode": "Dunkles Design",

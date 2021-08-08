@@ -21,7 +21,7 @@ class CommunityPlaylistCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5),
+      padding: EdgeInsets.symmetric(vertical: 1),
       child: GestureDetector(
         onTap: () => {model!.navigateToEditPage(playlist!)},
         child: Card(
@@ -36,21 +36,21 @@ class CommunityPlaylistCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      height: 60,
+                      height: 30,
                       width: MediaQuery.of(context).size.width - 180,
                       alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.fromLTRB(25, 20, 0, 10),
+                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
                       child: playlist!.name!.length >= 20
                           ? ScrollingText(
                               text: playlist!.name!,
-                              textStyle: Theme.of(context).textTheme.headline1)
+                              textStyle: Theme.of(context).textTheme.headline5)
                           : Text(
                               playlist!.name!,
-                              style: Theme.of(context).textTheme.headline1,
+                              style: Theme.of(context).textTheme.headline5,
                             ),
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(25, 0, 0, 20),
+                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,20 +87,20 @@ class CommunityPlaylistCard extends StatelessWidget {
                 children: [
                   playlist!.image == null
                       ? Container(
-                          height: 130,
-                          width: 130,
+                          height: 100,
+                          width: 100,
+                          margin: const EdgeInsets.fromLTRB(0, 8, 8, 8),
                           child: Icon(
                             Icons.music_note,
                             size: 30,
                           ),
                         )
                       : Container(
-                          height: 130,
-                          width: 130,
+                          height: 100,
+                          width: 100,
+                          margin: const EdgeInsets.fromLTRB(0, 8, 8, 8),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(10),
-                                bottomRight: Radius.circular(10)),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
                             child: Image.network(playlist!.image!),
                           ),
                         ),

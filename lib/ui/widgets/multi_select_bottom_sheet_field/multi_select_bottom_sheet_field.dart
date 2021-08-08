@@ -417,51 +417,55 @@ class __MultiSelectBottomSheetFieldViewState<V>
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        InkWell(
-          onTap: () {
-            widget.canEdit ? _showBottomSheet(context) : Container();
-          },
-          child: Container(
-            decoration: widget.state != null
-                ? widget.decoration ??
-                    BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: widget.state != null && widget.state!.hasError
-                              ? Colors.red.shade800.withOpacity(0.6)
-                              : _selectedItems.isNotEmpty
-                                  ? (widget.selectedColor != null &&
-                                          widget.selectedColor !=
-                                              Colors.transparent)
-                                      ? widget.selectedColor!
-                                      : Theme.of(context).primaryColor
-                                  : Colors.black45,
-                          width: _selectedItems.isNotEmpty
-                              ? (widget.state != null && widget.state!.hasError)
-                                  ? 1.4
-                                  : 1.8
-                              : 1.2,
+        widget.canEdit
+            ? InkWell(
+                onTap: () {
+                  _showBottomSheet(context);
+                },
+                child: Container(
+                  decoration: widget.state != null
+                      ? widget.decoration ??
+                          BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: widget.state != null &&
+                                        widget.state!.hasError
+                                    ? Colors.red.shade800.withOpacity(0.6)
+                                    : _selectedItems.isNotEmpty
+                                        ? (widget.selectedColor != null &&
+                                                widget.selectedColor !=
+                                                    Colors.transparent)
+                                            ? widget.selectedColor!
+                                            : Theme.of(context).primaryColor
+                                        : Colors.black45,
+                                width: _selectedItems.isNotEmpty
+                                    ? (widget.state != null &&
+                                            widget.state!.hasError)
+                                        ? 1.4
+                                        : 1.8
+                                    : 1.2,
+                              ),
+                            ),
+                          )
+                      : widget.decoration,
+                  padding: EdgeInsets.all(10),
+                  child: widget.canEdit
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            widget.buttonText ?? Text("Select"),
+                            widget.buttonIcon ?? Icon(Icons.keyboard_arrow_down)
+                          ],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            widget.buttonText ?? Text("Select"),
+                          ],
                         ),
-                      ),
-                    )
-                : widget.decoration,
-            padding: EdgeInsets.all(10),
-            child: widget.canEdit
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      widget.buttonText ?? Text("Select"),
-                      widget.buttonIcon ?? Icon(Icons.keyboard_arrow_down)
-                    ],
-                  )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      widget.buttonText ?? Text("Select"),
-                    ],
-                  ),
-          ),
-        ),
+                ),
+              )
+            : Container(),
         _buildInheritedChipDisplay(),
         widget.state != null && widget.state!.hasError
             ? SizedBox(height: 5)

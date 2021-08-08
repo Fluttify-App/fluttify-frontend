@@ -17,11 +17,13 @@
     "likes": "Followers",
     "like": "Follower",
     "genres": "Genres",
-    "selectedgenres": "Selected Genres",
+    "selectedgenres": "Select Genres",
     "allgenres": "All Genres",
 
     "liked": "Following",
     "morecommunity": "More from Community",
+
+    "discoversongs": "Topsongs from other users",
 
     "email": "Email",
     "followers": "Followers",
