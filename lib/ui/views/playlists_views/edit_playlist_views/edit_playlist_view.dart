@@ -36,6 +36,7 @@ class EditPlaylistView extends StatelessWidget {
                 ? Scaffold(
                     appBar: !model.playlist!.canEdit
                         ? AppBar(
+                            iconTheme: IconThemeData(color: Colors.white),
                             leading: IconButton(
                               icon: Icon(Icons.arrow_back),
                               onPressed: () {
@@ -59,9 +60,6 @@ class EditPlaylistView extends StatelessWidget {
                             title: Text(model.playlist!.name!,
                                 style: Theme.of(context).textTheme.headline2),
                             centerTitle: true,
-                            iconTheme: IconThemeData(
-                              color: Colors.white, //change your color here
-                            ),
                           )
                         : AppBar(
                             automaticallyImplyLeading: false,
@@ -953,9 +951,7 @@ class EditPlaylistView extends StatelessWidget {
                   )
                 : Scaffold(
                     appBar: AppBar(
-                      iconTheme: IconThemeData(
-                        color: Colors.white, //change your color here
-                      ),
+                      iconTheme: IconThemeData(color: Colors.white),
                     ),
                     body: Center(
                       child: CircularProgressIndicator(

@@ -442,7 +442,9 @@ class DisplayCommunityView extends StatelessWidget {
                     ),
                   )
                 : Scaffold(
-                    appBar: AppBar(),
+                    appBar: AppBar(
+                      iconTheme: IconThemeData(color: Colors.white),
+                    ),
                     body: Center(
                       child: CircularProgressIndicator(
                           color: Theme.of(context).primaryColor),

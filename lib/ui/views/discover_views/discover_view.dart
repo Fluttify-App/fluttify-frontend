@@ -21,6 +21,7 @@ class DiscoverView extends StatelessWidget {
           title: Text(AppLocalizations.of(context)!.discoverdesc,
               style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         body: RefreshIndicator(
           onRefresh: () async {

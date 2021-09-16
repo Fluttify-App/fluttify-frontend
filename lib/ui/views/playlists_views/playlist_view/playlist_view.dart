@@ -19,6 +19,7 @@ class PlaylistView extends StatelessWidget {
           title: Text(AppLocalizations.of(context)!.playlists,
               style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         body: Center(
           child: Container(

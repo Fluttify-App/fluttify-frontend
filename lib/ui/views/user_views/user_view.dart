@@ -20,6 +20,7 @@ class UserView extends StatelessWidget {
           title: Text(AppLocalizations.of(context)!.user,
               style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         body: Center(
           child: Padding(
