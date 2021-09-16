@@ -19,97 +19,95 @@ class CommunityView extends StatelessWidget {
           title: Text(AppLocalizations.of(context)!.community,
               style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         body: Center(
           child: Container(
             alignment: Alignment.topCenter,
             padding: EdgeInsets.symmetric(vertical: 10),
             child: !model.isLoading
-                ? FractionallySizedBox(
-                    widthFactor: 0.95,
-                    child: RefreshIndicator(
-                      onRefresh: () async {
-                        model.refreshCommunityPlaylists();
-                      },
-                      child: Container(
-                        height: MediaQuery.of(context).size.height,
-                        child: SingleChildScrollView(
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          child: Column(
-                            children: [
-                              model.playlistService.communitylikedplaylists
-                                      .isEmpty
-                                  ? Container()
-                                  : Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.fromLTRB(
-                                              15, 10, 0, 10),
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .liked,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline4),
-                                        ),
-                                        for (Playlist playlist in model
-                                            .playlistService
-                                            .communitylikedplaylists
-                                            .reversed)
-                                          AnimationConfiguration.synchronized(
-                                            duration: const Duration(
-                                                milliseconds: 300),
-                                            child: SlideAnimation(
-                                              horizontalOffset: 250.0,
-                                              child: FadeInAnimation(
-                                                child: CommunityPlaylistCard(
-                                                  model: model,
-                                                  playlist: playlist,
-                                                ),
+                ? RefreshIndicator(
+                    onRefresh: () async {
+                      model.refreshCommunityPlaylists();
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      height: MediaQuery.of(context).size.height,
+                      child: SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: Column(
+                          children: [
+                            model.playlistService.communitylikedplaylists
+                                    .isEmpty
+                                ? Container()
+                                : Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding:
+                                            EdgeInsets.fromLTRB(15, 10, 0, 10),
+                                        child: Text(
+                                            AppLocalizations.of(context)!.liked,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4),
+                                      ),
+                                      for (Playlist playlist in model
+                                          .playlistService
+                                          .communitylikedplaylists
+                                          .reversed)
+                                        AnimationConfiguration.synchronized(
+                                          duration:
+                                              const Duration(milliseconds: 300),
+                                          child: SlideAnimation(
+                                            horizontalOffset: 250.0,
+                                            child: FadeInAnimation(
+                                              child: CommunityPlaylistCard(
+                                                model: model,
+                                                playlist: playlist,
                                               ),
                                             ),
                                           ),
-                                      ],
-                                    ),
-                              model.playlistService.communityplaylists.isEmpty
-                                  ? Container()
-                                  : Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.fromLTRB(
-                                              15, 10, 0, 10),
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .morecommunity,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline4),
                                         ),
-                                        for (Playlist playlist in model
-                                            .playlistService
-                                            .communityplaylists
-                                            .reversed)
-                                          AnimationConfiguration.synchronized(
-                                            duration: const Duration(
-                                                milliseconds: 600),
-                                            child: SlideAnimation(
-                                              horizontalOffset: 250.0,
-                                              child: FadeInAnimation(
-                                                child: CommunityPlaylistCard(
-                                                  model: model,
-                                                  playlist: playlist,
-                                                ),
+                                    ],
+                                  ),
+                            model.playlistService.communityplaylists.isEmpty
+                                ? Container()
+                                : Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding:
+                                            EdgeInsets.fromLTRB(15, 10, 0, 10),
+                                        child: Text(
+                                            AppLocalizations.of(context)!
+                                                .morecommunity,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4),
+                                      ),
+                                      for (Playlist playlist in model
+                                          .playlistService
+                                          .communityplaylists
+                                          .reversed)
+                                        AnimationConfiguration.synchronized(
+                                          duration:
+                                              const Duration(milliseconds: 600),
+                                          child: SlideAnimation(
+                                            horizontalOffset: 250.0,
+                                            child: FadeInAnimation(
+                                              child: CommunityPlaylistCard(
+                                                model: model,
+                                                playlist: playlist,
                                               ),
                                             ),
                                           ),
-                                      ],
-                                    ),
-                            ],
-                          ),
+                                        ),
+                                    ],
+                                  ),
+                          ],
                         ),
                       ),
                     ),

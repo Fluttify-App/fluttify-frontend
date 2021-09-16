@@ -30,56 +30,60 @@ class CommunityPlaylistCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      height: 30,
-                      width: MediaQuery.of(context).size.width - 180,
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
-                      child: playlist!.name!.length >= 20
-                          ? ScrollingText(
-                              text: playlist!.name!,
-                              textStyle: Theme.of(context).textTheme.headline5)
-                          : Text(
-                              playlist!.name!,
-                              style: Theme.of(context).textTheme.headline5,
-                            ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            getCreator() ?? playlist!.creator.toString(),
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ),
-                          Text(
-                            playlist!.contributers!.length == 1
-                                ? '1 ' +
-                                    AppLocalizations.of(context)!.contributor
-                                : playlist!.contributers!.length.toString() +
-                                    ' ' +
-                                    AppLocalizations.of(context)!.contributors,
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ),
-                          Text(
-                            playlist!.likes!.length == 1
-                                ? '1 ' + AppLocalizations.of(context)!.like
-                                : playlist!.likes!.length.toString() +
-                                    ' ' +
-                                    AppLocalizations.of(context)!.likes,
-                            style: Theme.of(context).textTheme.bodyText2,
-                          )
-                        ],
+              Expanded(
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        height: 30,
+                        width: MediaQuery.of(context).size.width - 180,
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                        child: playlist!.name!.length >= 20
+                            ? ScrollingText(
+                                text: playlist!.name!,
+                                textStyle:
+                                    Theme.of(context).textTheme.headline5)
+                            : Text(
+                                playlist!.name!,
+                                style: Theme.of(context).textTheme.headline5,
+                              ),
                       ),
-                    ),
-                  ],
+                      Container(
+                        padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              getCreator() ?? playlist!.creator.toString(),
+                              style: Theme.of(context).textTheme.bodyText2,
+                            ),
+                            Text(
+                              playlist!.contributers!.length == 1
+                                  ? '1 ' +
+                                      AppLocalizations.of(context)!.contributor
+                                  : playlist!.contributers!.length.toString() +
+                                      ' ' +
+                                      AppLocalizations.of(context)!
+                                          .contributors,
+                              style: Theme.of(context).textTheme.bodyText2,
+                            ),
+                            Text(
+                              playlist!.likes!.length == 1
+                                  ? '1 ' + AppLocalizations.of(context)!.like
+                                  : playlist!.likes!.length.toString() +
+                                      ' ' +
+                                      AppLocalizations.of(context)!.likes,
+                              style: Theme.of(context).textTheme.bodyText2,
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Row(
