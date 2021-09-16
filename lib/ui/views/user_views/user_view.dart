@@ -119,7 +119,8 @@ class UserView extends StatelessWidget {
                                     child: BlockPicker(
                                       availableColors: [
                                         const Color.fromARGB(255, 203, 45, 62),
-                                        Color(0xff008F61)
+                                        Color(0xff008F61),
+                                        Color(0xff005792)
                                       ],
                                       pickerColor: Provider.of<ThemeService>(
                                               context,

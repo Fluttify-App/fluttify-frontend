@@ -11,7 +11,10 @@ class SplashScreenView extends StatelessWidget {
         builder: (BuildContext context, SplashScreenViewModel model,
                 Widget? child) =>
             Container(
-              decoration: BoxDecoration(color: Color(0xff424242)),
+              decoration: BoxDecoration(
+                  color: Theme.of(context)
+                      .scaffoldBackgroundColor //Color(0xff424242)
+                  ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 extendBodyBehindAppBar: true,
@@ -27,7 +30,7 @@ class SplashScreenView extends StatelessWidget {
                           Align(
                             alignment: Alignment.center,
                             child: Image.asset(
-                              'assets/images/FluttifyRed.png',
+                              'assets/images/FluttifyWhiteBlack.png',
                               width: 150.0,
                             ),
                           ),
@@ -37,9 +40,9 @@ class SplashScreenView extends StatelessWidget {
                                 height: 150,
                                 width: 150,
                                 child: CircularProgressIndicator(
-                                    // strokeWidth: 10,
-                                    color:
-                                        Colors.white //Color(0xffe70037) //ite,
+                                    strokeWidth: 6,
+                                    color: Theme.of(context)
+                                        .accentColor // Colors.white //Color(0xffe70037) //ite,
                                     ),
                               ))
                         ]),

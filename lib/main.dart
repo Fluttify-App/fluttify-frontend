@@ -31,8 +31,7 @@ Future main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   bool? darkMode = prefs.getBool('darkMode') ?? false;
-  int? color = prefs.getInt('theme') ?? 0xff000000;
-  print("curent" + color.toString());
+  int? color = prefs.getInt('theme') ?? 0xffCB2D3E;
   List<String?> language = <String?>[prefs.getString('locale')];
   runApp(Phoenix(
     child: MultiProvider(providers: [
