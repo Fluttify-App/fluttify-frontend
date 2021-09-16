@@ -171,6 +171,42 @@ class EditPlaylistViewModel extends BaseViewModel {
     });
   }
 
+  Future<void> likePlaylist(BuildContext context) async {
+    fluttifyPlaylistService
+        .likeFluttifyPlaylist(this.playlist!)
+        .then((playlistUpdate) {
+      this.isChanged = true;
+      setPlaylist(playlistUpdate);
+      final snackBar = SnackBar(
+        content: Text("Liked Playlist"),
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 1500),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
+  }
+
+  Future<void> unlikePlaylist(BuildContext context) async {
+    fluttifyPlaylistService
+        .unlikeFluttifyPlaylist(this.playlist!)
+        .then((playlistUpdate) {
+      this.isChanged = true;
+      setPlaylist(playlistUpdate);
+      final snackBar = SnackBar(
+        content: Text("Unliked Playlist"),
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 1500),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
+  }
+
   Future<void> updatePlaylist(BuildContext context) async {
     fluttifyPlaylistService
         .updateFluttifyPlaylist(this.playlist!)
@@ -213,14 +249,10 @@ class EditPlaylistViewModel extends BaseViewModel {
       lastContributor = playlist!.currentTracks![song.uri];
       dynamic contributorName = playlist!.displayContributers!
           .firstWhere((element) => element['id'] == contributor);
-      return Row(children: <Widget>[
-        Expanded(child: Divider()),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(contributorName['name']),
-        ),
-        Expanded(child: Divider()),
-      ]);
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(contributorName['name']),
+      );
     } else {
       return Container();
     }

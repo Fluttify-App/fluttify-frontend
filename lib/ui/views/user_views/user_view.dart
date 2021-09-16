@@ -24,7 +24,7 @@ class UserView extends StatelessWidget {
         ),
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
@@ -196,7 +196,6 @@ class UserView extends StatelessWidget {
                         ),
                       },
                       text: AppLocalizations.of(context)!.logout,
-                      color: Color.fromARGB(255, 233, 30, 30),
                     ),
                   ),
                 ),

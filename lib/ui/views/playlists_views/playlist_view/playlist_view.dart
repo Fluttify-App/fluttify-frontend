@@ -26,92 +26,86 @@ class PlaylistView extends StatelessWidget {
             alignment: Alignment.topCenter,
             padding: EdgeInsets.symmetric(vertical: 10),
             child: !model.isLoading
-                ? FractionallySizedBox(
-                    widthFactor: 0.95,
-                    child: RefreshIndicator(
-                      color: Theme.of(context).primaryColor,
-                      onRefresh: () async {
-                        model.refreshPlaylists();
-                      },
-                      child: Container(
-                        height: MediaQuery.of(context).size.height,
-                        child: SingleChildScrollView(
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              model.playlistService.myplaylists.isEmpty
-                                  ? Container()
-                                  : Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.fromLTRB(
-                                              15, 10, 0, 10),
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .created,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline4),
-                                        ),
-                                        for (Playlist playlist in model
-                                            .playlistService
-                                            .myplaylists
-                                            .reversed)
-                                          AnimationConfiguration.synchronized(
-                                            duration: const Duration(
-                                                milliseconds: 300),
-                                            child: SlideAnimation(
-                                              horizontalOffset: 250.0,
-                                              child: FadeInAnimation(
-                                                child: PlaylistCard(
-                                                  model: model,
-                                                  playlist: playlist,
-                                                ),
+                ? RefreshIndicator(
+                    color: Theme.of(context).primaryColor,
+                    onRefresh: () async {
+                      model.refreshPlaylists();
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      height: MediaQuery.of(context).size.height,
+                      child: SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            model.playlistService.myplaylists.isEmpty
+                                ? Container()
+                                : Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding:
+                                            EdgeInsets.fromLTRB(15, 10, 0, 10),
+                                        child: Text(
+                                            AppLocalizations.of(context)!
+                                                .created,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4),
+                                      ),
+                                      for (Playlist playlist in model
+                                          .playlistService.myplaylists.reversed)
+                                        AnimationConfiguration.synchronized(
+                                          duration:
+                                              const Duration(milliseconds: 300),
+                                          child: SlideAnimation(
+                                            horizontalOffset: 250.0,
+                                            child: FadeInAnimation(
+                                              child: PlaylistCard(
+                                                model: model,
+                                                playlist: playlist,
                                               ),
                                             ),
                                           ),
-                                      ],
-                                    ),
-                              model.playlistService.contributed.isEmpty
-                                  ? Container()
-                                  : Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.fromLTRB(
-                                              15, 10, 0, 10),
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .joined,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline4),
                                         ),
-                                        for (Playlist playlist in model
-                                            .playlistService
-                                            .contributed
-                                            .reversed)
-                                          AnimationConfiguration.synchronized(
-                                            duration: const Duration(
-                                                milliseconds: 600),
-                                            child: SlideAnimation(
-                                              horizontalOffset: 250.0,
-                                              child: FadeInAnimation(
-                                                child: PlaylistCard(
-                                                  model: model,
-                                                  playlist: playlist,
-                                                ),
+                                    ],
+                                  ),
+                            model.playlistService.contributed.isEmpty
+                                ? Container()
+                                : Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding:
+                                            EdgeInsets.fromLTRB(15, 10, 0, 10),
+                                        child: Text(
+                                            AppLocalizations.of(context)!
+                                                .joined,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4),
+                                      ),
+                                      for (Playlist playlist in model
+                                          .playlistService.contributed.reversed)
+                                        AnimationConfiguration.synchronized(
+                                          duration:
+                                              const Duration(milliseconds: 600),
+                                          child: SlideAnimation(
+                                            horizontalOffset: 250.0,
+                                            child: FadeInAnimation(
+                                              child: PlaylistCard(
+                                                model: model,
+                                                playlist: playlist,
                                               ),
                                             ),
                                           ),
-                                      ],
-                                    ),
-                            ],
-                          ),
+                                        ),
+                                    ],
+                                  ),
+                          ],
                         ),
                       ),
                     ),

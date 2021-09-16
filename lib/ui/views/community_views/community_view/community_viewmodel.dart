@@ -3,7 +3,7 @@ import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
-import 'package:fluttify/ui/views/community_views/display_community_view/display_community_view.dart';
+import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -29,8 +29,8 @@ class CommunityViewModel extends BaseViewModel {
   }
 
   void navigateToEditPage(Playlist playlist) {
-    _navigationService.navigateTo(
-        '/display-community', DisplayCommunityView(playlistId: playlist.dbID!),
+    _navigationService.navigateTo('/edit-playlist',
+        EditPlaylistView(playlistId: playlist.dbID!, communityview: true),
         withNavBar: false, callback: (value) {
       if (value != null && value == true) {
         refreshCommunityPlaylists();

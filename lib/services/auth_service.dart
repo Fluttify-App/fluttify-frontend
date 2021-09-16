@@ -62,7 +62,6 @@ class AuthService extends ChangeNotifier {
         await http.get(Uri.https(baseUrl, 'fluttify/user'), headers: headers);
     if (response.statusCode == 200) {
       currentUser = new User.fromJson(json.decode(response.body));
-      print("Logged In");
       return true;
     } else {
       print("Logged In Failed");
