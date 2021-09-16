@@ -29,7 +29,7 @@ class DiscoverView extends StatelessWidget {
           },
           child: Container(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -60,8 +60,7 @@ class DiscoverView extends StatelessWidget {
                                   label: Text(genre),
                                   selected:
                                       model.selectedGenres.contains(genre),
-                                  selectedColor:
-                                      Color.fromARGB(255, 203, 45, 62),
+                                  selectedColor: Theme.of(context).accentColor,
                                   onSelected: (bool selected) {
                                     if (selected) {
                                       model.selectGenre(genre);

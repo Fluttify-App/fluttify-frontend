@@ -29,6 +29,7 @@
     "followers": "Followers",
     "darkmode": "Dark Mode",
     "language": "Language",
+    "color": "Theme",
     "logout": "Logout",
     
     "addplaylist": "Add Playlist",

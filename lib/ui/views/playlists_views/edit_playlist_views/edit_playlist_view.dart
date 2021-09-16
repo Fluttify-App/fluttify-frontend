@@ -118,41 +118,42 @@ class EditPlaylistView extends StatelessWidget {
                                       onTap: () {
                                         launch(model.playlist!.href!);
                                       },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.grey.withOpacity(0.5),
-                                              spreadRadius: 5,
-                                              blurRadius: 9,
-                                              offset: Offset(0,
-                                                  3), // changes position of shadow
+                                      child: Stack(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Container(
+                                                decoration: BoxDecoration(
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Colors.grey
+                                                          .withOpacity(0.5),
+                                                      spreadRadius: 5,
+                                                      blurRadius: 7,
+                                                      offset: Offset(0,
+                                                          1), // changes position of shadow
+                                                    ),
+                                                  ],
+                                                ),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(10)),
+                                                  child: Image.network(
+                                                      model.playlist!.image!,
+                                                      height: 250,
+                                                      width: 250),
+                                                )),
+                                          ),
+                                          Align(
+                                            alignment: Alignment.topRight,
+                                            child: Icon(
+                                              Icons.launch,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
                                             ),
-                                          ],
-                                        ),
-                                        child: Stack(
-                                          children: [
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: ClipRRect(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10)),
-                                                child: Image.network(
-                                                    model.playlist!.image!,
-                                                    height: 250,
-                                                    width: 250),
-                                              ),
-                                            ),
-                                            Align(
-                                              alignment: Alignment.topRight,
-                                              child: Icon(
-                                                Icons.launch,
-                                                color: Colors.black,
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                          )
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -550,6 +551,7 @@ class EditPlaylistView extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           FluttifyButton(
+                                            color: Theme.of(context).errorColor,
                                             padding: const EdgeInsets.only(
                                                 right: 10),
                                             onPressed: () => model.canEdit(),
@@ -562,19 +564,20 @@ class EditPlaylistView extends StatelessWidget {
                                                 2,
                                           ),
                                           FluttifyButton(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10),
-                                              onPressed: () =>
-                                                  model.save(context),
-                                              text:
-                                                  AppLocalizations.of(context)!
-                                                      .save,
-                                              width: (MediaQuery.of(context)
-                                                          .size
-                                                          .width -
-                                                      60) /
-                                                  2,
-                                              color: fluttify_green),
+                                            padding:
+                                                const EdgeInsets.only(left: 10),
+                                            onPressed: () =>
+                                                model.save(context),
+                                            text: AppLocalizations.of(context)!
+                                                .save,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    60) /
+                                                2,
+                                            color: Theme.of(context)
+                                                .highlightColor,
+                                          ),
                                         ],
                                       ),
                                     )
@@ -591,6 +594,8 @@ class EditPlaylistView extends StatelessWidget {
                                                 children: [
                                                   // LEAVE BUTTON
                                                   FluttifyButton(
+                                                      color: Theme.of(context)
+                                                          .errorColor,
                                                       onPressed: () => {
                                                             showDialog(
                                                               context: context,
@@ -666,7 +671,8 @@ class EditPlaylistView extends StatelessWidget {
                                                 children: [
                                                   // JOIN BUTTON
                                                   FluttifyButton(
-                                                    color: fluttify_green,
+                                                    color: Theme.of(context)
+                                                        .highlightColor,
                                                     onPressed: () {
                                                       showDialog(
                                                         context: context,
@@ -755,9 +761,13 @@ class EditPlaylistView extends StatelessWidget {
                                                     color: Colors.white,
                                                   ),
                                                   //width: 200,
-                                                  color: fluttify_green)
+                                                  color: Theme.of(context)
+                                                      .highlightColor,
+                                                )
                                               : //UNLIKE BUTTON
                                               FluttifyButton(
+                                                  color: Theme.of(context)
+                                                      .errorColor,
                                                   onPressed: () {
                                                     model.unlikePlaylist(
                                                         context);

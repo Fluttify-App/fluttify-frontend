@@ -41,19 +41,6 @@ class _OnboardingPageState extends State<OnboardingView> {
       color: Colors.white,
       key: introKey,
       globalBackgroundColor: Colors.white,
-/*
-      globalFooter: SizedBox(
-        width: double.infinity,
-        height: 60,
-        child: ElevatedButton(
-          child: const Text(
-            'Let\s go right away!',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-          ),
-          onPressed: () => _onIntroEnd(context),
-        ),
-      ),
-      */
       pages: [
         PageViewModel(
           title: AppLocalizations.of(context)!.welcome,
@@ -100,8 +87,8 @@ class _OnboardingPageState extends State<OnboardingView> {
       controlsPadding: kIsWeb
           ? const EdgeInsets.all(12.0)
           : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
-      dotsDecorator: const DotsDecorator(
-        activeColor: Color.fromARGB(255, 203, 45, 62),
+      dotsDecorator: DotsDecorator(
+        activeColor: Theme.of(context).accentColor,
         size: Size(10.0, 10.0),
         color: Colors.white,
         activeSize: Size(22.0, 10.0),
