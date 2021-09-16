@@ -39,6 +39,7 @@
     "playlistupdating": "Playlist updating...",
 
     "leaveplaylist": "Leave Playlist",
+    "writenfc": "Create NFC-Tag",
     "joinplaylist": "Join Playlist",
     "joinedPlaylistSnackBar": "Joined Playlist",
     "removePlaylistSnackBar": "Playlist removed from library",

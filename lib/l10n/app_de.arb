@@ -39,6 +39,7 @@
     "playlistupdating": "Playlist wird aktualisiert...",
 
     "leaveplaylist": "Playlist verlassen",
+    "writenfc": "NFC Tag erstellen",
     "joinplaylist": "Playlist beitreten",
     "joinedPlaylistSnackBar": "Playlist beigetreten",
     "removePlaylistSnackBar": "Playlist aus der Bibliothek entfernt",

@@ -581,6 +581,14 @@ class EditPlaylistView extends StatelessWidget {
                                           child: Column(
                                             children: [
                                               FluttifyButton(
+
+                                                  // color: Color.fromARGB(
+                                                  //   255, 233, 30, 30),
+                                                  onPressed: model.writeNFCTag,
+                                                  text: AppLocalizations.of(
+                                                          context)!
+                                                      .writenfc),
+                                              FluttifyButton(
                                                   color: Color.fromARGB(
                                                       255, 233, 30, 30),
                                                   onPressed: () => {

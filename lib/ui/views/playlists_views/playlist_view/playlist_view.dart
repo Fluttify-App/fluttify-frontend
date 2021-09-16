@@ -121,6 +121,31 @@ class PlaylistView extends StatelessWidget {
                   ),
           ),
         ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: FloatingActionButton(
+                heroTag: "scan",
+                backgroundColor: Theme.of(context).accentColor,
+                foregroundColor: Colors.white,
+                onPressed: model.scanPlaylistViaNFC,
+                child: Icon(Icons.nfc),
+              ),
+            ),
+            FloatingActionButton(
+              heroTag: "add",
+              backgroundColor: Theme.of(context).accentColor,
+              foregroundColor: Colors.white,
+              onPressed: () {
+                model.navigateToAddPlaylist();
+              },
+              child: Icon(Icons.add),
+            ),
+          ],
+        ),
+        /*
         floatingActionButton: FloatingActionButton(
           backgroundColor: Theme.of(context).accentColor,
           foregroundColor: Colors.white,
@@ -129,6 +154,7 @@ class PlaylistView extends StatelessWidget {
           },
           child: Icon(Icons.add),
         ),
+        */
       ),
       viewModelBuilder: () => PlaylistViewModel(),
     );

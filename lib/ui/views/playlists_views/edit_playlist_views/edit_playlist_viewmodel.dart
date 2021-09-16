@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,12 @@ import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
+import 'package:nfc_in_flutter/nfc_in_flutter.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'dart:io';
 
 class EditPlaylistViewModel extends BaseViewModel {
   TextEditingController descriptionController = TextEditingController();
@@ -224,5 +229,15 @@ class EditPlaylistViewModel extends BaseViewModel {
     } else {
       return Container();
     }
+  }
+
+  Future<void> writeNFCTag() async {
+    NDEFMessage newMessage = NDEFMessage.withRecords(
+        [NDEFRecord.type("text/plain", this.playlist!.dbID)]);
+    Stream<NDEFTag> stream = NFC.writeNDEF(newMessage, once: true);
+
+    stream.listen((NDEFTag tag) {
+      print("only wrote to one tag!");
+    });
   }
 }

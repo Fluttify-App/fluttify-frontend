@@ -8,7 +8,8 @@
       "name": "fluttify",
       "request": "launch",
       "type": "dart",
-      //"args": ["--web-port", "46700"],
+      "args": ["--no-sound-null-safety"]
+
     }
   ]
 }
