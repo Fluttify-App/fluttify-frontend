@@ -73,10 +73,10 @@
     "onboardingcontent2": "Wähle einen Namen und optional eine Beschreibung. \n Du entscheidest welche Songs in die Playlist kommen anhand der Genres.\n\n Die Playlist wird automatisch deiner Spotify Bibliothek hinzugefügt.",
 
     "onboardingtitle3": "Lade deine Freunde ein",
-    "onboardingcontent3": "Drück auf den Teilen Button um deine Freunde einzuladen. Alle sozialen Medien stehen dir zur Verfügung. \n\n Deine Freunde können deiner Playlist über den Einladungslink beitreten.",
+    "onboardingcontent3": "Drücke auf den Share-Button um deine Freunde einzuladen. Alle sozialen Medien stehen dir zur Verfügung. \n\n Deine Freunde können deiner Playlist über den Einladungslink beitreten.",
 
     "onboardingtitle4": "Fluttify Algorithmus",
-    "onboardingcontent4": "Fluttify benutzt die Spotify API um Songs auszuwählen, die der Playlist hinzugefügt werden. Es werden die zuletzt gespeicherten und häufig gehörten Songs ausgewählt und der Playlist hinzugefügt. Du entscheidest, ob alle Songs nach dem nächsten Aktualisieren in der Playlist bleiben sollen oder überschrieben werden.",
+    "onboardingcontent4": "Fluttify benutzt die Spotify API um Songs auszuwählen, die der Playlist hinzugefügt werden. Es werden die zuletzt gespeicherten und häufig gehörten Songs aller Teilnehmer ausgewählt und der Playlist hinzugefügt. Du entscheidest, ob alle Songs nach dem nächsten Aktualisieren in der Playlist bleiben oder überschrieben werden.",
 
     "onboardingtitle5": "Lehn dich zurück & \n genieße deine Lieblingssongs",
     "onboardingcontent5": "Fluttify aktualisiert deine Playlists alle 24 Stunden automatisch. Deine Playlist wird immer auf dem neusten Stand sein! \n\n Viel Spaß mit Fluttify!"

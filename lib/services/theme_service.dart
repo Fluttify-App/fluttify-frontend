@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeService extends ChangeNotifier {
-  ThemeService(bool? darkMode,
-      {Color? color = const Color.fromARGB(255, 203, 45, 62)}) {
+  ThemeService(bool? darkMode, {Color? color}) {
     if (color != null) {
       _currentColor = color;
     }
@@ -86,7 +85,7 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
       headline3: const TextStyle(
-          color: Color(0xff1a1a1a),
+          color: Colors.white,
           fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w800),
@@ -99,7 +98,7 @@ class ThemeService extends ChangeNotifier {
           color: Colors.white,
           fontSize: 16.0,
           fontFamily: 'Montserrat',
-          fontWeight: FontWeight.bold),
+          fontWeight: FontWeight.w600),
       subtitle1: const TextStyle(
           color: Colors.white,
           fontSize: 12.0,
@@ -161,7 +160,7 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
       headline3: const TextStyle(
-          color: Color(0xff1a1a1a),
+          color: Colors.white, //Color(0xff1a1a1a),
           fontSize: 20.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
@@ -174,7 +173,7 @@ class ThemeService extends ChangeNotifier {
           color: Colors.black,
           fontSize: 16.0,
           fontFamily: 'Montserrat',
-          fontWeight: FontWeight.bold),
+          fontWeight: FontWeight.w600),
       subtitle1: const TextStyle(
           color: Colors.black,
           fontSize: 12.0,
