@@ -31,7 +31,7 @@ class CommunityView extends StatelessWidget {
                       model.refreshCommunityPlaylists();
                     },
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       height: MediaQuery.of(context).size.height,
                       child: SingleChildScrollView(
                         physics: const AlwaysScrollableScrollPhysics(),

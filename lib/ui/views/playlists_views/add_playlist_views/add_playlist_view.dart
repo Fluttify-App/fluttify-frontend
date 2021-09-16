@@ -211,6 +211,7 @@ class AddPlaylistView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               FluttifyButton(
+                                color: Theme.of(context).errorColor,
                                 padding: const EdgeInsets.only(right: 10),
                                 onPressed: () => model.navigateBack(context),
                                 text: AppLocalizations.of(context)!.cancel,
@@ -220,7 +221,7 @@ class AddPlaylistView extends StatelessWidget {
                               ),
                               FluttifyButton(
                                 padding: const EdgeInsets.only(left: 10),
-                                color: fluttify_green,
+                                color: Theme.of(context).highlightColor,
                                 onPressed: () => model.save(context),
                                 text: AppLocalizations.of(context)!.save,
                                 width:

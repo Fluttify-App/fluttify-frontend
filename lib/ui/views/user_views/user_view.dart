@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:fluttify/services/locale_service.dart';
 import 'package:fluttify/services/theme_service.dart';
 import 'package:fluttify/ui/views/user_views/user_viewmodel.dart';
@@ -97,6 +98,52 @@ class UserView extends StatelessWidget {
                   ),
                 ),
                 Divider(color: Theme.of(context).dividerColor, height: 10),
+                // THEME
+                Container(
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.color,
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Pick a color!'),
+                                  content: SingleChildScrollView(
+                                    child: BlockPicker(
+                                      availableColors: [
+                                        const Color.fromARGB(255, 203, 45, 62),
+                                        Color(0xff008F61)
+                                      ],
+                                      pickerColor: Provider.of<ThemeService>(
+                                              context,
+                                              listen: false)
+                                          .getColor(),
+                                      onColorChanged: (value) {
+                                        Provider.of<ThemeService>(context,
+                                                listen: false)
+                                            .setColor(value);
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ),
+                                );
+                              });
+                        },
+                        icon: Icon(Icons.circle,
+                            color: Theme.of(context).accentColor),
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(color: Theme.of(context).dividerColor, height: 10),
+                // DARK MODE
                 Container(
                   height: 50,
                   child: Row(
@@ -112,14 +159,16 @@ class UserView extends StatelessWidget {
                           Provider.of<ThemeService>(context, listen: false)
                               .setDarkMode(value);
                         },
-                        activeTrackColor: Color(0xffef473a),
-                        activeColor: Color.fromARGB(255, 203, 45, 62),
-                        inactiveThumbColor: Color.fromARGB(255, 203, 45, 62),
+                        //activeTrackColor: Theme.of(context).accentColor,
+                        activeColor: Theme.of(context).accentColor,
+                        inactiveThumbColor: Theme.of(context).accentColor,
                       ),
                     ],
                   ),
                 ),
                 Divider(color: Theme.of(context).dividerColor, height: 10),
+
+                // LANGUAGE
                 Container(
                   height: 50,
                   child: Row(
@@ -137,7 +186,9 @@ class UserView extends StatelessWidget {
                                 ? 0
                                 : 1,
                         labels: ["en", "de"],
-                        activeBgColor: [Color.fromARGB(255, 203, 45, 62)],
+                        activeBgColor: [
+                          Theme.of(context).accentColor,
+                        ],
                         activeFgColor: Colors.white,
                         inactiveFgColor: Colors.white,
                         onToggle: (int index) {
@@ -151,11 +202,12 @@ class UserView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Divider(color: Theme.of(context).dividerColor, height: 10),
+
                 Expanded(
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: FluttifyButton(
+                      color: Theme.of(context).errorColor,
                       width: 150,
                       onPressed: () => {
                         showDialog(

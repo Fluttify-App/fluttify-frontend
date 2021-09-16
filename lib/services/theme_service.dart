@@ -2,39 +2,64 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeService extends ChangeNotifier {
-  ThemeService(bool? darkMode) {
+  ThemeService(bool? darkMode,
+      {Color? color = const Color.fromARGB(255, 203, 45, 62)}) {
+    if (color != null) {
+      _currentColor = color;
+    }
     if (darkMode!) {
       _currentTheme = darkTheme;
+      _currentDarkMode = true;
     } else {
       _currentTheme = lightTheme;
+      _currentDarkMode = false;
     }
   }
 
   ThemeData? _currentTheme;
-  ThemeData getTheme() => _currentTheme!;
+  bool? _currentDarkMode;
+  static Color? _currentColor;
 
+  ThemeData getTheme() => _currentTheme!;
+  Color getColor() => _currentColor!;
   bool getDarkMode() {
-    return _currentTheme == darkTheme;
+    return _currentDarkMode!;
   }
 
   void setDarkMode(bool darkMode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    _currentDarkMode = darkMode;
     prefs.setBool('darkMode', darkMode);
     if (darkMode) {
-      _currentTheme = darkTheme;
+      _currentTheme = darkTheme.copyWith(
+          accentColor: _currentColor,
+          appBarTheme: AppBarTheme(backgroundColor: _currentColor));
     } else {
-      _currentTheme = lightTheme;
+      _currentTheme = lightTheme.copyWith(
+          accentColor: _currentColor,
+          appBarTheme: AppBarTheme(backgroundColor: _currentColor));
     }
+    notifyListeners();
+  }
+
+  void setColor(Color color) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('theme', color.value);
+    _currentColor = color;
+    _currentTheme = _currentTheme!.copyWith(
+        accentColor: color, appBarTheme: AppBarTheme(backgroundColor: color));
     notifyListeners();
   }
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
     primaryColor: Colors.white,
-    accentColor: Color.fromARGB(255, 203, 45, 62),
+    accentColor: _currentColor, //Color.fromARGB(255, 203, 45, 62),
     scaffoldBackgroundColor: Color(0xff1c1c1c),
     cardColor: Color(0xff424242),
+    errorColor: Color(0xff424242), // Color.fromARGB(255, 203, 45, 62),
     hintColor: Color(0xffbdb9ba),
-    appBarTheme: AppBarTheme(backgroundColor: Color.fromARGB(255, 203, 45, 62)),
+    highlightColor: Color(0xff008F61),
+    appBarTheme: AppBarTheme(backgroundColor: _currentColor),
     bottomNavigationBarTheme:
         BottomNavigationBarThemeData(backgroundColor: Color(0xff424242)),
     textTheme: TextTheme(
@@ -91,9 +116,7 @@ class ThemeService extends ChangeNotifier {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        //  side: BorderSide(color: Colors.white, width: 2),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Color.fromARGB(255, 203, 45, 62),
         primary: Colors.white,
       ),
     ),
@@ -101,12 +124,15 @@ class ThemeService extends ChangeNotifier {
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: Colors.black,
-    accentColor: Color.fromARGB(255, 203, 45, 62),
+    accentColor: _currentColor,
     scaffoldBackgroundColor: Color(0xffdae0e6),
     cardColor: Colors.white,
     hintColor: Color(0xff3b3b3b),
+    highlightColor: Color(0xff008F61),
+    errorColor: Color(
+        0xff424242), // Color(0xff3b3b3b), //Color.fromARGB(255, 203, 45, 62),
     appBarTheme: AppBarTheme(
-        backgroundColor: Color.fromARGB(255, 203, 45, 62),
+        backgroundColor: _currentColor,
         titleTextStyle: TextStyle(color: Colors.black),
         iconTheme: IconThemeData(color: Colors.black)),
     bottomNavigationBarTheme:
@@ -166,7 +192,6 @@ class ThemeService extends ChangeNotifier {
       style: TextButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Color.fromARGB(255, 203, 45, 62),
         primary: Colors.black,
       ),
     ),
