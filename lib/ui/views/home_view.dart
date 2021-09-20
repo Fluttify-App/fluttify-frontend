@@ -71,8 +71,11 @@ class HomeView extends StatelessWidget {
     return <PersistentBottomNavBarItem>[
       PersistentBottomNavBarItem(
         title: AppLocalizations.of(context)!.playlists,
-        icon: Icon(Icons.queue_music),
+        icon: Icon(Icons.home),
         activeColorPrimary: Theme.of(context).primaryColor,
+        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).primaryColor)
+            .withAlpha(0.5)
+            .toColor(),
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<PlaylistNavigationService>().navigatorKey,
           initialRoute: '/',
@@ -82,6 +85,9 @@ class HomeView extends StatelessWidget {
         title: AppLocalizations.of(context)!.community,
         icon: Icon(Icons.people),
         activeColorPrimary: Theme.of(context).primaryColor,
+        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).primaryColor)
+            .withAlpha(0.5)
+            .toColor(),
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<CommunityNavigationService>().navigatorKey,
           initialRoute: '/',
@@ -91,6 +97,9 @@ class HomeView extends StatelessWidget {
         title: AppLocalizations.of(context)!.discover,
         icon: Icon(Icons.explore),
         activeColorPrimary: Theme.of(context).primaryColor,
+        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).primaryColor)
+            .withAlpha(0.5)
+            .toColor(),
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<DiscoverNavigationService>().navigatorKey,
           initialRoute: '/',

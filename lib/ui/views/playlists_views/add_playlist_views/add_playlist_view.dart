@@ -221,7 +221,7 @@ class AddPlaylistView extends StatelessWidget {
                               ),
                               FluttifyButton(
                                 padding: const EdgeInsets.only(left: 10),
-                                color: Theme.of(context).highlightColor,
+                                color: Theme.of(context).indicatorColor,
                                 onPressed: () => model.save(context),
                                 text: AppLocalizations.of(context)!.save,
                                 width:

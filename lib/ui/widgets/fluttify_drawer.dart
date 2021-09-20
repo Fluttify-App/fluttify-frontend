@@ -19,7 +19,7 @@ class FluttifyDrawer extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Container(
-            height: 250,
+            height: 240,
             child: UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Theme.of(context).cardColor),
               currentAccountPictureSize: Size.square(120),
@@ -40,18 +40,26 @@ class FluttifyDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   ListTile(
+                      dense: true,
                       leading: new Icon(Icons.settings),
                       title: new Text(AppLocalizations.of(context)!.settings,
-                          style: Theme.of(context).textTheme.bodyText1),
+                          style: Theme.of(context).textTheme.bodyText2),
                       onTap: () {
                         locator<PlaylistNavigationService>().navigateTo(
                             '/settings-view', SettingsView(),
                             withNavBar: false);
                       }),
                   ListTile(
+                    dense: true,
                     leading: Icon(Icons.privacy_tip),
                     title: Text(AppLocalizations.of(context)!.privacy,
-                        style: Theme.of(context).textTheme.bodyText1),
+                        style: Theme.of(context).textTheme.bodyText2),
+                  ),
+                  ListTile(
+                    dense: true,
+                    leading: Icon(Icons.description),
+                    title: Text(AppLocalizations.of(context)!.licence,
+                        style: Theme.of(context).textTheme.bodyText2),
                   ),
                 ]),
           ),
@@ -60,14 +68,10 @@ class FluttifyDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   ListTile(
-                    leading: Icon(Icons.delete),
-                    title: Text(AppLocalizations.of(context)!.deleteprofile,
-                        style: Theme.of(context).textTheme.bodyText1),
-                  ),
-                  ListTile(
+                    dense: true,
                     leading: Icon(Icons.logout),
                     title: Text(AppLocalizations.of(context)!.logout,
-                        style: Theme.of(context).textTheme.bodyText1),
+                        style: Theme.of(context).textTheme.bodyText2),
                     onTap: () {
                       showDialog(
                         context: context,
