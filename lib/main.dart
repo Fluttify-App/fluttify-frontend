@@ -28,13 +28,14 @@ Future main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.purple,
-  ));
-
   bool? darkMode = prefs.getBool('darkMode') ?? false;
   int? color = prefs.getInt('theme') ?? 0xffCB2D3E;
   List<String?> language = <String?>[prefs.getString('locale')];
+
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Color(color),
+  ));
+
   runApp(Phoenix(
     child: MultiProvider(providers: [
       ChangeNotifierProvider(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
 
 class ThemeService extends ChangeNotifier {
   ThemeService(bool? darkMode, {Color? color}) {
@@ -47,6 +48,9 @@ class ThemeService extends ChangeNotifier {
     _currentColor = color;
     _currentTheme = _currentTheme!.copyWith(
         accentColor: color, appBarTheme: AppBarTheme(backgroundColor: color));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: color,
+    ));
     notifyListeners();
   }
 
