@@ -6,7 +6,10 @@
     "community": "Community",
     "discover": "Songs",
     "discoverdesc": "Entdecken",
-    "user": "Benutzer",
+    "settings": "Einstellungen",
+
+    "privacy" : "Datenschutz",
+    "deleteprofile": "Profil löschen",
 
     "signin": "Anmelden mit Spotify",
     "created": "Erstellt",

@@ -4,8 +4,10 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_viewmodel.dart';
 import 'package:fluttify/ui/widgets/playlist_card.dart';
+import 'package:fluttify/ui/widgets/fluttify_drawer.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class PlaylistView extends StatelessWidget {
   @override
@@ -21,6 +23,7 @@ class PlaylistView extends StatelessWidget {
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
         ),
+        drawer: new FluttifyDrawer(),
         body: Center(
           child: Container(
             alignment: Alignment.topCenter,

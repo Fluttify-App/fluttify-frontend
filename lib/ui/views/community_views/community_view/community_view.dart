@@ -4,6 +4,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/ui/views/community_views/community_view/community_viewmodel.dart';
 import 'package:fluttify/ui/widgets/community_playlist_card.dart';
+import 'package:fluttify/ui/widgets/fluttify_drawer.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -21,6 +22,7 @@ class CommunityView extends StatelessWidget {
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
         ),
+        drawer: new FluttifyDrawer(),
         body: Center(
           child: Container(
             alignment: Alignment.topCenter,

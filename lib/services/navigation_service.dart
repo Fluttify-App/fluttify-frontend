@@ -16,7 +16,7 @@ abstract class FluttifyNavigationService {
       navigatorKey.currentContext!,
       screen: view,
       withNavBar: withNavBar, // OPTIONAL VALUE. True by default.
-      pageTransitionAnimation: PageTransitionAnimation.slideUp,
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
     ).then((value) => {callback(value)});
   }
 

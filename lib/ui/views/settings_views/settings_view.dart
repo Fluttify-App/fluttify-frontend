@@ -4,21 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:fluttify/services/locale_service.dart';
 import 'package:fluttify/services/theme_service.dart';
-import 'package:fluttify/ui/views/user_views/user_viewmodel.dart';
+import 'package:fluttify/ui/views/settings_views/settings_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class UserView extends StatelessWidget {
+class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<UserViewModel>.reactive(
-      builder: (BuildContext context, UserViewModel model, Widget? child) =>
+    return ViewModelBuilder<SettingsViewModel>.reactive(
+      builder: (BuildContext context, SettingsViewModel model, Widget? child) =>
           Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)!.user,
+          title: Text(AppLocalizations.of(context)!.settings,
               style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
@@ -29,75 +29,6 @@ class UserView extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Container(
-                  height: 100,
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 100,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Center(
-                              child: CachedNetworkImage(
-                                progressIndicatorBuilder: (context, url,
-                                        downloadProgress) =>
-                                    CircularProgressIndicator(
-                                        color: Theme.of(context).primaryColor,
-                                        value: downloadProgress.progress),
-                                imageUrl: model.authService.currentUser
-                                        .avatarImageUrl ??
-                                    "https://img.icons8.com/color/452/avatar.png",
-                              ),
-                            )),
-                      ),
-                      Expanded(
-                        //flex: 7,
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            model.authService.currentUser.name!,
-                            style: Theme.of(context).textTheme.headline1,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Divider(color: Theme.of(context).dividerColor, height: 10),
-                Container(
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        AppLocalizations.of(context)!.email,
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                      Text(
-                        model.authService.currentUser.email!,
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ],
-                  ),
-                ),
-                Divider(color: Theme.of(context).dividerColor, height: 10),
-                Container(
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        AppLocalizations.of(context)!.followers,
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                      Text(
-                        model.authService.currentUser.follower!.toString(),
-                        style: Theme.of(context).textTheme.bodyText1,
-                      )
-                    ],
-                  ),
-                ),
-                Divider(color: Theme.of(context).dividerColor, height: 10),
                 // THEME
                 Container(
                   height: 50,
@@ -203,61 +134,12 @@ class UserView extends StatelessWidget {
                     ],
                   ),
                 ),
-
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: FluttifyButton(
-                      color: Theme.of(context).errorColor,
-                      width: 150,
-                      onPressed: () => {
-                        showDialog(
-                          context: context,
-                          builder: (_) {
-                            return AlertDialog(
-                              title: Text(
-                                AppLocalizations.of(context)!.logout,
-                                style: Theme.of(context).textTheme.headline1,
-                              ),
-                              content: SingleChildScrollView(
-                                child: ListBody(
-                                  children: <Widget>[
-                                    Text(
-                                      AppLocalizations.of(context)!.logoutcheck,
-                                      style:
-                                          Theme.of(context).textTheme.bodyText2,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              actions: <Widget>[
-                                FluttifyButton(
-                                    onPressed: () =>
-                                        model.navigateBack(context),
-                                    text: AppLocalizations.of(context)!.no,
-                                    width: 80,
-                                    height: 35),
-                                FluttifyButton(
-                                    onPressed: () =>
-                                        model.authService.logoutBackend(),
-                                    text: AppLocalizations.of(context)!.yes,
-                                    width: 80,
-                                    height: 35),
-                              ],
-                            );
-                          },
-                        ),
-                      },
-                      text: AppLocalizations.of(context)!.logout,
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
         ),
       ),
-      viewModelBuilder: () => UserViewModel(),
+      viewModelBuilder: () => SettingsViewModel(),
     );
   }
 }
