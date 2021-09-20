@@ -5,6 +5,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'dart:ui' as ui;
 import 'package:fluttify/models/song.dart';
 import 'package:fluttify/ui/views/discover_views/discover_viewmodel.dart';
+import 'package:fluttify/ui/widgets/fluttify_drawer.dart';
 import 'package:fluttify/ui/widgets/scrolling_text.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,6 +24,7 @@ class DiscoverView extends StatelessWidget {
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
         ),
+        drawer: new FluttifyDrawer(),
         body: RefreshIndicator(
           onRefresh: () async {
             model.refreshDiscoverSongs();

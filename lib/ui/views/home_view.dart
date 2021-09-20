@@ -6,7 +6,6 @@ import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/community_views/community_view/community_view.dart';
 import 'package:fluttify/ui/views/home_viewmodel.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_view.dart';
-import 'package:fluttify/ui/views/user_views/user_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -78,7 +77,6 @@ class HomeView extends StatelessWidget {
       PlaylistView(),
       CommunityView(),
       DiscoverView(),
-      UserView(),
     ];
   }
 
@@ -108,15 +106,6 @@ class HomeView extends StatelessWidget {
         activeColorPrimary: Theme.of(context).primaryColor,
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<DiscoverNavigationService>().navigatorKey,
-          initialRoute: '/',
-        ),
-      ),
-      PersistentBottomNavBarItem(
-        title: AppLocalizations.of(context)!.user,
-        icon: Icon(Icons.account_circle),
-        activeColorPrimary: Theme.of(context).primaryColor,
-        routeAndNavigatorSettings: RouteAndNavigatorSettings(
-          navigatorKey: locator<SettingsNavigationService>().navigatorKey,
           initialRoute: '/',
         ),
       ),

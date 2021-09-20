@@ -6,8 +6,11 @@
     "community": "Community",
     "discover": "Songs",
     "discoverdesc": "Discover",
-    "user": "User",
+    "settings": "Settings",
 
+    "privacy": "Privacy Policy",
+    "deleteprofile": "Delete Profile", 
+    
     "signin": "Sign In With Spotify",
     "created": "Created",
     "joined": "Joined",
