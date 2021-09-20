@@ -24,7 +24,7 @@ class DiscoverView extends StatelessWidget {
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
         ),
-        drawer: new FluttifyDrawer(),
+        endDrawer: new FluttifyDrawer(),
         body: RefreshIndicator(
           onRefresh: () async {
             model.refreshDiscoverSongs();

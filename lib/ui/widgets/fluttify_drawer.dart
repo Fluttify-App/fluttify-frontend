@@ -18,22 +18,41 @@ class FluttifyDrawer extends StatelessWidget {
       child: new Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Container(
-            height: 240,
-            child: UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: Theme.of(context).cardColor),
-              currentAccountPictureSize: Size.square(120),
-              accountName: new Text(locator<AuthService>().currentUser.name!,
-                  style: Theme.of(context).textTheme.headline1),
-              accountEmail: new Text(locator<AuthService>().currentUser.email!,
-                  style: Theme.of(context).textTheme.headline5),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    locator<AuthService>().currentUser.avatarImageUrl ??
-                        "https://img.icons8.com/color/452/avatar.png"),
-              ),
-            ),
+          Stack(
+            children: <Widget>[
+              Container(
+                  height: 240,
+                  child: UserAccountsDrawerHeader(
+                    decoration:
+                        BoxDecoration(color: Theme.of(context).cardColor),
+                    currentAccountPictureSize: Size.square(120),
+                    accountName: new Text(
+                        locator<AuthService>().currentUser.name!,
+                        style: Theme.of(context).textTheme.headline1),
+                    accountEmail: new Text(
+                        locator<AuthService>().currentUser.email!,
+                        style: Theme.of(context).textTheme.headline5),
+                    currentAccountPicture: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          locator<AuthService>().currentUser.avatarImageUrl ??
+                              "https://img.icons8.com/color/452/avatar.png"),
+                    ),
+                  )),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 24.0),
+                  child: IconButton(
+                      icon: Icon(Icons.close),
+                      color: Theme.of(context).primaryColor,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }),
+                ),
+              )
+            ],
           ),
+
           //   new Column(children: ),
           Expanded(
             child: Column(
@@ -64,53 +83,56 @@ class FluttifyDrawer extends StatelessWidget {
                 ]),
           ),
           Expanded(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  ListTile(
-                    dense: true,
-                    leading: Icon(Icons.logout),
-                    title: Text(AppLocalizations.of(context)!.logout,
-                        style: Theme.of(context).textTheme.bodyText2),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text(
-                              AppLocalizations.of(context)!.logout,
-                              style: Theme.of(context).textTheme.headline1,
-                            ),
-                            content: SingleChildScrollView(
-                              child: ListBody(
-                                children: <Widget>[
-                                  Text(
-                                    AppLocalizations.of(context)!.logoutcheck,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2,
-                                  ),
-                                ],
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    ListTile(
+                      dense: true,
+                      leading: Icon(Icons.logout),
+                      title: Text(AppLocalizations.of(context)!.logout,
+                          style: Theme.of(context).textTheme.bodyText2),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text(
+                                AppLocalizations.of(context)!.logout,
+                                style: Theme.of(context).textTheme.headline1,
                               ),
-                            ),
-                            actions: <Widget>[
-                              FluttifyButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  text: AppLocalizations.of(context)!.no,
-                                  width: 80,
-                                  height: 35),
-                              FluttifyButton(
-                                  onPressed: () =>
-                                      locator<AuthService>().logoutBackend(),
-                                  text: AppLocalizations.of(context)!.yes,
-                                  width: 80,
-                                  height: 35),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ]),
+                              content: SingleChildScrollView(
+                                child: ListBody(
+                                  children: <Widget>[
+                                    Text(
+                                      AppLocalizations.of(context)!.logoutcheck,
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              actions: <Widget>[
+                                FluttifyButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    text: AppLocalizations.of(context)!.no,
+                                    width: 80,
+                                    height: 35),
+                                FluttifyButton(
+                                    onPressed: () =>
+                                        locator<AuthService>().logoutBackend(),
+                                    text: AppLocalizations.of(context)!.yes,
+                                    width: 80,
+                                    height: 35),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ]),
+            ),
           )
         ],
       ),

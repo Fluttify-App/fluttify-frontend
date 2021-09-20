@@ -23,7 +23,7 @@ class PlaylistView extends StatelessWidget {
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
         ),
-        drawer: new FluttifyDrawer(),
+        endDrawer: new FluttifyDrawer(),
         body: Center(
           child: Container(
             alignment: Alignment.topCenter,
