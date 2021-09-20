@@ -89,6 +89,7 @@ class EditPlaylistView extends StatelessWidget {
                               if (!model.playlist!.canEdit)
                                 if (model.playlist!.image == null)
                                   Container(
+                                    margin: const EdgeInsets.only(bottom: 30),
                                     height: 150,
                                     width: 250,
                                     decoration: BoxDecoration(
@@ -576,7 +577,7 @@ class EditPlaylistView extends StatelessWidget {
                                                     60) /
                                                 2,
                                             color: Theme.of(context)
-                                                .highlightColor,
+                                                .indicatorColor,
                                           ),
                                         ],
                                       ),
@@ -672,7 +673,7 @@ class EditPlaylistView extends StatelessWidget {
                                                   // JOIN BUTTON
                                                   FluttifyButton(
                                                     color: Theme.of(context)
-                                                        .highlightColor,
+                                                        .indicatorColor,
                                                     onPressed: () {
                                                       showDialog(
                                                         context: context,
@@ -762,7 +763,7 @@ class EditPlaylistView extends StatelessWidget {
                                                   ),
                                                   //width: 200,
                                                   color: Theme.of(context)
-                                                      .highlightColor,
+                                                      .indicatorColor,
                                                 )
                                               : //UNLIKE BUTTON
                                               FluttifyButton(

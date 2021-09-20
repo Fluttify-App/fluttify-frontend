@@ -61,7 +61,7 @@ class ThemeService extends ChangeNotifier {
     cardColor: Color(0xff424242),
     errorColor: Color(0xff424242), // Color.fromARGB(255, 203, 45, 62),
     hintColor: Color(0xffbdb9ba),
-    highlightColor: Color(0xff008F61),
+    indicatorColor: Color(0xff008F61),
     appBarTheme: AppBarTheme(backgroundColor: _currentColor),
     bottomNavigationBarTheme:
         BottomNavigationBarThemeData(backgroundColor: Color(0xff424242)),
@@ -131,7 +131,7 @@ class ThemeService extends ChangeNotifier {
     scaffoldBackgroundColor: Color(0xffdae0e6),
     cardColor: Colors.white,
     hintColor: Color(0xff3b3b3b),
-    highlightColor: Color(0xff008F61),
+    indicatorColor: Color(0xff008F61),
     errorColor: Color(
         0xff424242), // Color(0xff3b3b3b), //Color.fromARGB(255, 203, 45, 62),
     appBarTheme: AppBarTheme(
