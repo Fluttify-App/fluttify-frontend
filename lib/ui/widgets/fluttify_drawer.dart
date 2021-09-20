@@ -41,7 +41,7 @@ class FluttifyDrawer extends StatelessWidget {
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 24.0),
+                  padding: const EdgeInsets.only(top: 0.0),
                   child: IconButton(
                       icon: Icon(Icons.close),
                       color: Theme.of(context).primaryColor,
