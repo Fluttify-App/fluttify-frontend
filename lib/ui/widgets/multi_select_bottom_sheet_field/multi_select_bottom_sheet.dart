@@ -298,7 +298,7 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
                   children: [
                     Expanded(
                       child: FluttifyButton(
-                        text: 'CANCEL',
+                        text: "Cancel",
                         onPressed: () {
                           widget.onConfirmTap(
                               context, _selectedValues, widget.onConfirm);
@@ -309,7 +309,7 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
                     SizedBox(width: 10),
                     Expanded(
                       child: FluttifyButton(
-                        text: 'OK',
+                        text: 'Ok',
                         onPressed: () {
                           widget.onConfirmTap(
                               context, _selectedValues, widget.onConfirm);

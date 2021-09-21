@@ -18,19 +18,25 @@ import 'package:instant/instant.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditPlaylistView extends StatelessWidget {
-  const EditPlaylistView(
-      {this.playlist, this.playlistId, this.communityview = false});
+  EditPlaylistView(
+      {this.playlist,
+      this.playlistId,
+      this.communityview = false,
+      this.editable = false});
   final Playlist? playlist;
   final String? playlistId;
   final bool? communityview;
+  bool? editable;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
-        onModelReady: (EditPlaylistViewModel model) {
+        onModelReady: (EditPlaylistViewModel model) async {
           if (this.playlist == null) {
             model.getPlaylist(this.playlistId!);
           } else {
-            model.getPlaylist(this.playlist!.dbID!);
+            await model.getPlaylist(this.playlist!.dbID!);
+            print("now");
+            this.editable = true;
           }
         },
         builder: (BuildContext context, EditPlaylistViewModel model,
@@ -54,7 +60,7 @@ class EditPlaylistView extends StatelessWidget {
                                       child: GestureDetector(
                                         child: Icon(Icons.edit),
                                         onTap: () => {
-                                          model.canEdit(),
+                                          if (this.editable!) model.canEdit(),
                                         },
                                       ),
                                     )
@@ -106,7 +112,7 @@ class EditPlaylistView extends StatelessWidget {
                                 else
                                   Container(
                                     margin: const EdgeInsets.only(bottom: 30),
-                                    padding: const EdgeInsets.all(15),
+                                    padding: const EdgeInsets.all(25),
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).cardColor,
                                       borderRadius: BorderRadius.only(
@@ -236,6 +242,7 @@ class EditPlaylistView extends StatelessWidget {
                                           (List<dynamic> values) =>
                                               model.checkAllGenres(values),
                                       chipDisplay: MultiSelectChipDisplay(
+                                        height: 65,
                                         chipColor:
                                             Theme.of(context).accentColor,
                                         textStyle: Theme.of(context)
@@ -432,6 +439,7 @@ class EditPlaylistView extends StatelessWidget {
                                             for (dynamic contributers in model
                                                 .playlist!.displayContributers!)
                                               Container(
+                                                height: 65,
                                                 padding: EdgeInsets.fromLTRB(
                                                     15, 10, 0, 10),
                                                 child: Card(
@@ -447,96 +455,113 @@ class EditPlaylistView extends StatelessWidget {
                                                             Colors.transparent),
                                                   ),
                                                   child: Container(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            12, 5, 12, 5),
-                                                    child: model.playlist!
-                                                                .canEdit &&
-                                                            !(contributers[
-                                                                    'id'] ==
-                                                                model
-                                                                    .authService
-                                                                    .currentUser
-                                                                    .id)
-                                                        ? Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            children: [
-                                                              Text(
-                                                                  contributers[
-                                                                      'name'],
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .subtitle2),
-                                                              SizedBox(
-                                                                  width: 5),
-                                                              GestureDetector(
-                                                                child: Icon(
-                                                                  Icons.close,
-                                                                  size: 14,
-                                                                  color: Colors
-                                                                      .white,
-                                                                ),
-                                                                onTap: () => {
-                                                                  showDialog(
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (_) {
-                                                                      return AlertDialog(
-                                                                        title:
-                                                                            Text(
-                                                                          AppLocalizations.of(context)!
-                                                                              .removeuser,
-                                                                          style: Theme.of(context)
-                                                                              .textTheme
-                                                                              .headline1,
-                                                                        ),
-                                                                        content:
-                                                                            SingleChildScrollView(
-                                                                          child:
-                                                                              ListBody(
-                                                                            children: <Widget>[
-                                                                              Text(
-                                                                                AppLocalizations.of(context)!.removeusercheck + contributers['name'] + '?',
-                                                                                style: Theme.of(context).textTheme.bodyText2,
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                        actions: <
-                                                                            Widget>[
-                                                                          FluttifyButton(
-                                                                              onPressed: () => model.navigateBack(context),
-                                                                              text: AppLocalizations.of(context)!.no,
-                                                                              width: 80,
-                                                                              height: 35),
-                                                                          FluttifyButton(
-                                                                              onPressed: () => {
-                                                                                    model.removeUser(contributers['id']),
-                                                                                    model.navigateBack(context),
-                                                                                  },
-                                                                              text: AppLocalizations.of(context)!.yes,
-                                                                              width: 80,
-                                                                              height: 35),
-                                                                        ],
-                                                                      );
-                                                                    },
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              12, 5, 12, 5),
+                                                      child: model.playlist!
+                                                                  .canEdit &&
+                                                              !(contributers[
+                                                                      'id'] ==
+                                                                  model
+                                                                      .authService
+                                                                      .currentUser
+                                                                      .id)
+                                                          ? Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              children: [
+                                                                Text(
+                                                                    contributers[
+                                                                        'name'],
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .subtitle2),
+                                                                SizedBox(
+                                                                    width: 5),
+                                                                GestureDetector(
+                                                                  child: Icon(
+                                                                    Icons.close,
+                                                                    size: 14,
+                                                                    color: Colors
+                                                                        .white,
                                                                   ),
-                                                                },
-                                                              ),
-                                                            ],
-                                                          )
-                                                        : Text(
-                                                            contributers[
-                                                                'name'],
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .subtitle2),
-                                                  ),
+                                                                  onTap: () => {
+                                                                    showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (_) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text(
+                                                                            AppLocalizations.of(context)!.removeuser,
+                                                                            style:
+                                                                                Theme.of(context).textTheme.headline1,
+                                                                          ),
+                                                                          content:
+                                                                              SingleChildScrollView(
+                                                                            child:
+                                                                                ListBody(
+                                                                              children: <Widget>[
+                                                                                Text(
+                                                                                  AppLocalizations.of(context)!.removeusercheck + contributers['name'] + '?',
+                                                                                  style: Theme.of(context).textTheme.bodyText2,
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          actions: <
+                                                                              Widget>[
+                                                                            FluttifyButton(
+                                                                                onPressed: () => model.navigateBack(context),
+                                                                                text: AppLocalizations.of(context)!.no,
+                                                                                width: 80,
+                                                                                height: 35),
+                                                                            FluttifyButton(
+                                                                                onPressed: () => {
+                                                                                      model.removeUser(contributers['id']),
+                                                                                      model.navigateBack(context),
+                                                                                    },
+                                                                                text: AppLocalizations.of(context)!.yes,
+                                                                                width: 80,
+                                                                                height: 35),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    ),
+                                                                  },
+                                                                ),
+                                                              ],
+                                                            )
+                                                          : Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              children: <
+                                                                  Widget>[
+                                                                  (contributers[
+                                                                              'id'] ==
+                                                                          model
+                                                                              .playlist!
+                                                                              .creator)
+                                                                      ? Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(right: 4.0),
+                                                                          child: Icon(
+                                                                              Icons.manage_accounts,
+                                                                              color: Colors.white),
+                                                                        )
+                                                                      : Container(),
+                                                                  Text(
+                                                                      contributers[
+                                                                          'name'],
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .subtitle2)
+                                                                ])),
                                                 ),
                                               ),
                                           ],
@@ -823,21 +848,6 @@ class EditPlaylistView extends StatelessWidget {
                                                                       .lastUpdate!),
                                                             ),
                                                       ),
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .subtitle1!,
-                                                    )
-                                                  : Container(),
-                                              model.playlist!
-                                                          .displayContributers !=
-                                                      null
-                                                  ? DefaultTextStyle(
-                                                      child: Text(
-                                                          AppLocalizations.of(
-                                                                      context)!
-                                                                  .createdby +
-                                                              model
-                                                                  .getCreator()),
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .subtitle1!,
