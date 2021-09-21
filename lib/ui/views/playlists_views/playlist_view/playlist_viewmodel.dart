@@ -13,11 +13,10 @@ import 'package:stacked/stacked.dart';
 class PlaylistViewModel extends BaseViewModel {
   final FluttifyPlaylistService playlistService =
       locator<FluttifyPlaylistService>();
-  final PlaylistNavigationService _navigationService =
+  final PlaylistNavigationService navigationService =
       locator<PlaylistNavigationService>();
   final AuthService authService = locator<AuthService>();
   final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
-
   bool isLoading = true;
 
   void refreshPlaylists() {
@@ -34,7 +33,7 @@ class PlaylistViewModel extends BaseViewModel {
   }
 
   void navigateToEditPage(Playlist playlist) {
-    _navigationService.navigateTo(
+    navigationService.navigateTo(
         '/edit-playlist', EditPlaylistView(playlist: playlist),
         withNavBar: false, callback: (value) {
       if (value != null && value == true) {
@@ -44,7 +43,7 @@ class PlaylistViewModel extends BaseViewModel {
   }
 
   void navigateToAddPlaylist() {
-    _navigationService.navigateTo('/add-playlist', AddPlaylistView(),
+    navigationService.navigateTo('/add-playlist', AddPlaylistView(),
         withNavBar: false, callback: (value) {
       if (value != null) {
         refreshPlaylists();
@@ -56,9 +55,11 @@ class PlaylistViewModel extends BaseViewModel {
     playlistService.removeFluttifyPlaylist(playlist).then((value) {
       var snackbarText;
       if (value) {
-        snackbarText = Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
+        snackbarText =
+            Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
       } else {
-        snackbarText = Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
+        snackbarText =
+            Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
       }
       refreshPlaylists();
       final snackBar = SnackBar(

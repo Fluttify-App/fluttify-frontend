@@ -14,8 +14,8 @@ class HomeViewModel extends BaseViewModel {
       locator<PlaylistNavigationService>();
   final CommunityNavigationService _addPlaylistNavigation =
       locator<CommunityNavigationService>();
-  final SettingsNavigationService _discoverNavigation =
-      locator<SettingsNavigationService>();
+  final DiscoverNavigationService _discoverNavigation =
+      locator<DiscoverNavigationService>();
   final SettingsNavigationService _settingsNavigation =
       locator<SettingsNavigationService>();
 
@@ -55,8 +55,17 @@ class HomeViewModel extends BaseViewModel {
   /// Pops all 5 Navigators to the initial route
   void popAllNavigators() {
     _playlistNavigation.popAll();
+    if (_playlistNavigation.scaffoldkey.currentState != null) {
+      _playlistNavigation.scaffoldkey.currentState!.openDrawer();
+    }
     _addPlaylistNavigation.popAll();
+    if (_addPlaylistNavigation.scaffoldkey.currentState != null) {
+      _addPlaylistNavigation.scaffoldkey.currentState!.openDrawer();
+    }
     _discoverNavigation.popAll();
+    if (_discoverNavigation.scaffoldkey.currentState != null) {
+      _discoverNavigation.scaffoldkey.currentState!.openDrawer();
+    }
     _settingsNavigation.popAll();
   }
 

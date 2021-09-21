@@ -24,6 +24,7 @@ class DiscoverView extends StatelessWidget {
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
         ),
+        key: model.navigationService.scaffoldkey,
         endDrawer: new FluttifyDrawer(),
         body: RefreshIndicator(
           onRefresh: () async {

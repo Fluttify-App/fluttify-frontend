@@ -1,6 +1,7 @@
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/fluttify_discover_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
+import 'package:fluttify/services/navigation_service.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -9,6 +10,8 @@ class DiscoverViewModel extends BaseViewModel {
       locator<FluttifyDiscoverService>();
   final FluttifyPlaylistService fluttifyPlaylistService =
       locator<FluttifyPlaylistService>();
+  final DiscoverNavigationService navigationService =
+      locator<DiscoverNavigationService>();
   bool isLoading = true;
   List<String> selectedGenres = [];
   List<dynamic>? playlistGenres;
