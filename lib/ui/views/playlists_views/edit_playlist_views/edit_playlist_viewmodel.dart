@@ -51,7 +51,7 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   @override
   void dispose() {
-    _timer!.cancel();
+    //_timer!.cancel();
     super.dispose();
   }
 
