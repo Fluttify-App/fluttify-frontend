@@ -108,7 +108,7 @@ class AddPlaylistView extends StatelessWidget {
                             listType: MultiSelectListType.CHIP,
                             selectedItemsTextStyle:
                                 Theme.of(context).textTheme.subtitle2,
-                            selectedColor: Theme.of(context).accentColor,
+                            selectedColor: Theme.of(context).primaryColor,
                             itemsTextStyle:
                                 Theme.of(context).textTheme.subtitle2,
                             searchable: true,
@@ -127,7 +127,7 @@ class AddPlaylistView extends StatelessWidget {
                             onSelectionChanged: (List<dynamic> values) =>
                                 model.checkAllGenres(values),
                             chipDisplay: MultiSelectChipDisplay(
-                              chipColor: Theme.of(context).accentColor,
+                              chipColor: Theme.of(context).primaryColor,
                               textStyle: Theme.of(context).textTheme.subtitle2,
                               onTap: (dynamic value) {
                                 model.removeGenre(value);
@@ -193,7 +193,7 @@ class AddPlaylistView extends StatelessWidget {
                               ],
                             ),
                             checkColor: Colors.white,
-                            activeColor: Theme.of(context).accentColor,
+                            activeColor: Theme.of(context).primaryColor,
                             value: model.playlist.keepAllTracks,
                             onChanged: (value) {
                               model.keepItFresh(value!);

@@ -69,7 +69,7 @@ class SettingsView extends StatelessWidget {
                               });
                         },
                         icon: Icon(Icons.circle,
-                            color: Theme.of(context).accentColor),
+                            color: Theme.of(context).primaryColor),
                       ),
                     ],
                   ),
@@ -91,9 +91,9 @@ class SettingsView extends StatelessWidget {
                           Provider.of<ThemeService>(context, listen: false)
                               .setDarkMode(value);
                         },
-                        //activeTrackColor: Theme.of(context).accentColor,
-                        activeColor: Theme.of(context).accentColor,
-                        inactiveThumbColor: Theme.of(context).accentColor,
+                        //activeTrackColor: Theme.of(context).primaryColor,
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveThumbColor: Theme.of(context).primaryColor,
                       ),
                     ],
                   ),
@@ -119,7 +119,7 @@ class SettingsView extends StatelessWidget {
                                 : 1,
                         labels: ["en", "de"],
                         activeBgColor: [
-                          Theme.of(context).accentColor,
+                          Theme.of(context).primaryColor,
                         ],
                         activeFgColor: Colors.white,
                         inactiveFgColor: Colors.white,

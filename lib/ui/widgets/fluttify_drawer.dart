@@ -44,7 +44,7 @@ class FluttifyDrawer extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 0.0),
                   child: IconButton(
                       icon: Icon(Icons.close),
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).accentColor,
                       onPressed: () {
                         Navigator.pop(context);
                       }),

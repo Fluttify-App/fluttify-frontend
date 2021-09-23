@@ -156,8 +156,8 @@ class EditPlaylistView extends StatelessWidget {
                                             alignment: Alignment.topRight,
                                             child: Icon(
                                               Icons.launch,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
+                                              color:
+                                                  Theme.of(context).accentColor,
                                             ),
                                           )
                                         ],
@@ -219,7 +219,7 @@ class EditPlaylistView extends StatelessWidget {
                                       selectedItemsTextStyle:
                                           Theme.of(context).textTheme.subtitle2,
                                       selectedColor:
-                                          Theme.of(context).accentColor,
+                                          Theme.of(context).primaryColor,
                                       itemsTextStyle:
                                           Theme.of(context).textTheme.subtitle2,
                                       searchable: true,
@@ -244,7 +244,7 @@ class EditPlaylistView extends StatelessWidget {
                                       chipDisplay: MultiSelectChipDisplay(
                                         height: 65,
                                         chipColor:
-                                            Theme.of(context).accentColor,
+                                            Theme.of(context).primaryColor,
                                         textStyle: Theme.of(context)
                                             .textTheme
                                             .subtitle2,
@@ -332,7 +332,7 @@ class EditPlaylistView extends StatelessWidget {
                                           ),
                                           checkColor: Colors.white,
                                           activeColor:
-                                              Theme.of(context).accentColor,
+                                              Theme.of(context).primaryColor,
                                           value: model.playlist!.keepAllTracks,
                                           onChanged: (value) {
                                             if (playlist!.canEdit)
@@ -447,7 +447,7 @@ class EditPlaylistView extends StatelessWidget {
                                                           model.authService
                                                               .currentUser.id
                                                       ? Theme.of(context)
-                                                          .accentColor
+                                                          .primaryColor
                                                       : Color(0xff8AAB21),
                                                   shape: StadiumBorder(
                                                     side: BorderSide(
@@ -999,7 +999,7 @@ class EditPlaylistView extends StatelessWidget {
                                                 child:
                                                     CircularProgressIndicator(
                                                         color: Theme.of(context)
-                                                            .primaryColor),
+                                                            .accentColor),
                                               )
                                         : Container(
                                             padding:
@@ -1015,7 +1015,7 @@ class EditPlaylistView extends StatelessWidget {
                                                 ),
                                                 CircularProgressIndicator(
                                                     color: Theme.of(context)
-                                                        .primaryColor)
+                                                        .accentColor)
                                               ],
                                             ),
                                           ),
@@ -1035,7 +1035,7 @@ class EditPlaylistView extends StatelessWidget {
                     ),
                     body: Center(
                       child: CircularProgressIndicator(
-                          color: Theme.of(context).primaryColor),
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
         viewModelBuilder: () {

@@ -31,7 +31,7 @@ class PlaylistView extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 10),
             child: !model.isLoading
                 ? RefreshIndicator(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).accentColor,
                     onRefresh: () async {
                       model.refreshPlaylists();
                     },
@@ -149,7 +149,7 @@ class PlaylistView extends StatelessWidget {
                                                 .bodyText1),
                                         Icon(Icons.add_outlined,
                                             color:
-                                                Theme.of(context).accentColor),
+                                                Theme.of(context).primaryColor),
                                         Text(
                                             AppLocalizations.of(context)!
                                                 .createplaylists2,
@@ -163,12 +163,12 @@ class PlaylistView extends StatelessWidget {
                   )
                 : Center(
                     child: CircularProgressIndicator(
-                        color: Theme.of(context).primaryColor),
+                        color: Theme.of(context).accentColor),
                   ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).accentColor,
+          backgroundColor: Theme.of(context).primaryColor,
           foregroundColor: Colors.white,
           onPressed: () {
             model.navigateToAddPlaylist();

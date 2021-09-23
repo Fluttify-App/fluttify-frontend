@@ -136,7 +136,7 @@ class MultiSelectChipDisplay<V> extends StatelessWidget {
                 icon!.icon,
                 color: colorator != null && colorator!(item.value) != null
                     ? colorator!(item.value)!.withOpacity(1)
-                    : icon!.color ?? Theme.of(context).primaryColor,
+                    : icon!.color ?? Theme.of(context).accentColor,
               )
             : null,
         label: Container(
@@ -150,7 +150,7 @@ class MultiSelectChipDisplay<V> extends StatelessWidget {
             ? colorator!(item.value)
             : chipColor != null
                 ? chipColor
-                : Theme.of(context).primaryColor.withOpacity(0.33),
+                : Theme.of(context).accentColor.withOpacity(0.33),
         onSelected: (_) {
           if (onTap != null) onTap!(item.value);
         },
