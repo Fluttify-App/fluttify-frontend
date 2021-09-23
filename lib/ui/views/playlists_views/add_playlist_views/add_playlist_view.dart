@@ -18,11 +18,20 @@ class AddPlaylistView extends StatelessWidget {
           (BuildContext context, AddPlaylistViewModel model, Widget? child) =>
               Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
           title: Text(AppLocalizations.of(context)!.addplaylist,
               style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
+          actions: [
+            TextButton(
+              child: Text(AppLocalizations.of(context)!.save),
+              onPressed: model.selectedGenres.length != 0 &&
+                      model.nameController.text.isNotEmpty
+                  ? () => model.save(context)
+                  : null, //
+            ),
+          ],
         ),
         body: Center(
           child: Container(
@@ -55,9 +64,11 @@ class AddPlaylistView extends StatelessWidget {
                               hintText: 'Name',
                               border: InputBorder.none,
                             ),
+                            /*
                             onSubmitted: (String value) {
                               model.saveName(value);
                             },
+                            */
                           ),
                         ),
                       ),
@@ -85,9 +96,6 @@ class AddPlaylistView extends StatelessWidget {
                                   AppLocalizations.of(context)!.description,
                               border: InputBorder.none,
                             ),
-                            onSubmitted: (String value) {
-                              model.saveDescription(value);
-                            },
                           ),
                         ),
                       ),
@@ -202,6 +210,7 @@ class AddPlaylistView extends StatelessWidget {
                         ),
                       ),
                     ),
+                    /*
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -233,6 +242,7 @@ class AddPlaylistView extends StatelessWidget {
                         )
                       ],
                     )
+                    */
                   ],
                 ),
               ),

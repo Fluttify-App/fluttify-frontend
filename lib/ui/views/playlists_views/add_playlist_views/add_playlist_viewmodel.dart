@@ -23,6 +23,8 @@ class AddPlaylistViewModel extends BaseViewModel {
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
     playlistGenre!.insert(0, MultiSelectItem('All Genres', 'All Genres'));
+
+    nameController.addListener(notifyListeners);
   }
 
   void navigateBack(BuildContext context) {
@@ -63,14 +65,6 @@ class AddPlaylistViewModel extends BaseViewModel {
   void removeGenre(String value) {
     selectedGenres.remove(value);
     notifyListeners();
-  }
-
-  void saveName(String value) {
-    nameController.text = value;
-  }
-
-  void saveDescription(String value) {
-    descriptionController.text = value;
   }
 
   void keepItFresh(bool value) {
