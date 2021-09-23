@@ -47,12 +47,16 @@ class EditPlaylistView extends StatelessWidget {
                       iconTheme: IconThemeData(color: Colors.white),
                       actions: [
                         model.playlist!.canEdit
-                            ? TextButton(
-                                child: Text(AppLocalizations.of(context)!.save),
-                                onPressed: model.selectedGenres.length != 0 &&
-                                        model.nameController.text.isNotEmpty
-                                    ? () => model.save(context)
-                                    : null, //
+                            ? Padding(
+                                padding: const EdgeInsets.only(right: 4.0),
+                                child: TextButton(
+                                  child:
+                                      Text(AppLocalizations.of(context)!.save),
+                                  onPressed: model.selectedGenres.length != 0 &&
+                                          model.nameController.text.isNotEmpty
+                                      ? () => model.save(context)
+                                      : null, //
+                                ),
                               )
                             : model.playlist!.creator ==
                                     model.authService.currentUser.id

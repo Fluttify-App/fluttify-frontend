@@ -17,7 +17,7 @@ class SpotifySignInView extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: <Color>[fluttify_gradient_1, fluttify_gradient_2],
+                  colors: <Color>[fluttify_gradient_2, fluttify_gradient_1],
                 ),
               ),
               child: Scaffold(
@@ -32,10 +32,6 @@ class SpotifySignInView extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            'assets/images/FluttifyRed.png',
-                            width: 200.0,
-                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 22.0),
                             child: Text(AppLocalizations.of(context)!.subtitle,
@@ -51,6 +47,10 @@ class SpotifySignInView extends StatelessWidget {
                                     fontFamily: 'Kellvin',
                                     fontSize: 80,
                                     color: Color(0xff1a1a1a))),
+                          ),
+                          Image.asset(
+                            'assets/images/FluttifyRed.png',
+                            width: 200.0,
                           ),
                         ],
                       ),
