@@ -10,7 +10,8 @@
 
     "privacy": "Privacy Policy",
     "deleteprofile": "Delete Profile", 
-    "licence": "Licence", 
+    "licence": "Licences",
+    "thirdpartylicences": "Third Party Licences",
     
     "signin": "Sign In With Spotify",
     "created": "Created",
