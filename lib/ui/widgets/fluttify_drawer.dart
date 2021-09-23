@@ -16,7 +16,7 @@ class FluttifyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        width: MediaQuery.of(context).size.width / 1.7,
+        width: MediaQuery.of(context).size.width / 1.6,
         child: new Drawer(
           child: new Column(
             mainAxisSize: MainAxisSize.max,
@@ -25,7 +25,6 @@ class FluttifyDrawer extends StatelessWidget {
                 children: <Widget>[
                   Container(
                       height: 180,
-                      //alignment: Alignment.center,
                       child: Stack(children: <Widget>[
                         Container(
                             alignment: Alignment.topCenter,

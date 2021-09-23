@@ -69,7 +69,7 @@
     "cancel": "Abbrechen",
     "save": "Speichern",
     "keepAllTracks": "Behalte alle Songs",
-    "infoDialog": "Songs bleiben in der Playlist. So kannst du zu einem späteren Zeitpunkt nochmal die Top Songs von dir und deinen Freunden hören.",
+    "infoDialog": "Behalte alle Songs: Alle Songs bleiben auch nach einem Playlist-Update in der Liste erhalten. Die Playlist wird mit jedem Update wachsen.",
     "editKeepAllTracks": "Du kannst diese Playlist nur anpassen, wenn du dich im Edit-Modus befindest",
 
     "advancedSettings": "Erweiterte Einstellungen",
