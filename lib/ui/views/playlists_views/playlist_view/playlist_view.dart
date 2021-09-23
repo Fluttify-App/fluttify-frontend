@@ -17,6 +17,7 @@ class PlaylistView extends StatelessWidget {
           viewModel.refreshPlaylists(),
       builder: (BuildContext context, PlaylistViewModel model, Widget? child) =>
           Scaffold(
+        key: model.navigationService.scaffoldkey,
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.playlists,
               style: Theme.of(context).textTheme.headline2),

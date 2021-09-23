@@ -10,8 +10,8 @@ import 'package:stacked/stacked.dart';
 class CommunityViewModel extends BaseViewModel {
   final FluttifyPlaylistService playlistService =
       locator<FluttifyPlaylistService>();
-  final PlaylistNavigationService _navigationService =
-      locator<PlaylistNavigationService>();
+  final CommunityNavigationService navigationService =
+      locator<CommunityNavigationService>();
 
   bool isLoading = true;
 
@@ -29,7 +29,7 @@ class CommunityViewModel extends BaseViewModel {
   }
 
   void navigateToEditPage(Playlist playlist) {
-    _navigationService.navigateTo('/edit-playlist',
+    navigationService.navigateTo('/edit-playlist',
         EditPlaylistView(playlistId: playlist.dbID!, communityview: true),
         withNavBar: false, callback: (value) {
       if (value != null && value == true) {
