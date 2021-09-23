@@ -189,8 +189,8 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
     ),
-    backgroundColor: Colors.green,
-    dividerColor: Colors.green,
+    backgroundColor: Colors.blue,
+    dividerColor: Colors.red,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
