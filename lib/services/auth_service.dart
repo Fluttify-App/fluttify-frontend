@@ -16,8 +16,6 @@ class AuthService extends ChangeNotifier {
 
   List<Object> get props => [headers];
 
-  AuthService() {}
-
   Future<bool> initializeAuthentication() async {
     // initialize the authorization header
     var sharedPrefs = await SharedPreferences.getInstance();
