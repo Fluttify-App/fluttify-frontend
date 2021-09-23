@@ -32,11 +32,11 @@ class ThemeService extends ChangeNotifier {
     prefs.setBool('darkMode', darkMode);
     if (darkMode) {
       _currentTheme = darkTheme.copyWith(
-          accentColor: _currentColor,
+          primaryColor: _currentColor,
           appBarTheme: AppBarTheme(backgroundColor: _currentColor));
     } else {
       _currentTheme = lightTheme.copyWith(
-          accentColor: _currentColor,
+          primaryColor: _currentColor,
           appBarTheme: AppBarTheme(backgroundColor: _currentColor));
     }
     notifyListeners();
@@ -47,7 +47,7 @@ class ThemeService extends ChangeNotifier {
     prefs.setInt('theme', color.value);
     _currentColor = color;
     _currentTheme = _currentTheme!.copyWith(
-        accentColor: color, appBarTheme: AppBarTheme(backgroundColor: color));
+        primaryColor: color, appBarTheme: AppBarTheme(backgroundColor: color));
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: color,
     ));
@@ -55,8 +55,8 @@ class ThemeService extends ChangeNotifier {
   }
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
-    primaryColor: Colors.white,
-    accentColor: _currentColor, //Color.fromARGB(255, 203, 45, 62),
+    primaryColor: _currentColor,
+    accentColor: Colors.white, //Color.fromARGB(255, 203, 45, 62),
     scaffoldBackgroundColor: Color(0xff1c1c1c),
     cardColor: Color(0xff424242),
     errorColor: Color(0xff424242), // Color.fromARGB(255, 203, 45, 62),
@@ -126,8 +126,8 @@ class ThemeService extends ChangeNotifier {
   );
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
-    primaryColor: Colors.green,
-    accentColor: _currentColor,
+    primaryColor: _currentColor,
+    accentColor: Colors.black,
     scaffoldBackgroundColor: Color(0xffdae0e6),
     cardColor: Colors.white,
     hintColor: Color(0xff3b3b3b),
@@ -189,8 +189,8 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
     ),
-    backgroundColor: Colors.blue,
-    dividerColor: Colors.red,
+    backgroundColor: Colors.black,
+    dividerColor: Colors.black,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),

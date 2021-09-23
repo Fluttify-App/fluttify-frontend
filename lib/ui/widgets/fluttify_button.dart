@@ -31,7 +31,7 @@ class FluttifyButton extends StatelessWidget {
           width: width ?? MediaQuery.of(context).size.width - 100,
           child: TextButton(
               style: TextButton.styleFrom(
-                  backgroundColor: color ?? Theme.of(context).accentColor,
+                  backgroundColor: color ?? Theme.of(context).primaryColor,
                   //shape: StadiumBorder(
                   //  side: BorderSide(color: Colors.transparent),
                   //),

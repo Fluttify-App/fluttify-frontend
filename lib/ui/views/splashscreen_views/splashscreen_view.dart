@@ -42,7 +42,7 @@ class SplashScreenView extends StatelessWidget {
                                 child: CircularProgressIndicator(
                                     strokeWidth: 6,
                                     color: Theme.of(context)
-                                        .accentColor // Colors.white //Color(0xffe70037) //ite,
+                                        .primaryColor // Colors.white //Color(0xffe70037) //ite,
                                     ),
                               ))
                         ]),

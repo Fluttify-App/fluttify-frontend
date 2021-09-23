@@ -63,7 +63,7 @@ class DiscoverView extends StatelessWidget {
                                   label: Text(genre),
                                   selected:
                                       model.selectedGenres.contains(genre),
-                                  selectedColor: Theme.of(context).accentColor,
+                                  selectedColor: Theme.of(context).primaryColor,
                                   onSelected: (bool selected) {
                                     if (selected) {
                                       model.selectGenre(genre);
@@ -208,7 +208,7 @@ class DiscoverView extends StatelessWidget {
                           : Expanded(
                               child: Center(
                                 child: CircularProgressIndicator(
-                                    color: Theme.of(context).primaryColor),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
                     ],

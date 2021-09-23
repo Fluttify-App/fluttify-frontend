@@ -88,7 +88,7 @@ class _OnboardingPageState extends State<OnboardingView> {
           ? const EdgeInsets.all(12.0)
           : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
       dotsDecorator: DotsDecorator(
-        activeColor: Theme.of(context).accentColor,
+        activeColor: Theme.of(context).primaryColor,
         size: Size(10.0, 10.0),
         color: Colors.white,
         activeSize: Size(22.0, 10.0),
