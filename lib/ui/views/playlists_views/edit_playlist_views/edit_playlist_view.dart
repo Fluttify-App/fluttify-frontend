@@ -50,6 +50,15 @@ class EditPlaylistView extends StatelessWidget {
                             ? Padding(
                                 padding: const EdgeInsets.only(right: 4.0),
                                 child: TextButton(
+                                  style: ButtonStyle(
+                                    foregroundColor: MaterialStateProperty
+                                        .resolveWith<Color?>(
+                                      (Set<MaterialState> states) => states
+                                              .contains(MaterialState.disabled)
+                                          ? Colors.white.withOpacity(0.5)
+                                          : Colors.white,
+                                    ),
+                                  ),
                                   child:
                                       Text(AppLocalizations.of(context)!.save),
                                   onPressed: model.selectedGenres.length != 0 &&

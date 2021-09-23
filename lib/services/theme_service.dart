@@ -206,6 +206,8 @@ class ThemeService extends ChangeNotifier {
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         primary: Colors.white,
+        // disabledMouseCursor: Colors.green,
+        shadowColor: Colors.green,
       ),
     ),
   );

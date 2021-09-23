@@ -51,7 +51,8 @@ class SettingsView extends StatelessWidget {
                                       availableColors: [
                                         const Color.fromARGB(255, 203, 45, 62),
                                         Color(0xff008F61),
-                                        Color(0xff005792)
+                                        Color(0xff005792),
+                                        Color(0xff7c50b9)
                                       ],
                                       pickerColor: Provider.of<ThemeService>(
                                               context,

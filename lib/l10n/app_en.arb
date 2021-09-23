@@ -40,7 +40,7 @@
     "color": "Theme",
     "logout": "Logout",
     
-    "addplaylist": "Playlist",
+    "addplaylist": "",
     "description": "Description",
     "currentsongs": "Current Songs",
     "lastupdate": "Last Update: ",
@@ -70,7 +70,7 @@
     "save": "Save",
     "keepAllTracks": "Keep all Tracks",
     "infoDialog": "Songs will stay in your playlist, so that you can listen to old bangers from you and your friends.",
-    "editKeepAllTracks": "You can only do that when you're in edit mode",
+    "editKeepAllTracks": "Please Swuitch to edit-mode if you want to change the settings",
 
     "advancedSettings": "Advanced Settings",
 
