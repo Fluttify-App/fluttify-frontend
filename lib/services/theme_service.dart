@@ -126,7 +126,7 @@ class ThemeService extends ChangeNotifier {
   );
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
-    primaryColor: Colors.black,
+    primaryColor: Colors.green,
     accentColor: _currentColor,
     scaffoldBackgroundColor: Color(0xffdae0e6),
     cardColor: Colors.white,
@@ -189,8 +189,8 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
     ),
-    backgroundColor: Colors.black,
-    dividerColor: Colors.black,
+    backgroundColor: Colors.green,
+    dividerColor: Colors.green,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
