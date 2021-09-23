@@ -24,12 +24,15 @@ class AddPlaylistView extends StatelessWidget {
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
           actions: [
-            TextButton(
-              child: Text(AppLocalizations.of(context)!.save),
-              onPressed: model.selectedGenres.length != 0 &&
-                      model.nameController.text.isNotEmpty
-                  ? () => model.save(context)
-                  : null, //
+            Padding(
+              padding: const EdgeInsets.only(right: 4.0),
+              child: TextButton(
+                child: Text(AppLocalizations.of(context)!.save),
+                onPressed: model.selectedGenres.length != 0 &&
+                        model.nameController.text.isNotEmpty
+                    ? () => model.save(context)
+                    : null, //
+              ),
             ),
           ],
         ),

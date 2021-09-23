@@ -59,7 +59,7 @@ class ThemeService extends ChangeNotifier {
     accentColor: Colors.white, //Color.fromARGB(255, 203, 45, 62),
     scaffoldBackgroundColor: Color(0xff1c1c1c),
     cardColor: Color(0xff424242),
-    errorColor: Color.fromARGB(255, 203, 45, 62), //Color(0xff424242), 
+    errorColor: Color.fromARGB(255, 203, 45, 62), //Color(0xff424242),
     hintColor: Color(0xffbdb9ba),
     indicatorColor: Color(0xff008F61),
     appBarTheme: AppBarTheme(backgroundColor: _currentColor),
@@ -103,6 +103,11 @@ class ThemeService extends ChangeNotifier {
           fontSize: 16.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
+      headline6: const TextStyle(
+          color: Colors.white,
+          fontSize: 16.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w600),
       subtitle1: const TextStyle(
           color: Colors.white,
           fontSize: 12.0,
@@ -132,7 +137,8 @@ class ThemeService extends ChangeNotifier {
     cardColor: Colors.white,
     hintColor: Color(0xff3b3b3b),
     indicatorColor: Color(0xff008F61),
-    errorColor: Color.fromARGB(255, 203, 45, 62), //Color(0xff424242), // Color(0xff3b3b3b), 
+    errorColor: Color.fromARGB(
+        255, 203, 45, 62), //Color(0xff424242), // Color(0xff3b3b3b),
     appBarTheme: AppBarTheme(
         backgroundColor: _currentColor,
         titleTextStyle: TextStyle(color: Colors.black),
@@ -177,6 +183,11 @@ class ThemeService extends ChangeNotifier {
           fontSize: 16.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
+      headline6: const TextStyle(
+          color: Colors.white,
+          fontSize: 16.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w600),
       subtitle1: const TextStyle(
           color: Colors.black,
           fontSize: 12.0,
@@ -194,7 +205,7 @@ class ThemeService extends ChangeNotifier {
       style: TextButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        primary: Colors.black,
+        primary: Colors.white,
       ),
     ),
   );
