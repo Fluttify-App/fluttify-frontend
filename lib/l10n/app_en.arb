@@ -68,8 +68,8 @@
     "yes": "Yes",
     "cancel": "Cancel",
     "save": "Save",
-    "keepAllTracks": "Keep all Tracks",
-    "infoDialog": "Songs will stay in your playlist, so that you can listen to old bangers from you and your friends.",
+    "keepAllTracks": "Keep Tracks",
+    "infoDialog": "Keep Tracks: The songs will not be replaced after a playlist update. The number of songs will grow with each update.",
     "editKeepAllTracks": "Please Swuitch to edit-mode if you want to change the settings",
 
     "advancedSettings": "Advanced Settings",
@@ -87,5 +87,5 @@
     "onboardingcontent4": "Fluttify uses the Spotify API to automatically collect songs for your playlist. It adds the recently-liked and frequently-listened songs of each playlist-contributor that match with the specified genre. \n You can decide if these songs will stay in your playlist or get replaced after the next refresh.",
 
     "onboardingtitle5": "Lean back & \n enjoy your favorites",
-    "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. \n Your playlists will always be up-to-date! \n\n Have Fun using Fluttify!"
+    "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. Your playlists will always be up-to-date! \n\n Have Fun using Fluttify!"
 }

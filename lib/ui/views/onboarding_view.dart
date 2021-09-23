@@ -21,7 +21,7 @@ class _OnboardingPageState extends State<OnboardingView> {
     );
   }
 
-  Widget _buildImage(String assetName, [double width = 250]) {
+  Widget _buildImage(String assetName, [double width = 150]) {
     return Image.asset('assets/$assetName', width: width);
   }
 
@@ -29,8 +29,8 @@ class _OnboardingPageState extends State<OnboardingView> {
   Widget build(BuildContext context) {
     const startPageDecoration = const PageDecoration(
       titleTextStyle: TextStyle(
-          color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.w700),
-      bodyTextStyle: TextStyle(color: Colors.black, fontSize: 19.0),
+          color: Colors.black, fontSize: 22.0, fontWeight: FontWeight.w700),
+      bodyTextStyle: TextStyle(color: Colors.black, fontSize: 16.0),
       descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       //  titlePadding: EdgeInsets.fromLTRB(32, 132, 32, 32),
       pageColor: Colors.white,
@@ -45,7 +45,7 @@ class _OnboardingPageState extends State<OnboardingView> {
         PageViewModel(
           title: AppLocalizations.of(context)!.welcome,
           body: AppLocalizations.of(context)!.onboardingcontent1,
-          image: _buildImage('images/FluttifyRed.png'),
+          image: _buildImage('images/FluttifyWhiteBlack.png'),
           decoration: startPageDecoration,
         ),
         PageViewModel(

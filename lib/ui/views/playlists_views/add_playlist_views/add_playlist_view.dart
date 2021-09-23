@@ -68,8 +68,9 @@ class AddPlaylistView extends StatelessWidget {
                             ],
                             controller: model.nameController,
                             textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 18),
                             decoration: InputDecoration(
+                              hintStyle: TextStyle(fontSize: 18),
                               contentPadding:
                                   EdgeInsets.symmetric(horizontal: 10),
                               floatingLabelBehavior:
@@ -99,8 +100,9 @@ class AddPlaylistView extends StatelessWidget {
                             maxLines: null,
                             controller: model.descriptionController,
                             textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 18),
                             decoration: InputDecoration(
+                              hintStyle: TextStyle(fontSize: 18),
                               contentPadding:
                                   EdgeInsets.symmetric(horizontal: 10),
                               floatingLabelBehavior:
@@ -137,7 +139,7 @@ class AddPlaylistView extends StatelessWidget {
                               AppLocalizations.of(context)!.genres,
                               style: TextStyle(
                                   color: Theme.of(context).hintColor,
-                                  fontSize: 20),
+                                  fontSize: 18),
                             ),
                             title: Text(AppLocalizations.of(context)!.genres,
                                 style: Theme.of(context).textTheme.bodyText1),
@@ -175,11 +177,12 @@ class AddPlaylistView extends StatelessWidget {
                                     AppLocalizations.of(context)!.keepAllTracks,
                                     style: TextStyle(
                                         color: Theme.of(context).hintColor,
-                                        fontSize: 20),
+                                        fontSize: 18),
                                   ),
                                 ),
                                 IconButton(
-                                  icon: Icon(Icons.info_outline_rounded),
+                                  icon: Icon(Icons.info_outline_rounded,
+                                      color: Theme.of(context).hintColor),
                                   onPressed: () {
                                     showDialog(
                                       context: context,

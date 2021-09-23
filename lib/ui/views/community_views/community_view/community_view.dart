@@ -117,7 +117,7 @@ class CommunityView extends StatelessWidget {
                   )
                 : Center(
                     child: CircularProgressIndicator(
-                        color: Theme.of(context).primaryColor),
+                        color: Theme.of(context).accentColor),
                   ),
           ),
         ),
