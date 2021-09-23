@@ -10,7 +10,8 @@
 
     "privacy" : "Datenschutz",
     "deleteprofile": "Profil löschen",
-    "licence": "Lizenz",
+    "licence": "Lizenzen",
+    "thirdpartylicences": "Drittanbieter Lizenzen",
 
     "signin": "Anmelden mit Spotify",
     "created": "Erstellt",

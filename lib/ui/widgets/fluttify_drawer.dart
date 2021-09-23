@@ -4,7 +4,9 @@ import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
+import 'package:fluttify/ui/views/licences_view.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_viewmodel.dart';
+import 'package:fluttify/ui/views/privacy_view.dart';
 import 'package:fluttify/ui/views/settings_views/settings_view.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/scrolling_text.dart';
@@ -12,6 +14,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
 
 class FluttifyDrawer extends StatelessWidget {
+  final PlaylistNavigationService _navigationService =
+      locator<PlaylistNavigationService>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -102,12 +107,24 @@ class FluttifyDrawer extends StatelessWidget {
                         leading: Icon(Icons.privacy_tip),
                         title: Text(AppLocalizations.of(context)!.privacy,
                             style: Theme.of(context).textTheme.bodyText2),
+                        onTap: () {
+                          _navigationService.navigateTo(
+                              '/privacy', PrivacyScreen(),
+                              withNavBar: false);
+                        },
                       ),
                       ListTile(
                         dense: true,
                         leading: Icon(Icons.description),
-                        title: Text(AppLocalizations.of(context)!.licence,
-                            style: Theme.of(context).textTheme.bodyText2),
+                        title: Text(
+                          AppLocalizations.of(context)!.licence,
+                          style: Theme.of(context).textTheme.bodyText2,
+                        ),
+                        onTap: () {
+                          _navigationService.navigateTo(
+                              '/licences', LicencesScreen(),
+                              withNavBar: false);
+                        },
                       ),
                     ]),
               ),
