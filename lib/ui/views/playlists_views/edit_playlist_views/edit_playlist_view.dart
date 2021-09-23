@@ -43,47 +43,45 @@ class EditPlaylistView extends StatelessWidget {
                 Widget? child) =>
             model.playlist != null
                 ? Scaffold(
-                    appBar: !model.playlist!.canEdit
-                        ? AppBar(
-                            iconTheme: IconThemeData(color: Colors.white),
-                            leading: IconButton(
-                              icon: Icon(Icons.arrow_back),
-                              onPressed: () {
-                                model.navigateBack(context);
-                              },
+                    appBar: AppBar(
+                      iconTheme: IconThemeData(color: Colors.white),
+                      actions: [
+                        model.playlist!.canEdit
+                            ? TextButton(
+                                child: Text(AppLocalizations.of(context)!.save),
+                                onPressed: model.selectedGenres.length != 0 &&
+                                        model.nameController.text.isNotEmpty
+                                    ? () => model.save(context)
+                                    : null, //
+                              )
+                            : model.playlist!.creator ==
+                                    model.authService.currentUser.id
+                                ? Padding(
+                                    padding: EdgeInsets.only(right: 20.0),
+                                    child: GestureDetector(
+                                      child: Icon(Icons.edit),
+                                      onTap: () => {
+                                        if (this.editable!) model.canEdit(),
+                                      },
+                                    ),
+                                  )
+                                : Container()
+                      ],
+                      title: !model.playlist!.canEdit
+                          ? Text(model.playlist!.name!,
+                              style: Theme.of(context).textTheme.headline2)
+                          : Container(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: TextField(
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(40),
+                                  ],
+                                  controller: model.nameController,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.headline2),
                             ),
-                            actions: [
-                              model.playlist!.creator ==
-                                      model.authService.currentUser.id
-                                  ? Padding(
-                                      padding: EdgeInsets.only(right: 20.0),
-                                      child: GestureDetector(
-                                        child: Icon(Icons.edit),
-                                        onTap: () => {
-                                          if (this.editable!) model.canEdit(),
-                                        },
-                                      ),
-                                    )
-                                  : Container()
-                            ],
-                            title: Text(model.playlist!.name!,
-                                style: Theme.of(context).textTheme.headline2),
-                            centerTitle: true,
-                          )
-                        : AppBar(
-                            automaticallyImplyLeading: false,
-                            title: TextField(
-                                inputFormatters: [
-                                  LengthLimitingTextInputFormatter(40),
-                                ],
-                                controller: model.nameController,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.headline2),
-                            centerTitle: true,
-                            iconTheme: IconThemeData(
-                              color: Colors.white, //change your color here
-                            ),
-                          ),
+                      centerTitle: true,
+                    ),
                     body: Center(
                       child: SingleChildScrollView(
                         child: Container(
@@ -208,7 +206,11 @@ class EditPlaylistView extends StatelessWidget {
                                       borderRadius:
                                           BorderRadius.circular(10.0)),
                                   child: Container(
-                                    height: model.playlist!.genres!.isNotEmpty || model.playlist!.canEdit ? null : 50,
+                                    height:
+                                        model.playlist!.genres!.isNotEmpty ||
+                                                model.playlist!.canEdit
+                                            ? null
+                                            : 50,
                                     padding: EdgeInsets.fromLTRB(5, 5, 0, 5),
                                     alignment: Alignment.centerLeft,
                                     child: MultiSelectBottomSheetField(
@@ -570,6 +572,7 @@ class EditPlaylistView extends StatelessWidget {
                                       ),
                                     )
                                   : Container(),
+                              /*
                               model.playlist!.canEdit
                                   ? Container(
                                       padding: EdgeInsets.only(top: 30),
@@ -609,6 +612,7 @@ class EditPlaylistView extends StatelessWidget {
                                       ),
                                     )
                                   : Container(),
+                                  */
                               !model.playlist!.canEdit
                                   ? !this.communityview!
                                       ? model.playlist!.contributers!.contains(
