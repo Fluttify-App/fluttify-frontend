@@ -416,7 +416,7 @@ class EditPlaylistView extends StatelessWidget {
                                           ),
                                           onPressed: () {
                                             model.pressShare(
-                                                model.playlist!.dbID!);
+                                                context, model.playlist!.dbID!);
                                           },
                                         ),
                                       ),
