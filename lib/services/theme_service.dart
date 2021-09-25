@@ -120,7 +120,7 @@ class ThemeService extends ChangeNotifier {
           fontWeight: FontWeight.normal),
     ),
     backgroundColor: Color(0xff1c1c1c),
-    dividerColor: Colors.white,
+    dividerColor: Colors.transparent,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -200,7 +200,7 @@ class ThemeService extends ChangeNotifier {
           fontWeight: FontWeight.normal),
     ),
     backgroundColor: Colors.black,
-    dividerColor: Colors.black,
+    dividerColor: Colors.transparent,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),

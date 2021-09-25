@@ -89,7 +89,7 @@ class FluttifyDrawer extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-                        child: Divider(),
+                        child: Divider(color: Theme.of(context).accentColor),
                       ),
                       ListTile(
                           dense: true,

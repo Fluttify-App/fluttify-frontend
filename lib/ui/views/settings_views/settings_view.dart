@@ -75,7 +75,7 @@ class SettingsView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Divider(color: Theme.of(context).dividerColor, height: 10),
+                Divider(color: Theme.of(context).accentColor, height: 10),
                 // DARK MODE
                 Container(
                   height: 50,
@@ -99,7 +99,7 @@ class SettingsView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Divider(color: Theme.of(context).dividerColor, height: 10),
+                Divider(color: Theme.of(context).accentColor, height: 10),
 
                 // LANGUAGE
                 Container(

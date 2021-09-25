@@ -24,6 +24,11 @@
     "genres": "Genre",
     "selectedgenres": "Genres auswählen",
     "allgenres": "Alle Genres",
+    "advanced": "Erweiterte Einstellungen",
+    "toptracksshort": "Top Tracks - Kurz",
+    "toptracksmid": "Top Tracks - Mittel",
+    "toptrackslong": "Top Tracks - Lang",
+    "libtracks": "Zuletzt gespeicherte Songs",
 
     "liked": "Playlists, denen du folgst",
     "morecommunity": "Mehr von der Community",

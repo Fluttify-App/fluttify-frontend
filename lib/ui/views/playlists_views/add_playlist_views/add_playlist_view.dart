@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
@@ -11,6 +12,7 @@ import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddPlaylistView extends StatelessWidget {
+  bool? _customTileExpanded = false;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AddPlaylistViewModel>.reactive(
@@ -54,6 +56,7 @@ class AddPlaylistView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: Column(
                   children: [
+                    // NAME
                     Container(
                       child: Card(
                         margin: const EdgeInsets.all(0),
@@ -70,7 +73,10 @@ class AddPlaylistView extends StatelessWidget {
                             textAlign: TextAlign.left,
                             style: TextStyle(fontSize: 18),
                             decoration: InputDecoration(
-                              hintStyle: TextStyle(fontSize: 18),
+                              hintStyle: TextStyle(
+                                fontSize: 18,
+                                fontStyle: FontStyle.italic,
+                              ),
                               contentPadding:
                                   EdgeInsets.symmetric(horizontal: 10),
                               floatingLabelBehavior:
@@ -87,6 +93,7 @@ class AddPlaylistView extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // DESCRIPTION
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Card(
@@ -102,7 +109,10 @@ class AddPlaylistView extends StatelessWidget {
                             textAlign: TextAlign.left,
                             style: TextStyle(fontSize: 18),
                             decoration: InputDecoration(
-                              hintStyle: TextStyle(fontSize: 18),
+                              hintStyle: TextStyle(
+                                fontSize: 18,
+                                fontStyle: FontStyle.italic,
+                              ),
                               contentPadding:
                                   EdgeInsets.symmetric(horizontal: 10),
                               floatingLabelBehavior:
@@ -115,6 +125,7 @@ class AddPlaylistView extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // GENRES
                     Container(
                       child: Card(
                         margin: const EdgeInsets.all(0),
@@ -138,7 +149,7 @@ class AddPlaylistView extends StatelessWidget {
                             buttonText: Text(
                               AppLocalizations.of(context)!.genres,
                               style: TextStyle(
-                                  color: Theme.of(context).hintColor,
+                                  //color: Theme.of(context).hintColor,
                                   fontSize: 18),
                             ),
                             title: Text(AppLocalizations.of(context)!.genres,
@@ -160,6 +171,7 @@ class AddPlaylistView extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // KEEP ALL TRACKS
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Card(
@@ -176,7 +188,7 @@ class AddPlaylistView extends StatelessWidget {
                                   child: Text(
                                     AppLocalizations.of(context)!.keepAllTracks,
                                     style: TextStyle(
-                                        color: Theme.of(context).hintColor,
+                                        //color: Theme.of(context).hintColor,
                                         fontSize: 18),
                                   ),
                                 ),
@@ -226,6 +238,149 @@ class AddPlaylistView extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // ADVANCED SETTINGS
+                    Container(
+                        child: Card(
+                      margin: const EdgeInsets.all(0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        child: ExpansionTile(
+                          tilePadding: const EdgeInsets.all(0),
+                          title: Text(
+                            AppLocalizations.of(context)!.advanced,
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Theme.of(context).accentColor),
+                          ),
+                          trailing: Icon(
+                              _customTileExpanded!
+                                  ? Icons.expand_less
+                                  : Icons.expand_more,
+                              color: Theme.of(context).accentColor),
+                          children: <Widget>[
+                            // Top Tracks Short
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(AppLocalizations.of(context)!
+                                    .toptracksshort),
+                                TouchSpin(
+                                  value: model.playlist.countToptracksShort!,
+                                  min: 0,
+                                  max: 5,
+                                  step: 1,
+                                  textStyle:
+                                      Theme.of(context).textTheme.bodyText2!,
+                                  iconSize: 25.0,
+                                  addIcon: Icon(Icons.add_circle_outline),
+                                  subtractIcon:
+                                      Icon(Icons.remove_circle_outline),
+                                  iconActiveColor:
+                                      Theme.of(context).primaryColor,
+                                  iconDisabledColor: Colors.grey,
+                                  iconPadding: EdgeInsets.all(20),
+                                  onChanged: (val) {
+                                    model.playlist.countToptracksShort =
+                                        val.toInt();
+                                  },
+                                  enabled: true,
+                                ),
+                              ],
+                            ),
+                            // Top Tracks Medium
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                    AppLocalizations.of(context)!.toptracksmid),
+                                TouchSpin(
+                                  value: model.playlist.countToptracksMedium!,
+                                  min: 0,
+                                  max: 5,
+                                  step: 1,
+                                  textStyle:
+                                      Theme.of(context).textTheme.bodyText2!,
+                                  iconSize: 25.0,
+                                  addIcon: Icon(Icons.add_circle_outline),
+                                  subtractIcon:
+                                      Icon(Icons.remove_circle_outline),
+                                  iconActiveColor:
+                                      Theme.of(context).primaryColor,
+                                  iconDisabledColor: Colors.grey,
+                                  iconPadding: EdgeInsets.all(20),
+                                  onChanged: (val) {
+                                    model.playlist.countToptracksMedium =
+                                        val.toInt();
+                                  },
+                                  enabled: true,
+                                ),
+                              ],
+                            ),
+                            // Top Tracks Long
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(AppLocalizations.of(context)!
+                                    .toptrackslong),
+                                TouchSpin(
+                                  value: model.playlist.countToptracksLong!,
+                                  min: 0,
+                                  max: 5,
+                                  step: 1,
+                                  textStyle:
+                                      Theme.of(context).textTheme.bodyText2!,
+                                  iconSize: 25.0,
+                                  addIcon: Icon(Icons.add_circle_outline),
+                                  subtractIcon:
+                                      Icon(Icons.remove_circle_outline),
+                                  iconActiveColor:
+                                      Theme.of(context).primaryColor,
+                                  iconDisabledColor: Colors.grey,
+                                  iconPadding: EdgeInsets.all(20),
+                                  onChanged: (val) {
+                                    model.playlist.countToptracksLong =
+                                        val.toInt();
+                                  },
+                                  enabled: true,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(AppLocalizations.of(context)!.libtracks),
+                                TouchSpin(
+                                  value: model.playlist.countLibtracks!,
+                                  min: 0,
+                                  max: 5,
+                                  step: 1,
+                                  textStyle:
+                                      Theme.of(context).textTheme.bodyText2!,
+                                  iconSize: 25.0,
+                                  addIcon: Icon(Icons.add_circle_outline),
+                                  subtractIcon:
+                                      Icon(Icons.remove_circle_outline),
+                                  iconActiveColor:
+                                      Theme.of(context).primaryColor,
+                                  iconDisabledColor: Colors.grey,
+                                  iconPadding: EdgeInsets.all(20),
+                                  onChanged: (val) {
+                                    model.playlist.countLibtracks = val.toInt();
+                                  },
+                                  enabled: true,
+                                ),
+                              ],
+                            )
+                          ],
+                          onExpansionChanged: (bool expanded) {
+                            _customTileExpanded = expanded;
+                          },
+                        ),
+                      ),
+                    ))
                     /*
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
