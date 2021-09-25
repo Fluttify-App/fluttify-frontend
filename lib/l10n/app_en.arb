@@ -24,6 +24,11 @@
     "genres": "Genres",
     "selectedgenres": "Select Genres",
     "allgenres": "All Genres",
+    "advanced": "Advanced Settings",
+    "toptracksshort": "Top Tracks - Short Term",
+    "toptracksmid": "Top Tracks - Mid Term",
+    "toptrackslong": "Top Tracks - Long Term",
+    "libtracks": "Recently liked Songs",
 
     "liked": "Following",
     "morecommunity": "More from Community",
