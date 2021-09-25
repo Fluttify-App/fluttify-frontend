@@ -625,30 +625,31 @@ class EditPlaylistView extends StatelessWidget {
                                             Text(AppLocalizations.of(context)!
                                                 .toptracksshort),
                                             TouchSpin(
-                                              value: model.playlist!
-                                                  .countToptracksShort!,
-                                              min: 0,
-                                              max: 5,
-                                              step: 1,
-                                              textStyle: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText2!,
-                                              iconSize: 25.0,
-                                              addIcon: Icon(
-                                                  Icons.add_circle_outline),
-                                              subtractIcon: Icon(
-                                                  Icons.remove_circle_outline),
-                                              iconActiveColor: Theme.of(context)
-                                                  .primaryColor,
-                                              iconDisabledColor: Colors.grey,
-                                              iconPadding: EdgeInsets.all(20),
-                                              onChanged: (val) {
-                                                model.playlist!
-                                                        .countToptracksShort =
-                                                    val.toInt();
-                                              },
-                                              enabled: true,
-                                            ),
+                                                value: model.playlist!
+                                                    .countToptracksShort!,
+                                                min: 0,
+                                                max: 5,
+                                                step: 1,
+                                                textStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText2!,
+                                                iconSize: 25.0,
+                                                addIcon: Icon(
+                                                    Icons.add_circle_outline),
+                                                subtractIcon: Icon(Icons
+                                                    .remove_circle_outline),
+                                                iconActiveColor:
+                                                    Theme.of(context)
+                                                        .primaryColor,
+                                                iconDisabledColor: Colors.grey,
+                                                iconPadding: EdgeInsets.all(20),
+                                                onChanged: (val) {
+                                                  model.playlist!
+                                                          .countToptracksShort =
+                                                      val.toInt();
+                                                },
+                                                enabled:
+                                                    model.playlist!.canEdit),
                                           ],
                                         ),
                                       ],
@@ -683,7 +684,7 @@ class EditPlaylistView extends StatelessWidget {
                                                     .countToptracksMedium =
                                                 val.toInt();
                                           },
-                                          enabled: true,
+                                          enabled: model.playlist!.canEdit,
                                         ),
                                       ],
                                     ),
@@ -716,7 +717,7 @@ class EditPlaylistView extends StatelessWidget {
                                             model.playlist!.countToptracksLong =
                                                 val.toInt();
                                           },
-                                          enabled: true,
+                                          enabled: model.playlist!.canEdit,
                                         ),
                                       ],
                                     ),
@@ -748,7 +749,7 @@ class EditPlaylistView extends StatelessWidget {
                                             model.playlist!.countLibtracks =
                                                 val.toInt();
                                           },
-                                          enabled: true,
+                                          enabled: model.playlist!.canEdit,
                                         ),
                                       ],
                                     )
