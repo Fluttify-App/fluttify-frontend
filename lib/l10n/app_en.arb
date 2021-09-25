@@ -25,6 +25,8 @@
     "selectedgenres": "Select Genres",
     "allgenres": "All Genres",
     "advanced": "Advanced Settings",
+    "songcountsettings": "Songs per Contributor",
+
     "toptracksshort": "Top Tracks - Short Term",
     "toptracksmid": "Top Tracks - Mid Term",
     "toptrackslong": "Top Tracks - Long Term",

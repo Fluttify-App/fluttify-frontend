@@ -432,7 +432,7 @@ class EditPlaylistView extends StatelessWidget {
                                     )
                                   : Container(
                                       padding:
-                                          EdgeInsets.fromLTRB(0, 15, 0, 15),
+                                          EdgeInsets.fromLTRB(0, 15, 0, 10),
                                       alignment: Alignment.topLeft,
                                       child: DefaultTextStyle(
                                         child: Text(
@@ -591,158 +591,182 @@ class EditPlaylistView extends StatelessWidget {
                                   : Container(),
                               // ADVANCED SETTINGS
                               Container(
-                                padding:
-                                    const EdgeInsets.fromLTRB(0, 15, 0, 10),
-                                child: ExpansionTile(
-                                  tilePadding: const EdgeInsets.all(0),
-                                  title: Text(
-                                    AppLocalizations.of(context)!.advanced,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1,
+                                padding: EdgeInsets.fromLTRB(0, 15, 0, 10),
+                                alignment: Alignment.topLeft,
+                                child: DefaultTextStyle(
+                                  child: Text(
+                                      AppLocalizations.of(context)!.advanced),
+                                  style: Theme.of(context).textTheme.bodyText1!,
+                                ),
+                              ),
+                              Container(
+                                //padding: EdgeInsets.fromLTRB(5, 5, 0, 5),
+                                child: Card(
+                                  margin: const EdgeInsets.all(0),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  child: ExpansionTile(
+                                    childrenPadding:
+                                        EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                    tilePadding:
+                                        EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                    title: Text(
+                                      AppLocalizations.of(context)!
+                                          .songcountsettings,
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                    trailing: Icon(
+                                      _customTileExpanded!
+                                          ? Icons.arrow_drop_down_circle
+                                          : Icons.arrow_drop_down,
+                                    ),
+                                    children: <Widget>[
+                                      // Top Tracks Short
+                                      Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(AppLocalizations.of(context)!
+                                                  .toptracksshort),
+                                              TouchSpin(
+                                                value: model.playlist!
+                                                    .countToptracksShort!,
+                                                min: 0,
+                                                max: 5,
+                                                step: 1,
+                                                textStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText2!,
+                                                iconSize: 25.0,
+                                                addIcon: Icon(
+                                                    Icons.add_circle_outline),
+                                                subtractIcon: Icon(Icons
+                                                    .remove_circle_outline),
+                                                iconActiveColor:
+                                                    Theme.of(context)
+                                                        .primaryColor,
+                                                iconDisabledColor: Colors.grey,
+                                                iconPadding: EdgeInsets.all(20),
+                                                onChanged: (val) {
+                                                  model.playlist!
+                                                          .countToptracksShort =
+                                                      val.toInt();
+                                                },
+                                                enabled: true,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      // Top Tracks Medium
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(AppLocalizations.of(context)!
+                                              .toptracksmid),
+                                          TouchSpin(
+                                            value: model.playlist!
+                                                .countToptracksMedium!,
+                                            min: 0,
+                                            max: 5,
+                                            step: 1,
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2!,
+                                            iconSize: 25.0,
+                                            addIcon:
+                                                Icon(Icons.add_circle_outline),
+                                            subtractIcon: Icon(
+                                                Icons.remove_circle_outline),
+                                            iconActiveColor:
+                                                Theme.of(context).primaryColor,
+                                            iconDisabledColor: Colors.grey,
+                                            iconPadding: EdgeInsets.all(20),
+                                            onChanged: (val) {
+                                              model.playlist!
+                                                      .countToptracksMedium =
+                                                  val.toInt();
+                                            },
+                                            enabled: true,
+                                          ),
+                                        ],
+                                      ),
+                                      // Top Tracks Long
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(AppLocalizations.of(context)!
+                                              .toptrackslong),
+                                          TouchSpin(
+                                            value: model
+                                                .playlist!.countToptracksLong!,
+                                            min: 0,
+                                            max: 5,
+                                            step: 1,
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2!,
+                                            iconSize: 25.0,
+                                            addIcon:
+                                                Icon(Icons.add_circle_outline),
+                                            subtractIcon: Icon(
+                                                Icons.remove_circle_outline),
+                                            iconActiveColor:
+                                                Theme.of(context).primaryColor,
+                                            iconDisabledColor: Colors.grey,
+                                            iconPadding: EdgeInsets.all(20),
+                                            onChanged: (val) {
+                                              model.playlist!
+                                                      .countToptracksLong =
+                                                  val.toInt();
+                                            },
+                                            enabled: true,
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(AppLocalizations.of(context)!
+                                              .libtracks),
+                                          TouchSpin(
+                                            value:
+                                                model.playlist!.countLibtracks!,
+                                            min: 0,
+                                            max: 5,
+                                            step: 1,
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2!,
+                                            iconSize: 25.0,
+                                            addIcon:
+                                                Icon(Icons.add_circle_outline),
+                                            subtractIcon: Icon(
+                                                Icons.remove_circle_outline),
+                                            iconActiveColor:
+                                                Theme.of(context).primaryColor,
+                                            iconDisabledColor: Colors.grey,
+                                            iconPadding: EdgeInsets.all(20),
+                                            onChanged: (val) {
+                                              model.playlist!.countLibtracks =
+                                                  val.toInt();
+                                            },
+                                            enabled: true,
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                    onExpansionChanged: (bool expanded) {
+                                      _customTileExpanded = expanded;
+                                    },
                                   ),
-                                  trailing: Icon(
-                                    _customTileExpanded!
-                                        ? Icons.arrow_drop_down_circle
-                                        : Icons.arrow_drop_down,
-                                  ),
-                                  children: <Widget>[
-                                    // Top Tracks Short
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(AppLocalizations.of(context)!
-                                            .toptracksshort),
-                                        TouchSpin(
-                                          value: model
-                                              .playlist!.countToptracksShort!,
-                                          min: 0,
-                                          max: 5,
-                                          step: 1,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2!,
-                                          iconSize: 25.0,
-                                          addIcon:
-                                              Icon(Icons.add_circle_outline),
-                                          subtractIcon:
-                                              Icon(Icons.remove_circle_outline),
-                                          iconActiveColor:
-                                              Theme.of(context).primaryColor,
-                                          iconDisabledColor: Colors.grey,
-                                          iconPadding: EdgeInsets.all(20),
-                                          onChanged: (val) {
-                                            model.playlist!
-                                                    .countToptracksShort =
-                                                val.toInt();
-                                          },
-                                          enabled: true,
-                                        ),
-                                      ],
-                                    ),
-                                    // Top Tracks Medium
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(AppLocalizations.of(context)!
-                                            .toptracksmid),
-                                        TouchSpin(
-                                          value: model
-                                              .playlist!.countToptracksMedium!,
-                                          min: 0,
-                                          max: 5,
-                                          step: 1,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2!,
-                                          iconSize: 25.0,
-                                          addIcon:
-                                              Icon(Icons.add_circle_outline),
-                                          subtractIcon:
-                                              Icon(Icons.remove_circle_outline),
-                                          iconActiveColor:
-                                              Theme.of(context).primaryColor,
-                                          iconDisabledColor: Colors.grey,
-                                          iconPadding: EdgeInsets.all(20),
-                                          onChanged: (val) {
-                                            model.playlist!
-                                                    .countToptracksMedium =
-                                                val.toInt();
-                                          },
-                                          enabled: true,
-                                        ),
-                                      ],
-                                    ),
-                                    // Top Tracks Long
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(AppLocalizations.of(context)!
-                                            .toptrackslong),
-                                        TouchSpin(
-                                          value: model
-                                              .playlist!.countToptracksLong!,
-                                          min: 0,
-                                          max: 5,
-                                          step: 1,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2!,
-                                          iconSize: 25.0,
-                                          addIcon:
-                                              Icon(Icons.add_circle_outline),
-                                          subtractIcon:
-                                              Icon(Icons.remove_circle_outline),
-                                          iconActiveColor:
-                                              Theme.of(context).primaryColor,
-                                          iconDisabledColor: Colors.grey,
-                                          iconPadding: EdgeInsets.all(20),
-                                          onChanged: (val) {
-                                            model.playlist!.countToptracksLong =
-                                                val.toInt();
-                                          },
-                                          enabled: true,
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(AppLocalizations.of(context)!
-                                            .libtracks),
-                                        TouchSpin(
-                                          value:
-                                              model.playlist!.countLibtracks!,
-                                          min: 0,
-                                          max: 5,
-                                          step: 1,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2!,
-                                          iconSize: 25.0,
-                                          addIcon:
-                                              Icon(Icons.add_circle_outline),
-                                          subtractIcon:
-                                              Icon(Icons.remove_circle_outline),
-                                          iconActiveColor:
-                                              Theme.of(context).primaryColor,
-                                          iconDisabledColor: Colors.grey,
-                                          iconPadding: EdgeInsets.all(20),
-                                          onChanged: (val) {
-                                            model.playlist!.countLibtracks =
-                                                val.toInt();
-                                          },
-                                          enabled: true,
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                  onExpansionChanged: (bool expanded) {
-                                    _customTileExpanded = expanded;
-                                  },
                                 ),
                               ),
                               /*
