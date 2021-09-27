@@ -124,7 +124,7 @@ class EditPlaylistViewModel extends BaseViewModel {
   Future<void> getPlaylist(String playlistId) async {
     Playlist playlist =
         await fluttifyPlaylistService.getFluttifyPlaylist(playlistId);
-    if (!this.playlist!.canEdit) setPlaylist(playlist);
+    setPlaylist(playlist);
   }
 
   Future<void> pressShare(String playlistId) async {
