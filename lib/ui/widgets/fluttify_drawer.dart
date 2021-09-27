@@ -38,22 +38,31 @@ class FluttifyDrawer extends StatelessWidget {
                         Container(
                           height: 180,
                           alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                child: Image.network(
-                                  locator<AuthService>()
-                                          .currentUser
-                                          .avatarImageUrl ??
-                                      "https://img.icons8.com/color/452/avatar.png",
-                                  fit: BoxFit.fitHeight,
-                                  height: 130,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              //  borderRadius: BorderRadius.only(
+                              //    topRight: Radius.circular(250)),
+                              border: Border(),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.white,
+                                  spreadRadius: 3,
+                                  blurRadius: 10,
                                 ),
+                              ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              child: Image.network(
+                                locator<AuthService>()
+                                        .currentUser
+                                        .avatarImageUrl ??
+                                    "https://img.icons8.com/color/452/avatar.png",
+                                fit: BoxFit.fitHeight,
+                                height: 130,
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ])),

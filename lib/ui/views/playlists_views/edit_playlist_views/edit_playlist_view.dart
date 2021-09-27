@@ -20,26 +20,21 @@ import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 
 class EditPlaylistView extends StatelessWidget {
   EditPlaylistView(
-      {this.playlist,
-      this.playlistId,
-      this.communityview = false,
-      this.editable = false});
+      {this.playlist, this.playlistId, this.communityview = false});
   final Playlist? playlist;
   final String? playlistId;
   final bool? communityview;
-  bool? editable;
   bool? _customTileExpanded = false;
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
         onModelReady: (EditPlaylistViewModel model) async {
+          model.playlist!.canEdit = false;
           if (this.playlist == null) {
-            model.getPlaylist(this.playlistId!);
+            if (!model.playlist!.canEdit) model.getPlaylist(this.playlistId!);
           } else {
             await model.getPlaylist(this.playlist!.dbID!);
-            print("now");
-            this.editable = true;
           }
         },
         builder: (BuildContext context, EditPlaylistViewModel model,
@@ -77,7 +72,7 @@ class EditPlaylistView extends StatelessWidget {
                                     child: GestureDetector(
                                       child: Icon(Icons.edit),
                                       onTap: () => {
-                                        if (this.editable!) model.canEdit(),
+                                        model.canEdit(),
                                       },
                                     ),
                                   )
@@ -300,45 +295,44 @@ class EditPlaylistView extends StatelessWidget {
                                                     .bodyText1!,
                                               ),
                                             ),
-                                            if (model.playlist!.canEdit)
-                                              IconButton(
-                                                icon: Icon(
-                                                    Icons.info_outline_rounded),
-                                                onPressed: () {
-                                                  showDialog(
-                                                    context: context,
-                                                    builder: (_) {
-                                                      return AlertDialog(
-                                                        content:
-                                                            SingleChildScrollView(
-                                                          child: ListBody(
-                                                            children: <Widget>[
-                                                              Text(
-                                                                AppLocalizations.of(
-                                                                        context)!
-                                                                    .infoDialog,
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .bodyText2,
-                                                              ),
-                                                            ],
-                                                          ),
+                                            IconButton(
+                                              icon: Icon(
+                                                  Icons.info_outline_rounded),
+                                              onPressed: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (_) {
+                                                    return AlertDialog(
+                                                      content:
+                                                          SingleChildScrollView(
+                                                        child: ListBody(
+                                                          children: <Widget>[
+                                                            Text(
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .infoDialog,
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyText2,
+                                                            ),
+                                                          ],
                                                         ),
-                                                        actions: <Widget>[
-                                                          FluttifyButton(
-                                                              onPressed: () => model
-                                                                  .navigateBack(
-                                                                      context),
-                                                              text: 'Okay',
-                                                              width: 80,
-                                                              height: 35),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              ),
+                                                      ),
+                                                      actions: <Widget>[
+                                                        FluttifyButton(
+                                                            onPressed: () => model
+                                                                .navigateBack(
+                                                                    context),
+                                                            text: 'Okay',
+                                                            width: 80,
+                                                            height: 35),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
                                           ],
                                         ),
                                         checkColor: Colors.white,
@@ -346,7 +340,7 @@ class EditPlaylistView extends StatelessWidget {
                                             Theme.of(context).primaryColor,
                                         value: model.playlist!.keepAllTracks,
                                         onChanged: (value) {
-                                          if (playlist!.canEdit)
+                                          if (model.playlist!.canEdit)
                                             model.keepItFresh(value!);
                                           else
                                             showDialog(
