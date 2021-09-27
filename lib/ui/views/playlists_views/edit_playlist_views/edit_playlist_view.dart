@@ -20,21 +20,26 @@ import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 
 class EditPlaylistView extends StatelessWidget {
   EditPlaylistView(
-      {this.playlist, this.playlistId, this.communityview = false});
+      {this.playlist,
+      this.playlistId,
+      this.communityview = false,
+      this.editable = false});
   final Playlist? playlist;
   final String? playlistId;
   final bool? communityview;
+  bool? editable;
   bool? _customTileExpanded = false;
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
         onModelReady: (EditPlaylistViewModel model) async {
-          model.playlist!.canEdit = false;
           if (this.playlist == null) {
-            if (!model.playlist!.canEdit) model.getPlaylist(this.playlistId!);
+            model.getPlaylist(this.playlistId!);
           } else {
+            //model.playlist!.canEdit = false;
             await model.getPlaylist(this.playlist!.dbID!);
+            this.editable = true;
           }
         },
         builder: (BuildContext context, EditPlaylistViewModel model,
@@ -67,15 +72,26 @@ class EditPlaylistView extends StatelessWidget {
                               )
                             : model.playlist!.creator ==
                                     model.authService.currentUser.id
-                                ? Padding(
-                                    padding: EdgeInsets.only(right: 20.0),
-                                    child: GestureDetector(
-                                      child: Icon(Icons.edit),
-                                      onTap: () => {
-                                        model.canEdit(),
-                                      },
-                                    ),
-                                  )
+                                ? this.editable!
+                                    ? Padding(
+                                        padding: EdgeInsets.only(right: 20.0),
+                                        child: GestureDetector(
+                                          child: Icon(Icons.edit),
+                                          onTap: () => {
+                                            model.canEdit(),
+                                          },
+                                        ),
+                                      )
+                                    : Padding(
+                                        padding: EdgeInsets.only(right: 20.0),
+                                        child: Center(
+                                          child: Container(
+                                            height: 20,
+                                            width: 20,
+                                            child: CircularProgressIndicator(
+                                                color: Colors.white),
+                                          ),
+                                        ))
                                 : Container()
                       ],
                       title: !model.playlist!.canEdit

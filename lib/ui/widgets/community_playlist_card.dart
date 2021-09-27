@@ -12,7 +12,7 @@ class CommunityPlaylistCard extends StatelessWidget {
 
   String? getCreator() {
     String? creatorName;
-    playlist!.displayContributers!.forEach((element) {
+    this.playlist!.displayContributers!.forEach((element) {
       if (element['id'] == playlist!.creator) creatorName = element['name'];
     });
     return creatorName;
@@ -58,7 +58,7 @@ class CommunityPlaylistCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              getCreator() ?? playlist!.creator.toString(),
+                              getCreator()!,
                               style: Theme.of(context).textTheme.bodyText2,
                             ),
                             Text(
