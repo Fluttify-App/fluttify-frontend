@@ -9,7 +9,7 @@ import 'auth_service.dart';
 
 class FluttifyDiscoverService {
   final AuthService _apiService = locator<AuthService>();
-  final String baseUrl = "fluttify.herokuapp.com";
+  final String baseUrl = "fluttify.netpy.de";
 
   List<Song> discoverSongs = [];
 

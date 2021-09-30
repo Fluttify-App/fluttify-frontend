@@ -10,7 +10,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 class AuthService extends ChangeNotifier {
   Preference<String>? token;
-  final String baseUrl = "fluttify.herokuapp.com";
+  final String baseUrl = "fluttify.netpy.de";
   Map<String, String> headers = {"Content-Type": "application/json"};
   late User currentUser = User.empty();
 
