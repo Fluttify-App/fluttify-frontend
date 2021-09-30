@@ -760,6 +760,49 @@ class EditPlaylistView extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            Container(
+                              padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                              alignment: Alignment.topLeft,
+                              child: DefaultTextStyle(
+                                child: Text('QR-Code'),
+                                style: Theme.of(context).textTheme.bodyText1!,
+                              ),
+                            ),
+                            Container(
+                              child: Card(
+                                margin: const EdgeInsets.all(0),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                          AppLocalizations.of(context)!
+                                              .qrCodeGenerate,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      padding:
+                                          EdgeInsets.fromLTRB(13, 20, 13, 20),
+                                      alignment: Alignment.centerLeft,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(right: 10),
+                                      child: IconButton(
+                                        icon: Icon(Icons.qr_code),
+                                        onPressed: () => {
+                                          model.createQrCode(),
+                                          model.navigateToQrCodeImageView(
+                                              playlist!)
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                             /*
                               model.playlist!.canEdit
                                   ? Container(

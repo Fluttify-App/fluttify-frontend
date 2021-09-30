@@ -65,3 +65,4 @@ class SettingsNavigationService extends FluttifyNavigationService {
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }
+

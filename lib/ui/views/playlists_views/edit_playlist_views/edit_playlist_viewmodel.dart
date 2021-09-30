@@ -7,9 +7,12 @@ import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
+import 'package:fluttify/services/navigation_service.dart';
+import 'package:fluttify/ui/views/qrCodeImage_view.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:share/share.dart';
 
 class EditPlaylistViewModel extends BaseViewModel {
   TextEditingController descriptionController = TextEditingController();
@@ -17,6 +20,8 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
   final AuthService authService = locator<AuthService>();
+  final PlaylistNavigationService _editPlaylistNavigationService =
+      locator<PlaylistNavigationService>();
 
   final FluttifyPlaylistService fluttifyPlaylistService =
       locator<FluttifyPlaylistService>();
@@ -128,7 +133,8 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   Future<void> pressShare(String playlistId) async {
-    _dynamicLinkService.createFirstPostLink(playlistId);
+    String link = await _dynamicLinkService.createFirstPostLink(playlistId);
+    Share.share(link);
   }
 
   Future<void> leavePlaylist(BuildContext context) async {
@@ -230,6 +236,12 @@ class EditPlaylistViewModel extends BaseViewModel {
     Navigator.of(context, rootNavigator: true).pop(this.isChanged);
   }
 
+  void navigateToQrCodeImageView(Playlist playlist) {
+    print(playlist.id.toString());
+    _editPlaylistNavigationService.navigateTo(
+        '/qrCodeImageView', QrCodeImageView(playlist: playlist), withNavBar: false);
+  }
+
   String getCreator() {
     String creatorName = '';
     playlist!.displayContributers!.forEach((element) {
@@ -258,5 +270,9 @@ class EditPlaylistViewModel extends BaseViewModel {
     } else {
       return Container();
     }
+  }
+
+  void createQrCode() async {
+    _dynamicLinkService.createInviteLink(playlist!.id.toString());
   }
 }

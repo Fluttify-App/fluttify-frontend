@@ -19,6 +19,11 @@ class PlaylistView extends StatelessWidget {
           Scaffold(
         key: model.navigationService.scaffoldkey,
         appBar: AppBar(
+          leading: Container(
+            padding: EdgeInsets.only(left: 10),
+            alignment: Alignment.centerLeft,
+            child: GestureDetector(child: Icon(Icons.qr_code_scanner), onTap: model.navigateToQrCodeImageReader,),
+          ),
           title: Text(AppLocalizations.of(context)!.playlists,
               style: Theme.of(context).textTheme.headline2),
           centerTitle: true,

@@ -8,7 +8,9 @@ import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fluttify/ui/views/qrCodeImageReader_view.dart';
 import 'package:stacked/stacked.dart';
+import 'package:share/share.dart';
 
 class PlaylistViewModel extends BaseViewModel {
   final FluttifyPlaylistService playlistService =
@@ -75,6 +77,12 @@ class PlaylistViewModel extends BaseViewModel {
   }
 
   Future<void> pressShare(String playlistId) async {
-    _dynamicLinkService.createFirstPostLink(playlistId);
+    String link = await _dynamicLinkService.createFirstPostLink(playlistId);
+    Share.share(link);
+  }
+
+  void navigateToQrCodeImageReader() {
+    navigationService.navigateTo('/qrCodeReader', QrCodeImageReaderView(),
+        withNavBar: false);
   }
 }

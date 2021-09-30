@@ -15,12 +15,16 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        child: Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              brightness: Brightness.dark,
-              title: Text(AppLocalizations.of(context)!.privacy),
-            ),
-            body: Center(child: Text("Soon..."))));
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          brightness: Brightness.dark,
+          title: Text(AppLocalizations.of(context)!.privacy),
+        ),
+        body: Center(
+          child: Text("Soon..."),
+        ),
+      ),
+    );
   }
 }

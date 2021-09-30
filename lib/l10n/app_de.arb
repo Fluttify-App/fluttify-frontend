@@ -95,5 +95,12 @@
     "onboardingcontent4": "Fluttify benutzt die Spotify API um Songs auszuwählen, die der Playlist hinzugefügt werden. Es werden die zuletzt gespeicherten und häufig gehörten Songs aller Teilnehmer ausgewählt und der Playlist hinzugefügt. Du entscheidest, ob alle Songs nach dem nächsten Aktualisieren in der Playlist bleiben oder überschrieben werden.",
 
     "onboardingtitle5": "Lehn dich zurück & \n genieße deine Lieblingssongs",
-    "onboardingcontent5": "Fluttify aktualisiert deine Playlists alle 24 Stunden automatisch. Deine Playlist wird immer auf dem neusten Stand sein! \n\n Viel Spaß mit Fluttify!"
+    "onboardingcontent5": "Fluttify aktualisiert deine Playlists alle 24 Stunden automatisch. Deine Playlist wird immer auf dem neusten Stand sein! \n\n Viel Spaß mit Fluttify!",
+
+    "qrCodeScanner": "Qr-Code Leser",
+    "qrLaunchUrlWarning": "WARNUNG: URL wurde gefunden",
+    "qrLaunchUrlQuestion": "Willst du dieser URL folgen: ",
+    "qrCodePlaylistSuccess": "Playlist id Scan erfolgreich",
+    "qrCodePlaylistQuestion": "Willst du zu der Playlist mit der ID: ",
+    "qrCodeGenerate": "QR-Code erstellen"
 }
