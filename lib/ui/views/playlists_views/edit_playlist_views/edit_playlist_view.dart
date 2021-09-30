@@ -37,8 +37,8 @@ class EditPlaylistView extends StatelessWidget {
           if (this.playlist == null) {
             model.getPlaylist(this.playlistId!);
           } else {
+            //model.playlist!.canEdit = false;
             await model.getPlaylist(this.playlist!.dbID!);
-            print("now");
             this.editable = true;
           }
         },
@@ -72,15 +72,26 @@ class EditPlaylistView extends StatelessWidget {
                               )
                             : model.playlist!.creator ==
                                     model.authService.currentUser.id
-                                ? Padding(
-                                    padding: EdgeInsets.only(right: 20.0),
-                                    child: GestureDetector(
-                                      child: Icon(Icons.edit),
-                                      onTap: () => {
-                                        if (this.editable!) model.canEdit(),
-                                      },
-                                    ),
-                                  )
+                                ? this.editable!
+                                    ? Padding(
+                                        padding: EdgeInsets.only(right: 20.0),
+                                        child: GestureDetector(
+                                          child: Icon(Icons.edit),
+                                          onTap: () => {
+                                            model.canEdit(),
+                                          },
+                                        ),
+                                      )
+                                    : Padding(
+                                        padding: EdgeInsets.only(right: 20.0),
+                                        child: Center(
+                                          child: Container(
+                                            height: 20,
+                                            width: 20,
+                                            child: CircularProgressIndicator(
+                                                color: Colors.white),
+                                          ),
+                                        ))
                                 : Container()
                       ],
                       title: !model.playlist!.canEdit
@@ -300,45 +311,44 @@ class EditPlaylistView extends StatelessWidget {
                                                     .bodyText1!,
                                               ),
                                             ),
-                                            if (model.playlist!.canEdit)
-                                              IconButton(
-                                                icon: Icon(
-                                                    Icons.info_outline_rounded),
-                                                onPressed: () {
-                                                  showDialog(
-                                                    context: context,
-                                                    builder: (_) {
-                                                      return AlertDialog(
-                                                        content:
-                                                            SingleChildScrollView(
-                                                          child: ListBody(
-                                                            children: <Widget>[
-                                                              Text(
-                                                                AppLocalizations.of(
-                                                                        context)!
-                                                                    .infoDialog,
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .bodyText2,
-                                                              ),
-                                                            ],
-                                                          ),
+                                            IconButton(
+                                              icon: Icon(
+                                                  Icons.info_outline_rounded),
+                                              onPressed: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (_) {
+                                                    return AlertDialog(
+                                                      content:
+                                                          SingleChildScrollView(
+                                                        child: ListBody(
+                                                          children: <Widget>[
+                                                            Text(
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .infoDialog,
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyText2,
+                                                            ),
+                                                          ],
                                                         ),
-                                                        actions: <Widget>[
-                                                          FluttifyButton(
-                                                              onPressed: () => model
-                                                                  .navigateBack(
-                                                                      context),
-                                                              text: 'Okay',
-                                                              width: 80,
-                                                              height: 35),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              ),
+                                                      ),
+                                                      actions: <Widget>[
+                                                        FluttifyButton(
+                                                            onPressed: () => model
+                                                                .navigateBack(
+                                                                    context),
+                                                            text: 'Okay',
+                                                            width: 80,
+                                                            height: 35),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
                                           ],
                                         ),
                                         checkColor: Colors.white,
@@ -346,7 +356,7 @@ class EditPlaylistView extends StatelessWidget {
                                             Theme.of(context).primaryColor,
                                         value: model.playlist!.keepAllTracks,
                                         onChanged: (value) {
-                                          if (playlist!.canEdit)
+                                          if (model.playlist!.canEdit)
                                             model.keepItFresh(value!);
                                           else
                                             showDialog(
