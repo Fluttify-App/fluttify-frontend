@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/splashscreen_views/splashscreen_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 

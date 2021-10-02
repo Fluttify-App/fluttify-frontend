@@ -7,7 +7,6 @@ import 'package:fluttify/ui/widgets/playlist_card.dart';
 import 'package:fluttify/ui/widgets/fluttify_drawer.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class PlaylistView extends StatelessWidget {
   @override
@@ -37,7 +36,7 @@ class PlaylistView extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10),
               child: !model.isLoading
                   ? RefreshIndicator(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       onRefresh: () async {
                         model.refreshPlaylists();
                       },
@@ -171,7 +170,7 @@ class PlaylistView extends StatelessWidget {
                     )
                   : Center(
                       child: CircularProgressIndicator(
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
             ),
           ),

@@ -72,8 +72,8 @@ class HomeView extends StatelessWidget {
       PersistentBottomNavBarItem(
         title: AppLocalizations.of(context)!.playlists,
         icon: Icon(Icons.home),
-        activeColorPrimary: Theme.of(context).accentColor,
-        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).accentColor)
+        activeColorPrimary: Theme.of(context).colorScheme.secondary,
+        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).colorScheme.secondary)
             .withAlpha(0.5)
             .toColor(),
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
@@ -84,8 +84,8 @@ class HomeView extends StatelessWidget {
       PersistentBottomNavBarItem(
         title: AppLocalizations.of(context)!.community,
         icon: Icon(Icons.people),
-        activeColorPrimary: Theme.of(context).accentColor,
-        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).accentColor)
+        activeColorPrimary: Theme.of(context).colorScheme.secondary,
+        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).colorScheme.secondary)
             .withAlpha(0.5)
             .toColor(),
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
@@ -96,8 +96,8 @@ class HomeView extends StatelessWidget {
       PersistentBottomNavBarItem(
         title: AppLocalizations.of(context)!.discover,
         icon: Icon(Icons.explore),
-        activeColorPrimary: Theme.of(context).accentColor,
-        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).accentColor)
+        activeColorPrimary: Theme.of(context).colorScheme.secondary,
+        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).colorScheme.secondary)
             .withAlpha(0.5)
             .toColor(),
         routeAndNavigatorSettings: RouteAndNavigatorSettings(

@@ -127,7 +127,7 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
     return Theme(
       data: ThemeData(
         unselectedWidgetColor: widget.unselectedColor ?? Colors.black54,
-        accentColor: widget.selectedColor ?? Theme.of(context).accentColor,
+        colorScheme: ThemeData().colorScheme.copyWith(secondary: widget.selectedColor),
       ),
       child: CheckboxListTile(
         checkColor: widget.checkColor,
@@ -166,7 +166,7 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
                 ? widget.colorator!(item.value)
                 : widget.selectedColor != null
                     ? widget.selectedColor
-                    : Theme.of(context).accentColor.withOpacity(0.35),
+                    : Theme.of(context).colorScheme.secondary.withOpacity(0.35),
         label: Text(
           item.label,
           style: _selectedValues.contains(item.value)
@@ -181,7 +181,7 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
                           ? widget.selectedItemsTextStyle!.color ??
                               (widget.selectedColor != null
                                   ? widget.selectedColor!.withOpacity(1)
-                                  : Theme.of(context).accentColor)
+                                  : Theme.of(context).colorScheme.secondary)
                           : widget.selectedColor != null
                               ? widget.selectedColor!.withOpacity(1)
                               : null,
@@ -236,7 +236,7 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                         color: widget.selectedColor ??
-                                            Theme.of(context).accentColor),
+                                            Theme.of(context).colorScheme.secondary),
                                   ),
                                 ),
                                 onChanged: (val) {
@@ -300,8 +300,7 @@ class _MultiSelectBottomSheetState<V> extends State<MultiSelectBottomSheet<V>> {
                       child: FluttifyButton(
                         text: "Cancel",
                         onPressed: () {
-                          widget.onConfirmTap(
-                              context, _selectedValues, widget.onConfirm);
+                          widget.onCancelTap(context, widget.initialValue!);
                         },
                         width: 100,
                       ),

@@ -3,7 +3,6 @@ import 'dart:ui' as ui;
 import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/models/song.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
@@ -18,6 +17,7 @@ import 'package:instant/instant.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 
+// ignore: must_be_immutable
 class EditPlaylistView extends StatelessWidget {
   EditPlaylistView(
       {this.playlist,
@@ -180,7 +180,7 @@ class EditPlaylistView extends StatelessWidget {
                                           child: Icon(
                                             Icons.launch,
                                             color:
-                                                Theme.of(context).accentColor,
+                                                Theme.of(context).colorScheme.secondary,
                                           ),
                                         )
                                       ],
@@ -770,49 +770,66 @@ class EditPlaylistView extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
-                              alignment: Alignment.topLeft,
-                              child: DefaultTextStyle(
-                                child: Text('QR-Code'),
-                                style: Theme.of(context).textTheme.bodyText1!,
-                              ),
-                            ),
-                            Container(
-                              child: Card(
-                                margin: const EdgeInsets.all(0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      child: Text(
-                                          AppLocalizations.of(context)!
-                                              .qrCodeGenerate,
+                            // QR CODE
+                            model.playlist!.creator ==
+                                        model.authService.currentUser.id &&
+                                    !this.communityview!
+                                ? Column(
+                                    children: [
+                                      Container(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 15, 0, 15),
+                                        alignment: Alignment.topLeft,
+                                        child: DefaultTextStyle(
+                                          child: Text('QR-Code'),
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyText1),
-                                      padding:
-                                          EdgeInsets.fromLTRB(13, 20, 13, 20),
-                                      alignment: Alignment.centerLeft,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(right: 10),
-                                      child: IconButton(
-                                        icon: Icon(Icons.qr_code),
-                                        onPressed: () => {
-                                          model.createQrCode(),
-                                          model.navigateToQrCodeImageView(
-                                              playlist!)
-                                        },
+                                              .bodyText1!,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                                      Container(
+                                        child: Card(
+                                          margin: const EdgeInsets.all(0),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                child: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .qrCodeGenerate,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText1),
+                                                padding: EdgeInsets.fromLTRB(
+                                                    13, 20, 13, 20),
+                                                alignment: Alignment.centerLeft,
+                                              ),
+                                              Container(
+                                                padding:
+                                                    EdgeInsets.only(right: 10),
+                                                child: IconButton(
+                                                  icon: Icon(Icons.qr_code),
+                                                  onPressed: () => {
+                                                    model.createQrCode(),
+                                                    model
+                                                        .navigateToQrCodeImageView(
+                                                            playlist!)
+                                                  },
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : Container(),
+
                             /*
                               model.playlist!.canEdit
                                   ? Container(
@@ -1241,8 +1258,7 @@ class EditPlaylistView extends StatelessWidget {
                                             )
                                           : Container(
                                               child: CircularProgressIndicator(
-                                                  color: Theme.of(context)
-                                                      .accentColor),
+                                                  color: Theme.of(context).colorScheme.secondary),
                                             )
                                       : Container(
                                           padding:
@@ -1256,8 +1272,7 @@ class EditPlaylistView extends StatelessWidget {
                                                     .playlistupdating,
                                               ),
                                               CircularProgressIndicator(
-                                                  color: Theme.of(context)
-                                                      .accentColor)
+                                                  color: Theme.of(context).colorScheme.secondary)
                                             ],
                                           ),
                                         ),
@@ -1276,7 +1291,7 @@ class EditPlaylistView extends StatelessWidget {
                     ),
                     body: Center(
                       child: CircularProgressIndicator(
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
         viewModelBuilder: () {

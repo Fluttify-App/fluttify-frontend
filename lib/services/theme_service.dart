@@ -56,15 +56,18 @@ class ThemeService extends ChangeNotifier {
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
     primaryColor: _currentColor,
-    accentColor: Colors.white, //Color.fromARGB(255, 203, 45, 62),
+    colorScheme: ThemeData().colorScheme.copyWith(secondary: Colors.white),
+    //accentColor: Colors.white, //Color.fromARGB(255, 203, 45, 62),
     scaffoldBackgroundColor: Color(0xff1c1c1c),
     cardColor: Color(0xff424242),
-    errorColor: Color.fromARGB(255, 203, 45, 62), //Color(0xff424242), // Color.fromARGB(255, 203, 45, 62),
+    errorColor: Color.fromARGB(255, 203, 45,
+        62), //Color(0xff424242), // Color.fromARGB(255, 203, 45, 62),
     hintColor: Color(0xffbdb9ba),
     indicatorColor: Color(0xff008F61),
     appBarTheme: AppBarTheme(backgroundColor: _currentColor),
     bottomNavigationBarTheme:
         BottomNavigationBarThemeData(backgroundColor: Color(0xff424242)),
+    iconTheme: IconThemeData(color: Colors.white),
     textTheme: TextTheme(
       button: const TextStyle(
           fontSize: 16, fontFamily: 'Montserrat', color: Colors.white),
@@ -132,12 +135,13 @@ class ThemeService extends ChangeNotifier {
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: _currentColor,
-    accentColor: Colors.black,
+    colorScheme: ThemeData().colorScheme.copyWith(secondary: Colors.black),
     scaffoldBackgroundColor: Color(0xffdae0e6),
     cardColor: Colors.white,
     hintColor: Color(0xff3b3b3b),
     indicatorColor: Color(0xff008F61),
-    errorColor: Color.fromARGB(255, 203, 45, 62), //Color(0xff424242), // Color(0xff3b3b3b), //Color.fromARGB(255, 203, 45, 62),
+    errorColor: Color.fromARGB(255, 203, 45,
+        62), //Color(0xff424242), // Color(0xff3b3b3b), //Color.fromARGB(255, 203, 45, 62),
     appBarTheme: AppBarTheme(
         backgroundColor: _currentColor,
         titleTextStyle: TextStyle(color: Colors.black),

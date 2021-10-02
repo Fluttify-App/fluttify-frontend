@@ -10,15 +10,12 @@ class LicencesScreen extends StatefulWidget {
 }
 
 class _LicencesScreenState extends State<LicencesScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          brightness: Brightness.dark,
           title: Text(AppLocalizations.of(context)!.thirdpartylicences),
         ),
         body: FutureBuilder<List<License>>(
@@ -30,7 +27,7 @@ class _LicencesScreenState extends State<LicencesScreen> {
               case ConnectionState.waiting:
                 return Center(
                     child: CircularProgressIndicator(
-                        color: Theme.of(context).accentColor));
+                        color: Theme.of(context).colorScheme.secondary));
               default:
                 if (snapshot.hasError) {
                   return Center(child: Text('Can not load Licenses'));

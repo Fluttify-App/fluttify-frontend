@@ -32,8 +32,6 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   Playlist? playlist;
 
-  Timer? _timer;
-
   bool isChanged = false;
 
   String lastContributor = "";
@@ -49,11 +47,6 @@ class EditPlaylistViewModel extends BaseViewModel {
     nameController.addListener(notifyListeners);
 
     // Timer for updating of playlist
-    _timer = new Timer.periodic(
-        Duration(seconds: 15),
-        (Timer timer) => {
-              if (this.playlist!.updating!) {getPlaylist(this.playlist!.dbID!)}
-            });
   }
 
   @override
@@ -80,7 +73,6 @@ class EditPlaylistViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  // TODO: 'All Genres should be visible in view without adding it to playlist.genres'
   void save(BuildContext context) {
     playlist!.description = descriptionController.text;
     playlist!.name = nameController.text;

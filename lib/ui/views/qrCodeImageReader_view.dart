@@ -144,7 +144,6 @@ class _QrCodeImageReaderView extends State<QrCodeImageReaderView> {
   }
 
   void _navigateToScannedPlaylist(String playlistId) {
-    //Navigator.of(context).pop();
     navigationService.navigateTo(
         '/edit-playlist',
         EditPlaylistView(

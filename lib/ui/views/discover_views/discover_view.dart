@@ -208,7 +208,7 @@ class DiscoverView extends StatelessWidget {
                           : Expanded(
                               child: Center(
                                 child: CircularProgressIndicator(
-                                    color: Theme.of(context).accentColor),
+                                    color: Theme.of(context).colorScheme.secondary),
                               ),
                             ),
                     ],
