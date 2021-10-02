@@ -8,7 +8,7 @@ import 'auth_service.dart';
 
 class FluttifyPlaylistService {
   final AuthService _apiService = locator<AuthService>();
-  final String baseUrl = "fluttify.herokuapp.com";
+  final String baseUrl = "fluttify.netpy.de";
 
   List<Playlist> myplaylists = [];
   List<Playlist> communityplaylists = [];
