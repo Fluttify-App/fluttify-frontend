@@ -35,7 +35,7 @@ class EditPlaylistViewModel extends BaseViewModel {
   bool isChanged = false;
 
   String lastContributor = "";
-
+  Timer? _timer;
   EditPlaylistViewModel(Playlist? playlist, String? playlistId) {
     if (playlist != null) {
       setPlaylist(playlist);
@@ -47,6 +47,11 @@ class EditPlaylistViewModel extends BaseViewModel {
     nameController.addListener(notifyListeners);
 
     // Timer for updating of playlist
+    _timer = new Timer.periodic(
+        Duration(seconds: 15),
+        (Timer timer) => {
+              if (this.playlist!.updating!) {getPlaylist(this.playlist!.dbID!)}
+            });
   }
 
   @override
@@ -231,7 +236,8 @@ class EditPlaylistViewModel extends BaseViewModel {
   void navigateToQrCodeImageView(Playlist playlist) {
     print(playlist.id.toString());
     _editPlaylistNavigationService.navigateTo(
-        '/qrCodeImageView', QrCodeImageView(playlist: playlist), withNavBar: false);
+        '/qrCodeImageView', QrCodeImageView(playlist: playlist),
+        withNavBar: false);
   }
 
   String getCreator() {
