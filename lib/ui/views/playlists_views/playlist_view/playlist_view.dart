@@ -21,7 +21,10 @@ class PlaylistView extends StatelessWidget {
           leading: Container(
             padding: EdgeInsets.only(left: 10),
             alignment: Alignment.centerLeft,
-            child: GestureDetector(child: Icon(Icons.qr_code_scanner), onTap: model.navigateToQrCodeImageReader,),
+            child: GestureDetector(
+              child: Icon(Icons.qr_code_scanner),
+              onTap: model.navigateToQrCodeImageReader,
+            ),
           ),
           title: Text(AppLocalizations.of(context)!.playlists,
               style: Theme.of(context).textTheme.headline2),
@@ -41,7 +44,7 @@ class PlaylistView extends StatelessWidget {
                         model.refreshPlaylists();
                       },
                       child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          //  padding: const EdgeInsets.symmetric(horizontal: 15),
                           height: MediaQuery.of(context).size.height,
                           child: model.playlistService.myplaylists.isNotEmpty ||
                                   model.playlistService.contributed.isNotEmpty
