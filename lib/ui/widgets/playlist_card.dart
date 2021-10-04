@@ -169,7 +169,7 @@ class PlaylistCard extends StatelessWidget {
                       Container(
                         height: 80,
                         width: 80,
-                        margin: const EdgeInsets.fromLTRB(0, 8, 8, 8),
+                        margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
                         child: Icon(
                           Icons.image,
                           size: 30,
@@ -179,7 +179,7 @@ class PlaylistCard extends StatelessWidget {
                       Container(
                         height: 80,
                         width: 80,
-                        margin: const EdgeInsets.fromLTRB(0, 8, 8, 8),
+                        margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(
                             Radius.circular(10),
@@ -190,7 +190,7 @@ class PlaylistCard extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Icon(Icons.chevron_right),
                 )
               ],

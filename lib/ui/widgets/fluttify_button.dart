@@ -10,6 +10,7 @@ class FluttifyButton extends StatelessWidget {
   final Color? color;
   final TextStyle? textStyle;
   final EdgeInsets? padding;
+  final BorderSide? border;
 
   FluttifyButton(
       {required this.onPressed,
@@ -19,7 +20,8 @@ class FluttifyButton extends StatelessWidget {
       this.icon,
       this.color,
       this.textStyle,
-      this.padding});
+      this.padding,
+      this.border});
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +37,13 @@ class FluttifyButton extends StatelessWidget {
                   //shape: StadiumBorder(
                   //  side: BorderSide(color: Colors.transparent),
                   //),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  )),
+                  shape: border != null
+                      ? RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: border!)
+                      : RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        )),
               child: this.icon == null
                   ? Text(text!,
                       style: textStyle ?? Theme.of(context).textTheme.button)
