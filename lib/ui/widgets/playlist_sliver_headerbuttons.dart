@@ -100,6 +100,8 @@ class PlaylistSliverHeaderButtons extends StatelessWidget {
                                 },
                               );
                             })
+
+                        //LEAVE BUTTON
                         : SliverHeaderButton(
                             color: Theme.of(context).errorColor,
                             text: AppLocalizations.of(context)!.leaveplaylist,
@@ -164,7 +166,7 @@ class PlaylistSliverHeaderButtons extends StatelessWidget {
                         SliverHeaderButton(
                             icon: Icon(Icons.favorite_border, size: 15),
                             text: AppLocalizations.of(context)!.likeplaylist,
-                            textStyle: Theme.of(context).textTheme.bodyText2,
+                            textStyle: Theme.of(context).textTheme.subtitle2,
                             color: Theme.of(context).indicatorColor,
                             onPressed: () {
                               model!.likePlaylist(context);
@@ -175,7 +177,7 @@ class PlaylistSliverHeaderButtons extends StatelessWidget {
                             icon: Icon(Icons.favorite, size: 15),
                             text: AppLocalizations.of(context)!.unlikeplaylist,
                             color: Theme.of(context).errorColor,
-                            textStyle: Theme.of(context).textTheme.bodyText2,
+                            textStyle: Theme.of(context).textTheme.subtitle2,
                             onPressed: () {
                               model!.unlikePlaylist(context);
                             },
