@@ -189,10 +189,6 @@ class PlaylistCard extends StatelessWidget {
                       ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Icon(Icons.chevron_right),
-                )
               ],
             ),
           ),
