@@ -33,9 +33,14 @@ class EditPlaylistViewModel extends BaseViewModel {
   Playlist? playlist;
 
   bool isChanged = false;
+  bool? communityview = false;
 
   String lastContributor = "";
   Timer? _timer;
+
+  ScrollController? scrollController = ScrollController();
+  bool? showHeader = false;
+
   EditPlaylistViewModel(Playlist? playlist, String? playlistId) {
     if (playlist != null) {
       setPlaylist(playlist);
@@ -52,12 +57,24 @@ class EditPlaylistViewModel extends BaseViewModel {
         (Timer timer) => {
               if (this.playlist!.updating!) {getPlaylist(this.playlist!.dbID!)}
             });
+
+    this.scrollController!.addListener(this.scrollListener);
   }
 
   @override
   void dispose() {
     //_timer!.cancel();
     super.dispose();
+  }
+
+  void scrollListener() {
+    if (this.scrollController!.offset > 304) {
+      this.showHeader = true;
+      notifyListeners();
+    } else {
+      this.showHeader = false;
+      notifyListeners();
+    }
   }
 
   void setPlaylist(Playlist playlist) {
@@ -137,11 +154,12 @@ class EditPlaylistViewModel extends BaseViewModel {
   Future<void> leavePlaylist(BuildContext context) async {
     fluttifyPlaylistService
         .removeFluttifyPlaylist(this.playlist!)
-        .then((value) {
+        .then((playlist) {
       var snackbarText;
-      if (value) {
+      if (playlist != null) {
         snackbarText =
             Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
+        this.setPlaylist(playlist);
       } else {
         snackbarText =
             Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
@@ -173,6 +191,7 @@ class EditPlaylistViewModel extends BaseViewModel {
         ),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      this.setPlaylist(playlistUpdate);
     });
   }
 
@@ -234,7 +253,6 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   void navigateToQrCodeImageView(Playlist playlist) {
-    print(playlist.id.toString());
     _editPlaylistNavigationService.navigateTo(
         '/qrCodeImageView', QrCodeImageView(playlist: playlist),
         withNavBar: false);
