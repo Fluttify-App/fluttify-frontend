@@ -151,43 +151,47 @@ class PlaylistCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
-                  children: [
-                    if (playlist!.creator == model!.authService.currentUser.id)
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.person_add_alt_1,
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Row(
+                    children: [
+                      if (playlist!.creator ==
+                          model!.authService.currentUser.id)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.person_add_alt_1,
+                            ),
+                            onPressed: () {
+                              model!.pressShare(playlist!.dbID!);
+                            },
                           ),
-                          onPressed: () {
-                            model!.pressShare(playlist!.dbID!);
-                          },
                         ),
-                      ),
-                    if (playlist!.image == null)
-                      Container(
-                        height: 80,
-                        width: 80,
-                        margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-                        child: Icon(
-                          Icons.image,
-                          size: 30,
-                        ),
-                      )
-                    else
-                      Container(
-                        height: 80,
-                        width: 80,
-                        margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+                      if (playlist!.image == null)
+                        Container(
+                          height: 80,
+                          width: 80,
+                          margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                          child: Icon(
+                            Icons.image,
+                            size: 30,
                           ),
-                          child: Image.network(playlist!.image!),
+                        )
+                      else
+                        Container(
+                          height: 80,
+                          width: 80,
+                          margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            child: Image.network(playlist!.image!),
+                          ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

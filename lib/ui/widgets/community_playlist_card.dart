@@ -25,6 +25,8 @@ class CommunityPlaylistCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () => {model!.navigateToEditPage(playlist!)},
         child: Card(
+          margin: const EdgeInsets.all(0),
+
           /*
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),

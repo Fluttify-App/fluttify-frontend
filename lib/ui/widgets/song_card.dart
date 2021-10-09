@@ -30,7 +30,7 @@ class SongCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      height: 20,
+                      height: 22,
                       width: MediaQuery.of(context).size.width - 110,
                       padding: EdgeInsets.fromLTRB(25, 0, 0, 5),
                       child: LayoutBuilder(
