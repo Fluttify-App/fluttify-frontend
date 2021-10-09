@@ -111,10 +111,6 @@ class CommunityPlaylistCard extends StatelessWidget {
                           ),
                         ),
                 ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Icon(Icons.chevron_right),
               )
             ],
           ),

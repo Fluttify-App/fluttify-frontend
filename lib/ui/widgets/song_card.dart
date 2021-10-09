@@ -49,13 +49,13 @@ class SongCard extends StatelessWidget {
                                 textStyle: Theme.of(context)
                                     .textTheme
                                     .bodyText2!
-                                    .copyWith(fontWeight: FontWeight.bold))
+                                    .copyWith(fontWeight: FontWeight.w600))
                             : Text(
                                 song.name!,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText2!
-                                    .copyWith(fontWeight: FontWeight.bold),
+                                    .copyWith(fontWeight: FontWeight.w600),
                               ),
                       ),
                     ),
