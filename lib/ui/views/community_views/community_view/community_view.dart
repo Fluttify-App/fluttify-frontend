@@ -27,7 +27,6 @@ class CommunityView extends StatelessWidget {
         body: Center(
           child: Container(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.symmetric(vertical: 10),
             child: !model.isLoading
                 ? RefreshIndicator(
                     onRefresh: () async {
