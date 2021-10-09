@@ -13,6 +13,8 @@ class DynamicLinkService {
   final PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
 
+  String? link;
+
   Future handleDynamicLinks() async {
     if (!kIsWeb) {
       try {

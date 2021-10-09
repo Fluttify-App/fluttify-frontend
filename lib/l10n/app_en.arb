@@ -55,13 +55,14 @@
     "createdby": "Created by: ",
     "playlistupdating": "Playlist updating...",
 
-    "leaveplaylist": "Leave Playlist",
+    "inviteplaylist": "Invite",
+    "leaveplaylist": "Leave",
     "joinplaylist": "Join Playlist",
     "joinedPlaylistSnackBar": "Joined Playlist",
     "removePlaylistSnackBar": "Playlist removed from library",
     "couldNotRemoveSnackBar": "Could not remove playlist",
-    "likeplaylist": "Follow Playlist",
-    "unlikeplaylist": "Unfollow Playlist",
+    "likeplaylist": "Follow",
+    "unlikeplaylist": "Unfollow",
 
     "removeuser": "Remove User",
     "removeusercheck": "Would you like to remove the User: ",
@@ -95,5 +96,12 @@
     "onboardingcontent4": "Fluttify uses the Spotify API to automatically collect songs for your playlist. It adds the recently-liked and frequently-listened songs of each playlist-contributor that match with the specified genre. \n You can decide if these songs will stay in your playlist or get replaced after the next refresh.",
 
     "onboardingtitle5": "Lean back & \n enjoy your favorites",
-    "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. Your playlists will always be up-to-date! \n\n Have Fun using Fluttify!"
+    "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. Your playlists will always be up-to-date! \n\n Have Fun using Fluttify!",
+
+    "qrCodeScanner": "Qr-Code Scanner",
+    "qrLaunchUrlWarning": "WARNING: Url about to launch",
+    "qrLaunchUrlQuestion": "Would you like to follow this URL: ",
+    "qrCodePlaylistSuccess": "Successfully scanned playlist id",
+    "qrCodePlaylistQuestion": "Do you wish to proceed to the following playlist with id: ",
+    "qrCodeGenerate": "Generate QR-Code"
 }

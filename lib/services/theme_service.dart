@@ -56,15 +56,19 @@ class ThemeService extends ChangeNotifier {
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
     primaryColor: _currentColor,
-    accentColor: Colors.white, //Color.fromARGB(255, 203, 45, 62),
-    scaffoldBackgroundColor: Color(0xff1c1c1c),
-    cardColor: Color(0xff424242),
-    errorColor: Color.fromARGB(255, 203, 45, 62), //Color(0xff424242),
+    colorScheme: ThemeData().colorScheme.copyWith(secondary: Colors.white),
+    //accentColor: Colors.white, //Color.fromARGB(255, 203, 45, 62),
+    scaffoldBackgroundColor: Color(0xff101010),
+    cardColor: Color(0xff303030),
+    errorColor: Color.fromARGB(255, 203, 45,
+        62), //Color(0xff303030), // Color.fromARGB(255, 203, 45, 62),
     hintColor: Color(0xffbdb9ba),
     indicatorColor: Color(0xff008F61),
-    appBarTheme: AppBarTheme(backgroundColor: _currentColor),
+    appBarTheme:
+        AppBarTheme(backgroundColor: _currentColor), //Color(0xff232323)), //
     bottomNavigationBarTheme:
-        BottomNavigationBarThemeData(backgroundColor: Color(0xff424242)),
+        BottomNavigationBarThemeData(backgroundColor: Color(0xff232323)),
+    iconTheme: IconThemeData(color: Colors.white),
     textTheme: TextTheme(
       button: const TextStyle(
           fontSize: 16, fontFamily: 'Montserrat', color: Colors.white),
@@ -119,7 +123,8 @@ class ThemeService extends ChangeNotifier {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.normal),
     ),
-    backgroundColor: Color(0xff1c1c1c),
+    backgroundColor: Color(0xff101010),
+    accentColor: Colors.white,
     dividerColor: Colors.transparent,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
@@ -132,13 +137,14 @@ class ThemeService extends ChangeNotifier {
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: _currentColor,
-    accentColor: Colors.black,
+    shadowColor: Colors.red,
+    colorScheme: ThemeData().colorScheme.copyWith(secondary: Colors.black),
     scaffoldBackgroundColor: Color(0xffdae0e6),
     cardColor: Colors.white,
     hintColor: Color(0xff3b3b3b),
     indicatorColor: Color(0xff008F61),
-    errorColor: Color.fromARGB(
-        255, 203, 45, 62), //Color(0xff424242), // Color(0xff3b3b3b),
+    accentColor: Colors.black,
+    errorColor: Color.fromARGB(255, 203, 45, 62),
     appBarTheme: AppBarTheme(
         backgroundColor: _currentColor,
         titleTextStyle: TextStyle(color: Colors.black),

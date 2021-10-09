@@ -55,13 +55,14 @@
     "createdby": "Erstellt von: ",
     "playlistupdating": "Playlist wird aktualisiert...",
 
-    "leaveplaylist": "Playlist verlassen",
+    "inviteplaylist": "Einladen",
+    "leaveplaylist": "Verlassen",
     "joinplaylist": "Playlist beitreten",
     "joinedPlaylistSnackBar": "Playlist beigetreten",
     "removePlaylistSnackBar": "Playlist aus der Bibliothek entfernt",
     "couldNotRemoveSnackBar": "Playlist konnte nicht entfernt werden",
-    "likeplaylist": "Playlist folgen",
-    "unlikeplaylist": "Playlist entfolgen",
+    "likeplaylist": "Folgen",
+    "unlikeplaylist": "Entfolgen",
 
     "removeuser": "Benutzer entfernen",
     "removeusercheck": "Willst du diesen Benutzer entfernen: ",
@@ -95,5 +96,12 @@
     "onboardingcontent4": "Fluttify benutzt die Spotify API um Songs auszuwählen, die der Playlist hinzugefügt werden. Es werden die zuletzt gespeicherten und häufig gehörten Songs aller Teilnehmer ausgewählt und der Playlist hinzugefügt. Du entscheidest, ob alle Songs nach dem nächsten Aktualisieren in der Playlist bleiben oder überschrieben werden.",
 
     "onboardingtitle5": "Lehn dich zurück & \n genieße deine Lieblingssongs",
-    "onboardingcontent5": "Fluttify aktualisiert deine Playlists alle 24 Stunden automatisch. Deine Playlist wird immer auf dem neusten Stand sein! \n\n Viel Spaß mit Fluttify!"
+    "onboardingcontent5": "Fluttify aktualisiert deine Playlists alle 24 Stunden automatisch. Deine Playlist wird immer auf dem neusten Stand sein! \n\n Viel Spaß mit Fluttify!",
+
+    "qrCodeScanner": "Qr-Code Leser",
+    "qrLaunchUrlWarning": "WARNUNG: URL wurde gefunden",
+    "qrLaunchUrlQuestion": "Willst du dieser URL folgen: ",
+    "qrCodePlaylistSuccess": "Playlist id Scan erfolgreich",
+    "qrCodePlaylistQuestion": "Willst du zu der Playlist mit der ID: ",
+    "qrCodeGenerate": "QR-Code erstellen"
 }

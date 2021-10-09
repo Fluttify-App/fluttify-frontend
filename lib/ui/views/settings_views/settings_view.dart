@@ -1,11 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:fluttify/services/locale_service.dart';
 import 'package:fluttify/services/theme_service.dart';
 import 'package:fluttify/ui/views/settings_views/settings_viewmodel.dart';
-import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -75,7 +73,8 @@ class SettingsView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Divider(color: Theme.of(context).accentColor, height: 10),
+                Divider(
+                    color: Theme.of(context).colorScheme.secondary, height: 10),
                 // DARK MODE
                 Container(
                   height: 50,
@@ -99,7 +98,8 @@ class SettingsView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Divider(color: Theme.of(context).accentColor, height: 10),
+                Divider(
+                    color: Theme.of(context).colorScheme.secondary, height: 10),
 
                 // LANGUAGE
                 Container(

@@ -69,13 +69,16 @@ class PlaylistCard extends StatelessWidget {
       direction: DismissDirection.endToStart,
       child: Container(
         //height: 96,
-        padding: EdgeInsets.symmetric(vertical: 1),
+        padding: EdgeInsets.symmetric(vertical: 3),
         child: GestureDetector(
           onTap: () => {model!.navigateToEditPage(playlist!)},
           child: Card(
+            margin: const EdgeInsets.all(0),
+            /*
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
+            */
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -152,6 +155,7 @@ class PlaylistCard extends StatelessWidget {
                   children: [
                     if (playlist!.creator == model!.authService.currentUser.id)
                       Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
                         child: IconButton(
                           icon: Icon(
                             Icons.person_add_alt_1,
@@ -165,7 +169,7 @@ class PlaylistCard extends StatelessWidget {
                       Container(
                         height: 80,
                         width: 80,
-                        margin: const EdgeInsets.fromLTRB(0, 8, 8, 8),
+                        margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
                         child: Icon(
                           Icons.image,
                           size: 30,
@@ -175,7 +179,7 @@ class PlaylistCard extends StatelessWidget {
                       Container(
                         height: 80,
                         width: 80,
-                        margin: const EdgeInsets.fromLTRB(0, 8, 8, 8),
+                        margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(
                             Radius.circular(10),
@@ -185,6 +189,10 @@ class PlaylistCard extends StatelessWidget {
                       ),
                   ],
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Icon(Icons.chevron_right),
+                )
               ],
             ),
           ),

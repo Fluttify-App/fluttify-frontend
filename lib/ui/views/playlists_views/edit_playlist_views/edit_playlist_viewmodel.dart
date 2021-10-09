@@ -7,9 +7,12 @@ import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
+import 'package:fluttify/services/navigation_service.dart';
+import 'package:fluttify/ui/views/qrCodeImage_view.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:share/share.dart';
 
 class EditPlaylistViewModel extends BaseViewModel {
   TextEditingController descriptionController = TextEditingController();
@@ -17,6 +20,8 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
   final AuthService authService = locator<AuthService>();
+  final PlaylistNavigationService _editPlaylistNavigationService =
+      locator<PlaylistNavigationService>();
 
   final FluttifyPlaylistService fluttifyPlaylistService =
       locator<FluttifyPlaylistService>();
@@ -27,11 +32,14 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   Playlist? playlist;
 
-  Timer? _timer;
-
   bool isChanged = false;
+  bool? communityview = false;
 
   String lastContributor = "";
+  Timer? _timer;
+
+  ScrollController? scrollController = ScrollController();
+  bool? showHeader = false;
 
   EditPlaylistViewModel(Playlist? playlist, String? playlistId) {
     if (playlist != null) {
@@ -49,12 +57,24 @@ class EditPlaylistViewModel extends BaseViewModel {
         (Timer timer) => {
               if (this.playlist!.updating!) {getPlaylist(this.playlist!.dbID!)}
             });
+
+    this.scrollController!.addListener(this.scrollListener);
   }
 
   @override
   void dispose() {
     //_timer!.cancel();
     super.dispose();
+  }
+
+  void scrollListener() {
+    if (this.scrollController!.offset > 304) {
+      this.showHeader = true;
+      notifyListeners();
+    } else {
+      this.showHeader = false;
+      notifyListeners();
+    }
   }
 
   void setPlaylist(Playlist playlist) {
@@ -75,7 +95,6 @@ class EditPlaylistViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  // TODO: 'All Genres should be visible in view without adding it to playlist.genres'
   void save(BuildContext context) {
     playlist!.description = descriptionController.text;
     playlist!.name = nameController.text;
@@ -134,11 +153,12 @@ class EditPlaylistViewModel extends BaseViewModel {
   Future<void> leavePlaylist(BuildContext context) async {
     fluttifyPlaylistService
         .removeFluttifyPlaylist(this.playlist!)
-        .then((value) {
+        .then((playlist) {
       var snackbarText;
-      if (value) {
+      if (playlist != null) {
         snackbarText =
             Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
+        this.setPlaylist(playlist);
       } else {
         snackbarText =
             Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
@@ -170,6 +190,7 @@ class EditPlaylistViewModel extends BaseViewModel {
         ),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      this.setPlaylist(playlistUpdate);
     });
   }
 
@@ -230,6 +251,12 @@ class EditPlaylistViewModel extends BaseViewModel {
     Navigator.of(context, rootNavigator: true).pop(this.isChanged);
   }
 
+  void navigateToQrCodeImageView(Playlist playlist) {
+    _editPlaylistNavigationService.navigateTo(
+        '/qrCodeImageView', QrCodeImageView(playlist: playlist),
+        withNavBar: false);
+  }
+
   String getCreator() {
     String creatorName = '';
     playlist!.displayContributers!.forEach((element) {
@@ -258,5 +285,9 @@ class EditPlaylistViewModel extends BaseViewModel {
     } else {
       return Container();
     }
+  }
+
+  void createQrCode(context) async {
+    _dynamicLinkService.createFirstPostLink(context, playlist!.id.toString());
   }
 }

@@ -2,23 +2,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttify/models/playlist.dart';
+import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
 import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_viewmodel.dart';
 import 'package:fluttify/ui/widgets/playlist_card.dart';
 import 'package:fluttify/ui/widgets/fluttify_drawer.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class PlaylistView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PlaylistViewModel>.reactive(
-      onModelReady: (PlaylistViewModel viewModel) =>
-          viewModel.refreshPlaylists(),
+      onModelReady: (PlaylistViewModel viewModel) => {
+        viewModel.refreshPlaylists(),
+      },
       builder: (BuildContext context, PlaylistViewModel model, Widget? child) =>
           Scaffold(
         key: model.navigationService.scaffoldkey,
         appBar: AppBar(
+          leading: Container(
+            padding: EdgeInsets.only(left: 10),
+            alignment: Alignment.centerLeft,
+            child: GestureDetector(
+              child: Icon(Icons.qr_code_scanner),
+              onTap: model.navigateToQrCodeImageReader,
+            ),
+          ),
           title: Text(AppLocalizations.of(context)!.playlists,
               style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
@@ -29,15 +38,15 @@ class PlaylistView extends StatelessWidget {
           child: Center(
             child: Container(
               alignment: Alignment.topCenter,
-              padding: EdgeInsets.symmetric(vertical: 10),
+              //padding: EdgeInsets.symmetric(vertical: 10),
               child: !model.isLoading
                   ? RefreshIndicator(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       onRefresh: () async {
                         model.refreshPlaylists();
                       },
                       child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          //  padding: const EdgeInsets.symmetric(horizontal: 15),
                           height: MediaQuery.of(context).size.height,
                           child: model.playlistService.myplaylists.isNotEmpty ||
                                   model.playlistService.contributed.isNotEmpty
@@ -166,7 +175,7 @@ class PlaylistView extends StatelessWidget {
                     )
                   : Center(
                       child: CircularProgressIndicator(
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
             ),
           ),

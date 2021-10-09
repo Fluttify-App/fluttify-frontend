@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_touch_spin/flutter_touch_spin.dart';
-import 'package:fluttify/ui/styles/colors.dart';
 import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlist_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_bottom_sheet_field.dart';
@@ -11,6 +10,7 @@ import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select
 import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+// ignore: must_be_immutable
 class AddPlaylistView extends StatelessWidget {
   bool? _customTileExpanded = false;
   @override
@@ -253,13 +253,13 @@ class AddPlaylistView extends StatelessWidget {
                             AppLocalizations.of(context)!.advanced,
                             style: TextStyle(
                                 fontSize: 18,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).colorScheme.secondary),
                           ),
                           trailing: Icon(
                               _customTileExpanded!
                                   ? Icons.expand_less
                                   : Icons.expand_more,
-                              color: Theme.of(context).accentColor),
+                              color: Theme.of(context).colorScheme.secondary),
                           children: <Widget>[
                             // Top Tracks Short
                             Row(

@@ -10,39 +10,37 @@ class LicencesScreen extends StatefulWidget {
 }
 
 class _LicencesScreenState extends State<LicencesScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Material(
-        child: Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        brightness: Brightness.dark,
-        title: Text(AppLocalizations.of(context)!.thirdpartylicences),
-      ),
-      body: FutureBuilder<List<License>>(
-        future: readLicense(),
-        builder: (context, snapshot) {
-          final allLicense = snapshot.data;
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(AppLocalizations.of(context)!.thirdpartylicences),
+        ),
+        body: FutureBuilder<List<License>>(
+          future: readLicense(),
+          builder: (context, snapshot) {
+            final allLicense = snapshot.data;
 
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return Center(
-                  child: CircularProgressIndicator(
-                      color: Theme.of(context).accentColor));
-            default:
-              if (snapshot.hasError) {
-                return Center(child: Text('Can not load Licenses'));
-              } else {
-                return Container(
-                    padding: EdgeInsets.only(bottom: 30.0),
-                    child: LicensesWidget(licenses: allLicense));
-              }
-          }
-        },
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(
+                    child: CircularProgressIndicator(
+                        color: Theme.of(context).colorScheme.secondary));
+              default:
+                if (snapshot.hasError) {
+                  return Center(child: Text('Can not load Licenses'));
+                } else {
+                  return Container(
+                      padding: EdgeInsets.only(bottom: 30.0),
+                      child: LicensesWidget(licenses: allLicense));
+                }
+            }
+          },
+        ),
       ),
-    ));
+    );
   }
 
   Future<List<License>> readLicense() async =>

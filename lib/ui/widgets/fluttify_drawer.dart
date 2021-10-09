@@ -1,17 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
-import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/licences_view.dart';
-import 'package:fluttify/ui/views/playlists_views/playlist_view/playlist_viewmodel.dart';
 import 'package:fluttify/ui/views/privacy_view.dart';
 import 'package:fluttify/ui/views/settings_views/settings_view.dart';
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
-import 'package:fluttify/ui/widgets/scrolling_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:fluttify/services/fluttify_playlist_service.dart';
 
 class FluttifyDrawer extends StatelessWidget {
   final PlaylistNavigationService _navigationService =
@@ -22,8 +18,8 @@ class FluttifyDrawer extends StatelessWidget {
     return SafeArea(
       child: Container(
         width: MediaQuery.of(context).size.width / 1.6,
-        child: new Drawer(
-          child: new Column(
+        child: Drawer(
+          child: Column(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Stack(
@@ -40,8 +36,6 @@ class FluttifyDrawer extends StatelessWidget {
                           alignment: Alignment.center,
                           child: Container(
                             decoration: BoxDecoration(
-                              //  borderRadius: BorderRadius.only(
-                              //    topRight: Radius.circular(250)),
                               border: Border(),
                               boxShadow: [
                                 BoxShadow(
@@ -91,20 +85,20 @@ class FluttifyDrawer extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyText2),
                 ],
               ),
-              //   new Column(children: ),
               Expanded(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-                        child: Divider(color: Theme.of(context).accentColor),
+                        child: Divider(
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
                       ListTile(
                           dense: true,
-                          leading: new Icon(Icons.settings),
-                          title: new Text(
-                              AppLocalizations.of(context)!.settings,
+                          leading: Icon(Icons.settings,
+                              color: Theme.of(context).iconTheme.color),
+                          title: Text(AppLocalizations.of(context)!.settings,
                               style: Theme.of(context).textTheme.bodyText2),
                           onTap: () {
                             locator<PlaylistNavigationService>().navigateTo(
@@ -113,7 +107,8 @@ class FluttifyDrawer extends StatelessWidget {
                           }),
                       ListTile(
                         dense: true,
-                        leading: Icon(Icons.privacy_tip),
+                        leading: Icon(Icons.privacy_tip,
+                            color: Theme.of(context).iconTheme.color),
                         title: Text(AppLocalizations.of(context)!.privacy,
                             style: Theme.of(context).textTheme.bodyText2),
                         onTap: () {
@@ -124,7 +119,8 @@ class FluttifyDrawer extends StatelessWidget {
                       ),
                       ListTile(
                         dense: true,
-                        leading: Icon(Icons.description),
+                        leading: Icon(Icons.description,
+                            color: Theme.of(context).iconTheme.color),
                         title: Text(
                           AppLocalizations.of(context)!.licence,
                           style: Theme.of(context).textTheme.bodyText2,
@@ -145,7 +141,8 @@ class FluttifyDrawer extends StatelessWidget {
                       children: <Widget>[
                         ListTile(
                           dense: true,
-                          leading: Icon(Icons.logout),
+                          leading: Icon(Icons.logout,
+                              color: Theme.of(context).iconTheme.color),
                           title: Text(AppLocalizations.of(context)!.logout,
                               style: Theme.of(context).textTheme.bodyText2),
                           onTap: () {

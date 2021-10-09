@@ -34,7 +34,6 @@ class CommunityView extends StatelessWidget {
                       model.refreshCommunityPlaylists();
                     },
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       height: MediaQuery.of(context).size.height,
                       child: SingleChildScrollView(
                         physics: const AlwaysScrollableScrollPhysics(),
@@ -117,7 +116,7 @@ class CommunityView extends StatelessWidget {
                   )
                 : Center(
                     child: CircularProgressIndicator(
-                        color: Theme.of(context).accentColor),
+                        color: Theme.of(context).colorScheme.secondary),
                   ),
           ),
         ),

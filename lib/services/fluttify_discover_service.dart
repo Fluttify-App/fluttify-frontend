@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:fluttify/app/locator.dart';
-import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/models/song.dart';
 import 'package:http/http.dart' as http;
 

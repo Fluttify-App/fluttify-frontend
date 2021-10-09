@@ -7,6 +7,7 @@ import 'package:fluttify/models/song.dart';
 import 'package:fluttify/ui/views/discover_views/discover_viewmodel.dart';
 import 'package:fluttify/ui/widgets/fluttify_drawer.dart';
 import 'package:fluttify/ui/widgets/scrolling_text.dart';
+import 'package:fluttify/ui/widgets/song_card.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -100,107 +101,15 @@ class DiscoverView extends StatelessWidget {
                                               horizontalOffset: 250.0,
                                               child: FadeInAnimation(
                                                 child: GestureDetector(
-                                                  onTap: () {
-                                                    launch(song.link!);
-                                                  },
-                                                  child: Column(
-                                                    children: [
-                                                      Card(
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0)),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: <
-                                                                    Widget>[
-                                                                  Container(
-                                                                    height: 40,
-                                                                    width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width -
-                                                                        110,
-                                                                    padding: EdgeInsets
-                                                                        .fromLTRB(
-                                                                            25,
-                                                                            10,
-                                                                            0,
-                                                                            10),
-                                                                    child:
-                                                                        LayoutBuilder(
-                                                                      builder: (_, constraints) => (TextPainter(
-                                                                                textDirection: ui.TextDirection.ltr,
-                                                                                text: TextSpan(text: song.name!),
-                                                                                maxLines: 1,
-                                                                                textScaleFactor: MediaQuery.of(context).textScaleFactor,
-                                                                              )..layout())
-                                                                                  .size >=
-                                                                              Offset(constraints.widthConstraints().minWidth, 0)
-                                                                          ? ScrollingText(text: song.name!, textStyle: Theme.of(context).textTheme.bodyText2)
-                                                                          : Text(
-                                                                              song.name!,
-                                                                              style: Theme.of(context).textTheme.bodyText2,
-                                                                            ),
-                                                                    ),
-                                                                  ),
-                                                                  Container(
-                                                                    padding: EdgeInsets
-                                                                        .fromLTRB(
-                                                                            25,
-                                                                            0,
-                                                                            0,
-                                                                            10),
-                                                                    child: Text(
-                                                                      song.artist!,
-                                                                      style: Theme.of(
-                                                                              context)
-                                                                          .textTheme
-                                                                          .subtitle1,
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            song.image == null
-                                                                ? Container(
-                                                                    height: 75,
-                                                                    width: 75,
-                                                                    child: Icon(
-                                                                      Icons
-                                                                          .music_note,
-                                                                      size: 30,
-                                                                    ),
-                                                                  )
-                                                                : Container(
-                                                                    height: 75,
-                                                                    width: 75,
-                                                                    child: ClipRRect(
-                                                                        borderRadius: BorderRadius.only(
-                                                                            topRight: Radius.circular(
-                                                                                10),
-                                                                            bottomRight: Radius.circular(
-                                                                                10)),
-                                                                        child: ClipRRect(
-                                                                            child:
-                                                                                Image.network(song.image!))),
-                                                                  ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
+                                                    onTap: () {
+                                                      launch(song.link!);
+                                                    },
+                                                    child: Column(
+                                                      children: [
+                                                        SongCard(song: song),
+                                                      ],
+                                                    )),
                                               )))
-                                    // Spacer()
                                   ],
                                 ),
                               ),
@@ -208,7 +117,9 @@ class DiscoverView extends StatelessWidget {
                           : Expanded(
                               child: Center(
                                 child: CircularProgressIndicator(
-                                    color: Theme.of(context).accentColor),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary),
                               ),
                             ),
                     ],
