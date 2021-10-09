@@ -137,7 +137,6 @@ class ThemeService extends ChangeNotifier {
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: _currentColor,
-    shadowColor: Colors.red,
     colorScheme: ThemeData().colorScheme.copyWith(secondary: Colors.black),
     scaffoldBackgroundColor: Color(0xffdae0e6),
     cardColor: Colors.white,
