@@ -63,7 +63,7 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
   Widget buildOverlayContainer(double shrinkOffset, BuildContext context) =>
       Positioned(
         right: 10,
-        top: 35,
+        top: 10,
         left: 10,
         child: // Opacity(
             //opacity: appear(shrinkOffset),
