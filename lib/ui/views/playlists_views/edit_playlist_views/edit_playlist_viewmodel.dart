@@ -62,7 +62,6 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   void scrollListener() {
-    print(this.scrollController!.offset);
     if (this.scrollController!.offset > 304) {
       this.showHeader = true;
       notifyListeners();
@@ -248,7 +247,6 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   void navigateToQrCodeImageView(Playlist playlist) {
-    print(playlist.id.toString());
     _editPlaylistNavigationService.navigateTo(
         '/qrCodeImageView', QrCodeImageView(playlist: playlist),
         withNavBar: false);

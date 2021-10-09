@@ -3,6 +3,7 @@ import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playl
 import 'package:fluttify/ui/widgets/fluttify_button.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fluttify/ui/widgets/sliver_header_button.dart';
 
 class PlaylistSliverHeaderButtons extends StatelessWidget {
   final bool? show;
@@ -25,38 +26,29 @@ class PlaylistSliverHeaderButtons extends StatelessWidget {
         visible: show!,
         child: Row(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            FluttifyButton(
-                color: Theme.of(context).cardColor,
-                text: "Back",
-                icon: Icon(Icons.arrow_back),
-                border: BorderSide(width: 2, color: Colors.white),
-                width: ((MediaQuery.of(context).size.width - 20) / 3) - 20,
-                onPressed: () {
-                  model!.navigateBack(context);
-                }),
             model!.playlist!.creator! == model!.authService.currentUser.id
-                ? FluttifyButton(
+                ? SliverHeaderButton(
                     color: Theme.of(context).cardColor,
-                    text: "Edit",
-                    width: ((MediaQuery.of(context).size.width - 20) / 3) - 20,
-                    icon: Icon(Icons.edit),
+                    text: AppLocalizations.of(context)!.inviteplaylist,
+                    icon: Icon(Icons.share,
+                        size: 15, color: Theme.of(context).accentColor),
                     onPressed: () {
                       model!.pressShare(model!.playlist!.dbID!);
                     },
-                    border: BorderSide(width: 2, color: Colors.white))
+                    border: BorderSide(width: 1, color: Colors.white))
                 : Container(),
             !model!.playlist!.canEdit
                 ? !model!.communityview!
                     ? !model!.playlist!.contributers!
                             .contains(model!.authService.currentUser.id)
-                        ? FluttifyButton(
+                        ? SliverHeaderButton(
                             color: Theme.of(context).cardColor,
                             text: AppLocalizations.of(context)!.joinplaylist,
                             icon: Icon(Icons.logout, size: 15),
                             textStyle: Theme.of(context).textTheme.bodyText1,
-                            border: BorderSide(width: 2, color: Colors.white),
+                            border: BorderSide(width: 1, color: Colors.white),
                             width:
                                 ((MediaQuery.of(context).size.width - 20) / 3) -
                                     20,
@@ -87,14 +79,14 @@ class PlaylistSliverHeaderButtons extends StatelessWidget {
                                       ),
                                     ),
                                     actions: <Widget>[
-                                      FluttifyButton(
+                                      SliverHeaderButton(
                                           onPressed: () =>
                                               model!.navigateBack(context),
                                           text:
                                               AppLocalizations.of(context)!.no,
                                           width: 80,
                                           height: 35),
-                                      FluttifyButton(
+                                      SliverHeaderButton(
                                           onPressed: () => {
                                                 model!.joinPlaylist(context),
                                                 model!.navigateBack(context),
@@ -108,12 +100,12 @@ class PlaylistSliverHeaderButtons extends StatelessWidget {
                                 },
                               );
                             })
-                        : FluttifyButton(
-                            color: Theme.of(context).cardColor,
+                        : SliverHeaderButton(
+                            color: Theme.of(context).errorColor,
                             text: AppLocalizations.of(context)!.leaveplaylist,
                             icon: Icon(Icons.logout, size: 15),
-                            textStyle: Theme.of(context).textTheme.bodyText1,
-                            border: BorderSide(width: 2, color: Colors.white),
+                            textStyle: Theme.of(context).textTheme.subtitle2,
+                            border: BorderSide(width: 1, color: Colors.white),
                             width:
                                 ((MediaQuery.of(context).size.width - 20) / 3) -
                                     20,
@@ -144,14 +136,14 @@ class PlaylistSliverHeaderButtons extends StatelessWidget {
                                       ),
                                     ),
                                     actions: <Widget>[
-                                      FluttifyButton(
+                                      SliverHeaderButton(
                                           onPressed: () =>
                                               model!.navigateBack(context),
                                           text:
                                               AppLocalizations.of(context)!.no,
                                           width: 80,
                                           height: 35),
-                                      FluttifyButton(
+                                      SliverHeaderButton(
                                           onPressed: () => {
                                                 model!.leavePlaylist(context),
                                                 model!.navigateBack(context)
@@ -169,35 +161,21 @@ class PlaylistSliverHeaderButtons extends StatelessWidget {
                             .contains(model!.authService.currentUser.id))
                         ?
                         // LIKE BUTTON
-                        TextButton(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.share),
-                                const SizedBox(width: 12),
-                                Text(AppLocalizations.of(context)!.likeplaylist,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2),
-                              ],
-                            ),
+                        SliverHeaderButton(
+                            icon: Icon(Icons.favorite_border, size: 15),
+                            text: AppLocalizations.of(context)!.likeplaylist,
+                            textStyle: Theme.of(context).textTheme.bodyText2,
+                            color: Theme.of(context).indicatorColor,
                             onPressed: () {
                               model!.likePlaylist(context);
                             },
                           )
                         : //UNLIKE BUTTON
-                        TextButton(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.share),
-                                const SizedBox(width: 12),
-                                Text(
-                                    AppLocalizations.of(context)!
-                                        .unlikeplaylist,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2),
-                              ],
-                            ),
+                        SliverHeaderButton(
+                            icon: Icon(Icons.favorite, size: 15),
+                            text: AppLocalizations.of(context)!.unlikeplaylist,
+                            color: Theme.of(context).errorColor,
+                            textStyle: Theme.of(context).textTheme.bodyText2,
                             onPressed: () {
                               model!.unlikePlaylist(context);
                             },

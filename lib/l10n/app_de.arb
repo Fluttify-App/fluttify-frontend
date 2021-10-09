@@ -55,13 +55,14 @@
     "createdby": "Erstellt von: ",
     "playlistupdating": "Playlist wird aktualisiert...",
 
+    "inviteplaylist": "Einladen",
     "leaveplaylist": "Verlassen",
     "joinplaylist": "Playlist beitreten",
     "joinedPlaylistSnackBar": "Playlist beigetreten",
     "removePlaylistSnackBar": "Playlist aus der Bibliothek entfernt",
     "couldNotRemoveSnackBar": "Playlist konnte nicht entfernt werden",
-    "likeplaylist": "Playlist folgen",
-    "unlikeplaylist": "Playlist entfolgen",
+    "likeplaylist": "Folgen",
+    "unlikeplaylist": "Entfolgen",
 
     "removeuser": "Benutzer entfernen",
     "removeusercheck": "Willst du diesen Benutzer entfernen: ",

@@ -21,12 +21,14 @@ class CommunityPlaylistCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 1),
+      padding: EdgeInsets.symmetric(vertical: 3),
       child: GestureDetector(
         onTap: () => {model!.navigateToEditPage(playlist!)},
         child: Card(
+          /*
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              */
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -110,6 +112,10 @@ class CommunityPlaylistCard extends StatelessWidget {
                         ),
                 ],
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Icon(Icons.chevron_right),
+              )
             ],
           ),
         ),
