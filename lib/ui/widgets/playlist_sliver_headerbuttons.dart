@@ -35,7 +35,7 @@ class PlaylistSliverHeaderButtons extends StatelessWidget {
                     icon: Icon(Icons.share,
                         size: 15, color: Theme.of(context).accentColor),
                     onPressed: () {
-                      model!.pressShare(model!.playlist!.dbID!);
+                      model!.pressShare(context, model!.playlist!.dbID!);
                     },
                     border: BorderSide(width: 1, color: Colors.white))
                 : Container(),
