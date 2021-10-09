@@ -82,7 +82,7 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
                 color: !model!.showHeader! && !model!.playlist!.canEdit
                     ? Colors.black.withOpacity(0.5)
                     : Theme.of(context).primaryColor,
-                child: Icon(Icons.arrow_back, color: Colors.white, size: 25),
+                child: Icon(Icons.chevron_left, color: Colors.white, size: 25),
                 padding: const EdgeInsets.all(10.0),
                 shape: CircleBorder(),
               ),
@@ -98,10 +98,13 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
                       color: !model!.showHeader! && !model!.playlist!.canEdit
                           ? Colors.black.withOpacity(0.5)
                           : Theme.of(context).primaryColor,
-                      child: Icon(
-                        Icons.edit,
-                        color: Colors.white,
-                        size: 25.0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                          size: 20.0,
+                        ),
                       ),
                       padding: const EdgeInsets.all(10.0),
                       shape: CircleBorder(),
