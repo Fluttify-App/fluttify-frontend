@@ -19,9 +19,17 @@ class LicensesWidget extends StatelessWidget {
           return ListTile(
             title: Container(
               padding: const EdgeInsets.symmetric(vertical: 24),
-              child: Text(
-                license!.title!,
-                style: Theme.of(context).textTheme.headline1,
+              child: Column(
+                children: [
+                  Text(
+                    "This app uses third party libraries. The following list contains all libraries and their licences.",
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  Text(
+                    license!.title!,
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                ],
               ),
             ),
             subtitle: Text(
