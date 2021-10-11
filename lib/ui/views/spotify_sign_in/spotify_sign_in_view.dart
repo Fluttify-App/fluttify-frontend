@@ -12,7 +12,7 @@ class SpotifySignInView extends StatelessWidget {
         builder: (BuildContext context, SpotifySignInViewModel model,
                 Widget? child) =>
             Container(
-              padding: const EdgeInsets.only(top: 80, bottom: 50),
+              padding: const EdgeInsets.only(top: 80, bottom: 20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -58,14 +58,47 @@ class SpotifySignInView extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Center(
-                        child: FluttifyButton(
-                            width: 300,
-                            color: Color(0xff1a1a1a),
-                            height: 50,
-                            onPressed: () => model.handleSignIn(),
-                            text: AppLocalizations.of(context)!
-                                .signin, //"Sign In With Spotify",
-                            textStyle: Theme.of(context).textTheme.headline3),
+                        child: Column(
+                          children: [
+                            FluttifyButton(
+                                width: 300,
+                                color: Color(0xff1a1a1a),
+                                height: 50,
+                                onPressed: () => model.handleSignIn(),
+                                text: AppLocalizations.of(context)!
+                                    .signin, //"Sign In With Spotify",
+                                textStyle:
+                                    Theme.of(context).textTheme.headline3),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "I have read and accepted the ",
+                                    style: TextStyle(
+                                        fontSize: 10, color: Colors.white),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      model.navigateToPrivacy();
+                                    },
+                                    style: TextButton.styleFrom(
+                                        padding: EdgeInsets.zero),
+                                    child: Text(
+                                      "terms of use and privacy policy",
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.white,
+                                          decoration: TextDecoration.underline),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],
