@@ -45,26 +45,18 @@ class PlaylistSliverHeaderButtonsState
                               size: 15, color: Theme.of(context).accentColor),
                           onPressed: () {
                             showDialog(
-                              context: context,
-                              builder: (_) {
-                                return AlertDialog(
-                                  title: Text(
-                                    AppLocalizations.of(context)!
-                                        .inviteplaylist,
-                                    style:
-                                        Theme.of(context).textTheme.headline1,
-                                  ),
-                                  content: SingleChildScrollView(
-                                    child: ListBody(
-                                      children: <Widget>[
-                                        Text(
-                                          AppLocalizations.of(context)!
-                                              .invitepopup,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2,
-                                        ),
-                                        child: Column(
+                                context: context,
+                                builder: (_) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      AppLocalizations.of(context)!
+                                          .inviteplaylist,
+                                      style:
+                                          Theme.of(context).textTheme.headline1,
+                                    ),
+                                    content: SingleChildScrollView(
+                                      child: ListBody(children: <Widget>[
+                                        Column(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -95,7 +87,8 @@ class PlaylistSliverHeaderButtonsState
                                                         color: Theme.of(context)
                                                             .accentColor),
                                                     onPressed: () {
-                                                      Navigator.of(context).pop();
+                                                      Navigator.of(context)
+                                                          .pop();
                                                       widget.model!.pressShare(
                                                           context,
                                                           widget.model!
@@ -125,7 +118,11 @@ class PlaylistSliverHeaderButtonsState
                                               ],
                                             ),
                                           ],
-                                        ))));
+                                        ),
+                                      ]),
+                                    ),
+                                  );
+                                });
                           },
                           border: BorderSide(width: 1, color: Colors.white))
                       : Container(),
