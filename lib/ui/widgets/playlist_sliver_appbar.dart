@@ -76,7 +76,11 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 visualDensity: VisualDensity.comfortable,
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  if (model!.playlist!.canEdit) {
+                    model!.canEdit();
+                  } else {
+                    Navigator.of(context).pop();
+                  }
                 },
                 elevation: 0.0,
                 color: !model!.showHeader! && !model!.playlist!.canEdit
@@ -86,55 +90,65 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
                 padding: const EdgeInsets.all(10.0),
                 shape: CircleBorder(),
               ),
-              !model!.playlist!.canEdit
-                  ? MaterialButton(
-                      minWidth: 10,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      visualDensity: VisualDensity.comfortable,
-                      onPressed: () {
-                        model!.canEdit();
-                      },
-                      elevation: 0.0,
-                      color: !model!.showHeader! && !model!.playlist!.canEdit
-                          ? Colors.black.withOpacity(0.5)
-                          : Theme.of(context).primaryColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                          size: 20.0,
+              if (model!.playlist!.creator == model!.authService.currentUser.id)
+                !model!.playlist!.canEdit
+                    ? MaterialButton(
+                        minWidth: 10,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: VisualDensity.comfortable,
+                        onPressed: () {
+                          model!.canEdit();
+                        },
+                        elevation: 0.0,
+                        color: !model!.showHeader! && !model!.playlist!.canEdit
+                            ? Colors.black.withOpacity(0.5)
+                            : Theme.of(context).primaryColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.white,
+                            size: 20.0,
+                          ),
                         ),
-                      ),
-                      padding: const EdgeInsets.all(10.0),
-                      shape: CircleBorder(),
-                    )
-                  : TextButton(
-                      style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.resolveWith<Color?>(
-                          (Set<MaterialState> states) =>
-                              states.contains(MaterialState.disabled)
-                                  ? Colors.white.withOpacity(0.5)
-                                  : Colors.white,
+                        padding: const EdgeInsets.all(10.0),
+                        shape: CircleBorder(),
+                      )
+                    : MaterialButton(
+                        minWidth: 10,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: VisualDensity.comfortable,
+                        onPressed: model!.selectedGenres.length != 0 &&
+                                model!.nameController.text.isNotEmpty
+                            ? () => model!.save(context)
+                            : null, //
+                        elevation: 0.0,
+                        color: !model!.showHeader! && !model!.playlist!.canEdit
+                            ? Colors.black.withOpacity(0.5)
+                            : Theme.of(context).primaryColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Icon(
+                            Icons.save,
+                            color: model!.selectedGenres.length != 0 &&
+                                    model!.nameController.text.isNotEmpty
+                                ? Colors.white
+                                : Colors.white.withOpacity(0.5),
+                            size: 20.0,
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        AppLocalizations.of(context)!.save,
-                      ),
-                      onPressed: model!.selectedGenres.length != 0 &&
-                              model!.nameController.text.isNotEmpty
-                          ? () => model!.save(context)
-                          : null, //
-                    ),
+                        padding: const EdgeInsets.all(10.0),
+                        shape: CircleBorder(),
+                      )
             ]),
       );
 
   Widget buildBackground(double shrinkOffset, String image) => Opacity(
         opacity: disappear(shrinkOffset),
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0.0),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
+          child: Hero(
+            tag: model!.playlist!.name!,
             child: Image.network(
               image,
               fit: BoxFit.cover,

@@ -109,7 +109,9 @@ class CommunityPlaylistCard extends StatelessWidget {
                           margin: const EdgeInsets.fromLTRB(0, 8, 8, 8),
                           child: ClipRRect(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
-                            child: Image.network(playlist!.image!),
+                            child: Hero(
+                                tag: playlist!.name!,
+                                child: Image.network(playlist!.image!)),
                           ),
                         ),
                 ],

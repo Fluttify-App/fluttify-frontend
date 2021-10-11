@@ -56,6 +56,8 @@
     "playlistupdating": "Playlist wird aktualisiert...",
 
     "inviteplaylist": "Einladen",
+    "inviteLink": "Link",
+    "invitepopup": "Wie willst du diese Playlist teilen?",
     "leaveplaylist": "Verlassen",
     "joinplaylist": "Playlist beitreten",
     "joinedPlaylistSnackBar": "Playlist beigetreten",
@@ -103,5 +105,5 @@
     "qrLaunchUrlQuestion": "Willst du dieser URL folgen: ",
     "qrCodePlaylistSuccess": "Playlist id Scan erfolgreich",
     "qrCodePlaylistQuestion": "Willst du zu der Playlist mit der ID: ",
-    "qrCodeGenerate": "QR-Code erstellen"
+    "qrCodeGenerate": "QR-Code"
 }

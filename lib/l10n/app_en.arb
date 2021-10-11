@@ -56,6 +56,8 @@
     "playlistupdating": "Playlist updating...",
 
     "inviteplaylist": "Invite",
+    "inviteLink": "Link",
+    "invitepopup": "How do you want to share this playlist?",
     "leaveplaylist": "Leave",
     "joinplaylist": "Join Playlist",
     "joinedPlaylistSnackBar": "Joined Playlist",
@@ -103,5 +105,5 @@
     "qrLaunchUrlQuestion": "Would you like to follow this URL: ",
     "qrCodePlaylistSuccess": "Successfully scanned playlist id",
     "qrCodePlaylistQuestion": "Do you wish to proceed to the following playlist with id: ",
-    "qrCodeGenerate": "Generate QR-Code"
+    "qrCodeGenerate": "QR-Code"
 }
