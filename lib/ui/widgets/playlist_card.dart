@@ -152,7 +152,7 @@ class PlaylistCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: Row(
                     children: [
                       if (playlist!.creator ==

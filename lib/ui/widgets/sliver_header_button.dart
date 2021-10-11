@@ -39,10 +39,10 @@ class SliverHeaderButton extends StatelessWidget {
               visualDensity: VisualDensity.compact,
               shape: MaterialStateProperty.resolveWith((states) =>
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3))))
-              ),
+                      borderRadius: BorderRadius.all(Radius.circular(3))))),
           child: Container(
             width: width ?? null,
+            padding: const EdgeInsets.symmetric(vertical: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

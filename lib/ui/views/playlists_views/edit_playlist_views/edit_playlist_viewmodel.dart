@@ -182,6 +182,7 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((playlistUpdate) {
       Navigator.of(context).pop(true);
       final snackBar = SnackBar(
+        backgroundColor: Theme.of(context).indicatorColor,
         content: Text(AppLocalizations.of(context)!.joinedPlaylistSnackBar),
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1500),
@@ -201,6 +202,7 @@ class EditPlaylistViewModel extends BaseViewModel {
       this.isChanged = true;
       setPlaylist(playlistUpdate);
       final snackBar = SnackBar(
+        backgroundColor: Theme.of(context).indicatorColor,
         content: Text("Liked Playlist"),
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1500),
@@ -236,6 +238,7 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((playlistUpdate) {
       setPlaylist(playlistUpdate);
       final snackBar = SnackBar(
+        backgroundColor: Theme.of(context).indicatorColor,
         content: Text(AppLocalizations.of(context)!.playlistUpdateSnackBar),
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1500),
