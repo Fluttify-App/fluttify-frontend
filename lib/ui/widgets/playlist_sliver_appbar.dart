@@ -65,18 +65,16 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
         right: 10,
         top: 10,
         left: 10,
-        child: // Opacity(
-            //opacity: appear(shrinkOffset),
-            // child:
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
               MaterialButton(
                 minWidth: 10,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 visualDensity: VisualDensity.comfortable,
                 onPressed: () {
                   if (model!.playlist!.canEdit) {
+                    model!.showHeader = false;
                     model!.canEdit();
                   } else {
                     Navigator.of(context).pop();
