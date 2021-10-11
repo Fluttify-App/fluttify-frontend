@@ -74,6 +74,7 @@ class DynamicLinkService {
           text: "https://fluttify.herokuapp.com/#/home-view?playlist=" +
               playlistID));
       final snackBar = SnackBar(
+        backgroundColor: Theme.of(context).indicatorColor,
         content: Text("Link copied to clipboard"),
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1500),
