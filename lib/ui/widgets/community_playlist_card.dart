@@ -97,7 +97,7 @@ class CommunityPlaylistCard extends StatelessWidget {
                       ? Container(
                           height: 100,
                           width: 100,
-                          margin: const EdgeInsets.fromLTRB(0, 8, 8, 8),
+                          margin: const EdgeInsets.fromLTRB(0, 8, 20, 8),
                           child: Icon(
                             Icons.music_note,
                             size: 30,
@@ -106,7 +106,7 @@ class CommunityPlaylistCard extends StatelessWidget {
                       : Container(
                           height: 100,
                           width: 100,
-                          margin: const EdgeInsets.fromLTRB(0, 8, 8, 8),
+                          margin: const EdgeInsets.fromLTRB(0, 8, 20, 8),
                           child: ClipRRect(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             child: Hero(

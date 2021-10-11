@@ -45,72 +45,61 @@ class PlaylistSliverHeaderButtonsState
                               size: 15, color: Theme.of(context).accentColor),
                           onPressed: () {
                             showDialog(
-                                context: context,
-                                builder: (_) => AlertDialog(
-                                    content: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                              context: context,
+                              builder: (_) {
+                                return AlertDialog(
+                                  title: Text(
+                                    AppLocalizations.of(context)!
+                                        .inviteplaylist,
+                                    style:
+                                        Theme.of(context).textTheme.headline1,
+                                  ),
+                                  content: SingleChildScrollView(
+                                    child: ListBody(
+                                      children: <Widget>[
+                                        Text(
+                                          AppLocalizations.of(context)!
+                                              .invitepopup,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText2,
                                         ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 8.0),
-                                              child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .invitepopup,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText2),
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                SliverHeaderButton(
-                                                    color: Theme.of(context)
-                                                        .cardColor,
-                                                    text: AppLocalizations.of(
-                                                            context)!
-                                                        .inviteLink,
-                                                    width: 90,
-                                                    icon: Icon(Icons.link,
-                                                        size: 15,
-                                                        color: Theme.of(context)
-                                                            .accentColor),
-                                                    onPressed: () {
-                                                      widget.model!.pressShare(
-                                                          widget.model!
-                                                              .playlist!.dbID!);
-                                                    }),
-                                                SliverHeaderButton(
-                                                  color: Theme.of(context)
-                                                      .cardColor,
-                                                  width: 90,
-                                                  text: AppLocalizations.of(
-                                                          context)!
-                                                      .qrCodeGenerate,
-                                                  icon: Icon(Icons.qr_code,
-                                                      size: 15,
-                                                      color: Theme.of(context)
-                                                          .accentColor),
-                                                  onPressed: () => {
-                                                    widget.model!
-                                                        .createQrCode(),
-                                                    widget.model!
-                                                        .navigateToQrCodeImageView(
-                                                            widget.model!
-                                                                .playlist!)
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ))));
+                                      ],
+                                    ),
+                                  ),
+                                  actions: <Widget>[
+                                    SliverHeaderButton(
+                                        color: Theme.of(context).cardColor,
+                                        text: AppLocalizations.of(context)!
+                                            .inviteLink,
+                                        width: 90,
+                                        icon: Icon(Icons.link,
+                                            size: 15,
+                                            color:
+                                                Theme.of(context).accentColor),
+                                        onPressed: () {
+                                          widget.model!.pressShare(
+                                              widget.model!.playlist!.dbID!);
+                                        }),
+                                    SliverHeaderButton(
+                                      color: Theme.of(context).cardColor,
+                                      width: 90,
+                                      text: AppLocalizations.of(context)!
+                                          .qrCodeGenerate,
+                                      icon: Icon(Icons.qr_code,
+                                          size: 15,
+                                          color: Theme.of(context).accentColor),
+                                      onPressed: () => {
+                                        Navigator.of(context).pop(),
+                                        widget.model!.createQrCode(),
+                                        widget.model!.navigateToQrCodeImageView(
+                                            widget.model!.playlist!)
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           },
                           border: BorderSide(width: 1, color: Colors.white))
                       : Container(),
@@ -166,6 +155,8 @@ class PlaylistSliverHeaderButtonsState
                                                 text: AppLocalizations.of(
                                                         context)!
                                                     .no,
+                                                color:
+                                                    Theme.of(context).cardColor,
                                                 width: 80,
                                                 height: 35),
                                             SliverHeaderButton(
@@ -237,6 +228,8 @@ class PlaylistSliverHeaderButtonsState
                                                 text: AppLocalizations.of(
                                                         context)!
                                                     .no,
+                                                color:
+                                                    Theme.of(context).cardColor,
                                                 width: 80,
                                                 height: 35),
                                             SliverHeaderButton(
