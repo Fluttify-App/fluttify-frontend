@@ -160,6 +160,9 @@ class PlaylistSliverHeaderButtonsState
                                                 width: 80,
                                                 height: 35),
                                             SliverHeaderButton(
+                                                textStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .subtitle2,
                                                 onPressed: () => {
                                                       widget.model!
                                                           .joinPlaylist(
@@ -240,6 +243,9 @@ class PlaylistSliverHeaderButtonsState
                                                       widget.model!
                                                           .navigateBack(context)
                                                     },
+                                                textStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .subtitle2,
                                                 text: AppLocalizations.of(
                                                         context)!
                                                     .yes,
