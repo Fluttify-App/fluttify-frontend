@@ -5,187 +5,291 @@ import 'package:fluttify/ui/widgets/fluttify_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttify/ui/widgets/sliver_header_button.dart';
 
-class PlaylistSliverHeaderButtons extends StatelessWidget {
+class PlaylistSliverHeaderButtons extends StatefulWidget {
   final bool? show;
   final EditPlaylistViewModel? model;
   final double? top;
+  final Function? onScroll;
+  PlaylistSliverHeaderButtons({this.show, this.model, this.top, this.onScroll});
 
-  const PlaylistSliverHeaderButtons(
-      {@required this.show, @required this.model, @required this.top});
+  @override
+  State createState() => new PlaylistSliverHeaderButtonsState();
+}
 
+class PlaylistSliverHeaderButtonsState
+    extends State<PlaylistSliverHeaderButtons> with TickerProviderStateMixin {
   final double size = 60;
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      //top: expandedHeight! - shrinkOffset! - size / 2,
-      top: top,
-      left: 10,
-      right: 10,
-      child: Visibility(
-        visible: show!,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            model!.playlist!.creator! == model!.authService.currentUser.id
-                ? SliverHeaderButton(
-                    color: Theme.of(context).cardColor,
-                    text: AppLocalizations.of(context)!.inviteplaylist,
-                    icon: Icon(Icons.share,
-                        size: 15, color: Theme.of(context).accentColor),
-                    onPressed: () {
-                      model!.pressShare(context, model!.playlist!.dbID!);
-                    },
-                    border: BorderSide(width: 1, color: Colors.white))
-                : Container(),
-            !model!.playlist!.canEdit
-                ? !model!.communityview!
-                    ? !model!.playlist!.contributers!
-                            .contains(model!.authService.currentUser.id)
-                        ? SliverHeaderButton(
-                            color: Theme.of(context).cardColor,
-                            text: AppLocalizations.of(context)!.joinplaylist,
-                            icon: Icon(Icons.logout, size: 15),
-                            textStyle: Theme.of(context).textTheme.bodyText1,
-                            border: BorderSide(width: 1, color: Colors.white),
-                            width:
-                                ((MediaQuery.of(context).size.width - 20) / 3) -
-                                    20,
-                            onPressed: () {
-                              showDialog(
+    return widget.show!
+        ? Positioned(
+            //top: expandedHeight! - shrinkOffset! - size / 2,
+            top: widget.top,
+            left: 10,
+            right: 10,
+            child: Visibility(
+              visible: true,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  widget.model!.playlist!.creator! ==
+                          widget.model!.authService.currentUser.id
+                      ? SliverHeaderButton(
+                          color: Theme.of(context).cardColor,
+                          text: AppLocalizations.of(context)!.inviteplaylist,
+                          width: 90,
+                          icon: Icon(Icons.share,
+                              size: 15, color: Theme.of(context).accentColor),
+                          onPressed: () {
+                            showDialog(
                                 context: context,
-                                builder: (_) {
-                                  return AlertDialog(
-                                    title: Text(
-                                      AppLocalizations.of(context)!
-                                          .joinplaylist,
-                                      style:
-                                          Theme.of(context).textTheme.headline1,
-                                    ),
-                                    content: SingleChildScrollView(
-                                      child: ListBody(
-                                        children: <Widget>[
-                                          Text(
+                                builder: (_) => AlertDialog(
+                                    content: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 8.0),
+                                              child: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .invitepopup,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText2),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                SliverHeaderButton(
+                                                    color: Theme.of(context)
+                                                        .cardColor,
+                                                    text: AppLocalizations.of(
+                                                            context)!
+                                                        .inviteLink,
+                                                    width: 90,
+                                                    icon: Icon(Icons.link,
+                                                        size: 15,
+                                                        color: Theme.of(context)
+                                                            .accentColor),
+                                                    onPressed: () {
+                                                      widget.model!.pressShare(
+                                                          context,
+                                                          widget.model!
+                                                              .playlist!.dbID!);
+                                                    }),
+                                                SliverHeaderButton(
+                                                  color: Theme.of(context)
+                                                      .cardColor,
+                                                  width: 90,
+                                                  text: AppLocalizations.of(
+                                                          context)!
+                                                      .qrCodeGenerate,
+                                                  icon: Icon(Icons.qr_code,
+                                                      size: 15,
+                                                      color: Theme.of(context)
+                                                          .accentColor),
+                                                  onPressed: () => {
+                                                    widget.model!
+                                                        .createQrCode(context),
+                                                    widget.model!
+                                                        .navigateToQrCodeImageView(
+                                                            widget.model!
+                                                                .playlist!)
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ))));
+                          },
+                          border: BorderSide(width: 1, color: Colors.white))
+                      : Container(),
+                  !widget.model!.playlist!.canEdit
+                      ? !widget.model!.communityview!
+                          ? !widget.model!.playlist!.contributers!.contains(
+                                  widget.model!.authService.currentUser.id)
+                              ? SliverHeaderButton(
+                                  color: Theme.of(context).cardColor,
+                                  text: AppLocalizations.of(context)!
+                                      .joinplaylist,
+                                  icon: Icon(Icons.logout, size: 15),
+                                  textStyle:
+                                      Theme.of(context).textTheme.bodyText1,
+                                  border:
+                                      BorderSide(width: 1, color: Colors.white),
+                                  width: ((MediaQuery.of(context).size.width -
+                                              20) /
+                                          3) -
+                                      20,
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return AlertDialog(
+                                          title: Text(
                                             AppLocalizations.of(context)!
-                                                    .joinplaylistcheck +
-                                                model!.playlist!.name! +
-                                                '?',
+                                                .joinplaylist,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyText2,
+                                                .headline1,
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                    actions: <Widget>[
-                                      SliverHeaderButton(
-                                          onPressed: () =>
-                                              model!.navigateBack(context),
-                                          text:
-                                              AppLocalizations.of(context)!.no,
-                                          width: 80,
-                                          height: 35),
-                                      SliverHeaderButton(
-                                          onPressed: () => {
-                                                model!.joinPlaylist(context),
-                                                model!.navigateBack(context),
-                                              },
-                                          text:
-                                              AppLocalizations.of(context)!.yes,
-                                          width: 80,
-                                          height: 35),
-                                    ],
-                                  );
-                                },
-                              );
-                            })
+                                          content: SingleChildScrollView(
+                                            child: ListBody(
+                                              children: <Widget>[
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                          .joinplaylistcheck +
+                                                      widget.model!.playlist!
+                                                          .name! +
+                                                      '?',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText2,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          actions: <Widget>[
+                                            SliverHeaderButton(
+                                                onPressed: () => widget.model!
+                                                    .navigateBack(context),
+                                                text: AppLocalizations.of(
+                                                        context)!
+                                                    .no,
+                                                width: 80,
+                                                height: 35),
+                                            SliverHeaderButton(
+                                                onPressed: () => {
+                                                      widget.model!
+                                                          .joinPlaylist(
+                                                              context),
+                                                      widget.model!
+                                                          .navigateBack(
+                                                              context),
+                                                    },
+                                                text: AppLocalizations.of(
+                                                        context)!
+                                                    .yes,
+                                                width: 80,
+                                                height: 35),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  })
 
-                        //LEAVE BUTTON
-                        : SliverHeaderButton(
-                            color: Theme.of(context).errorColor,
-                            text: AppLocalizations.of(context)!.leaveplaylist,
-                            icon: Icon(Icons.logout, size: 15),
-                            textStyle: Theme.of(context).textTheme.subtitle2,
-                            border: BorderSide(width: 1, color: Colors.white),
-                            width:
-                                ((MediaQuery.of(context).size.width - 20) / 3) -
-                                    20,
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (_) {
-                                  return AlertDialog(
-                                    title: Text(
-                                      AppLocalizations.of(context)!
-                                          .leaveplaylist,
-                                      style:
-                                          Theme.of(context).textTheme.headline1,
-                                    ),
-                                    content: SingleChildScrollView(
-                                      child: ListBody(
-                                        children: <Widget>[
-                                          Text(
+                              //LEAVE BUTTON
+                              : SliverHeaderButton(
+                                  color: Theme.of(context).errorColor,
+                                  text: AppLocalizations.of(context)!
+                                      .leaveplaylist,
+                                  icon: Icon(Icons.logout, size: 15),
+                                  textStyle:
+                                      Theme.of(context).textTheme.subtitle2,
+                                  border:
+                                      BorderSide(width: 1, color: Colors.white),
+                                  width: ((MediaQuery.of(context).size.width -
+                                              20) /
+                                          3) -
+                                      20,
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return AlertDialog(
+                                          title: Text(
                                             AppLocalizations.of(context)!
-                                                    .leaveplaylistcheck +
-                                                model!.playlist!.name! +
-                                                '?',
+                                                .leaveplaylist,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyText2,
+                                                .headline1,
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                    actions: <Widget>[
-                                      SliverHeaderButton(
-                                          onPressed: () =>
-                                              model!.navigateBack(context),
-                                          text:
-                                              AppLocalizations.of(context)!.no,
-                                          width: 80,
-                                          height: 35),
-                                      SliverHeaderButton(
-                                          onPressed: () => {
-                                                model!.leavePlaylist(context),
-                                                model!.navigateBack(context)
-                                              },
-                                          text:
-                                              AppLocalizations.of(context)!.yes,
-                                          width: 80,
-                                          height: 35),
-                                    ],
-                                  );
-                                },
-                              );
-                            })
-                    : (!model!.playlist!.likes!
-                            .contains(model!.authService.currentUser.id))
-                        ?
-                        // LIKE BUTTON
-                        SliverHeaderButton(
-                            icon: Icon(Icons.favorite_border, size: 15),
-                            text: AppLocalizations.of(context)!.likeplaylist,
-                            textStyle: Theme.of(context).textTheme.subtitle2,
-                            color: Theme.of(context).indicatorColor,
-                            onPressed: () {
-                              model!.likePlaylist(context);
-                            },
-                          )
-                        : //UNLIKE BUTTON
-                        SliverHeaderButton(
-                            icon: Icon(Icons.favorite, size: 15),
-                            text: AppLocalizations.of(context)!.unlikeplaylist,
-                            color: Theme.of(context).errorColor,
-                            textStyle: Theme.of(context).textTheme.subtitle2,
-                            onPressed: () {
-                              model!.unlikePlaylist(context);
-                            },
-                          )
-                : Container(),
-          ],
-        ),
-      ),
-    );
+                                          content: SingleChildScrollView(
+                                            child: ListBody(
+                                              children: <Widget>[
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                          .leaveplaylistcheck +
+                                                      widget.model!.playlist!
+                                                          .name! +
+                                                      '?',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText2,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          actions: <Widget>[
+                                            SliverHeaderButton(
+                                                onPressed: () => widget.model!
+                                                    .navigateBack(context),
+                                                text: AppLocalizations.of(
+                                                        context)!
+                                                    .no,
+                                                width: 80,
+                                                height: 35),
+                                            SliverHeaderButton(
+                                                onPressed: () => {
+                                                      widget.model!
+                                                          .leavePlaylist(
+                                                              context),
+                                                      widget.model!
+                                                          .navigateBack(context)
+                                                    },
+                                                text: AppLocalizations.of(
+                                                        context)!
+                                                    .yes,
+                                                width: 80,
+                                                height: 35),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  })
+                          : (!widget.model!.playlist!.likes!.contains(
+                                  widget.model!.authService.currentUser.id))
+                              ?
+                              // LIKE BUTTON
+                              SliverHeaderButton(
+                                  icon: Icon(Icons.favorite_border, size: 15),
+                                  text: AppLocalizations.of(context)!
+                                      .likeplaylist,
+                                  textStyle:
+                                      Theme.of(context).textTheme.subtitle2,
+                                  color: Theme.of(context).indicatorColor,
+                                  onPressed: () {
+                                    widget.model!.likePlaylist(context);
+                                  },
+                                )
+                              : //UNLIKE BUTTON
+                              SliverHeaderButton(
+                                  icon: Icon(Icons.favorite, size: 15),
+                                  text: AppLocalizations.of(context)!
+                                      .unlikeplaylist,
+                                  color: Theme.of(context).errorColor,
+                                  textStyle:
+                                      Theme.of(context).textTheme.subtitle2,
+                                  onPressed: () {
+                                    widget.model!.unlikePlaylist(context);
+                                  },
+                                )
+                      : Container(),
+                ],
+              ),
+            ),
+          )
+        : Container();
   }
 }

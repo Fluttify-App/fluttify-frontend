@@ -20,6 +20,7 @@ class CommunityView extends StatelessWidget {
           title: Text(AppLocalizations.of(context)!.community,
               style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
+          automaticallyImplyLeading: false,
           iconTheme: IconThemeData(color: Colors.white),
         ),
         key: model.navigationService.scaffoldkey,
