@@ -33,49 +33,49 @@ class DiscoverView extends StatelessWidget {
           },
           child: Container(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                    height: 50,
-                    child: ShaderMask(
-                      shaderCallback: (rect) {
-                        return LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Colors.black, Colors.transparent],
-                        ).createShader(Rect.fromLTRB(
-                            MediaQuery.of(context).size.width - 100,
-                            0,
-                            rect.width,
-                            rect.height));
-                      },
-                      blendMode: BlendMode.dstIn,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          for (String genre in model.playlistGenres!)
-                            Padding(
-                              padding: const EdgeInsets.only(right: 4),
-                              child: InputChip(
-                                  backgroundColor: Theme.of(context).cardColor,
-                                  label: Text(genre),
-                                  selected:
-                                      model.selectedGenres.contains(genre),
-                                  selectedColor: Theme.of(context).primaryColor,
-                                  onSelected: (bool selected) {
-                                    if (selected) {
-                                      model.selectGenre(genre);
-                                    } else {
-                                      model.unselectGenre(genre);
-                                    }
-                                  }),
-                            ),
-                        ],
-                      ),
-                    )),
+                  height: 50,
+                  child: ShaderMask(
+                    shaderCallback: (rect) {
+                      return LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.black, Colors.transparent],
+                      ).createShader(Rect.fromLTRB(
+                          MediaQuery.of(context).size.width - 100,
+                          0,
+                          rect.width,
+                          rect.height));
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        for (String genre in model.playlistGenres!)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4),
+                            child: InputChip(
+                                backgroundColor: Theme.of(context).cardColor,
+                                label: Text(genre),
+                                selected: model.selectedGenres.contains(genre),
+                                selectedColor: Theme.of(context).primaryColor,
+                                onSelected: (bool selected) {
+                                  if (selected) {
+                                    model.selectGenre(genre);
+                                  } else {
+                                    model.unselectGenre(genre);
+                                  }
+                                }),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,21 +95,24 @@ class DiscoverView extends StatelessWidget {
                                     for (Song song
                                         in model.discoverService.discoverSongs)
                                       AnimationConfiguration.synchronized(
-                                          duration:
-                                              const Duration(milliseconds: 300),
-                                          child: SlideAnimation(
-                                              horizontalOffset: 250.0,
-                                              child: FadeInAnimation(
-                                                child: GestureDetector(
-                                                    onTap: () {
-                                                      launch(song.link!);
-                                                    },
-                                                    child: Column(
-                                                      children: [
-                                                        SongCard(song: song),
-                                                      ],
-                                                    )),
-                                              )))
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        child: SlideAnimation(
+                                          horizontalOffset: 250.0,
+                                          child: FadeInAnimation(
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                launch(song.link!);
+                                              },
+                                              child: Column(
+                                                children: [
+                                                  SongCard(song: song),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
                                   ],
                                 ),
                               ),

@@ -782,11 +782,12 @@ class EditPlaylistView extends StatelessWidget {
                                                                   model
                                                                       .getSongContributors(
                                                                           song),
-                                                                Padding(
+                                                                Container(
+                                                                  /*
                                                                   padding: const EdgeInsets
                                                                           .symmetric(
                                                                       horizontal:
-                                                                          15),
+                                                                          15),*/
                                                                   child: SongCard(
                                                                       song:
                                                                           song),
