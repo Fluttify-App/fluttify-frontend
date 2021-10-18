@@ -38,10 +38,14 @@ class EditPlaylistViewModel extends BaseViewModel {
   String lastContributor = "";
   Timer? _timer;
 
+  double? notchPadding;
+
   ScrollController? scrollController = ScrollController();
   bool? showHeader = false;
 
-  EditPlaylistViewModel(Playlist? playlist, String? playlistId) {
+  EditPlaylistViewModel(
+      Playlist? playlist, String? playlistId, double? notchPadding) {
+    this.notchPadding = notchPadding;
     if (playlist != null) {
       setPlaylist(playlist);
     }
@@ -68,7 +72,7 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   void scrollListener() {
-    if (this.scrollController!.offset > 304) {
+    if (this.scrollController!.offset > 324 - this.notchPadding!) {
       this.showHeader = true;
       notifyListeners();
     } else {
