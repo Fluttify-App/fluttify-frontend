@@ -72,7 +72,7 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   void scrollListener() {
-    if (this.scrollController!.offset > 324 - this.notchPadding!) {
+    if (this.scrollController!.offset > 324 - (this.notchPadding ?? 24)) {
       this.showHeader = true;
       notifyListeners();
     } else {
