@@ -840,10 +840,7 @@ class EditPlaylistView extends StatelessWidget {
                       ),
                       if (!model.playlist!.canEdit)
                         PlaylistSliverHeaderButtons(
-                            top: 45 +
-                                (MediaQuery.of(context).padding.top > 0
-                                    ? MediaQuery.of(context).padding.top
-                                    : 24),
+                            top: 45 + MediaQuery.of(context).padding.top,
                             model: model,
                             show: model.showHeader),
                     ]),
