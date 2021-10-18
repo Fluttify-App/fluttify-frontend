@@ -9,6 +9,8 @@ class FluttifyButton extends StatelessWidget {
   final Icon? icon;
   final Color? color;
   final TextStyle? textStyle;
+  final EdgeInsets? padding;
+  final BorderSide? border;
 
   FluttifyButton(
       {required this.onPressed,
@@ -17,23 +19,31 @@ class FluttifyButton extends StatelessWidget {
       this.width,
       this.icon,
       this.color,
-      this.textStyle});
+      this.textStyle,
+      this.padding,
+      this.border});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: padding ?? const EdgeInsets.all(10),
       child: Container(
         child: SizedBox(
           height: height ?? 45,
           width: width ?? MediaQuery.of(context).size.width - 100,
           child: TextButton(
               style: TextButton.styleFrom(
-                backgroundColor: color ?? Theme.of(context).accentColor,
-                shape: StadiumBorder(
-                  side: BorderSide(color: Colors.transparent),
-                ),
-              ),
+                  backgroundColor: color ?? Theme.of(context).primaryColor,
+                  //shape: StadiumBorder(
+                  //  side: BorderSide(color: Colors.transparent),
+                  //),
+                  shape: border != null
+                      ? RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: border!)
+                      : RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        )),
               child: this.icon == null
                   ? Text(text!,
                       style: textStyle ?? Theme.of(context).textTheme.button)

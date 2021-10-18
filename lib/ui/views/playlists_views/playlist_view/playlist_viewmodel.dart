@@ -11,16 +11,17 @@ import 'package:fluttify/ui/views/playlists_views/add_playlist_views/add_playlis
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nfc_in_flutter/nfc_in_flutter.dart';
+import 'package:fluttify/ui/views/qrCodeImageReader_view.dart';
 import 'package:stacked/stacked.dart';
+import 'package:share/share.dart';
 
 class PlaylistViewModel extends BaseViewModel {
   final FluttifyPlaylistService playlistService =
       locator<FluttifyPlaylistService>();
-  final PlaylistNavigationService _navigationService =
+  final PlaylistNavigationService navigationService =
       locator<PlaylistNavigationService>();
   final AuthService authService = locator<AuthService>();
   final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
-
   bool isLoading = true;
 
   void refreshPlaylists() {
@@ -37,7 +38,7 @@ class PlaylistViewModel extends BaseViewModel {
   }
 
   void navigateToEditPage(Playlist playlist) {
-    _navigationService.navigateTo(
+    navigationService.navigateTo(
         '/edit-playlist', EditPlaylistView(playlist: playlist),
         withNavBar: false, callback: (value) {
       if (value != null && value == true) {
@@ -47,7 +48,7 @@ class PlaylistViewModel extends BaseViewModel {
   }
 
   void navigateToAddPlaylist() {
-    _navigationService.navigateTo('/add-playlist', AddPlaylistView(),
+    navigationService.navigateTo('/add-playlist', AddPlaylistView(),
         withNavBar: false, callback: (value) {
       if (value != null) {
         refreshPlaylists();
@@ -56,9 +57,9 @@ class PlaylistViewModel extends BaseViewModel {
   }
 
   void dismissPlaylist(Playlist playlist, context) {
-    playlistService.removeFluttifyPlaylist(playlist).then((value) {
+    playlistService.removeFluttifyPlaylist(playlist).then((playlist) {
       var snackbarText;
-      if (value) {
+      if (playlist != null) {
         snackbarText =
             Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
       } else {
@@ -87,6 +88,12 @@ class PlaylistViewModel extends BaseViewModel {
   }
 
   Future<void> pressShare(String playlistId) async {
-    _dynamicLinkService.createFirstPostLink(playlistId);
+    String link = await _dynamicLinkService.createFirstPostLink(playlistId);
+    Share.share(link);
+  }
+
+  void navigateToQrCodeImageReader() {
+    navigationService.navigateTo('/qrCodeReader', QrCodeImageReaderView(),
+        withNavBar: false);
   }
 }

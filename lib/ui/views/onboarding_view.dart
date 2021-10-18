@@ -21,7 +21,7 @@ class _OnboardingPageState extends State<OnboardingView> {
     );
   }
 
-  Widget _buildImage(String assetName, [double width = 250]) {
+  Widget _buildImage(String assetName, [double width = 150]) {
     return Image.asset('assets/$assetName', width: width);
   }
 
@@ -29,8 +29,8 @@ class _OnboardingPageState extends State<OnboardingView> {
   Widget build(BuildContext context) {
     const startPageDecoration = const PageDecoration(
       titleTextStyle: TextStyle(
-          color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.w700),
-      bodyTextStyle: TextStyle(color: Colors.black, fontSize: 19.0),
+          color: Colors.black, fontSize: 22.0, fontWeight: FontWeight.w700),
+      bodyTextStyle: TextStyle(color: Colors.black, fontSize: 16.0),
       descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       //  titlePadding: EdgeInsets.fromLTRB(32, 132, 32, 32),
       pageColor: Colors.white,
@@ -41,24 +41,11 @@ class _OnboardingPageState extends State<OnboardingView> {
       color: Colors.white,
       key: introKey,
       globalBackgroundColor: Colors.white,
-/*
-      globalFooter: SizedBox(
-        width: double.infinity,
-        height: 60,
-        child: ElevatedButton(
-          child: const Text(
-            'Let\s go right away!',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-          ),
-          onPressed: () => _onIntroEnd(context),
-        ),
-      ),
-      */
       pages: [
         PageViewModel(
           title: AppLocalizations.of(context)!.welcome,
           body: AppLocalizations.of(context)!.onboardingcontent1,
-          image: _buildImage('images/FluttifyRed.png'),
+          image: _buildImage('images/FluttifyWhiteBlack.png'),
           decoration: startPageDecoration,
         ),
         PageViewModel(
@@ -100,8 +87,8 @@ class _OnboardingPageState extends State<OnboardingView> {
       controlsPadding: kIsWeb
           ? const EdgeInsets.all(12.0)
           : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
-      dotsDecorator: const DotsDecorator(
-        activeColor: Color.fromARGB(255, 203, 45, 62),
+      dotsDecorator: DotsDecorator(
+        activeColor: Theme.of(context).primaryColor,
         size: Size(10.0, 10.0),
         color: Colors.white,
         activeSize: Size(22.0, 10.0),

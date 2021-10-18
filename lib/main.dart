@@ -29,11 +29,17 @@ Future main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   bool? darkMode = prefs.getBool('darkMode') ?? false;
+  int? color = prefs.getInt('theme') ?? 0xffCB2D3E;
   List<String?> language = <String?>[prefs.getString('locale')];
+
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Color(color),
+  ));
+
   runApp(Phoenix(
     child: MultiProvider(providers: [
       ChangeNotifierProvider(
-        create: (context) => ThemeService(darkMode),
+        create: (context) => ThemeService(darkMode, color: Color(color)),
       ),
       ChangeNotifierProvider(
           create: (context) => LocaleService(language[0] == null
@@ -107,10 +113,14 @@ class App extends StatelessWidget {
                 },
               );
             } else {
-              return MaterialApp(
-                supportedLocales: L10n.all,
-                home: SplashScreenView(),
-              );
+              return Consumer<ThemeService>(
+                  builder: (context, notifire, child) {
+                return MaterialApp(
+                  supportedLocales: L10n.all,
+                  theme: notifire.getTheme(),
+                  home: SplashScreenView(),
+                );
+              });
             }
           },
         );

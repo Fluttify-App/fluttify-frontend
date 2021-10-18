@@ -10,13 +10,11 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 class AuthService extends ChangeNotifier {
   Preference<String>? token;
-  final String baseUrl = "fluttify.herokuapp.com";
+  final String baseUrl = "fluttify.netpy.de";
   Map<String, String> headers = {"Content-Type": "application/json"};
   late User currentUser = User.empty();
 
   List<Object> get props => [headers];
-
-  AuthService() {}
 
   Future<bool> initializeAuthentication() async {
     // initialize the authorization header
@@ -62,7 +60,6 @@ class AuthService extends ChangeNotifier {
         await http.get(Uri.https(baseUrl, 'fluttify/user'), headers: headers);
     if (response.statusCode == 200) {
       currentUser = new User.fromJson(json.decode(response.body));
-      print("Logged In");
       return true;
     } else {
       print("Logged In Failed");

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:fluttify/app/locator.dart';
-import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/models/song.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,7 +8,7 @@ import 'auth_service.dart';
 
 class FluttifyDiscoverService {
   final AuthService _apiService = locator<AuthService>();
-  final String baseUrl = "fluttify.herokuapp.com";
+  final String baseUrl = "fluttify.netpy.de";
 
   List<Song> discoverSongs = [];
 

@@ -2,13 +2,14 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/services/navigation_service.dart';
 import 'package:fluttify/ui/views/playlists_views/edit_playlist_views/edit_playlist_view.dart';
-import 'package:share/share.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class DynamicLinkService {
   final PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
+
+  String? link;
 
   Future handleDynamicLinks() async {
     if (!kIsWeb) {
@@ -62,7 +63,7 @@ class DynamicLinkService {
     }
   }
 
-  Future<void> createFirstPostLink(String playlistID) async {
+  Future<String> createFirstPostLink(String playlistID) async {
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://fluttify.page.link',
       link: Uri.parse('https://www.fluttify.com/playlist?id=$playlistID'),
@@ -76,6 +77,11 @@ class DynamicLinkService {
       ),
     );
     final Uri dynamicUrl = await parameters.buildUrl();
-    Share.share(dynamicUrl.toString());
+    //Share.share(dynamicUrl.toString());
+    return dynamicUrl.toString();
+  }
+
+  void createInviteLink(String playlistId) async {
+    link = await createFirstPostLink(playlistId);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -16,7 +17,7 @@ abstract class FluttifyNavigationService {
       navigatorKey.currentContext!,
       screen: view,
       withNavBar: withNavBar, // OPTIONAL VALUE. True by default.
-      pageTransitionAnimation: PageTransitionAnimation.slideUp,
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
     ).then((value) => {callback(value)});
   }
 
@@ -45,19 +46,23 @@ abstract class FluttifyNavigationService {
 class PlaylistNavigationService extends FluttifyNavigationService {
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  final GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey();
 }
 
 class CommunityNavigationService extends FluttifyNavigationService {
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  final GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey();
 }
 
 class DiscoverNavigationService extends FluttifyNavigationService {
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  final GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey();
 }
 
 class SettingsNavigationService extends FluttifyNavigationService {
   @override
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }
+

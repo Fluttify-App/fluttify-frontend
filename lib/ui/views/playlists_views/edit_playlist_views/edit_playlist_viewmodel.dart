@@ -8,6 +8,8 @@ import 'package:fluttify/models/playlist.dart';
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
+import 'package:fluttify/services/navigation_service.dart';
+import 'package:fluttify/ui/views/qrCodeImage_view.dart';
 import 'package:fluttify/ui/widgets/multi_select_bottom_sheet_field/multi_select_item.dart';
 import 'package:nfc_in_flutter/nfc_in_flutter.dart';
 import 'package:stacked/stacked.dart';
@@ -15,6 +17,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:share/share.dart';
 
 class EditPlaylistViewModel extends BaseViewModel {
   TextEditingController descriptionController = TextEditingController();
@@ -22,6 +25,8 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   final DynamicLinkService _dynamicLinkService = locator<DynamicLinkService>();
   final AuthService authService = locator<AuthService>();
+  final PlaylistNavigationService _editPlaylistNavigationService =
+      locator<PlaylistNavigationService>();
 
   final FluttifyPlaylistService fluttifyPlaylistService =
       locator<FluttifyPlaylistService>();
@@ -32,11 +37,14 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   Playlist? playlist;
 
-  Timer? _timer;
-
   bool isChanged = false;
+  bool? communityview = false;
 
   String lastContributor = "";
+  Timer? _timer;
+
+  ScrollController? scrollController = ScrollController();
+  bool? showHeader = false;
 
   EditPlaylistViewModel(Playlist? playlist, String? playlistId) {
     if (playlist != null) {
@@ -46,18 +54,32 @@ class EditPlaylistViewModel extends BaseViewModel {
         .map((genre) => MultiSelectItem<dynamic>(genre, genre))
         .toList();
     playlistGenre!.insert(0, MultiSelectItem('All Genres', 'All Genres'));
+    nameController.addListener(notifyListeners);
+
     // Timer for updating of playlist
     _timer = new Timer.periodic(
         Duration(seconds: 15),
         (Timer timer) => {
               if (this.playlist!.updating!) {getPlaylist(this.playlist!.dbID!)}
             });
+
+    this.scrollController!.addListener(this.scrollListener);
   }
 
   @override
   void dispose() {
-    _timer!.cancel();
+    //_timer!.cancel();
     super.dispose();
+  }
+
+  void scrollListener() {
+    if (this.scrollController!.offset > 304) {
+      this.showHeader = true;
+      notifyListeners();
+    } else {
+      this.showHeader = false;
+      notifyListeners();
+    }
   }
 
   void setPlaylist(Playlist playlist) {
@@ -78,7 +100,6 @@ class EditPlaylistViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  // TODO: 'All Genres should be visible in view without adding it to playlist.genres'
   void save(BuildContext context) {
     playlist!.description = descriptionController.text;
     playlist!.name = nameController.text;
@@ -131,17 +152,19 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   Future<void> pressShare(String playlistId) async {
-    _dynamicLinkService.createFirstPostLink(playlistId);
+    String link = await _dynamicLinkService.createFirstPostLink(playlistId);
+    Share.share(link);
   }
 
   Future<void> leavePlaylist(BuildContext context) async {
     fluttifyPlaylistService
         .removeFluttifyPlaylist(this.playlist!)
-        .then((value) {
+        .then((playlist) {
       var snackbarText;
-      if (value) {
+      if (playlist != null) {
         snackbarText =
             Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
+        this.setPlaylist(playlist);
       } else {
         snackbarText =
             Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);
@@ -165,7 +188,46 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((playlistUpdate) {
       Navigator.of(context).pop(true);
       final snackBar = SnackBar(
+        backgroundColor: Theme.of(context).indicatorColor,
         content: Text(AppLocalizations.of(context)!.joinedPlaylistSnackBar),
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 1500),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      this.setPlaylist(playlistUpdate);
+    });
+  }
+
+  Future<void> likePlaylist(BuildContext context) async {
+    fluttifyPlaylistService
+        .likeFluttifyPlaylist(this.playlist!)
+        .then((playlistUpdate) {
+      this.isChanged = true;
+      setPlaylist(playlistUpdate);
+      final snackBar = SnackBar(
+        backgroundColor: Theme.of(context).indicatorColor,
+        content: Text("Liked Playlist"),
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 1500),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
+  }
+
+  Future<void> unlikePlaylist(BuildContext context) async {
+    fluttifyPlaylistService
+        .unlikeFluttifyPlaylist(this.playlist!)
+        .then((playlistUpdate) {
+      this.isChanged = true;
+      setPlaylist(playlistUpdate);
+      final snackBar = SnackBar(
+        content: Text("Unliked Playlist"),
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1500),
         shape: RoundedRectangleBorder(
@@ -182,6 +244,7 @@ class EditPlaylistViewModel extends BaseViewModel {
         .then((playlistUpdate) {
       setPlaylist(playlistUpdate);
       final snackBar = SnackBar(
+        backgroundColor: Theme.of(context).indicatorColor,
         content: Text(AppLocalizations.of(context)!.playlistUpdateSnackBar),
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1500),
@@ -195,6 +258,12 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   void navigateBack(BuildContext context) {
     Navigator.of(context, rootNavigator: true).pop(this.isChanged);
+  }
+
+  void navigateToQrCodeImageView(Playlist playlist) {
+    _editPlaylistNavigationService.navigateTo(
+        '/qrCodeImageView', QrCodeImageView(playlist: playlist),
+        withNavBar: false);
   }
 
   String getCreator() {
@@ -218,14 +287,10 @@ class EditPlaylistViewModel extends BaseViewModel {
       lastContributor = playlist!.currentTracks![song.uri];
       dynamic contributorName = playlist!.displayContributers!
           .firstWhere((element) => element['id'] == contributor);
-      return Row(children: <Widget>[
-        Expanded(child: Divider()),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(contributorName['name']),
-        ),
-        Expanded(child: Divider()),
-      ]);
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(contributorName['name']),
+      );
     } else {
       return Container();
     }
@@ -239,5 +304,9 @@ class EditPlaylistViewModel extends BaseViewModel {
     stream.listen((NDEFTag tag) {
       print("only wrote to one tag!");
     });
+  }
+
+  void createQrCode() async {
+    _dynamicLinkService.createInviteLink(playlist!.id.toString());
   }
 }

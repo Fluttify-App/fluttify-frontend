@@ -6,8 +6,13 @@
     "community": "Community",
     "discover": "Songs",
     "discoverdesc": "Discover",
-    "user": "User",
+    "settings": "Settings",
 
+    "privacy": "Privacy Policy",
+    "deleteprofile": "Delete Profile", 
+    "licence": "Licences",
+    "thirdpartylicences": "Third Party Licences",
+    
     "signin": "Sign In With Spotify",
     "created": "Created",
     "joined": "Joined",
@@ -19,9 +24,20 @@
     "genres": "Genres",
     "selectedgenres": "Select Genres",
     "allgenres": "All Genres",
+    "advanced": "Advanced Settings",
+    "songcountsettings": "Songs per Contributor",
+
+    "toptracksshort": "Top Tracks - Short Term",
+    "toptracksmid": "Top Tracks - Mid Term",
+    "toptrackslong": "Top Tracks - Long Term",
+    "libtracks": "Recently liked Songs",
 
     "liked": "Following",
     "morecommunity": "More from Community",
+
+    "nothinghere": "Let's go!",
+    "createplaylists1": "Press",
+    "createplaylists2": "to create your first playlist",
 
     "discoversongs": "Topsongs from other users",
 
@@ -29,23 +45,27 @@
     "followers": "Followers",
     "darkmode": "Dark Mode",
     "language": "Language",
+    "color": "Theme",
     "logout": "Logout",
     
-    "addplaylist": "Add Playlist",
+    "addplaylist": "",
     "description": "Description",
     "currentsongs": "Current Songs",
     "lastupdate": "Last Update: ",
     "createdby": "Created by: ",
     "playlistupdating": "Playlist updating...",
 
-    "leaveplaylist": "Leave Playlist",
     "writenfc": "Create NFC-Tag",
+    "inviteplaylist": "Invite",
+    "inviteLink": "Link",
+    "invitepopup": "How do you want to share this playlist?",
+    "leaveplaylist": "Leave",
     "joinplaylist": "Join Playlist",
     "joinedPlaylistSnackBar": "Joined Playlist",
     "removePlaylistSnackBar": "Playlist removed from library",
     "couldNotRemoveSnackBar": "Could not remove playlist",
-    "likeplaylist": "Follow Playlist",
-    "unlikeplaylist": "Unfollow Playlist",
+    "likeplaylist": "Follow",
+    "unlikeplaylist": "Unfollow",
 
     "removeuser": "Remove User",
     "removeusercheck": "Would you like to remove the User: ",
@@ -60,9 +80,9 @@
     "yes": "Yes",
     "cancel": "Cancel",
     "save": "Save",
-    "keepAllTracks": "Keep all Tracks",
-    "infoDialog": "Songs will stay in your playlist, so that you can listen to old bangers from you and your friends.",
-    "editKeepAllTracks": "You can only do that when you're in edit mode",
+    "keepAllTracks": "Keep Tracks",
+    "infoDialog": "Keep Tracks: The songs will not be replaced after a playlist update. The number of songs will grow with each update.",
+    "editKeepAllTracks": "Please switch to edit-mode if you want to change the settings",
 
     "advancedSettings": "Advanced Settings",
 
@@ -76,8 +96,15 @@
     "onboardingcontent3": "Press the share button on a playlist to invite your friends. You can share via WhatsApp or other messengers. \n\n Your friends can join your playlist by opening the Fluttify invitation link.",
 
     "onboardingtitle4": "Fluttify Algorithm",
-    "onboardingcontent4": "Fluttify uses the Spotify API to automatically select songs that will get added to your playlist. It scans the recently-liked and frequently-listened songs of each playlist-contributor and adds the songs that match with the specified genre. \n Additionally you can decide if these songs will stay in your playlist or get replaced after the next refresh.",
+    "onboardingcontent4": "Fluttify uses the Spotify API to automatically collect songs for your playlist. It adds the recently-liked and frequently-listened songs of each playlist-contributor that match with the specified genre. \n You can decide if these songs will stay in your playlist or get replaced after the next refresh.",
 
     "onboardingtitle5": "Lean back & \n enjoy your favorites",
-    "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. \n Your playlists will always be up-to-date! \n\n Have Fun using Fluttify!"
+    "onboardingcontent5": "Fluttify refreshes your playlist automatically every 24 hours. Your playlists will always be up-to-date! \n\n Have Fun using Fluttify!",
+
+    "qrCodeScanner": "Qr-Code Scanner",
+    "qrLaunchUrlWarning": "WARNING: Url about to launch",
+    "qrLaunchUrlQuestion": "Would you like to follow this URL: ",
+    "qrCodePlaylistSuccess": "Successfully scanned playlist id",
+    "qrCodePlaylistQuestion": "Do you wish to proceed to the following playlist with id: ",
+    "qrCodeGenerate": "QR-Code"
 }

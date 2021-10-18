@@ -8,7 +8,7 @@ import 'auth_service.dart';
 
 class FluttifyPlaylistService {
   final AuthService _apiService = locator<AuthService>();
-  final String baseUrl = "fluttify.herokuapp.com";
+  final String baseUrl = "fluttify.netpy.de";
 
   List<Playlist> myplaylists = [];
   List<Playlist> communityplaylists = [];
@@ -96,16 +96,17 @@ class FluttifyPlaylistService {
     }
   }
 
-  Future<bool> removeFluttifyPlaylist(Playlist playlist) async {
+  Future<Playlist> removeFluttifyPlaylist(Playlist playlist) async {
     var payload = {};
     payload['id'] = playlist.dbID;
     final response = await http.delete(Uri.https(baseUrl, 'fluttify/playlist'),
         headers: _apiService.headers, body: jsonEncode(payload));
     if (response.statusCode == 200) {
-      return true;
+      var playlist = Playlist.fromJson(json.decode(response.body));
+      return playlist;
     } else {
       print("Something went wrong");
-      return false;
+      return Playlist();
     }
   }
 

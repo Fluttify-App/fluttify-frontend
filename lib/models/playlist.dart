@@ -22,6 +22,10 @@ class Playlist {
   bool? updating;
   dynamic keepAllTracks;
   dynamic currentTracks;
+  int? countToptracksLong;
+  int? countToptracksMedium;
+  int? countToptracksShort;
+  int? countLibtracks;
 
   Playlist(
       {this.dbID, //Database ID
@@ -42,7 +46,11 @@ class Playlist {
       this.lastUpdate,
       this.updating,
       this.keepAllTracks = false,
-      this.currentTracks});
+      this.currentTracks,
+      this.countToptracksLong = 0,
+      this.countToptracksMedium = 3,
+      this.countToptracksShort = 5,
+      this.countLibtracks = 5});
 
   List<Object> get props => [
         dbID!,
@@ -62,7 +70,11 @@ class Playlist {
         likes!,
         lastUpdate!,
         updating!,
-        currentTracks
+        currentTracks,
+        countToptracksLong!,
+        countToptracksMedium!,
+        countToptracksShort!,
+        countLibtracks!
       ];
 
   factory Playlist.fromJson(Map<String, dynamic> parsedJson) {
@@ -73,30 +85,34 @@ class Playlist {
           .toList();
     }
     return Playlist(
-        dbID: parsedJson['_id'],
-        id: parsedJson['id'],
-        name: parsedJson['name'],
-        creator: parsedJson['creator'],
-        description: parsedJson['description'],
-        contributers: parsedJson['contributers'],
-        displayContributers: parsedJson['display_contributers'],
-        allgenres: parsedJson['allgenres'],
-        genres: parsedJson['genres'],
-        href: parsedJson['href'],
-        canEdit: false,
-        numberOfSongs: parsedJson['totalTracks'],
-        songs: playlistSongs,
-        likes: parsedJson['likes'],
-        lastUpdate: parsedJson['lastUpdate'] != null
-            ? DateFormat('yyyy-MM-ddThh:mm:sssZ')
-                .parse(parsedJson['lastUpdate'])
-            : null,
-        image: parsedJson['images'].length != 0
-            ? parsedJson['images'][0]['url']
-            : null,
-        updating: parsedJson['updating'],
-        keepAllTracks: parsedJson['keepAllTracks'],
-        currentTracks: parsedJson['currentTracks']);
+      dbID: parsedJson['_id'],
+      id: parsedJson['id'],
+      name: parsedJson['name'],
+      creator: parsedJson['creator'],
+      description: parsedJson['description'],
+      contributers: parsedJson['contributers'],
+      displayContributers: parsedJson['display_contributers'],
+      allgenres: parsedJson['allgenres'],
+      genres: parsedJson['genres'],
+      href: parsedJson['href'],
+      canEdit: false,
+      numberOfSongs: parsedJson['totalTracks'],
+      songs: playlistSongs,
+      likes: parsedJson['likes'],
+      lastUpdate: parsedJson['lastUpdate'] != null
+          ? DateFormat('yyyy-MM-ddThh:mm:sssZ').parse(parsedJson['lastUpdate'])
+          : null,
+      image: parsedJson['images'].length != 0
+          ? parsedJson['images'][0]['url']
+          : null,
+      updating: parsedJson['updating'],
+      keepAllTracks: parsedJson['keepAllTracks'],
+      currentTracks: parsedJson['currentTracks'],
+      countToptracksLong: parsedJson['toptracks_long'] ?? 0,
+      countToptracksMedium: parsedJson['toptracks_medium'],
+      countToptracksShort: parsedJson['toptracks_short'],
+      countLibtracks: parsedJson['libtracks'],
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -108,7 +124,11 @@ class Playlist {
       "genres": this.genres,
       "allgenres": this.allgenres,
       "contributers": this.contributers,
-      "keepAllTracks": this.keepAllTracks
+      "keepAllTracks": this.keepAllTracks,
+      "toptracks_short": this.countToptracksShort,
+      "toptracks_medium": this.countToptracksMedium,
+      "toptracks_long": this.countToptracksLong,
+      "libtracks": this.countLibtracks
     };
   }
 }

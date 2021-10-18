@@ -12,12 +12,12 @@ class SpotifySignInView extends StatelessWidget {
         builder: (BuildContext context, SpotifySignInViewModel model,
                 Widget? child) =>
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 50),
+              padding: const EdgeInsets.only(top: 80, bottom: 20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: <Color>[fluttify_gradient_1, fluttify_gradient_2],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[fluttify_gradient_2, fluttify_gradient_1],
                 ),
               ),
               child: Scaffold(
@@ -25,56 +25,79 @@ class SpotifySignInView extends StatelessWidget {
                 extendBodyBehindAppBar: true,
                 body: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Expanded(
-                        flex: 8,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(AppLocalizations.of(context)!.title,
-                                  style: TextStyle(
-                                      fontFamily: 'Kellvin',
-                                      fontSize: 80,
-                                      color: Color(0xff1a1a1a))),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 22.0),
-                                child: Text(
-                                    AppLocalizations.of(context)!.subtitle,
-                                    style: TextStyle(
-                                        fontFamily: 'Kellvin',
-                                        fontSize: 22,
-                                        color: Color(0xff1a1a1a))),
-                              ),
-                              Image.asset(
-                                'assets/images/FluttifyRed.png',
-                                width: 220.0,
-                              ),
-                            ],
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 22.0),
+                            child: Text(AppLocalizations.of(context)!.subtitle,
+                                style: TextStyle(
+                                    fontFamily: 'Kellvin',
+                                    fontSize: 22,
+                                    color: Color(0xff1a1a1a))),
                           ),
-                        )),
-                    Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Color(0xff1a1a1a),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(15),
-                              )),
-                          child: Center(
-                            child: FluttifyButton(
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: Text(AppLocalizations.of(context)!.title,
+                                style: TextStyle(
+                                    fontFamily: 'Kellvin',
+                                    fontSize: 80,
+                                    color: Color(0xff1a1a1a))),
+                          ),
+                          Image.asset(
+                            'assets/images/FluttifyRed.png',
+                            width: 200.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Center(
+                        child: Column(
+                          children: [
+                            FluttifyButton(
                                 width: 300,
+                                color: Color(0xff1a1a1a),
                                 height: 50,
                                 onPressed: () => model.handleSignIn(),
                                 text: AppLocalizations.of(context)!
                                     .signin, //"Sign In With Spotify",
                                 textStyle:
                                     Theme.of(context).textTheme.headline3),
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "I have read and accepted the ",
+                                    style: TextStyle(
+                                        fontSize: 10, color: Colors.white),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      model.navigateToPrivacy();
+                                    },
+                                    style: TextButton.styleFrom(
+                                        padding: EdgeInsets.zero),
+                                    child: Text(
+                                      "terms of use and privacy policy",
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.white,
+                                          decoration: TextDecoration.underline),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ),

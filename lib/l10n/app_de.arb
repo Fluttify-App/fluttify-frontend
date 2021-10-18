@@ -6,7 +6,12 @@
     "community": "Community",
     "discover": "Songs",
     "discoverdesc": "Entdecken",
-    "user": "Benutzer",
+    "settings": "Einstellungen",
+
+    "privacy" : "Datenschutz",
+    "deleteprofile": "Profil löschen",
+    "licence": "Lizenzen",
+    "thirdpartylicences": "Drittanbieter Lizenzen",
 
     "signin": "Anmelden mit Spotify",
     "created": "Erstellt",
@@ -19,9 +24,20 @@
     "genres": "Genre",
     "selectedgenres": "Genres auswählen",
     "allgenres": "Alle Genres",
+    "advanced": "Erweiterte Einstellungen",
+    "songcountsettings": "Songs pro Teilnehmer",
+
+    "toptracksshort": "Top Tracks - Kurz",
+    "toptracksmid": "Top Tracks - Mittel",
+    "toptrackslong": "Top Tracks - Lang",
+    "libtracks": "Zuletzt gespeicherte Songs",
 
     "liked": "Playlists, denen du folgst",
     "morecommunity": "Mehr von der Community",
+
+    "nothinghere": "Los gehts!",
+    "createplaylists1": "Drücke",
+    "createplaylists2": "um eine Playlist zu erstellen",
 
     "discoversongs": "Topsongs anderer Nutzer",
     
@@ -29,23 +45,27 @@
     "followers": "Followers",
     "darkmode": "Dunkles Design",
     "language": "Sprache",
+    "color": "Theme",
     "logout": "Abmelden",
 
-    "addplaylist": "Playlist erstellen",
+    "addplaylist": "",
     "description": "Beschreibung",
     "currentsongs": "Aktuelle Songs",
     "lastupdate": "Letztes Update: ",
     "createdby": "Erstellt von: ",
     "playlistupdating": "Playlist wird aktualisiert...",
 
-    "leaveplaylist": "Playlist verlassen",
     "writenfc": "NFC Tag erstellen",
+    "inviteplaylist": "Einladen",
+    "inviteLink": "Link",
+    "invitepopup": "Wie willst du diese Playlist teilen?",
+    "leaveplaylist": "Verlassen",
     "joinplaylist": "Playlist beitreten",
     "joinedPlaylistSnackBar": "Playlist beigetreten",
     "removePlaylistSnackBar": "Playlist aus der Bibliothek entfernt",
     "couldNotRemoveSnackBar": "Playlist konnte nicht entfernt werden",
-    "likeplaylist": "Playlist folgen",
-    "unlikeplaylist": "Playlist entfolgen",
+    "likeplaylist": "Folgen",
+    "unlikeplaylist": "Entfolgen",
 
     "removeuser": "Benutzer entfernen",
     "removeusercheck": "Willst du diesen Benutzer entfernen: ",
@@ -61,8 +81,8 @@
     "cancel": "Abbrechen",
     "save": "Speichern",
     "keepAllTracks": "Behalte alle Songs",
-    "infoDialog": "Songs bleiben in der Playlist. So kannst du zu einem späteren Zeitpunkt nochmal die Top Songs von dir und deinen Freunden hören.",
-    "editKeepAllTracks": "Du kannst dies nur tun wenn du dich im Edit Modus befindest",
+    "infoDialog": "Behalte alle Songs: Alle Songs bleiben auch nach einem Playlist-Update in der Liste erhalten. Die Playlist wird mit jedem Update wachsen.",
+    "editKeepAllTracks": "Du kannst diese Playlist nur anpassen, wenn du dich im Edit-Modus befindest",
 
     "advancedSettings": "Erweiterte Einstellungen",
 
@@ -73,11 +93,18 @@
     "onboardingcontent2": "Wähle einen Namen und optional eine Beschreibung. \n Du entscheidest welche Songs in die Playlist kommen anhand der Genres.\n\n Die Playlist wird automatisch deiner Spotify Bibliothek hinzugefügt.",
 
     "onboardingtitle3": "Lade deine Freunde ein",
-    "onboardingcontent3": "Drück auf den Teilen Button um deine Freunde einzuladen. Alle sozialen Medien stehen dir zur Verfügung. \n\n Deine Freunde können deiner Playlist über den Einladungslink beitreten.",
+    "onboardingcontent3": "Drücke auf den Share-Button um deine Freunde einzuladen. Alle sozialen Medien stehen dir zur Verfügung. \n\n Deine Freunde können deiner Playlist über den Einladungslink beitreten.",
 
     "onboardingtitle4": "Fluttify Algorithmus",
-    "onboardingcontent4": "Fluttify benutzt die Spotify API um Songs auszuwählen, die der Playlist hinzugefügt werden. Es werden die zuletzt gespeicherten und häufig gehörten Songs ausgewählt und der Playlist hinzugefügt. Du entscheidest, ob alle Songs nach dem nächsten Aktualisieren in der Playlist bleiben sollen oder überschrieben werden.",
+    "onboardingcontent4": "Fluttify benutzt die Spotify API um Songs auszuwählen, die der Playlist hinzugefügt werden. Es werden die zuletzt gespeicherten und häufig gehörten Songs aller Teilnehmer ausgewählt und der Playlist hinzugefügt. Du entscheidest, ob alle Songs nach dem nächsten Aktualisieren in der Playlist bleiben oder überschrieben werden.",
 
     "onboardingtitle5": "Lehn dich zurück & \n genieße deine Lieblingssongs",
-    "onboardingcontent5": "Fluttify aktualisiert deine Playlists alle 24 Stunden automatisch. Deine Playlist wird immer auf dem neusten Stand sein! \n\n Viel Spaß mit Fluttify!"
+    "onboardingcontent5": "Fluttify aktualisiert deine Playlists alle 24 Stunden automatisch. Deine Playlist wird immer auf dem neusten Stand sein! \n\n Viel Spaß mit Fluttify!",
+
+    "qrCodeScanner": "Qr-Code Leser",
+    "qrLaunchUrlWarning": "WARNUNG: URL wurde gefunden",
+    "qrLaunchUrlQuestion": "Willst du dieser URL folgen: ",
+    "qrCodePlaylistSuccess": "Playlist id Scan erfolgreich",
+    "qrCodePlaylistQuestion": "Willst du zu der Playlist mit der ID: ",
+    "qrCodeGenerate": "QR-Code"
 }
