@@ -7,14 +7,18 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
   final double? expandedHeight;
   final EditPlaylistViewModel? model;
+  final double? notchPadding;
 
   const PlaylistSliverAppBar(
-      {@required this.expandedHeight, @required this.model});
+      {@required this.expandedHeight,
+      @required this.model,
+      @required this.notchPadding});
 
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     final size = 60;
+    print(MediaQuery.of(context).padding.top);
     return Stack(
       fit: StackFit.expand,
       overflow: Overflow.visible,
@@ -63,7 +67,7 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
   Widget buildOverlayContainer(double shrinkOffset, BuildContext context) =>
       Positioned(
         right: 10,
-        top: 60,
+        top: 10 + this.notchPadding!,
         left: 10,
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -160,7 +164,7 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
       !model!.playlist!.canEdit ? expandedHeight! : minExtent;
 
   @override
-  double get minExtent => kToolbarHeight + 55; // 56
+  double get minExtent => kToolbarHeight + this.notchPadding! + 5; // 56
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;

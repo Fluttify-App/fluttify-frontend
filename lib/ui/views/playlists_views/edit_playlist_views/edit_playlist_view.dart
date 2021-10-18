@@ -121,7 +121,10 @@ class EditPlaylistView extends StatelessWidget {
                         slivers: [
                           SliverPersistentHeader(
                               delegate: PlaylistSliverAppBar(
-                                  expandedHeight: 400, model: model),
+                                  notchPadding:
+                                      MediaQuery.of(context).padding.top,
+                                  expandedHeight: 400,
+                                  model: model),
                               pinned: true),
                           SliverToBoxAdapter(
                             child: Container(
@@ -837,7 +840,9 @@ class EditPlaylistView extends StatelessWidget {
                       ),
                       if (!model.playlist!.canEdit)
                         PlaylistSliverHeaderButtons(
-                            top: 95, model: model, show: model.showHeader),
+                            top: 45 + MediaQuery.of(context).padding.top,
+                            model: model,
+                            show: model.showHeader),
                     ]),
                   )
                 : Scaffold(
@@ -847,7 +852,8 @@ class EditPlaylistView extends StatelessWidget {
                     ),
                   ),
         viewModelBuilder: () {
-          return EditPlaylistViewModel(this.playlist, this.playlistId);
+          return EditPlaylistViewModel(this.playlist, this.playlistId,
+              MediaQuery.of(context).padding.top);
         });
   }
 }
