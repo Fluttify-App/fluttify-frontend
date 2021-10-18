@@ -63,7 +63,7 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
   Widget buildOverlayContainer(double shrinkOffset, BuildContext context) =>
       Positioned(
         right: 10,
-        top: 35,
+        top: 60,
         left: 10,
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -160,7 +160,7 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
       !model!.playlist!.canEdit ? expandedHeight! : minExtent;
 
   @override
-  double get minExtent => kToolbarHeight + 30; // 56
+  double get minExtent => kToolbarHeight + 55; // 56
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;

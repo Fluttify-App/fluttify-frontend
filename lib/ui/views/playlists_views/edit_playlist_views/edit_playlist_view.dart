@@ -837,7 +837,7 @@ class EditPlaylistView extends StatelessWidget {
                       ),
                       if (!model.playlist!.canEdit)
                         PlaylistSliverHeaderButtons(
-                            top: 70, model: model, show: model.showHeader),
+                            top: 95, model: model, show: model.showHeader),
                     ]),
                   )
                 : Scaffold(

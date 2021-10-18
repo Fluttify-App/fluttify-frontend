@@ -68,7 +68,7 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   void scrollListener() {
-    if (this.scrollController!.offset > 304) {
+    if (this.scrollController!.offset > 274) {
       this.showHeader = true;
       notifyListeners();
     } else {
