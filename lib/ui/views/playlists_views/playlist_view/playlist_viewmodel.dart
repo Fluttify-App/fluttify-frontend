@@ -82,7 +82,7 @@ class PlaylistViewModel extends BaseViewModel {
   Future<void> scanPlaylistViaNFC() async {
     NDEFMessage message = await NFC.readNDEF(once: true).first;
     print("payload: ${message.payload}");
-    _navigationService.navigateTo(
+    navigationService.navigateTo(
         '/edit-playlist', EditPlaylistView(playlistId: message.payload),
         withNavBar: false);
   }

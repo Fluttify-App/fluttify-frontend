@@ -187,7 +187,7 @@ class PlaylistView extends StatelessWidget {
               padding: const EdgeInsets.only(right: 8.0),
               child: FloatingActionButton(
                 heroTag: "scan",
-                backgroundColor: Theme.of(context).accentColor,
+                backgroundColor: Theme.of(context).primaryColor,
                 foregroundColor: Colors.white,
                 onPressed: model.scanPlaylistViaNFC,
                 child: Icon(Icons.nfc),
@@ -195,7 +195,7 @@ class PlaylistView extends StatelessWidget {
             ),
             FloatingActionButton(
               heroTag: "add",
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).primaryColor,
               foregroundColor: Colors.white,
               onPressed: () {
                 model.navigateToAddPlaylist();
