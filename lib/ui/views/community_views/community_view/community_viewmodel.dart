@@ -30,7 +30,7 @@ class CommunityViewModel extends BaseViewModel {
 
   void navigateToEditPage(Playlist playlist) {
     navigationService.navigateTo('/edit-playlist',
-        EditPlaylistView(playlistId: playlist.dbID!, communityview: true),
+        EditPlaylistView(playlist: playlist, communityview: true),
         withNavBar: false, callback: (value) {
       if (value != null && value == true) {
         refreshCommunityPlaylists();

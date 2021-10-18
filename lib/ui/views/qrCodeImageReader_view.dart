@@ -24,7 +24,7 @@ class _QrCodeImageReaderView extends State<QrCodeImageReaderView> {
 
   final FluttifyPlaylistService playlistService =
       locator<FluttifyPlaylistService>();
-  final PlaylistNavigationService navigationService =
+  final PlaylistNavigationService _navigationService =
       locator<PlaylistNavigationService>();
 
   @override
@@ -125,7 +125,12 @@ class _QrCodeImageReaderView extends State<QrCodeImageReaderView> {
                     width: 80,
                     height: 35),
                 FluttifyButton(
-                    onPressed: () => _navigateToScannedPlaylist(scanData.code),
+                    onPressed: () => _navigationService.navigateTo(
+                        '/edit-playlist',
+                        EditPlaylistView(
+                          playlistId: scanData.code,
+                        ),
+                        withNavBar: false),
                     text: AppLocalizations.of(context)!.yes,
                     width: 80,
                     height: 35),
@@ -141,14 +146,5 @@ class _QrCodeImageReaderView extends State<QrCodeImageReaderView> {
   void dispose() {
     controller?.dispose();
     super.dispose();
-  }
-
-  void _navigateToScannedPlaylist(String playlistId) {
-    navigationService.navigateTo(
-        '/edit-playlist',
-        EditPlaylistView(
-          playlistId: playlistId,
-        ),
-        withNavBar: false);
   }
 }

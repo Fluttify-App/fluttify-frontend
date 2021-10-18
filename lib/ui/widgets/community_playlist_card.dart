@@ -6,9 +6,11 @@ import 'package:fluttify/ui/widgets/scrolling_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CommunityPlaylistCard extends StatelessWidget {
+  
   final CommunityViewModel? model;
   final Playlist? playlist;
-  CommunityPlaylistCard({required this.model, required this.playlist, t});
+  
+  CommunityPlaylistCard({required this.model, required this.playlist});
 
   String? getCreator() {
     String? creatorName;
@@ -26,7 +28,6 @@ class CommunityPlaylistCard extends StatelessWidget {
         onTap: () => {model!.navigateToEditPage(playlist!)},
         child: Card(
           margin: const EdgeInsets.all(0),
-
           /*
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),

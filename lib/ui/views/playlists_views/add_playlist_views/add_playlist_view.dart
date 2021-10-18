@@ -53,15 +53,13 @@ class AddPlaylistView extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 0),
                 child: Column(
                   children: [
                     // NAME
                     Container(
                       child: Card(
                         margin: const EdgeInsets.all(0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
                         child: Container(
                           padding: EdgeInsets.all(10),
                           alignment: Alignment.centerLeft,
@@ -98,8 +96,6 @@ class AddPlaylistView extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Card(
                         margin: const EdgeInsets.all(0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
                         child: Container(
                           padding: EdgeInsets.all(10),
                           alignment: Alignment.centerLeft,
@@ -129,8 +125,6 @@ class AddPlaylistView extends StatelessWidget {
                     Container(
                       child: Card(
                         margin: const EdgeInsets.all(0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
                         child: Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 12),
@@ -176,8 +170,6 @@ class AddPlaylistView extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Card(
                         margin: const EdgeInsets.all(0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
                         child: Container(
                           padding: EdgeInsets.all(7),
                           child: CheckboxListTile(
@@ -242,8 +234,6 @@ class AddPlaylistView extends StatelessWidget {
                     Container(
                         child: Card(
                       margin: const EdgeInsets.all(0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
                       child: Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 5),
