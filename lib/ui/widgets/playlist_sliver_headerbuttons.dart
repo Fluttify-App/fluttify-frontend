@@ -68,11 +68,12 @@ class PlaylistSliverHeaderButtonsState
                                     ),
                                   ),
                                   actions: <Widget>[
-                                    SliverHeaderButton(
-                                        color: Theme.of(context).cardColor,
+                                    FluttifyButton(
+                                        //color: Theme.of(context).cardColor,
                                         text: AppLocalizations.of(context)!
                                             .inviteLink,
-                                        width: 90,
+                                        width: MediaQuery.of(context).size.width - 270,
+                                        height: 35,
                                         icon: Icon(Icons.link,
                                             size: 15,
                                             color:
@@ -81,9 +82,10 @@ class PlaylistSliverHeaderButtonsState
                                           widget.model!.pressShare(
                                               widget.model!.playlist!.dbID!);
                                         }),
-                                    SliverHeaderButton(
-                                      color: Theme.of(context).cardColor,
-                                      width: 90,
+                                    FluttifyButton(
+                                      //color: Theme.of(context).cardColor,
+                                      width: MediaQuery.of(context).size.width - 270,
+                                      height: 35,
                                       text: AppLocalizations.of(context)!
                                           .qrCodeGenerate,
                                       icon: Icon(Icons.qr_code,
@@ -149,17 +151,16 @@ class PlaylistSliverHeaderButtonsState
                                             ),
                                           ),
                                           actions: <Widget>[
-                                            SliverHeaderButton(
+                                            FluttifyButton(
                                                 onPressed: () => widget.model!
                                                     .navigateBack(context),
                                                 text: AppLocalizations.of(
                                                         context)!
                                                     .no,
-                                                color:
-                                                    Theme.of(context).cardColor,
+                                                //color: Theme.of(context).cardColor,
                                                 width: 80,
                                                 height: 35),
-                                            SliverHeaderButton(
+                                            FluttifyButton(
                                                 textStyle: Theme.of(context)
                                                     .textTheme
                                                     .subtitle2,
@@ -225,17 +226,15 @@ class PlaylistSliverHeaderButtonsState
                                             ),
                                           ),
                                           actions: <Widget>[
-                                            SliverHeaderButton(
+                                            FluttifyButton(
                                                 onPressed: () => widget.model!
                                                     .navigateBack(context),
                                                 text: AppLocalizations.of(
                                                         context)!
                                                     .no,
-                                                color:
-                                                    Theme.of(context).cardColor,
                                                 width: 80,
                                                 height: 35),
-                                            SliverHeaderButton(
+                                            FluttifyButton(
                                                 onPressed: () => {
                                                       widget.model!
                                                           .leavePlaylist(
