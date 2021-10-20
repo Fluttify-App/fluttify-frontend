@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttify/app/locator.dart';
 import 'package:fluttify/models/playlist.dart';
+import 'package:fluttify/models/song.dart';
 import 'package:fluttify/services/dynamic_link_service.dart';
 import 'package:fluttify/services/auth_service.dart';
 import 'package:fluttify/services/fluttify_playlist_service.dart';
@@ -31,6 +32,8 @@ class EditPlaylistViewModel extends BaseViewModel {
   List<MultiSelectItem<dynamic>>? playlistGenre;
 
   Playlist? playlist;
+
+  List<Song>? playlistSongs;
 
   bool isChanged = false;
   bool? communityview = false;
@@ -94,6 +97,18 @@ class EditPlaylistViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  void setPlaylistSongs() {
+    if (playlistSongs == null) {
+      playlistSongs = playlist!.songs!.sublist(0, 10);
+      return;
+    }
+    for (Song song in playlist!.songs!) {
+      if (!playlistSongs!.contains(song)) 
+        playlistSongs!.add(song);
+    }
+    notifyListeners();
+  }
+
   void canEdit() {
     playlist!.canEdit = !playlist!.canEdit;
     notifyListeners();
@@ -148,6 +163,7 @@ class EditPlaylistViewModel extends BaseViewModel {
     Playlist playlist =
         await fluttifyPlaylistService.getFluttifyPlaylist(playlistId);
     setPlaylist(playlist);
+    setPlaylistSongs();
   }
 
   Future<void> pressShare(String playlistId) async {
@@ -160,10 +176,10 @@ class EditPlaylistViewModel extends BaseViewModel {
         .removeFluttifyPlaylist(this.playlist!)
         .then((playlist) {
       var snackbarText;
-      if (playlist != null) {
+      if (playlist) {
         snackbarText =
             Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
-        this.setPlaylist(playlist);
+        //this.setPlaylist(playlist);
       } else {
         snackbarText =
             Text(AppLocalizations.of(context)!.couldNotRemoveSnackBar);

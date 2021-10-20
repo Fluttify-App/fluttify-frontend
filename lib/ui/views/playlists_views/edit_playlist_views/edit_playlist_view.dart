@@ -770,9 +770,8 @@ class EditPlaylistView extends StatelessWidget {
                                                         if (model.playlist!
                                                                 .currentTracks !=
                                                             null)
-                                                          for (Song song
-                                                              in model.playlist!
-                                                                  .songs!)
+                                                          for (Song song in model
+                                                              .playlistSongs!)
                                                             Column(
                                                               children: [
                                                                 if (model
@@ -796,7 +795,22 @@ class EditPlaylistView extends StatelessWidget {
                                                                           song),
                                                                 ),
                                                               ],
-                                                            )
+                                                            ),
+                                                        if (model.playlistSongs!
+                                                                .length !=
+                                                            model.playlist!
+                                                                .songs!.length)
+                                                          Container(
+                                                            child:
+                                                                FluttifyButton(
+                                                              height: 50,
+                                                              width: 200,
+                                                              text:
+                                                                  "load all Songs?",
+                                                              onPressed: () => model
+                                                                  .setPlaylistSongs(),
+                                                            ),
+                                                          )
                                                       ],
                                                     ),
                                                   )
