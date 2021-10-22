@@ -805,8 +805,9 @@ class EditPlaylistView extends StatelessWidget {
                                                                 FluttifyButton(
                                                               height: 50,
                                                               width: 200,
-                                                              text:
-                                                                  "load all Songs?",
+                                                              text: AppLocalizations
+                                                                      .of(context)!
+                                                                  .loadAllSongs,
                                                               onPressed: () => model
                                                                   .setPlaylistSongs(),
                                                             ),
