@@ -768,8 +768,13 @@ class EditPlaylistView extends StatelessWidget {
                                                     child: Column(
                                                       children: [
                                                         if (model.playlist!
-                                                                .currentTracks !=
-                                                            null)
+                                                                    .currentTracks !=
+                                                                null &&
+                                                            model
+                                                                    .playlist!
+                                                                    .songs!
+                                                                    .length !=
+                                                                0)
                                                           for (Song song in model
                                                               .playlistSongs!)
                                                             Column(
@@ -796,10 +801,15 @@ class EditPlaylistView extends StatelessWidget {
                                                                 ),
                                                               ],
                                                             ),
-                                                        if (model.playlistSongs!
-                                                                .length !=
-                                                            model.playlist!
-                                                                .songs!.length)
+                                                        if (model.playlist!.songs!
+                                                                    .length !=
+                                                                0 &&
+                                                            model.playlistSongs!
+                                                                    .length !=
+                                                                model
+                                                                    .playlist!
+                                                                    .songs!
+                                                                    .length)
                                                           Container(
                                                             child:
                                                                 FluttifyButton(

@@ -91,14 +91,14 @@ class EditPlaylistViewModel extends BaseViewModel {
     descriptionController.text = playlist.description!;
     nameController.text = playlist.name!;
     selectedGenres = playlist.genres!;
-    if (playlist.allgenres) {
+    if (playlist.allgenres && !selectedGenres.contains('All Genres')) {
       selectedGenres.add('All Genres');
     }
     notifyListeners();
   }
 
   void setPlaylistSongs() {
-    if (playlistSongs == null) {
+    if (playlistSongs == null && playlist!.songs!.length != 0) {
       playlistSongs = playlist!.songs!.sublist(0, 10);
       return;
     }
