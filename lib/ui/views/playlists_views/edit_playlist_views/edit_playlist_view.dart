@@ -38,7 +38,7 @@ class EditPlaylistView extends StatelessWidget {
         onModelReady: (EditPlaylistViewModel model) async {
           model.communityview = this.communityview;
           if (this.playlist == null) {
-            model.getPlaylist(this.playlistId!);
+            await model.getPlaylist(this.playlistId!);
           } else {
             //model.playlist!.canEdit = false;
             await model.getPlaylist(this.playlist!.dbID!);

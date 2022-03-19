@@ -61,7 +61,7 @@ class DiscoverView extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 4),
                             child: InputChip(
                                 backgroundColor: Theme.of(context).cardColor,
-                                label: Text(genre),
+                                label: Text(genre, style: Theme.of(context).textTheme.bodyText2),
                                 selected: model.selectedGenres.contains(genre),
                                 selectedColor: Theme.of(context).primaryColor,
                                 onSelected: (bool selected) {
