@@ -4,6 +4,7 @@ import 'package:fluttify/ui/widgets/fluttify_button.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttify/ui/widgets/sliver_header_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PlaylistSliverHeaderButtons extends StatefulWidget {
   final bool? show;
@@ -22,6 +23,8 @@ class PlaylistSliverHeaderButtonsState
 
   @override
   Widget build(BuildContext context) {
+    final double slivearButtonWidth =
+        ((MediaQuery.of(context).size.width - 20) / 3) - 50;
     return widget.show!
         ? Positioned(
             //top: expandedHeight! - shrinkOffset! - size / 2,
@@ -35,12 +38,63 @@ class PlaylistSliverHeaderButtonsState
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SliverHeaderButton(
+                    text: AppLocalizations.of(context)!.spotify,
+                    color: Theme.of(context).cardColor,
+                    width: slivearButtonWidth,
+                    icon: Icon(Icons.link,
+                        size: 15, color: Theme.of(context).accentColor),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            title: Text(
+                              AppLocalizations.of(context)!.spotify,
+                              style: Theme.of(context).textTheme.headline1,
+                            ),
+                            content: SingleChildScrollView(
+                              child: ListBody(
+                                children: <Widget>[
+                                  Text(
+                                    AppLocalizations.of(context)!.spotifyDialog,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            actions: <Widget>[
+                              FluttifyButton(
+                                  //color: Theme.of(context).cardColor,
+                                  text: AppLocalizations.of(context)!.no,
+                                  width:
+                                      MediaQuery.of(context).size.width - 270,
+                                  height: 35,
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  }),
+                              FluttifyButton(
+                                //color: Theme.of(context).cardColor,
+                                width: MediaQuery.of(context).size.width - 270,
+                                height: 35,
+                                text: AppLocalizations.of(context)!.yes,
+                                onPressed: () =>
+                                    {launch(widget.model!.playlist!.href!)},
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    border: BorderSide(width: 1, color: Colors.white),
+                  ),
                   widget.model!.playlist!.creator! ==
                           widget.model!.authService.currentUser.id
                       ? SliverHeaderButton(
                           color: Theme.of(context).cardColor,
                           text: AppLocalizations.of(context)!.inviteplaylist,
-                          width: 90,
+                          width: slivearButtonWidth,
                           icon: Icon(Icons.share,
                               size: 15, color: Theme.of(context).accentColor),
                           onPressed: () {
@@ -72,7 +126,9 @@ class PlaylistSliverHeaderButtonsState
                                         //color: Theme.of(context).cardColor,
                                         text: AppLocalizations.of(context)!
                                             .inviteLink,
-                                        width: MediaQuery.of(context).size.width - 270,
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                270,
                                         height: 35,
                                         icon: Icon(Icons.link,
                                             size: 15,
@@ -84,7 +140,8 @@ class PlaylistSliverHeaderButtonsState
                                         }),
                                     FluttifyButton(
                                       //color: Theme.of(context).cardColor,
-                                      width: MediaQuery.of(context).size.width - 270,
+                                      width: MediaQuery.of(context).size.width -
+                                          270,
                                       height: 35,
                                       text: AppLocalizations.of(context)!
                                           .qrCodeGenerate,
@@ -92,7 +149,6 @@ class PlaylistSliverHeaderButtonsState
                                           size: 15,
                                           color: Theme.of(context).accentColor),
                                       onPressed: () => {
-                                        Navigator.of(context).pop(),
                                         widget.model!.createQrCode(),
                                         widget.model!.navigateToQrCodeImageView(
                                             widget.model!.playlist!)
@@ -103,7 +159,8 @@ class PlaylistSliverHeaderButtonsState
                               },
                             );
                           },
-                          border: BorderSide(width: 1, color: Colors.white))
+                          border: BorderSide(width: 1, color: Colors.white),
+                        )
                       : Container(),
                   !widget.model!.playlist!.canEdit
                       ? !widget.model!.communityview!
@@ -118,10 +175,7 @@ class PlaylistSliverHeaderButtonsState
                                       Theme.of(context).textTheme.bodyText1,
                                   border:
                                       BorderSide(width: 1, color: Colors.white),
-                                  width: ((MediaQuery.of(context).size.width -
-                                              20) /
-                                          3) -
-                                      20,
+                                  width: slivearButtonWidth,
                                   onPressed: () {
                                     showDialog(
                                       context: context,
@@ -193,10 +247,7 @@ class PlaylistSliverHeaderButtonsState
                                       Theme.of(context).textTheme.subtitle2,
                                   border:
                                       BorderSide(width: 1, color: Colors.white),
-                                  width: ((MediaQuery.of(context).size.width -
-                                              20) /
-                                          3) -
-                                      20,
+                                  width: slivearButtonWidth,
                                   onPressed: () {
                                     showDialog(
                                       context: context,
@@ -254,7 +305,8 @@ class PlaylistSliverHeaderButtonsState
                                         );
                                       },
                                     );
-                                  })
+                                  },
+                                )
                           : (!widget.model!.playlist!.likes!.contains(
                                   widget.model!.authService.currentUser.id))
                               ?

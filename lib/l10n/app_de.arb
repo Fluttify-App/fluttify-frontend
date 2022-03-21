@@ -107,5 +107,8 @@
     "qrCodePlaylistQuestion": "Willst du zu der Playlist mit der ID: ",
     "qrCodeGenerate": "QR-Code",
 
-    "loadAllSongs": "Alle laden"
+    "loadAllSongs": "Alle laden",
+
+    "spotify": "Spotify",
+    "spotifyDialog": "Möchtest du die Playlist in Spotify sehen?"
 }
