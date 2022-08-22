@@ -96,17 +96,18 @@ class FluttifyPlaylistService {
     }
   }
 
-  Future<Playlist> removeFluttifyPlaylist(Playlist playlist) async {
+  Future<bool> removeFluttifyPlaylist(Playlist playlist) async {
     var payload = {};
     payload['id'] = playlist.dbID;
     final response = await http.delete(Uri.https(baseUrl, 'fluttify/playlist'),
         headers: _apiService.headers, body: jsonEncode(payload));
     if (response.statusCode == 200) {
-      var playlist = Playlist.fromJson(json.decode(response.body));
-      return playlist;
+      //var playlist = Playlist.fromJson(json.decode(response.body));
+      //return playlist;
+      return true;
     } else {
       print("Something went wrong");
-      return Playlist();
+      return false;
     }
   }
 

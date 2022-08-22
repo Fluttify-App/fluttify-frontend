@@ -35,7 +35,7 @@ class EditPlaylistView extends StatelessWidget {
         onModelReady: (EditPlaylistViewModel model) async {
           model.communityview = this.communityview;
           if (this.playlist == null) {
-            model.getPlaylist(this.playlistId!);
+            await model.getPlaylist(this.playlistId!);
           } else {
             //model.playlist!.canEdit = false;
             await model.getPlaylist(this.playlist!.dbID!);
@@ -803,11 +803,15 @@ class EditPlaylistView extends StatelessWidget {
                                                     child: Column(
                                                       children: [
                                                         if (model.playlist!
-                                                                .currentTracks !=
-                                                            null)
-                                                          for (Song song
-                                                              in model.playlist!
-                                                                  .songs!)
+                                                                    .currentTracks !=
+                                                                null &&
+                                                            model
+                                                                    .playlist!
+                                                                    .songs!
+                                                                    .length !=
+                                                                0)
+                                                          for (Song song in model
+                                                              .playlistSongs!)
                                                             Column(
                                                               children: [
                                                                 if (model
@@ -831,7 +835,28 @@ class EditPlaylistView extends StatelessWidget {
                                                                           song),
                                                                 ),
                                                               ],
-                                                            )
+                                                            ),
+                                                        if (model.playlist!.songs!
+                                                                    .length !=
+                                                                0 &&
+                                                            model.playlistSongs!
+                                                                    .length !=
+                                                                model
+                                                                    .playlist!
+                                                                    .songs!
+                                                                    .length)
+                                                          Container(
+                                                            child:
+                                                                FluttifyButton(
+                                                              height: 50,
+                                                              width: 200,
+                                                              text: AppLocalizations
+                                                                      .of(context)!
+                                                                  .loadAllSongs,
+                                                              onPressed: () => model
+                                                                  .setPlaylistSongs(),
+                                                            ),
+                                                          )
                                                       ],
                                                     ),
                                                   )

@@ -56,7 +56,7 @@ class PlaylistViewModel extends BaseViewModel {
   void dismissPlaylist(Playlist playlist, context) {
     playlistService.removeFluttifyPlaylist(playlist).then((playlist) {
       var snackbarText;
-      if (playlist != null) {
+      if (playlist) {
         snackbarText =
             Text(AppLocalizations.of(context)!.removePlaylistSnackBar);
       } else {

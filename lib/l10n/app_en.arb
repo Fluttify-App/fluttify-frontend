@@ -105,5 +105,10 @@
     "qrLaunchUrlQuestion": "Would you like to follow this URL: ",
     "qrCodePlaylistSuccess": "Successfully scanned playlist id",
     "qrCodePlaylistQuestion": "Do you wish to proceed to the following playlist with id: ",
-    "qrCodeGenerate": "QR-Code"
+    "qrCodeGenerate": "QR-Code",
+
+    "loadAllSongs": "load all",
+    
+    "spotify": "Spotify",
+    "spotifyDialog": "Would you like to look at the playlist in spotify?"
 }

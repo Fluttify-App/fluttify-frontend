@@ -124,7 +124,7 @@ class SettingsView extends StatelessWidget {
                         ],
                         activeFgColor: Colors.white,
                         inactiveFgColor: Colors.white,
-                        onToggle: (int index) {
+                        onToggle: (int? index) {
                           String newLocale = 'en';
                           if (index == 1) newLocale = 'de';
                           Provider.of<LocaleService>(context, listen: false)
