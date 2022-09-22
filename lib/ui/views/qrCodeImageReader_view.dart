@@ -63,7 +63,7 @@ class _QrCodeImageReaderView extends State<QrCodeImageReaderView> {
     this.controller = controller;
     this.controller!.scannedDataStream.listen((scanData) async {
       controller.pauseCamera();
-      if (await canLaunch(scanData.code)) {
+      if (await canLaunch(scanData.code!)) {
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -90,7 +90,7 @@ class _QrCodeImageReaderView extends State<QrCodeImageReaderView> {
                     width: 80,
                     height: 35),
                 FluttifyButton(
-                    onPressed: () => launch(scanData.code),
+                    onPressed: () => launch(scanData.code!),
                     text: AppLocalizations.of(context)!.yes,
                     width: 80,
                     height: 35),
