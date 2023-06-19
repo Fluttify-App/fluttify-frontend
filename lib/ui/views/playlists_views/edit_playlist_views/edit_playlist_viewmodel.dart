@@ -99,7 +99,7 @@ class EditPlaylistViewModel extends BaseViewModel {
 
   void setPlaylistSongs() {
     if (playlistSongs == null && playlist!.songs!.length != 0) {
-      playlistSongs = playlist!.songs!.sublist(0, 10);
+      playlistSongs = playlist!.songs!.sublist(0, playlist!.songs!.length > 10 : 10 : playlist!.songs!.length);
       return;
     }
     for (Song song in playlist!.songs!) {
