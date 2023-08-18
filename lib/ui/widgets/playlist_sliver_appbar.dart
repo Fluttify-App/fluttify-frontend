@@ -21,7 +21,7 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
     print(MediaQuery.of(context).padding.top);
     return Stack(
       fit: StackFit.expand,
-      overflow: Overflow.visible,
+      //overflow: Overflow.visible,
       children: [
         if (!model!.playlist!.canEdit)
           buildBackground(
