@@ -135,7 +135,6 @@ class EditPlaylistView extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: FluttifyButton(
-                                  
                                     text: AppLocalizations.of(context)!.spotify,
                                     textStyle:
                                         Theme.of(context).textTheme.bodyMedium,
@@ -404,7 +403,9 @@ class EditPlaylistView extends StatelessWidget {
                                                       size: 15),
                                                   textStyle: Theme.of(context)
                                                       .textTheme
-                                                      .bodyMedium,
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                          color: Colors.white),
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width /
@@ -514,7 +515,9 @@ class EditPlaylistView extends StatelessWidget {
                                                       .errorColor,
                                                   textStyle: Theme.of(context)
                                                       .textTheme
-                                                      .bodyMedium,
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                          color: Colors.white),
                                                   onPressed: () {
                                                     model!.unlikePlaylist(
                                                         context);
