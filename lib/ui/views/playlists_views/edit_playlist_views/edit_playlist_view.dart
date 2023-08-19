@@ -128,7 +128,7 @@ class EditPlaylistView extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.fromLTRB(10, 50, 0, 10),
+                              padding: EdgeInsets.fromLTRB(10, 15, 0, 10),
                               alignment: Alignment.topLeft,
                               child: DefaultTextStyle(
                                 child: Text(
@@ -137,9 +137,9 @@ class EditPlaylistView extends StatelessWidget {
                               ),
                             ),
                             Card(
-                              margin: const EdgeInsets.only(bottom: 8),
+                              margin: const EdgeInsets.only(bottom: 0),
                               child: Container(
-                                padding: EdgeInsets.fromLTRB(13, 20, 13, 20),
+                                padding: EdgeInsets.fromLTRB(13, 10, 13, 20),
                                 alignment: Alignment.centerLeft,
                                 child: model.playlist!.canEdit
                                     ? TextField(
@@ -163,7 +163,7 @@ class EditPlaylistView extends StatelessWidget {
                             ),
 
                             Card(
-                              margin: const EdgeInsets.only(bottom: 8),
+                              margin: const EdgeInsets.only(bottom: 0),
                               child: Container(
                                 height: model.playlist!.genres!.isNotEmpty ||
                                         model.playlist!.canEdit
@@ -223,7 +223,7 @@ class EditPlaylistView extends StatelessWidget {
                             ),
 
                             Card(
-                              margin: const EdgeInsets.only(bottom: 8),
+                              margin: const EdgeInsets.only(bottom: 0),
                               child: Container(
                                 padding: EdgeInsets.all(7),
                                 child: CheckboxListTile(
@@ -318,7 +318,7 @@ class EditPlaylistView extends StatelessWidget {
                             ),
                             // CONTRIBUTERS
                             Container(
-                              padding: EdgeInsets.fromLTRB(15, 15, 0, 10),
+                              padding: EdgeInsets.fromLTRB(10, 15, 0, 10),
                               alignment: Alignment.topLeft,
                               child: DefaultTextStyle(
                                 child: Text(
@@ -330,7 +330,7 @@ class EditPlaylistView extends StatelessWidget {
                                 ? FractionallySizedBox(
                                     widthFactor: 1,
                                     child: Card(
-                                      margin: const EdgeInsets.only(bottom: 8),
+                                      margin: const EdgeInsets.only(bottom: 0),
                                       child: Wrap(
                                         alignment: WrapAlignment.start,
                                         direction: Axis.horizontal,
@@ -487,7 +487,7 @@ class EditPlaylistView extends StatelessWidget {
                             Container(
                               //padding: EdgeInsets.fromLTRB(5, 5, 0, 5),
                               child: Card(
-                                margin: const EdgeInsets.only(bottom: 8),
+                                margin: const EdgeInsets.only(bottom: 0),
                                 child: ExpansionTile(
                                   childrenPadding:
                                       EdgeInsets.fromLTRB(20, 0, 20, 0),
