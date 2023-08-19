@@ -94,9 +94,9 @@ class PlaylistCard extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
                         child: Text(
-                          playlist!.name!.length <= 23
+                          playlist!.name!.length <= 20
                               ? playlist!.name!
-                              : playlist!.name!.substring(0, 23) + "...",
+                              : playlist!.name!.substring(0, 20) + "...",
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ),
