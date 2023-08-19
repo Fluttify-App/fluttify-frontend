@@ -17,6 +17,7 @@ import 'package:intl/intl.dart';
 import 'package:instant/instant.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_touch_spin/flutter_touch_spin.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class EditPlaylistView extends StatelessWidget {
@@ -133,7 +134,6 @@ class EditPlaylistView extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: FluttifyButton(
-                                  
                                     text: AppLocalizations.of(context)!.spotify,
                                     textStyle:
                                         Theme.of(context).textTheme.bodyMedium,
@@ -267,8 +267,10 @@ class EditPlaylistView extends StatelessWidget {
                                                                     context)
                                                                 .accentColor),
                                                         onPressed: () {
-                                                          model.pressShare(model
-                                                              .playlist!.dbID!);
+                                                          model.pressShare(
+                                                              context,
+                                                              model.playlist!
+                                                                  .dbID!);
                                                         }),
                                                     FluttifyButton(
                                                       //color: Theme.of(context).cardColor,
@@ -287,7 +289,8 @@ class EditPlaylistView extends StatelessWidget {
                                                               Theme.of(context)
                                                                   .accentColor),
                                                       onPressed: () => {
-                                                        model.createQrCode(),
+                                                        model.createQrCode(
+                                                            context),
                                                         model
                                                             .navigateToQrCodeImageView(
                                                                 model.playlist!)
