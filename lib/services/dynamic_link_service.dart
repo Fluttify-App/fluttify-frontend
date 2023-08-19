@@ -71,8 +71,8 @@ class DynamicLinkService {
       BuildContext context, String playlistID) async {
     if (kIsWeb) {
       Clipboard.setData(ClipboardData(
-          text: "https://fluttify.herokuapp.com/#/home-view?playlist=" +
-              playlistID));
+          text:
+              "https://fluttify.netpy.de/#/home-view?playlist=" + playlistID));
       final snackBar = SnackBar(
         backgroundColor: Theme.of(context).indicatorColor,
         content: Text("Link copied to clipboard"),
