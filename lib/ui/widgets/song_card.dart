@@ -87,7 +87,10 @@ class SongCard extends StatelessWidget {
                     height: 75,
                     width: 75,
                     child: ClipRRect(
-                      child: Image.network(song.image!),
+                      child: Image.network(
+                        song.image!,
+                        filterQuality: FilterQuality.low,
+                      ),
                     ),
                   ),
           ],

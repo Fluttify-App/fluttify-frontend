@@ -107,7 +107,7 @@
     "qrCodePlaylistQuestion": "Do you wish to proceed to the following playlist with id: ",
     "qrCodeGenerate": "QR-Code",
 
-    "loadAllSongs": "load all",
+    "loadAllSongs": "...",
     
     "spotify": "Spotify",
     "spotifyDialog": "Would you like to look at the playlist in spotify?"
