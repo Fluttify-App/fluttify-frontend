@@ -229,8 +229,7 @@ class EditPlaylistView extends StatelessWidget {
                                   ),
 
                                   Container(
-                                    padding:
-                                        EdgeInsets.fromLTRB(010, 15, 0, 10),
+                                    padding: EdgeInsets.fromLTRB(10, 15, 0, 10),
                                     alignment: Alignment.topLeft,
                                     child: DefaultTextStyle(
                                       child: Text(
@@ -380,8 +379,8 @@ class EditPlaylistView extends StatelessWidget {
                                           ],
                                         )
                                       : Container(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 15, 0, 10),
+                                          padding: EdgeInsets.fromLTRB(
+                                              10, 15, 0, 10),
                                           alignment: Alignment.topLeft,
                                           child: DefaultTextStyle(
                                             child: Text(
@@ -836,7 +835,9 @@ class EditPlaylistView extends StatelessWidget {
                                                                 ),
                                                               ],
                                                             ),
-                                                        if (model.playlist!.songs!
+                                                        if (model
+                                                                    .playlist!
+                                                                    .songs!
                                                                     .length !=
                                                                 0 &&
                                                             model.playlistSongs!
