@@ -73,9 +73,10 @@ class HomeView extends StatelessWidget {
         title: AppLocalizations.of(context)!.playlists,
         icon: Icon(Icons.home),
         activeColorPrimary: Theme.of(context).colorScheme.secondary,
-        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).colorScheme.secondary)
-            .withAlpha(0.5)
-            .toColor(),
+        inactiveColorPrimary:
+            HSLColor.fromColor(Theme.of(context).colorScheme.secondary)
+                .withAlpha(0.5)
+                .toColor(),
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<PlaylistNavigationService>().navigatorKey,
           initialRoute: '/',
@@ -85,9 +86,10 @@ class HomeView extends StatelessWidget {
         title: AppLocalizations.of(context)!.community,
         icon: Icon(Icons.people),
         activeColorPrimary: Theme.of(context).colorScheme.secondary,
-        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).colorScheme.secondary)
-            .withAlpha(0.5)
-            .toColor(),
+        inactiveColorPrimary:
+            HSLColor.fromColor(Theme.of(context).colorScheme.secondary)
+                .withAlpha(0.5)
+                .toColor(),
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<CommunityNavigationService>().navigatorKey,
           initialRoute: '/',
@@ -97,9 +99,10 @@ class HomeView extends StatelessWidget {
         title: AppLocalizations.of(context)!.discover,
         icon: Icon(Icons.explore),
         activeColorPrimary: Theme.of(context).colorScheme.secondary,
-        inactiveColorPrimary: HSLColor.fromColor(Theme.of(context).colorScheme.secondary)
-            .withAlpha(0.5)
-            .toColor(),
+        inactiveColorPrimary:
+            HSLColor.fromColor(Theme.of(context).colorScheme.secondary)
+                .withAlpha(0.5)
+                .toColor(),
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           navigatorKey: locator<DiscoverNavigationService>().navigatorKey,
           initialRoute: '/',

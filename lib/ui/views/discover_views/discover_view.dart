@@ -20,8 +20,13 @@ class DiscoverView extends StatelessWidget {
       builder: (BuildContext context, DiscoverViewModel model, Widget? child) =>
           Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)!.discoverdesc,
-              style: Theme.of(context).textTheme.headline2),
+          title: Text(
+            AppLocalizations.of(context)!.discoverdesc.toLowerCase(),
+            style: Theme.of(context)
+                .textTheme
+                .headline2!
+                .copyWith(fontFamily: 'Kellvin', fontSize: 30),
+          ),
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
         ),
@@ -33,7 +38,7 @@ class DiscoverView extends StatelessWidget {
           },
           child: Container(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+            padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -61,7 +66,9 @@ class DiscoverView extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 4),
                             child: InputChip(
                                 backgroundColor: Theme.of(context).cardColor,
-                                label: Text(genre, style: Theme.of(context).textTheme.bodyText2),
+                                label: Text(genre,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2),
                                 selected: model.selectedGenres.contains(genre),
                                 selectedColor: Theme.of(context).primaryColor,
                                 onSelected: (bool selected) {
@@ -81,7 +88,7 @@ class DiscoverView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.fromLTRB(15, 10, 0, 10),
+                        padding: EdgeInsets.fromLTRB(5, 5, 0, 10),
                         child: Text(AppLocalizations.of(context)!.discoversongs,
                             style: Theme.of(context).textTheme.headline4),
                       ),

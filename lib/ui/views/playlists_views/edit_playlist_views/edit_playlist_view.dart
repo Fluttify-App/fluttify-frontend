@@ -115,7 +115,19 @@ class EditPlaylistView extends StatelessWidget {
                       centerTitle: true,
                     ),
                     */
-                    body: Stack(children: <Widget>[
+                    body:
+
+                        /*
+
+
+
+                      Edit VIEW
+
+
+
+                    */
+
+                        Stack(children: <Widget>[
                       CustomScrollView(
                         controller: model.scrollController!,
                         slivers: [
@@ -348,7 +360,7 @@ class EditPlaylistView extends StatelessWidget {
                                   ),
                                   // CONTRIBUTERS
                                   Container(
-                                    padding: EdgeInsets.fromLTRB(10, 15, 0, 10),
+                                    padding: EdgeInsets.fromLTRB(15, 15, 0, 10),
                                     alignment: Alignment.topLeft,
                                     child: DefaultTextStyle(
                                       child: Text(AppLocalizations.of(context)!
@@ -801,7 +813,9 @@ class EditPlaylistView extends StatelessWidget {
                                                                 ),
                                                               ],
                                                             ),
-                                                        if (model.playlist!.songs!
+                                                        if (model
+                                                                    .playlist!
+                                                                    .songs!
                                                                     .length !=
                                                                 0 &&
                                                             model.playlistSongs!

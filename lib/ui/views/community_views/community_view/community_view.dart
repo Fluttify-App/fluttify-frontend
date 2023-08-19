@@ -17,8 +17,13 @@ class CommunityView extends StatelessWidget {
           (BuildContext context, CommunityViewModel model, Widget? child) =>
               Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)!.community,
-              style: Theme.of(context).textTheme.headline2),
+          title: Text(
+            AppLocalizations.of(context)!.community.toLowerCase(),
+            style: Theme.of(context)
+                .textTheme
+                .headline2!
+                .copyWith(fontFamily: 'Kellvin', fontSize: 30),
+          ),
           centerTitle: true,
           automaticallyImplyLeading: false,
           iconTheme: IconThemeData(color: Colors.white),

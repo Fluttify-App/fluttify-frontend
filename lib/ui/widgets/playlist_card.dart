@@ -7,12 +7,11 @@ import 'package:fluttify/ui/widgets/scrolling_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PlaylistCard extends StatelessWidget {
-  
   final PlaylistViewModel? model;
   final Playlist? playlist;
-  
+
   PlaylistCard({required this.model, required this.playlist});
-  
+
   @override
   Widget build(BuildContext context) {
     return Dismissible(
@@ -94,15 +93,12 @@ class PlaylistCard extends StatelessWidget {
                         width: MediaQuery.of(context).size.width - 180,
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
-                        child: playlist!.name!.length >= 20
-                            ? ScrollingText(
-                                text: playlist!.name!,
-                                textStyle:
-                                    Theme.of(context).textTheme.headline5)
-                            : Text(
-                                playlist!.name!,
-                                style: Theme.of(context).textTheme.headline5,
-                              ),
+                        child: Text(
+                          playlist!.name!.length <= 23
+                              ? playlist!.name!
+                              : playlist!.name!.substring(0, 23) + "...",
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
                       ),
                       Container(
                         padding: EdgeInsets.fromLTRB(25, 0, 0, 0),

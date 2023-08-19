@@ -28,8 +28,13 @@ class PlaylistView extends StatelessWidget {
               onTap: model.navigateToQrCodeImageReader,
             ),
           ),
-          title: Text(AppLocalizations.of(context)!.playlists,
-              style: Theme.of(context).textTheme.headline2),
+          title: Text(
+            AppLocalizations.of(context)!.playlists.toLowerCase(),
+            style: Theme.of(context)
+                .textTheme
+                .headline2!
+                .copyWith(fontFamily: 'Kellvin', fontSize: 30),
+          ),
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
         ),
@@ -65,7 +70,7 @@ class PlaylistView extends StatelessWidget {
                                               children: [
                                                 Container(
                                                   padding: EdgeInsets.fromLTRB(
-                                                      15, 10, 0, 10),
+                                                      15, 10, 0, 5),
                                                   child: Text(
                                                       AppLocalizations.of(
                                                               context)!
@@ -102,7 +107,7 @@ class PlaylistView extends StatelessWidget {
                                               children: [
                                                 Container(
                                                   padding: EdgeInsets.fromLTRB(
-                                                      15, 10, 0, 10),
+                                                      15, 10, 0, 5),
                                                   child: Text(
                                                       AppLocalizations.of(
                                                               context)!
