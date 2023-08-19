@@ -26,11 +26,12 @@ class FluttifyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? const EdgeInsets.all(10),
+      padding:
+          padding ?? const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       child: Container(
-        child: SizedBox(
-          height: height ?? 45,
-          width: width ?? MediaQuery.of(context).size.width - 100,
+        child: Container(
+          height: height ?? 40,
+          width: width ?? null,
           child: TextButton(
               style: TextButton.styleFrom(
                   backgroundColor: color ?? Theme.of(context).primaryColor,
@@ -54,7 +55,8 @@ class FluttifyButton extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Text(text!,
-                              style: Theme.of(context).textTheme.button),
+                              style: textStyle ??
+                                  Theme.of(context).textTheme.button),
                         )
                       ],
                     ),
