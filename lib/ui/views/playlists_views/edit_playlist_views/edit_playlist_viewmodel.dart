@@ -46,6 +46,8 @@ class EditPlaylistViewModel extends BaseViewModel {
   ScrollController? scrollController = ScrollController();
   bool? showHeader = false;
 
+  bool? showSongs = false;
+
   EditPlaylistViewModel(
       Playlist? playlist, String? playlistId, double? notchPadding) {
     this.notchPadding = notchPadding;
@@ -98,14 +100,21 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   void setPlaylistSongs() {
+    /*
     if (playlistSongs == null && playlist!.songs!.length != 0) {
       playlistSongs = playlist!.songs!.sublist(
-          0, playlist!.songs!.length > 10 ? 10 : playlist!.songs!.length);
+          0, playlist!.songs!.length > 3 ? 3 : playlist!.songs!.length);
       return;
     }
     for (Song song in playlist!.songs!) {
       if (!playlistSongs!.contains(song)) playlistSongs!.add(song);
     }
+    notifyListeners();
+    */
+  }
+
+  void setShowSongs() {
+    this.showSongs = !this.showSongs!;
     notifyListeners();
   }
 

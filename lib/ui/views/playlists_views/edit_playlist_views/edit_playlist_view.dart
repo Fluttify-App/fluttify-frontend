@@ -113,6 +113,7 @@ class EditPlaylistView extends StatelessWidget {
                       centerTitle: true,
                     ),
                     body: SingleChildScrollView(
+                      controller: model.scrollController,
                       child: Container(
                         child: Column(
                           children: [
@@ -127,28 +128,41 @@ class EditPlaylistView extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.fromLTRB(10, 15, 0, 10),
-                              alignment: Alignment.topLeft,
-                              child: DefaultTextStyle(
-                                child: Text(
-                                    AppLocalizations.of(context)!.description),
-                                style: Theme.of(context).textTheme.bodyText1!,
-                              ),
-                            ),
-                            Card(
-                              margin: const EdgeInsets.only(bottom: 0),
-                              child: Container(
-                                padding: EdgeInsets.fromLTRB(13, 10, 13, 20),
-                                alignment: Alignment.centerLeft,
-                                child: model.playlist!.canEdit
-                                    ? TextField(
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1,
-                                        controller: model.descriptionController,
-                                        maxLines: null)
-                                    : Text(model.playlist!.description!),
+
+                            Visibility(
+                              visible: model.playlist!.description != "" &&
+                                  model.playlist!.description != null,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(10, 15, 0, 10),
+                                    alignment: Alignment.topLeft,
+                                    child: DefaultTextStyle(
+                                      child: Text(AppLocalizations.of(context)!
+                                          .description),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!,
+                                    ),
+                                  ),
+                                  Card(
+                                    margin: const EdgeInsets.only(bottom: 0),
+                                    child: Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(13, 20, 13, 20),
+                                      alignment: Alignment.centerLeft,
+                                      child: model.playlist!.canEdit
+                                          ? TextField(
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1,
+                                              controller:
+                                                  model.descriptionController,
+                                              maxLines: null)
+                                          : Text(model.playlist!.description!),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
 
@@ -701,14 +715,29 @@ class EditPlaylistView extends StatelessWidget {
                                                 model.playlist!.contributers!
                                                     .contains(model.authService
                                                         .currentUser.id)
-                                            ? Container(
-                                                child: IconButton(
-                                                  onPressed: () =>
-                                                      model.updatePlaylist(
-                                                          //HERE
-                                                          context),
-                                                  icon: Icon(Icons.refresh),
-                                                ),
+                                            ? Row(
+                                                children: [
+                                                  Container(
+                                                    child: IconButton(
+                                                      onPressed: () =>
+                                                          model.updatePlaylist(
+                                                              //HERE
+                                                              context),
+                                                      icon: Icon(Icons.refresh),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    child: IconButton(
+                                                      onPressed: () =>
+                                                          model.setShowSongs(),
+                                                      icon: model.showSongs!
+                                                          ? Icon(Icons
+                                                              .visibility_off)
+                                                          : Icon(
+                                                              Icons.visibility),
+                                                    ),
+                                                  ),
+                                                ],
                                               )
                                             : Container(),
                                       ],
@@ -725,30 +754,41 @@ class EditPlaylistView extends StatelessWidget {
                                                       model.playlist!.songs!
                                                               .length !=
                                                           0)
-                                                    for (Song song
-                                                        in model.playlistSongs!)
-                                                      Column(
-                                                        children: [
-                                                          if (model.playlist!
-                                                              .contributers!
-                                                              .contains(model
-                                                                  .authService
-                                                                  .currentUser
-                                                                  .id))
-                                                            model
-                                                                .getSongContributors(
-                                                                    song),
-                                                          Container(
-                                                            /*
-                                                                  padding: const EdgeInsets
-                                                                          .symmetric(
-                                                                      horizontal:
-                                                                          15),*/
-                                                            child: SongCard(
-                                                                song: song),
-                                                          ),
-                                                        ],
-                                                      ),
+                                                    if (!model.showSongs!)
+                                                      Card(
+                                                        margin: const EdgeInsets
+                                                            .only(bottom: 0),
+                                                        child: Container(
+                                                          padding: EdgeInsets
+                                                              .fromLTRB(20, 20,
+                                                                  13, 20),
+                                                          alignment: Alignment
+                                                              .centerLeft,
+                                                          child: Text('...'),
+                                                        ),
+                                                      )
+                                                    else
+                                                      for (Song song in model
+                                                          .playlist!.songs!)
+                                                        Column(
+                                                          children: [
+                                                            if (model.playlist!
+                                                                .contributers!
+                                                                .contains(model
+                                                                    .authService
+                                                                    .currentUser
+                                                                    .id))
+                                                              model
+                                                                  .getSongContributors(
+                                                                      song),
+                                                            Container(
+                                                              child: SongCard(
+                                                                  song: song),
+                                                            ),
+                                                          ],
+                                                        ),
+
+                                                  /*
                                                   if (model.playlist!.songs!
                                                               .length !=
                                                           0 &&
@@ -758,6 +798,12 @@ class EditPlaylistView extends StatelessWidget {
                                                               .length)
                                                     Container(
                                                       child: FluttifyButton(
+                                                        textStyle:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .bodyText2!,
+                                                        color:
+                                                            Colors.transparent,
                                                         height: 50,
                                                         width: 200,
                                                         text:
@@ -768,6 +814,7 @@ class EditPlaylistView extends StatelessWidget {
                                                             .setPlaylistSongs(),
                                                       ),
                                                     )
+                                                    */
                                                 ],
                                               ),
                                             )
