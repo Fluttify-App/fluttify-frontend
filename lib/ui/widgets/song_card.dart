@@ -17,7 +17,7 @@ class SongCard extends StatelessWidget {
         launch(song.link!);
       },
       child: Card(
-        margin: const EdgeInsets.only(left: 0, right: 0, bottom: 8),
+        margin: const EdgeInsets.only(left: 0, right: 0, bottom: 5),
         /*
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
