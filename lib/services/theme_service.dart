@@ -133,87 +133,92 @@ class ThemeService extends ChangeNotifier {
         primary: Colors.white,
       ),
     ),
+    primaryColorLight: Color(0xff303030),
+    primaryColorDark:
+        HSLColor.fromColor(Color(0xff303030)).withLightness(0.3).toColor(),
   );
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
-    primaryColor: _currentColor,
-    colorScheme: ThemeData().colorScheme.copyWith(secondary: Colors.black),
-    scaffoldBackgroundColor: Color(0xffdae0e6),
-    cardColor: Colors.white,
-    hintColor: Color(0xff3b3b3b),
-    indicatorColor: Color(0xff008F61),
-    accentColor: Colors.black,
-    errorColor: Color.fromARGB(255, 203, 45, 62),
-    appBarTheme: AppBarTheme(
-        backgroundColor: _currentColor,
-        titleTextStyle: TextStyle(color: Colors.black),
-        iconTheme: IconThemeData(color: Colors.black)),
-    bottomNavigationBarTheme:
-        BottomNavigationBarThemeData(backgroundColor: Colors.white),
-    textTheme: TextTheme(
-      button: const TextStyle(
-          fontSize: 16, fontFamily: 'Montserrat', color: Colors.white),
-      bodyText1: const TextStyle(
-          color: Colors.black,
-          fontSize: 16.0,
-          fontFamily: 'Montserrat',
-          fontWeight: FontWeight.normal),
-      bodyText2: const TextStyle(
-          color: Colors.black,
-          fontSize: 14.0,
-          fontFamily: 'Montserrat',
-          fontWeight: FontWeight.normal),
-      headline1: const TextStyle(
-          color: Colors.black,
-          fontSize: 20.0,
-          fontFamily: 'Montserrat',
-          fontWeight: FontWeight.w600),
-      headline2: const TextStyle(
-          color: Colors.white,
-          fontSize: 20.0,
-          fontFamily: 'Montserrat',
-          fontWeight: FontWeight.w600),
-      headline3: const TextStyle(
-          color: Colors.white, //Color(0xff1a1a1a),
-          fontSize: 20.0,
-          fontFamily: 'Montserrat',
-          fontWeight: FontWeight.w600),
-      headline4: const TextStyle(
-          color: Color(0xFF646464),
-          fontSize: 15.0,
-          fontFamily: 'Montserrat',
-          fontWeight: FontWeight.w600),
-      headline5: const TextStyle(
-          color: Colors.black,
-          fontSize: 16.0,
-          fontFamily: 'Montserrat',
-          fontWeight: FontWeight.w600),
-      headline6: const TextStyle(
-          color: Colors.white,
-          fontSize: 16.0,
-          fontFamily: 'Montserrat',
-          fontWeight: FontWeight.w600),
-      subtitle1: const TextStyle(
-          color: Colors.black,
-          fontSize: 12.0,
-          fontFamily: 'Montserrat',
-          fontWeight: FontWeight.normal),
-      subtitle2: const TextStyle(
-          color: Colors.white,
-          fontSize: 14.0,
-          fontFamily: 'Montserrat',
-          fontWeight: FontWeight.normal),
-    ),
-    backgroundColor: Colors.black,
-    dividerColor: Colors.transparent,
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        primary: Colors.white,
-        // disabledMouseCursor: Colors.green,
-        shadowColor: Colors.green,
+      primaryColor: _currentColor,
+      colorScheme: ThemeData().colorScheme.copyWith(secondary: Colors.black),
+      scaffoldBackgroundColor: Color(0xffdae0e6),
+      cardColor: Colors.white,
+      hintColor: Color(0xff3b3b3b),
+      indicatorColor: Color(0xff008F61),
+      accentColor: Colors.black,
+      errorColor: Color.fromARGB(255, 203, 45, 62),
+      appBarTheme: AppBarTheme(
+          backgroundColor: _currentColor,
+          titleTextStyle: TextStyle(color: Colors.black),
+          iconTheme: IconThemeData(color: Colors.black)),
+      bottomNavigationBarTheme:
+          BottomNavigationBarThemeData(backgroundColor: Colors.white),
+      textTheme: TextTheme(
+        button: const TextStyle(
+            fontSize: 16, fontFamily: 'Montserrat', color: Colors.white),
+        bodyText1: const TextStyle(
+            color: Colors.black,
+            fontSize: 16.0,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.normal),
+        bodyText2: const TextStyle(
+            color: Colors.black,
+            fontSize: 14.0,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.normal),
+        headline1: const TextStyle(
+            color: Colors.black,
+            fontSize: 20.0,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.w600),
+        headline2: const TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.w600),
+        headline3: const TextStyle(
+            color: Colors.white, //Color(0xff1a1a1a),
+            fontSize: 20.0,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.w600),
+        headline4: const TextStyle(
+            color: Color(0xFF646464),
+            fontSize: 15.0,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.w600),
+        headline5: const TextStyle(
+            color: Colors.black,
+            fontSize: 16.0,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.w600),
+        headline6: const TextStyle(
+            color: Colors.white,
+            fontSize: 16.0,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.w600),
+        subtitle1: const TextStyle(
+            color: Colors.black,
+            fontSize: 12.0,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.normal),
+        subtitle2: const TextStyle(
+            color: Colors.white,
+            fontSize: 14.0,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.normal),
       ),
-    ),
-  );
+      backgroundColor: Colors.black,
+      dividerColor: Colors.transparent,
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          primary: Colors.white,
+          // disabledMouseCursor: Colors.green,
+          shadowColor: Colors.green,
+        ),
+      ),
+      primaryColorLight: Colors.white,
+      primaryColorDark: Color(0xffdae0e6));
 }
