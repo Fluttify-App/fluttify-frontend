@@ -45,47 +45,7 @@ class PlaylistSliverHeaderButtonsState
                     icon: Icon(Icons.link,
                         size: 15, color: Theme.of(context).accentColor),
                     onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (_) {
-                          return AlertDialog(
-                            title: Text(
-                              AppLocalizations.of(context)!.spotify,
-                              style: Theme.of(context).textTheme.headline1,
-                            ),
-                            content: SingleChildScrollView(
-                              child: ListBody(
-                                children: <Widget>[
-                                  Text(
-                                    AppLocalizations.of(context)!.spotifyDialog,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            actions: <Widget>[
-                              FluttifyButton(
-                                  //color: Theme.of(context).cardColor,
-                                  text: AppLocalizations.of(context)!.no,
-                                  width:
-                                      MediaQuery.of(context).size.width - 270,
-                                  height: 35,
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  }),
-                              FluttifyButton(
-                                //color: Theme.of(context).cardColor,
-                                width: MediaQuery.of(context).size.width - 270,
-                                height: 35,
-                                text: AppLocalizations.of(context)!.yes,
-                                onPressed: () =>
-                                    {launch(widget.model!.playlist!.href!)},
-                              ),
-                            ],
-                          );
-                        },
-                      );
+                      launch(widget.model!.playlist!.href!);
                     },
                     border: BorderSide(width: 1, color: Colors.white),
                   ),
