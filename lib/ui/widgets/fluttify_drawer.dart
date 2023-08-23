@@ -19,9 +19,7 @@ class FluttifyDrawer extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width / 1.6,
         child: Drawer(
-          backgroundColor: HSLColor.fromColor(Theme.of(context).cardColor)
-              .withLightness(0.3)
-              .toColor(),
+          backgroundColor: Theme.of(context).primaryColorDark,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
@@ -40,7 +38,7 @@ class FluttifyDrawer extends StatelessWidget {
                           //color: Colors.green,
                           child: Container(
                             decoration: BoxDecoration(
-                              border: Border(),
+                              //  border: Border(),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.white,
@@ -97,16 +95,13 @@ class FluttifyDrawer extends StatelessWidget {
               ),
               Expanded(
                 child: ColoredBox(
-                  color: Theme.of(context).cardColor,
+                  color: Theme.of(context).primaryColorLight,
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                          height: 16,
-                          color: HSLColor.fromColor(Theme.of(context).cardColor)
-                              .withLightness(0.3)
-                              .toColor(),
-                        ),
+                            height: 24,
+                            color: Theme.of(context).primaryColorDark),
                         SizedBox(height: 8),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -114,12 +109,8 @@ class FluttifyDrawer extends StatelessWidget {
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: HSLColor.fromColor(
-                                          Theme.of(context).cardColor)
-                                      .withLightness(0.3)
-                                      .toColor(),
-                                ),
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Theme.of(context).primaryColorDark),
                                 child: ListTile(
                                     dense: true,
                                     leading: Icon(Icons.settings,
@@ -140,12 +131,8 @@ class FluttifyDrawer extends StatelessWidget {
                               SizedBox(height: 8),
                               Container(
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: HSLColor.fromColor(
-                                          Theme.of(context).cardColor)
-                                      .withLightness(0.3)
-                                      .toColor(),
-                                ),
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Theme.of(context).primaryColorDark),
                                 child: ListTile(
                                   dense: true,
                                   leading: Icon(Icons.privacy_tip,
@@ -165,12 +152,8 @@ class FluttifyDrawer extends StatelessWidget {
                               SizedBox(height: 8),
                               Container(
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: HSLColor.fromColor(
-                                          Theme.of(context).cardColor)
-                                      .withLightness(0.3)
-                                      .toColor(),
-                                ),
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Theme.of(context).primaryColorDark),
                                 child: ListTile(
                                   dense: true,
                                   leading: Icon(Icons.description,
@@ -202,12 +185,8 @@ class FluttifyDrawer extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color:
-                                HSLColor.fromColor(Theme.of(context).cardColor)
-                                    .withLightness(0.3)
-                                    .toColor(),
-                          ),
+                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).primaryColorDark),
                           child: ListTile(
                             dense: true,
                             leading: Icon(Icons.logout,
