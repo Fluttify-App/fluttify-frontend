@@ -26,6 +26,7 @@ class HomeView extends StatelessWidget {
                     controller: model.controller,
                     onItemSelected: model.resetOnItemchange,
                     screens: _buildScreens(),
+                    hideNavigationBar: true,
                     items: _buildNavBarItems(context),
                     backgroundColor: Theme.of(context)
                         .bottomNavigationBarTheme

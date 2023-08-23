@@ -100,7 +100,7 @@
     "onboardingtitle5": "Lehn dich zurück & \n genieße deine Lieblingssongs",
     "onboardingcontent5": "Fluttify aktualisiert deine Playlists alle 24 Stunden automatisch. Deine Playlist wird immer auf dem neusten Stand sein! \n\n Viel Spaß mit Fluttify!",
 
-    "qrCodeScanner": "Qr-Code Leser",
+    "qrCodeScanner": "QR-Code Leser",
     "qrLaunchUrlWarning": "WARNUNG: URL wurde gefunden",
     "qrLaunchUrlQuestion": "Willst du dieser URL folgen: ",
     "qrCodePlaylistSuccess": "Playlist id Scan erfolgreich",

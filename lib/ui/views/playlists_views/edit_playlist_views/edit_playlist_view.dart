@@ -54,8 +54,8 @@ class EditPlaylistView extends StatelessWidget {
                       actions: [
                         model.playlist!.canEdit
                             ? Padding(
-                                padding: const EdgeInsets.only(right: 4.0),
-                                child: TextButton(
+                                padding: EdgeInsets.only(right: 4.0),
+                                child: IconButton(
                                   style: ButtonStyle(
                                     foregroundColor: MaterialStateProperty
                                         .resolveWith<Color?>(
@@ -65,8 +65,9 @@ class EditPlaylistView extends StatelessWidget {
                                           : Colors.white,
                                     ),
                                   ),
-                                  child:
-                                      Text(AppLocalizations.of(context)!.save),
+                                  icon: Icon(
+                                    Icons.check,
+                                  ),
                                   onPressed: model.selectedGenres.length != 0 &&
                                           model.nameController.text.isNotEmpty
                                       ? () => model.save(context)
@@ -144,63 +145,7 @@ class EditPlaylistView extends StatelessWidget {
                                         size: 15,
                                         color: Theme.of(context).accentColor),
                                     onPressed: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (_) {
-                                          return AlertDialog(
-                                            title: Text(
-                                              AppLocalizations.of(context)!
-                                                  .spotify,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline1,
-                                            ),
-                                            content: SingleChildScrollView(
-                                              child: ListBody(
-                                                children: <Widget>[
-                                                  Text(
-                                                    AppLocalizations.of(
-                                                            context)!
-                                                        .spotifyDialog,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyText2,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            actions: <Widget>[
-                                              FluttifyButton(
-                                                  //color: Theme.of(context).cardColor,
-                                                  text: AppLocalizations.of(
-                                                          context)!
-                                                      .no,
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width -
-                                                      270,
-                                                  height: 35,
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  }),
-                                              FluttifyButton(
-                                                //color: Theme.of(context).cardColor,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    270,
-                                                height: 35,
-                                                text: AppLocalizations.of(
-                                                        context)!
-                                                    .yes,
-                                                onPressed: () => {
-                                                  launch(model!.playlist!.href!)
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
+                                      launch(model!.playlist!.href!);
                                     },
                                   ),
                                 ),
@@ -250,49 +195,57 @@ class EditPlaylistView extends StatelessWidget {
                                                     ),
                                                   ),
                                                   actions: <Widget>[
-                                                    FluttifyButton(
-                                                        //color: Theme.of(context).cardColor,
-                                                        text:
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .inviteLink,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width -
-                                                            270,
-                                                        height: 35,
-                                                        icon: Icon(Icons.link,
-                                                            size: 15,
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .accentColor),
-                                                        onPressed: () {
-                                                          model.pressShare(model
-                                                              .playlist!.dbID!);
-                                                        }),
-                                                    FluttifyButton(
-                                                      //color: Theme.of(context).cardColor,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width -
-                                                              270,
-                                                      height: 35,
-                                                      text: AppLocalizations.of(
-                                                              context)!
-                                                          .qrCodeGenerate,
-                                                      icon: Icon(Icons.qr_code,
-                                                          size: 15,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .accentColor),
-                                                      onPressed: () => {
-                                                        model.createQrCode(),
-                                                        model
-                                                            .navigateToQrCodeImageView(
-                                                                model.playlist!)
-                                                      },
+                                                    Row(
+                                                      children: [
+                                                        Expanded(
+                                                          child: FluttifyButton(
+                                                              //color: Theme.of(context).cardColor,
+                                                              text: AppLocalizations
+                                                                      .of(
+                                                                          context)!
+                                                                  .inviteLink,
+                                                              height: 35,
+                                                              icon: Icon(
+                                                                  Icons.link,
+                                                                  size: 15,
+                                                                  color: Colors
+                                                                      .white),
+                                                              onPressed: () {
+                                                                model.pressShare(
+                                                                    model
+                                                                        .playlist!
+                                                                        .dbID!);
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .pop();
+                                                              }),
+                                                        ),
+                                                        Expanded(
+                                                          child: FluttifyButton(
+                                                            //color: Theme.of(context).cardColor,
+
+                                                            height: 35,
+                                                            text: AppLocalizations
+                                                                    .of(context)!
+                                                                .qrCodeGenerate,
+                                                            icon: Icon(
+                                                                Icons.qr_code,
+                                                                size: 15,
+                                                                color: Colors
+                                                                    .white),
+                                                            onPressed: () => {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop(),
+                                                              model
+                                                                  .createQrCode(),
+                                                              model.navigateToQrCodeImageView(
+                                                                  model
+                                                                      .playlist!)
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ],
                                                 );
@@ -1114,17 +1067,6 @@ class EditPlaylistView extends StatelessWidget {
                                                     icon: Icon(Icons.refresh),
                                                   ),
                                                 ),
-                                                Container(
-                                                  child: IconButton(
-                                                    onPressed: () =>
-                                                        model.setShowSongs(),
-                                                    icon: model.showSongs!
-                                                        ? Icon(Icons
-                                                            .visibility_off)
-                                                        : Icon(
-                                                            Icons.visibility),
-                                                  ),
-                                                ),
                                               ],
                                             )
                                           : Container(),
@@ -1147,13 +1089,12 @@ class EditPlaylistView extends StatelessWidget {
                                                       margin:
                                                           const EdgeInsets.only(
                                                               bottom: 0),
-                                                      child: Container(
-                                                        padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                20, 20, 13, 20),
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: Text('...'),
+                                                      child: Center(
+                                                        child: IconButton(
+                                                            onPressed: () => model
+                                                                .setShowSongs(),
+                                                            icon: Icon(Icons
+                                                                .arrow_drop_down)),
                                                       ),
                                                     )
                                                   else

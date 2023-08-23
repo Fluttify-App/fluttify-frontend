@@ -27,8 +27,8 @@ class AddPlaylistView extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.white),
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: 4.0),
-              child: TextButton(
+              padding: EdgeInsets.only(right: 4.0),
+              child: IconButton(
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.resolveWith<Color?>(
                     (Set<MaterialState> states) =>
@@ -37,8 +37,8 @@ class AddPlaylistView extends StatelessWidget {
                             : Colors.white,
                   ),
                 ),
-                child: Text(
-                  AppLocalizations.of(context)!.save,
+                icon: Icon(
+                  Icons.check,
                 ),
                 onPressed: model.selectedGenres.length != 0 &&
                         model.nameController.text.isNotEmpty

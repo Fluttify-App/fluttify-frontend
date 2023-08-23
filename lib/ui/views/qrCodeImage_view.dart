@@ -22,7 +22,7 @@ class _QrCodeImageViewState extends State<QrCodeImageView> {
     return Material(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Qr Code', style: Theme.of(context).textTheme.headline2),
+          title: Text('QR Code', style: Theme.of(context).textTheme.headline2),
           centerTitle: true,
           iconTheme: IconThemeData(color: Colors.white),
         ),
