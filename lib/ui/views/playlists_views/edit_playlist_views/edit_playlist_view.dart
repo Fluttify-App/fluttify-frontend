@@ -210,14 +210,14 @@ class EditPlaylistView extends StatelessWidget {
                                                                   color: Colors
                                                                       .white),
                                                               onPressed: () {
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .pop();
                                                                 model.pressShare(
                                                                     context,
                                                                     model
                                                                         .playlist!
                                                                         .dbID!);
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
                                                               }),
                                                         ),
                                                         Expanded(

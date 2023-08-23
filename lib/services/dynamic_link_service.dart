@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -73,16 +74,16 @@ class DynamicLinkService {
       Clipboard.setData(ClipboardData(
           text:
               "https://fluttify.netpy.de/#/home-view?playlist=" + playlistID));
-      final snackBar = SnackBar(
+      Flushbar(
         backgroundColor: Theme.of(context).indicatorColor,
-        content: Text("Link copied to clipboard"),
-        behavior: SnackBarBehavior.floating,
-        duration: Duration(milliseconds: 1500),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        ),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        flushbarPosition: FlushbarPosition.TOP,
+        message: "Link copied to clipboard",
+        messageSize: 16,
+        messageColor: Colors.white,
+        titleColor: Colors.white,
+        duration: Duration(seconds: 3),
+      ).show(context);
     } else {
       final DynamicLinkParameters parameters = DynamicLinkParameters(
         uriPrefix: 'https://fluttify.page.link',
