@@ -171,9 +171,11 @@ class AddPlaylistView extends StatelessWidget {
                       child: Card(
                         margin: const EdgeInsets.all(0),
                         child: Container(
-                          padding: EdgeInsets.all(7),
+                          padding: EdgeInsets.fromLTRB(6, 7, 0, 7),
                           child: CheckboxListTile(
+                            checkboxShape: CircleBorder(),
                             title: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
                                   padding: EdgeInsets.only(right: 10),

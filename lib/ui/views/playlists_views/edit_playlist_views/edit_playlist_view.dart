@@ -590,6 +590,10 @@ class EditPlaylistView extends StatelessWidget {
                             child: Container(
                               padding: EdgeInsets.all(7),
                               child: CheckboxListTile(
+                                checkColor: Colors.white,
+                                activeColor: Theme.of(context).primaryColor,
+                                value: model.playlist!.keepAllTracks,
+                                checkboxShape: CircleBorder(),
                                 title: Row(
                                   children: [
                                     Container(
@@ -603,7 +607,8 @@ class EditPlaylistView extends StatelessWidget {
                                       ),
                                     ),
                                     IconButton(
-                                      icon: Icon(Icons.info_outline_rounded),
+                                      icon: Icon(Icons.info_outline_rounded,
+                                          color: Theme.of(context).hintColor),
                                       onPressed: () {
                                         showDialog(
                                           context: context,
@@ -638,9 +643,6 @@ class EditPlaylistView extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                checkColor: Colors.white,
-                                activeColor: Theme.of(context).primaryColor,
-                                value: model.playlist!.keepAllTracks,
                                 onChanged: (value) {
                                   if (model.playlist!.canEdit)
                                     model.keepItFresh(value!);
@@ -701,7 +703,7 @@ class EditPlaylistView extends StatelessWidget {
                                           Container(
                                             height: 65,
                                             padding: EdgeInsets.fromLTRB(
-                                                15, 10, 0, 10),
+                                                10, 5, 0, 5),
                                             child: Card(
                                               color: contributers['id'] !=
                                                       model.authService
@@ -1090,12 +1092,15 @@ class EditPlaylistView extends StatelessWidget {
                                                       margin:
                                                           const EdgeInsets.only(
                                                               bottom: 0),
-                                                      child: Center(
-                                                        child: IconButton(
-                                                            onPressed: () => model
-                                                                .setShowSongs(),
-                                                            icon: Icon(Icons
-                                                                .arrow_drop_down)),
+                                                      child: Container(
+                                                        height: 65,
+                                                        child: Center(
+                                                          child: IconButton(
+                                                              onPressed: () => model
+                                                                  .setShowSongs(),
+                                                              icon: Icon(Icons
+                                                                  .arrow_drop_down)),
+                                                        ),
                                                       ),
                                                     )
                                                   else

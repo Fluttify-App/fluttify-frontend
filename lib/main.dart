@@ -30,7 +30,7 @@ Future main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  bool? darkMode = prefs.getBool('darkMode') ?? false;
+  bool? darkMode = prefs.getBool('darkMode') ?? true;
   int? color = prefs.getInt('theme') ?? 0xffCB2D3E;
   List<String?> language = <String?>[prefs.getString('locale')];
 
