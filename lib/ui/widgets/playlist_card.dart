@@ -187,7 +187,7 @@ class PlaylistCard extends StatelessWidget {
                               Radius.circular(10),
                             ),
                             child: Hero(
-                              tag: playlist!.name!,
+                              tag: playlist!.id!,
                               child: Image.network(playlist!.image!),
                             ),
                           ),

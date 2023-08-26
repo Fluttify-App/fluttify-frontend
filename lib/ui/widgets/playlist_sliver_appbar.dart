@@ -150,7 +150,7 @@ class PlaylistSliverAppBar extends SliverPersistentHeaderDelegate {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Hero(
-            tag: model!.playlist!.name!,
+            tag: model!.playlist!.id!,
             child: Image.network(
               image,
               fit: BoxFit.cover,

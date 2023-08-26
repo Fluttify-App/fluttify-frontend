@@ -6,10 +6,9 @@ import 'package:fluttify/ui/widgets/scrolling_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CommunityPlaylistCard extends StatelessWidget {
-  
   final CommunityViewModel? model;
   final Playlist? playlist;
-  
+
   CommunityPlaylistCard({required this.model, required this.playlist});
 
   String? getCreator() {
@@ -111,7 +110,7 @@ class CommunityPlaylistCard extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             child: Hero(
-                                tag: playlist!.name!,
+                                tag: playlist!.id!,
                                 child: Image.network(playlist!.image!)),
                           ),
                         ),

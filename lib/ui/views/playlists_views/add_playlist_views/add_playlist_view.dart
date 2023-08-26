@@ -173,7 +173,8 @@ class AddPlaylistView extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.fromLTRB(6, 7, 0, 7),
                           child: CheckboxListTile(
-                            checkboxShape: CircleBorder(),
+                            checkboxShape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
                             title: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [

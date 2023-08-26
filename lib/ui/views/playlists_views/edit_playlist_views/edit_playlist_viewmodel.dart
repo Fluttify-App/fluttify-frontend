@@ -61,13 +61,13 @@ class EditPlaylistViewModel extends BaseViewModel {
     nameController.addListener(notifyListeners);
 
     // Timer for updating of playlist
-    _timer = new Timer.periodic(
-        Duration(seconds: 15),
+    this._timer = new Timer.periodic(
+        Duration(seconds: 5),
         (Timer timer) => {
               if (this.playlist!.updating!) {getPlaylist(this.playlist!.dbID!)}
             });
 
-    this.scrollController!.addListener(this.scrollListener);
+    // this.scrollController!.addListener(this.scrollListener);
   }
 
   @override
