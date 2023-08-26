@@ -263,21 +263,22 @@ class EditPlaylistViewModel extends BaseViewModel {
   }
 
   Future<void> updatePlaylist(BuildContext context) async {
+    //setPlaylist(playlistUpdate);
+    this.playlist!.updating = true;
+    notifyListeners();
+    final snackBar = SnackBar(
+      backgroundColor: Theme.of(context).indicatorColor,
+      content: Text(AppLocalizations.of(context)!.playlistUpdateSnackBar),
+      behavior: SnackBarBehavior.floating,
+      duration: Duration(milliseconds: 1500),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
     fluttifyPlaylistService
         .updateFluttifyPlaylist(this.playlist!)
-        .then((playlistUpdate) {
-      setPlaylist(playlistUpdate);
-      final snackBar = SnackBar(
-        backgroundColor: Theme.of(context).indicatorColor,
-        content: Text(AppLocalizations.of(context)!.playlistUpdateSnackBar),
-        behavior: SnackBarBehavior.floating,
-        duration: Duration(milliseconds: 1500),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        ),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    });
+        .then((playlistUpdate) {});
   }
 
   void navigateBack(BuildContext context) {
