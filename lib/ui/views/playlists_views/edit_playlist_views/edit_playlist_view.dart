@@ -120,11 +120,20 @@ class EditPlaylistView extends StatelessWidget {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 0.0),
                             child: Hero(
-                              tag: model.playlist!.name!,
-                              child: Image.network(
-                                model.playlist!.image!,
-                                fit: BoxFit.cover,
-                              ),
+                              tag: model.playlist!.id!,
+                              child: model.playlist!.image == null
+                                  ? Container(
+                                      margin: const EdgeInsets.only(
+                                          top: 20, bottom: 10),
+                                      child: Icon(
+                                        Icons.image,
+                                        size: 30,
+                                      ),
+                                    )
+                                  : Image.network(
+                                      model.playlist!.image!,
+                                      fit: BoxFit.cover,
+                                    ),
                             ),
                           ),
 
@@ -593,7 +602,8 @@ class EditPlaylistView extends StatelessWidget {
                                 checkColor: Colors.white,
                                 activeColor: Theme.of(context).primaryColor,
                                 value: model.playlist!.keepAllTracks,
-                                checkboxShape: CircleBorder(),
+                                checkboxShape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5)),
                                 title: Row(
                                   children: [
                                     Container(
@@ -1088,18 +1098,18 @@ class EditPlaylistView extends StatelessWidget {
                                                             .length !=
                                                         0)
                                                   if (!model.showSongs!)
-                                                    Card(
-                                                      margin:
-                                                          const EdgeInsets.only(
-                                                              bottom: 0),
-                                                      child: Container(
-                                                        height: 65,
-                                                        child: Center(
-                                                          child: IconButton(
-                                                              onPressed: () => model
-                                                                  .setShowSongs(),
-                                                              icon: Icon(Icons
-                                                                  .arrow_drop_down)),
+                                                    GestureDetector(
+                                                      onTap: () =>
+                                                          model.setShowSongs(),
+                                                      child: Card(
+                                                        margin: const EdgeInsets
+                                                            .only(bottom: 0),
+                                                        child: Container(
+                                                          height: 65,
+                                                          child: Center(
+                                                            child: Icon(Icons
+                                                                .arrow_drop_down),
+                                                          ),
                                                         ),
                                                       ),
                                                     )
@@ -1123,7 +1133,7 @@ class EditPlaylistView extends StatelessWidget {
                                                           ),
                                                         ],
                                                       ),
-
+                                                SizedBox(height: 30)
                                                 /*
                                                 if (model.playlist!.songs!
                                                             .length !=

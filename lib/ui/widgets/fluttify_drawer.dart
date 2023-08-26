@@ -112,8 +112,9 @@ class FluttifyDrawer extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                     color: Theme.of(context).primaryColorDark),
                                 child: ListTile(
+                                    horizontalTitleGap: 0,
                                     dense: true,
-                                    leading: Icon(Icons.settings,
+                                    trailing: Icon(Icons.settings,
                                         color:
                                             Theme.of(context).iconTheme.color),
                                     title: Text(
@@ -134,8 +135,9 @@ class FluttifyDrawer extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                     color: Theme.of(context).primaryColorDark),
                                 child: ListTile(
+                                  horizontalTitleGap: 0,
                                   dense: true,
-                                  leading: Icon(Icons.privacy_tip,
+                                  trailing: Icon(Icons.privacy_tip,
                                       color: Theme.of(context).iconTheme.color),
                                   title: Text(
                                       AppLocalizations.of(context)!.privacy,
@@ -155,8 +157,9 @@ class FluttifyDrawer extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                     color: Theme.of(context).primaryColorDark),
                                 child: ListTile(
+                                  horizontalTitleGap: 0,
                                   dense: true,
-                                  leading: Icon(Icons.description,
+                                  trailing: Icon(Icons.description,
                                       color: Theme.of(context).iconTheme.color),
                                   title: Text(
                                     AppLocalizations.of(context)!.licence,
@@ -189,8 +192,12 @@ class FluttifyDrawer extends StatelessWidget {
                               color: Theme.of(context).primaryColorDark),
                           child: ListTile(
                             dense: true,
-                            leading: Icon(Icons.logout,
+                            horizontalTitleGap: 0,
+                            trailing: Icon(Icons.logout,
                                 color: Theme.of(context).iconTheme.color),
+                            /*leading: Icon(Icons.logout,
+                                color: Theme.of(context).iconTheme.color),
+                           */
                             title: Text(AppLocalizations.of(context)!.logout,
                                 style: Theme.of(context).textTheme.bodyText2),
                             onTap: () {
