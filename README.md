@@ -49,13 +49,26 @@ Fluttify is a modern Flutter application that enhances the Spotify experience by
 
 ## 🚀 Getting Started
 
+### Branches
+- **master**: Mobile native version of the application
+- **master-web**: Web-specific implementation with optimizations for web deployment. Use this branch for web development and deployment.
+
+### Setup
 1. Clone the repository
-2. Install dependencies:
+2. Choose the appropriate branch:
+   ```bash
+   # For mobile development:
+   git checkout master
+
+   # For web development:
+   git checkout master-web
+   ```
+3. Install dependencies:
    ```bash
    flutter pub get
    ```
-3. Configure your Spotify Developer credentials
-4. Run the app:
+4. Configure your Spotify Developer credentials
+5. Run the app:
    ```bash
    flutter run
    ```
