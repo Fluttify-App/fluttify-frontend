@@ -41,7 +41,7 @@ Fluttify is a modern Flutter application that enhances the Spotify experience by
 - **API**: RESTful API integration with Node.js backend
 - **Authentication**: Secure Spotify OAuth implementation
 - **Real-time Updates**: Automated playlist synchronization service
-- **Backend Repository**: [Fluttify Backend](https://gitlab.in.htwg-konstanz.de/sa981vil1/fluttify-backend)
+- **Backend Repository**: [Fluttify Backend](https://github.com/Fluttify-App/fluttify-backend)
 
 ### External APIs
 - [Spotify Web API](https://developer.spotify.com/) for music integration
