@@ -22,6 +22,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Future main() async {
   setupLocator();
+
   WidgetsFlutterBinding.ensureInitialized();
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
